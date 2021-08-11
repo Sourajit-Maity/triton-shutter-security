@@ -9,6 +9,7 @@ class Profession extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'
+        'profession_name',
+        'active'
     ];
 }

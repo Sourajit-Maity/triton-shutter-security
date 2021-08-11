@@ -19,6 +19,8 @@
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">Name <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('SearchName')"></i>
             </th>  
+            <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
+                aria-label="Status: activate to sort column ascending">Status</th>
             <th class="align-center" rowspan="1" colspan="1" style="width: 20%;" aria-label="Actions">Actions</th>
         </tr>
 
@@ -26,6 +28,14 @@
             <th>
                 <x-admin.input type="search" wire:model.defer="searchName" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" />
+            </th>
+            <th>
+                <select class="form-control form-control-sm form-filter kt-input" wire:model.defer="searchStatus"
+                    title="Select" data-col-index="2">
+                    <option value="-1">Select One</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
             </th>
             <th>
                 <div class="row">
@@ -57,13 +67,16 @@
                     <div class="kt-user-card-v2">
                         
                         <div class="kt-user-card-v2__details">
-                            <span class="kt-user-card-v2__name">{{ $value->name }}</span>
+                            <span class="kt-user-card-v2__name">{{ $value->profession_name }}</span>
                             {{--<a href="#" class="kt-user-card-v2__email kt-link">Member since
                                 {{ $user->created_at->diffForHumans(null, true) . ' ' }}</a>--}}
                         </div>
                     </div>
                 </td>
-               
+                <td class="align-center"><span
+                        class="kt-badge  kt-badge--{{ $value->active == 1 ? 'success' : 'warning' }} kt-badge--inline kt-badge--pill cursor-pointer"
+                        wire:click="changeStatusConfirm({{ $value->id }})">{{ $value->active == 1 ? 'Active' : 'Inactive' }}</span>
+                </td>
                 
                 
                 <x-admin.td-action>

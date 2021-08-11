@@ -2,8 +2,8 @@
     <x-slot name="form">
         <x-admin.form-group>
             <x-admin.lable value="Name" required />
-            <x-admin.input type="text" wire:model.defer="name" placeholder="Name"  class="{{ $errors->has('name') ? 'is-invalid' :'' }}" />
-            <x-admin.input-error for="name" />
+            <x-admin.input type="text" wire:model.defer="profession_name" placeholder="Name"  class="{{ $errors->has('profession_name') ? 'is-invalid' :'' }}" />
+            <x-admin.input-error for="profession_name" />
         </x-admin.form-group>
 
         </div>
