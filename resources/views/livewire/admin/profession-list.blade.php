@@ -55,11 +55,7 @@
             <tr role="row" class="odd">
                 <td class="sorting_1" tabindex="0">
                     <div class="kt-user-card-v2">
-                        <div class="kt-user-card-v2__pic">
-                            <div class="kt-badge kt-badge--xl kt-badge--{{ $this->getRandomColor() }}">
-                                <span>{{ substr($value->name, 0, 1) }}</span>
-                            </div>
-                        </div>
+                        
                         <div class="kt-user-card-v2__details">
                             <span class="kt-user-card-v2__name">{{ $value->name }}</span>
                             {{--<a href="#" class="kt-user-card-v2__email kt-link">Member since
