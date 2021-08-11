@@ -71,4 +71,17 @@ class ProfessionList extends Component
             ]
         );
     }
+
+    public function changeStatusConfirm($id) 
+    {
+        $this->showConfirmation("warning", 'Are you sure?', "Do you want to change this status?", 'Yes, Change!', 'changeStatus', ['id' => $id]); //($type,$title,$text,$confirmText,$method)
+    }
+
+    public function changeStatus(Profession $profession)
+    {
+        
+        $profession->fill(['active' => ($profession->active == 1) ? 0 : 1])->save();
+     
+        $this->showModal('success', 'Success', 'Industry status is changed successfully');
+    }
 }

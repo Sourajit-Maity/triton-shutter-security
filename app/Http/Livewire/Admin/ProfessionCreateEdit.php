@@ -6,36 +6,36 @@ use Livewire\Component;
 use App\Models\Profession;
 class ProfessionCreateEdit extends Component
 {
-    public $profession,$name,$edit_id;
+    public $profession,$profession_name,$edit_id;
     use AlertMessage;
     public $isEdit = false;
     protected $rules = [
-        'name' => 'required|unique:professions',
+        'profession_name' => 'required|unique:professions',
     ];
 
     public function mount($profession = null) {
         if($profession){            
             $this->isEdit = true;
             $this->edit_id = $profession['id'];
-            $this->name = $profession['name'];
+            $this->profession_name = $profession['profession_name'];
         }
     }
 
     public function saveOrUpdate() {
         if($this->isEdit) {
             $ProfessionDetails = Profession::where(['id'=>$this->edit_id])->first();
-            $pname = $ProfessionDetails['name'];
-            if($pname != $this->name) {
+            $pname = $ProfessionDetails['profession_name'];
+            if($pname != $this->profession_name) {
                 $this->validate();
                 Profession::where('id',$this->edit_id)->update(
                     [
-                        'name'=>$this->name
+                        'profession_name'=>$this->profession_name
                     ]
                 );
             }
         } else {
             $this->validate();
-            Profession::create(['name'=>$this->name]);
+            Profession::create(['profession_name'=>$this->profession_name]);
         }       
         $msgAction = 'Profession was ' . ($this->isEdit ? 'updated' : 'added') . ' successfully';
         $this->showToastr("success", $msgAction);
