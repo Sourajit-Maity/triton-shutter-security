@@ -18,7 +18,7 @@ class CreateIndustriesTable extends Migration
             $table->id();
             $table->string('industry_name');
             $table->string('industry_description');
-            $table->boolean('active')->default(false); 
+            $table->boolean('active')->default(true); 
             $table->timestamps();
             $table->softDeletes();
         });
