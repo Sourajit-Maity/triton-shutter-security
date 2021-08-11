@@ -47,10 +47,10 @@ class UserCreateEdit extends Component
     {
         return
             [
-                'first_name' => ['required', 'max:255'],
-                'last_name' => ['required', 'max:255'],
-                'email' => ['required', 'email', 'max:255', Rule::unique('users')],
-                'phone' => ['required', Rule::unique('users')],
+                'first_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'last_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'email' => ['required', 'email', 'max:255', Rule::unique('users'), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+                'phone' => ['required', Rule::unique('users'), 'min:8', 'max:13', 'regex:/^([0-9\s+\(\)]*)$/'],
                 'password' => ['required', 'max:255', 'min:6', 'confirmed'],
                 'password_confirmation' => ['required', 'max:255', 'min:6'],
                 'active' => ['required'],
@@ -63,14 +63,26 @@ class UserCreateEdit extends Component
     {
         return
             [
-                'first_name' => ['required', 'max:255'],
-                'last_name' => ['required', 'max:255'],
+                'first_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'last_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'active' => ['required'],
-                'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->user->id)],
-                'phone' => ['required', Rule::unique('users')->ignore($this->user->id)],
+                'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->user->id), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+                'phone' => ['required', Rule::unique('users')->ignore($this->user->id), 'regex:/^([0-9\s+\(\)]*)$/', 'min:8', 'max:13'],
                 'address' => ['nullable'],
             ];
     }
+
+    protected $messages = [
+        'first_name.required'=>'First name is required.',
+        'first_name.regex'=>'First name should be alphabate.',
+        'last_name.required'=>'Last name is required.',
+        'last_name.regex'=>'Last name should be alphabate.',
+        'email.required'=>'Email id is required.',
+        'email.email' => 'Give Correct format',
+        'phone.required'=>'Phone number is required.',
+        'phone.regex'=>'Phone number should be integer.',
+        'email.regex'=>'Mail format is not correct.',
+    ];
 
     public function saveOrUpdate()
     {

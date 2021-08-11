@@ -6,7 +6,7 @@
 					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
 							<a href="{{route('admin.dashboard')}}" class="logo_text_custom">
-								<span>{{ config('app.name', 'Laravel') }}</span>
+								<span>{{ config('app.name', 'NGHBR') }}</span>
 								<!-- <img alt="Logo" src="http://www.w3.org/2000/svg" width="150" /> -->
 							</a>
 						</div>
@@ -41,13 +41,23 @@
 						<div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
 							<ul class="kt-menu__nav ">
 								<li class="kt-menu__item  {{ Request::is('admin/dashboard*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('admin.dashboard')}}" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-home"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
+								<li class="kt-menu__section ">
+									<h4 class="kt-menu__section-text">User Management</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>
+								</li>
 								<li class="kt-menu__item  {{ Request::is('admin/users*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('users.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-users"></i><span class="kt-menu__link-text">Users</span></a></li>
 								{{-- <li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">Master</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li> --}}
 
-								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-users"></i><span class="kt-menu__link-text">Professions</span></a></li>
+								<li class="kt-menu__section ">
+									<h4 class="kt-menu__section-text">Resource Management</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>
+								</li>
+								<li class="kt-menu__item  {{ Request::is('admin/industry*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('industry.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-industry"></i><span class="kt-menu__link-text">Industry</span></a></li>
+								
+								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Professions</span></a></li>
 
 							</ul>
 						</div>

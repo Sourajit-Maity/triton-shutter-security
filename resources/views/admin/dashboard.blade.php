@@ -27,4 +27,37 @@
     </div>
 </div>
 
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="row row-no-padding row-col-separator-xl">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total Industry" description="Total industry available in this system" :count="$count['industryCount']" href="{{ route('industry.index') }}" />
+                    <x-admin.dashboard-count-widget-item title="Total blocked Industry" description="Total blocked industry available in this system" :count="$count['blockedIndustryCount'] " href="{{ route('industry.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total active Industry" description="Total active industry available in this system" :count="$count['activeIndustryCount'] " href="{{ route('industry.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="row row-no-padding row-col-separator-xl">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total Profession" description="Total profession available in this system" :count="$count['professionCount']" href="{{ route('professions.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
 </x-admin-layout>
