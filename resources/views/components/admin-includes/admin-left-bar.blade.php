@@ -46,6 +46,9 @@
 									<h4 class="kt-menu__section-text">Master</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li> --}}
+
+								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-users"></i><span class="kt-menu__link-text">Professions</span></a></li>
+
 							</ul>
 						</div>
 					</div>
