@@ -16,16 +16,10 @@ class ProfessionController extends Controller
         return view('admin.profession.create-edit',['profession'=>null]);
     }
 
-    public function show($id){
-        /*try {
-            $Profession = Profession::where('id',$id)->first();
-            dd($Profession);
-        } catch (ModelNotFoundException $exception) {
-            return back()->withError($exception->getMessage())->withInput();
-        }*/
+    public function show($id){        
         try {
-            $user= Profession::findOrFail($id);
-            return response()->json(['user'=>$user], 200);
+            $profession= Profession::findOrFail($id);
+            return view('admin.profession.create-edit',['profession'=>$profession]);
         } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {
            
            

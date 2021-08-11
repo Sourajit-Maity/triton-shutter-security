@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Profession;
 class ProfessionCreateEdit extends Component
 {
-    public $profession,$name;
+    public $profession,$name,$edit_id;
     use AlertMessage;
     public $isEdit = false;
     protected $rules = [
@@ -14,14 +14,29 @@ class ProfessionCreateEdit extends Component
     ];
 
     public function mount($profession = null) {
-        if($profession){
+        if($profession){            
             $this->isEdit = true;
+            $this->edit_id = $profession['id'];
+            $this->name = $profession['name'];
         }
     }
 
     public function saveOrUpdate() {
-        $this->validate();
-        Profession::create(['name'=>$this->name]);
+        if($this->isEdit) {
+            $ProfessionDetails = Profession::where(['id'=>$this->edit_id])->first();
+            $pname = $ProfessionDetails['name'];
+            if($pname != $this->name) {
+                $this->validate();
+                Profession::where('id',$this->edit_id)->update(
+                    [
+                        'name'=>$this->name
+                    ]
+                );
+            }
+        } else {
+            $this->validate();
+            Profession::create(['name'=>$this->name]);
+        }       
         $msgAction = 'Profession was ' . ($this->isEdit ? 'updated' : 'added') . ' successfully';
         $this->showToastr("success", $msgAction);
 
