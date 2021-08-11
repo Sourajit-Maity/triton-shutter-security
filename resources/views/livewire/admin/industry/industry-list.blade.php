@@ -41,7 +41,7 @@
             <th>
                 <select class="form-control form-control-sm form-filter kt-input" wire:model.defer="searchStatus"
                     title="Select" data-col-index="2">
-                    <option value="-1">Select One</option>
+                    <option value="-1">Select</option>
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
                 </select>
