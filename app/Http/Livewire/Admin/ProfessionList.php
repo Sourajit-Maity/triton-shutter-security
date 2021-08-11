@@ -86,6 +86,6 @@ class ProfessionList extends Component
         
         $profession->fill(['active' => ($profession->active == 1) ? 0 : 1])->save();
      
-        $this->showModal('success', 'Success', 'Industry status is changed successfully');
+        $this->showModal('success', 'Success', 'Profession status is changed successfully');
     }
 }
