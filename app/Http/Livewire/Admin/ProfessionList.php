@@ -18,7 +18,8 @@ class ProfessionList extends Component
     public $badgeColors = ['info', 'success', 'brand', 'dark', 'primary', 'warning'];
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['deleteConfirm', 'changeStatus'];
-    public $perPage = 5;
+    public $searchIndustry,$searchIndustryDescription, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
+
     public $searchName;
     public function mount() {
         $this->perPageList = [
@@ -47,6 +48,7 @@ class ProfessionList extends Component
     public function resetSearch()
     {
         $this->searchName = "";
+        $this->searchStatus = -1;
         
     }
     public function deleteConfirm($id)
@@ -60,8 +62,10 @@ class ProfessionList extends Component
     }
     public function render() {
         $ProfessionQuery = Profession::query();
+        if ($this->searchStatus >= 0)
+            $ProfessionQuery->orWhere('active', $this->searchStatus);
         if($this->searchName){
-            $ProfessionQuery = $ProfessionQuery->Where('name', 'like', '%' . $this->searchName . '%');
+            $ProfessionQuery = $ProfessionQuery->Where('profession_name', 'like', '%' . $this->searchName . '%');
         }
         return view('livewire.admin.profession-list',
             [
