@@ -33,7 +33,7 @@
                     </x-admin.form-group>
                     @endif
                     <x-admin.form-group>
-                        <x-admin.lable value="Status" />
+                        <x-admin.lable value="Status" required/>
                         <x-admin.dropdown  wire:model.defer="active" placeHolderText="Please select one" autocomplete="off" class="{{ $errors->has('active') ? 'is-invalid' :'' }}">
                                 @foreach ($statusList as $status)
                                     <x-admin.dropdown-item  :value="$status['value']" :text="$status['text']"/>                          
@@ -42,7 +42,7 @@
                         <x-admin.input-error for="active" />
                     </x-admin.form-group>
                     <x-admin.form-group class="col-lg-6" >
-                    <x-admin.lable value="Profile Image" />
+                    <x-admin.lable value="Profile Image" required/>
                     @if($model_image)
                     <img src="{{ $model_image->getUrl() }}" style="width: 100px; height:100px;" /><br/>
                     @endif
