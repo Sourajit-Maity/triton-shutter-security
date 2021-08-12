@@ -25,6 +25,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->string('otp')->nullable();
+            $table->string('social_id')->nullable();
+            $table->string('social_account_type')->nullable();
+            $table->json('social_info')->nullable();
+            $table->string('device_type')->nullable();
+            $table->string('device_token')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
