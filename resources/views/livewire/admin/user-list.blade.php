@@ -109,12 +109,12 @@
                 </td>
                 <td><a class="kt-link" href="mailto:adingate15@furl.net">{{ $user->email }}</a></td>
                 <td>{{ $user->phone }}</td>
-                @if (isset($user->industries['industry_name']))
-                <td>{{ $user->industries['industry_name'] }}</td>
+                @if (isset($user->industries->industry_name))
+                <td>{{ $user->industries->industry_name }}</td>
                 @else <td></td>
                 @endif
-                @if (isset($user->professions['profession_name']))               
-                <td>{{ $user->professions['profession_name'] }}</td>
+                @if (isset($user->professions->profession_name))               
+                <td>{{ $user->professions->profession_name }}</td>
                 @else <td></td>
                 @endif
                 <td class="align-center"><span
