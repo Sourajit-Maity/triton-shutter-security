@@ -22,9 +22,9 @@ class AdminDashboard extends Controller
 
 
         $count['professionCount'] = Profession::count();
+        $users=User::take(5)->latest()->get();
 
-
-        return view('admin.dashboard',compact('count'));
+        return view('admin.dashboard',compact('count','users'));
     }
     public function userCreateShow(){
         return view('admin.user-create');

@@ -59,5 +59,43 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xl-6">
+        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    New Users
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="kt_widget4_tab1_content">
+                        <div class="kt-widget4">
+                            @foreach ($users as $user)
+                            <div class="kt-widget4__item">
+                                <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{substr(ucfirst($user->first_name), 0, 1)}}</span>
+                                </div>
+                                <div class="kt-widget4__info">
+                                    <a href="#" class="kt-widget4__username">
+                                        {{ $user->full_name }}
+                                    </a>
+                                    <p class="kt-widget4__text">
+                                        {{$user->created_at->diffForHumans()}}
+                                    </p>
+                                </div>
+                                <a href="{{ route('users.index') }}" class="btn btn-sm btn-label-brand btn-bold">View</a>
+                            </div>
+                            @endforeach
 
+                        </div>
+                        {{-- <a href="{{ route('users.index') }}" class="btn btn-sm btn-label-brand btn-bold mt-3">View All</a> --}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </x-admin-layout>
