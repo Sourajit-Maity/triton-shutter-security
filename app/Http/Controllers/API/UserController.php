@@ -451,6 +451,7 @@ class UserController extends Controller
 
 
     /**
+     * socialsignup
      * @bodyParam  first_name string required  Example: John
      * @bodyParam  last_name string required  Example: Doe
      * @bodyParam  email string required  Example: John@gmail.com
