@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->json('social_info')->nullable();
             $table->string('device_type')->nullable();
             $table->string('device_token')->nullable();
+            $table->foreignId('industry_id')->nullable()->references('id')->on('industries')->onDelete('cascade');
+            $table->foreignId('profession_id')->nullable()->references('id')->on('professions')->onDelete('cascade');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
