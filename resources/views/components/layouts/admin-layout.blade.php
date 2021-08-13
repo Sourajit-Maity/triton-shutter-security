@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ config('app.name', 'Laravel') }} | {{$title}}</title>
+    <title>{{ config('app.name', 'NGHBR') }} | {{$title}}</title>
     <meta name="description" content="Page with empty content">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
@@ -79,7 +79,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     
     <!--end::Layout Skins -->
-    <link rel="shortcut icon" href="{{asset('admin_assets/media/logos/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('admin_assets/media/logos/logo.png')}}" />
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 
 </head>
