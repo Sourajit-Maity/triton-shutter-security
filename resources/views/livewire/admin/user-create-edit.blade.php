@@ -10,6 +10,28 @@
                         <x-admin.input type="text" wire:model.defer="last_name" placeholder="Last Name"  class="{{ $errors->has('last_name') ? 'is-invalid' :'' }}" />
                         <x-admin.input-error for="last_name" />
                     </x-admin.form-group>
+
+                    <x-admin.form-group>
+                        <x-admin.lable value="Industry" required/>
+                        <x-admin.dropdown  wire:model.defer="industry_id" placeHolderText="Please select one" autocomplete="off" class="state {{ $errors->has('industry_id') ? 'is-invalid' :'' }}">
+                                <x-admin.dropdown-item  :value="$blankArr['value']" :text="$blankArr['text']"/> 
+                                @foreach ($industries as $industry)
+                                    <x-admin.dropdown-item  :value="$industry['id']" :text="$industry['industry_name']"/>                      
+                                @endforeach
+                        </x-admin.dropdown>
+                        <x-admin.input-error for="industry_id" />
+                    </x-admin.form-group>
+                    <x-admin.form-group>
+                        <x-admin.lable value="Profession" required/>
+                        <x-admin.dropdown  wire:model.defer="profession_id" placeHolderText="Please select one" autocomplete="off" class="state {{ $errors->has('profession_id') ? 'is-invalid' :'' }}">
+                                <x-admin.dropdown-item  :value="$blankArr['value']" :text="$blankArr['text']"/> 
+                                @foreach ($professions as $profession)
+                                    <x-admin.dropdown-item  :value="$profession['id']" :text="$profession['profession_name']"/>                      
+                                @endforeach
+                        </x-admin.dropdown>
+                        <x-admin.input-error for="profession_id" />
+                    </x-admin.form-group>
+
                     <x-admin.form-group>
                         <x-admin.lable value="Email" required />
                         <x-admin.input type="text" wire:model.defer="email" placeholder="Email" autocomplete="off" class="{{ $errors->has('email') ? 'is-invalid' :'' }}"/>

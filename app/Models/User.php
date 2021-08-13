@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -90,5 +91,15 @@ class User extends Authenticatable implements HasMedia
     public function task()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function industries()
+    {
+         return $this->belongsTo(Industry::class, 'industry_id');
+    }
+
+    public function professions()
+    {
+         return $this->belongsTo(Profession::class, 'profession_id');
     }
 }

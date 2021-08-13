@@ -12,4 +12,9 @@ class Profession extends Model
         'profession_name',
         'active'
     ];
+
+    public function usersprofession()
+    {
+         return $this->hasMany(User::class);
+    }
 }

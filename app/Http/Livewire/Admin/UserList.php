@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin;
 
 use App\Http\Livewire\Traits\AlertMessage;
 use App\Models\User;
+use App\Models\Industry;
+use App\Models\Profession;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\WithSorting;
@@ -19,7 +21,7 @@ class UserList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $searchName, $searchEmail, $searchPhone, $searchStatus = -1, $perPage = 5;
+    public $searchName, $searchIndustry, $searchProfession, $searchEmail, $searchPhone, $searchStatus = -1, $perPage = 5;
     protected $listeners = ['deleteConfirm', 'changeStatus'];
 
     public function mount()
@@ -52,12 +54,14 @@ class UserList extends Component
         $this->searchName = "";
         $this->searchEmail = "";
         $this->searchPhone = "";
+        $this->searchProfession = "";
+        $this->searchIndustry = "";
         $this->searchStatus = -1;
     }
 
     public function render()
     {
-        $userQuery = User::query();
+        $userQuery = User::query()->with(['industries','professions']);
         if ($this->searchName)
             $userQuery->WhereRaw(
                 "concat(first_name,' ', last_name) like '%" . $this->searchName . "%' "
@@ -68,6 +72,19 @@ class UserList extends Component
             $userQuery->orWhere('phone', 'like', '%' . $this->searchPhone . '%');
         if ($this->searchStatus >= 0)
             $userQuery->orWhere('active', $this->searchStatus);
+        if ($this->searchProfession) {
+                $profession_name = Profession::Where('profession_name', 'like', '%' . $this->searchProfession . '%')->get();
+                foreach ($profession_name as $value) {
+                    $userQuery->orWhere('profession_id', $value->id);
+                 }
+             }
+        if ($this->searchIndustry) {
+                $industry_name = Industry::Where('industry_name', 'like', '%' . $this->searchIndustry . '%')->get();
+                foreach ($industry_name as $value) {
+                    $userQuery->orWhere('industry_id', $value->id);
+                 }
+             }
+          
         return view('livewire.admin.user-list', [
             'users' => $userQuery
                 ->orderBy($this->sortBy, $this->sortDirection)

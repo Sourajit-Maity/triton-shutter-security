@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin;
 
 use App\Http\Livewire\Traits\AlertMessage;
 use App\Models\User;
+use App\Models\Industry;
+use App\Models\Profession;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
@@ -13,12 +15,14 @@ class UserCreateEdit extends Component
 {
     use WithFileUploads;
     use AlertMessage;
-    public $first_name, $last_name, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
+    public $first_name,$blankArr, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
     public $address;
     public $isEdit = false;
     public $statusList = [];
     public $photo;
     public $photos = [];
+    public $professions = [];
+    public $industries = [];
     public $model_image, $imgId, $model_documents;
     protected $listeners = ['refreshProducts' => '$refresh'];
 
@@ -30,6 +34,12 @@ class UserCreateEdit extends Component
             $this->isEdit = true;
         } else
             $this->user = new User;
+
+            $this->industries = Industry::get();
+            $this->professions = Profession::get();
+            $this->blankArr = [
+                "value"=> "", "text"=> "== Select One =="
+            ];
 
         $this->statusList = [
             ['value' => 0, 'text' => "Choose User"],
@@ -56,6 +66,8 @@ class UserCreateEdit extends Component
                 'active' => ['required'],
                 'photo' => ['required'],
                 'address' => ['nullable'],
+                'profession_id' => ['required'],
+                'industry_id' => ['required'],
 
             ];
     }
@@ -69,6 +81,8 @@ class UserCreateEdit extends Component
                 'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->user->id), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
                 'phone' => ['required', Rule::unique('users')->ignore($this->user->id), 'regex:/^([0-9\s+\(\)]*)$/', 'min:8', 'max:13'],
                 'address' => ['nullable'],
+                'profession_id' => ['required'],
+                'industry_id' => ['required'],
             ];
     }
 
@@ -82,6 +96,8 @@ class UserCreateEdit extends Component
         'phone.required'=>'Phone number is required.',
         'phone.regex'=>'Phone number should be integer.',
         'email.regex'=>'Mail format is not correct.',
+        'profession_id.required'=>'Profession name is required.',
+        'industry_id.required'=>'Industry name is required.',
     ];
 
     public function saveOrUpdate()

@@ -15,19 +15,26 @@
 
     <x-slot name="thead">
         <tr role="row">
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">Name <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('first_name')"></i>
             </th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 23%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-label="Company Email: activate to sort column ascending">Email <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('email')"></i></th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 20%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-label="Company Agent: activate to sort column ascending">Phone <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('phone')"></i></th>
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+                aria-label="Company Agent: activate to sort column ascending">Industry <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('industry_id')"></i></th>
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+                aria-label="Company Agent: activate to sort column ascending">Profession<i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('profession_id')"></i></th>
+
             <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-label="Status: activate to sort column ascending">Status</th>
-            <th class="align-center" rowspan="1" colspan="1" style="width: 20%;" aria-label="Actions">Actions</th>
+            <th class="align-center" rowspan="1" colspan="1" style="width: 15%;" aria-label="Actions">Actions</th>
         </tr>
 
         <tr class="filter">
@@ -41,6 +48,14 @@
             </th>
             <th>
                 <x-admin.input type="search" wire:model.defer="searchPhone" placeholder="" autocomplete="off"
+                    class="form-control-sm form-filter" />
+            </th>
+            <th>
+                <x-admin.input type="search" wire:model.defer="searchIndustry" placeholder="" autocomplete="off"
+                    class="form-control-sm form-filter" />
+            </th>
+            <th>
+                <x-admin.input type="search" wire:model.defer="searchProfession" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" />
             </th>
             <th>
@@ -76,6 +91,7 @@
 
     <x-slot name="tbody">
         @forelse($users as $user)
+       
             <tr role="row" class="odd">
                 <td class="sorting_1" tabindex="0">
                     <div class="kt-user-card-v2">
@@ -93,6 +109,14 @@
                 </td>
                 <td><a class="kt-link" href="mailto:adingate15@furl.net">{{ $user->email }}</a></td>
                 <td>{{ $user->phone }}</td>
+                @if (isset($user->industries['industry_name']))
+                <td>{{ $user->industries['industry_name'] }}</td>
+                @else <td></td>
+                @endif
+                @if (isset($user->professions['profession_name']))               
+                <td>{{ $user->professions['profession_name'] }}</td>
+                @else <td></td>
+                @endif
                 <td class="align-center"><span
                         class="kt-badge  kt-badge--{{ $user->active == 1 ? 'success' : 'warning' }} kt-badge--inline kt-badge--pill cursor-pointer"
                         wire:click="changeStatusConfirm({{ $user->id }})">{{ $user->active == 1 ? 'Active' : 'Inactive' }}</span>
@@ -114,6 +138,8 @@
                     <td>{{$user->full_name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->phone}}</td>
+                    <td class="sorting_1" tabindex="0">{{ $user->industries->industry_name }}</td>
+                    <td class="sorting_1" tabindex="0">{{ $user->professions->profession_name }}</td>
                     <td class="align-center"><span class="kt-badge kt-badge--{{$user->active==1 ? 'success' : 'warning'}} kt-badge--inline cursor-pointer" wire:click="changeStatusConfirm({{$user->id}})">{{$user->active==1 ? 'Active' : 'Inactive'}}</span></td>
                     <x-admin.td-action>
                         <a class="dropdown-item" href="{{route('users.edit', ['user' => $user->id])}}" ><i class="la la-edit"></i> Edit</a>

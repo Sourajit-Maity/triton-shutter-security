@@ -15,4 +15,9 @@ class Industry extends Model
         'industry_description',
         'active',
     ];
+
+    public function usersindustry()
+    {
+         return $this->hasMany(User::class);
+    }
 }
