@@ -102,4 +102,12 @@ class User extends Authenticatable implements HasMedia
     {
          return $this->belongsTo(Profession::class, 'profession_id');
     }
+    public function invitation()
+    {
+        return $this->hasMany(Invitation::class);
+    }
+    public function inviter()
+    {
+        return $this->hasMany(Invitation::class);
+    }
 }
