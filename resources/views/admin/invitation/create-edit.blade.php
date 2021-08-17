@@ -13,5 +13,5 @@
 				</x-slot>
 			</x-admin.sub-header>
 	</x-slot>
-	<livewire:admin.invitation.invitation-create-edit:invitation="$invitation"/>
+	<livewire:admin.invitation.invitation-create-edit :invitation="$invitation"/>
 </x-admin-layout>

@@ -32,7 +32,8 @@ class InvitationCreateEdit extends Component
         } else
             $this->invitation = new Invitation;
 
-            $this->user = User::get();
+            $this->users = User::get();
+
             $this->blankArr = [
                 "value"=> "", "text"=> "== Select One =="
             ];
@@ -71,6 +72,9 @@ class InvitationCreateEdit extends Component
 
     public function saveOrUpdate()
     {
+        
+        $this->isEdit ? $this->invitation->inviter_id = auth()->user()->id : $this->invitation->inviter_id = auth()->user()->id;
+
         $this->invitation->fill($this->validate($this->isEdit ? $this->validationRuleForUpdate() : $this->validationRuleForSave()))->save();
         
         $msgAction = 'Invitation is '. ($this->isEdit ? 'updated' : 'added') . ' successfully';
@@ -81,6 +85,6 @@ class InvitationCreateEdit extends Component
  
     public function render()
     {
-        return view('livewire.admin.invitation-create-edit');
+        return view('livewire.admin.invitation.invitation-create-edit');
     }
 }

@@ -2,7 +2,7 @@
     <x-slot name="form">
 
 
-                    <x-admin.form-group>
+    <x-admin.form-group>
                         <x-admin.lable value="Invited Name" required/>
                         <x-admin.dropdown  wire:model.defer="invited_id" placeHolderText="Please select one" autocomplete="off" class="state {{ $errors->has('invited_id') ? 'is-invalid' :'' }}">
                                 <x-admin.dropdown-item  :value="$blankArr['value']" :text="$blankArr['text']"/> 
@@ -13,16 +13,6 @@
                         <x-admin.input-error for="invited_id" />
                     </x-admin.form-group>
 
-                    <x-admin.form-group>
-                        <x-admin.lable value="Profession" required/>
-                        <x-admin.dropdown  wire:model.defer="profession_id" placeHolderText="Please select one" autocomplete="off" class="state {{ $errors->has('profession_id') ? 'is-invalid' :'' }}">
-                                <x-admin.dropdown-item  :value="$blankArr['value']" :text="$blankArr['text']"/> 
-                                @foreach ($professions as $profession)
-                                    <x-admin.dropdown-item  :value="$profession['id']" :text="$profession['profession_name']"/>                      
-                                @endforeach
-                        </x-admin.dropdown>
-                        <x-admin.input-error for="profession_id" />
-                    </x-admin.form-group>
             </div>
             <br>
     </x-slot>
