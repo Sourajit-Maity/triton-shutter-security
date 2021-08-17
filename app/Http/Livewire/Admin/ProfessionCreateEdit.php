@@ -33,6 +33,7 @@ class ProfessionCreateEdit extends Component
                     ]
                 );
             }
+
         } else {
             $this->validate();
             Profession::create(['profession_name'=>$this->profession_name]);
