@@ -32,7 +32,7 @@ class InvitationCreateEdit extends Component
         } else
             $this->invitation = new Invitation;
 
-            $this->users = User::get();
+            $this->users = User::role('CLIENT')->get();
 
             $this->blankArr = [
                 "value"=> "", "text"=> "== Select One =="

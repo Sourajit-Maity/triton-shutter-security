@@ -83,7 +83,7 @@
                         </div>
                         <div class="kt-user-card-v2__details">
                             <span class="kt-user-card-v2__name">{{ $invitation->usersinvited->full_name }}</span>
-                            <a href="#" class="kt-user-card-v2__email kt-link">Member since
+                            <a href="#" class="kt-user-card-v2__email kt-link">Invited since
                                 {{ $invitation->created_at->diffForHumans(null, true) . ' ' }}</a>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="kt-user-card-v2__details">
                             <span class="kt-user-card-v2__name">{{ $invitation->usersinvitation->full_name }}</span>
-                            <a href="#" class="kt-user-card-v2__email kt-link">Member since
+                            <a href="#" class="kt-user-card-v2__email kt-link">Added by
                                 {{ $invitation->created_at->diffForHumans(null, true) . ' ' }}</a>
                         </div>
                     </div>
