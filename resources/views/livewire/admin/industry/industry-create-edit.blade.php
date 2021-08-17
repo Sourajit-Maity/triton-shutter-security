@@ -6,13 +6,10 @@
                         <x-admin.input-error for="industry_name" />
                     </x-admin.form-group>
 
-                    <x-admin.form-group class="col-lg-12" wire:ignore>
-                    <x-admin.lable value="Industry Details" required/>
-                    <textarea
-                    x-data x-init="editor = CKEDITOR.replace('industry_description');
-                    editor.on('change', function(event){
-                        @this.set('industry_description', event.editor.getData());
-                    })" wire:model.defer="industry_description" id="industry_description" class="form-control {{ $errors->has('industry_description') ? 'is-invalid' :'' }}"></textarea>
+                    <x-admin.form-group class="col-lg-12">
+                        <x-admin.lable value="Industry Details" required />
+                        <x-admin.textarea type="text" wire:model.defer="industry_description" placeholder="Industry Details..."  class="{{ $errors->has('industry_description') ? 'is-invalid' :'' }}" rows='8' />
+                        <x-admin.input-error for="industry_description" />
                     </x-admin.form-group>
             </div>
             <br>

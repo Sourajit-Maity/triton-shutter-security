@@ -59,6 +59,12 @@
 								
 								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Professions</span></a></li>
 
+								<li class="kt-menu__section ">
+									<h4 class="kt-menu__section-text">Invitation Management</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>
+								</li>
+								<li class="kt-menu__item  {{ Request::is('admin/invitation*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('invitation.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-industry"></i><span class="kt-menu__link-text">Invitation</span></a></li>
+
 							</ul>
 						</div>
 					</div>
