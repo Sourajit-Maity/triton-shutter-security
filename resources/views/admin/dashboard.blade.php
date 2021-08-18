@@ -53,6 +53,48 @@
             <div class="col-md-6 col-lg-6 col-xl-6">
                 <x-admin.dashboard-count-widget>
                     <x-admin.dashboard-count-widget-item title="Total Profession" description="Total profession available in this system" :count="$count['professionCount']" href="{{ route('professions.index') }}" />
+                    <x-admin.dashboard-count-widget-item title="Total blocked Profession" description="Total blocked profession available in this system" :count="$count['blockedProfessionCount'] " href="{{ route('professions.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total active Profession" description="Total active profession available in this system" :count="$count['activeProfessionCount'] " href="{{ route('professions.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="row row-no-padding row-col-separator-xl">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total Country" description="Total country available in this system" :count="$count['countryCount']" href="{{ route('country.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="row row-no-padding row-col-separator-xl">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total State" description="Total state available in this system" :count="$count['stateCount']" href="{{ route('state.index') }}" />
+                </x-admin.dashboard-count-widget>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="kt-portlet">
+    <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="row row-no-padding row-col-separator-xl">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <x-admin.dashboard-count-widget>
+                    <x-admin.dashboard-count-widget-item title="Total City" description="Total city available in this system" :count="$count['cityCount']" href="{{ route('city.index') }}" />
                 </x-admin.dashboard-count-widget>
             </div>
             

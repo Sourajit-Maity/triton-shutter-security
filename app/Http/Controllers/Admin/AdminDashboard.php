@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Industry;
 use App\Models\Profession;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class AdminDashboard extends Controller
@@ -22,6 +25,12 @@ class AdminDashboard extends Controller
 
 
         $count['professionCount'] = Profession::count();
+        $count['activeProfessionCount'] = Profession::whereActive(1)->count();
+        $count['blockedProfessionCount'] = Profession::whereActive(0)->count();
+
+        $count['cityCount'] = City::count();
+        $count['countryCount'] = Country::count();
+        $count['stateCount'] = State::count();
         $users=User::take(5)->latest()->get();
 
         return view('admin.dashboard',compact('count','users'));
