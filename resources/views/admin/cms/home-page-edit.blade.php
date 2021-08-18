@@ -13,5 +13,5 @@
 				</x-slot>
 			</x-admin.sub-header>
 	</x-slot>
-	
+	<livewire:admin.cms.home-page-edit :details="$details"/>
 </x-admin-layout>
