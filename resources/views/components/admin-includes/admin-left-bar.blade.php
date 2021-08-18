@@ -65,6 +65,8 @@
 								</li>
 								<li class="kt-menu__item  {{ Request::is('admin/invitation*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('invitation.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-industry"></i><span class="kt-menu__link-text">Invitation</span></a></li>
 
+								<li class="kt-menu__item  {{ Request::is('admin/country*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('country.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-industry"></i><span class="kt-menu__link-text">Country</span></a></li>
+
 							</ul>
 						</div>
 					</div>
