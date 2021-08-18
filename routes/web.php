@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\CityController;
 use Illuminate\Support\Facades\Route;
  
 
@@ -34,6 +36,8 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth:sanctum'], function(){
         'invitation' => InvitationController::class,
         'pages' => CmsController::class,
         'country' => CountryController::class,
+        'city' => CityController::class,
+        'state' => StateController::class,
     ]);
 });
 
