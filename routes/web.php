@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\Admin\CmsController;
 use Illuminate\Support\Facades\Route;
  
 
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> 'auth:sanctum'], function(){
         'professions'=>ProfessionController::class,
         'industry' => IndustryController::class,
         'invitation' => InvitationController::class,
+        'pages' => CmsController::class,
     ]);
 });
 
