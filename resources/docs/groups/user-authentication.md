@@ -2,7 +2,7 @@
 
 APIs for managing basic auth functionality
 
-## api/register
+## Register
 
 
 
@@ -11,7 +11,7 @@ APIs for managing basic auth functionality
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/register"
+    "http://localhost/api/register"
 );
 
 let headers = {
@@ -23,7 +23,9 @@ let body = {
     "first_name": "John",
     "last_name": "Doe",
     "email": "John@gmail.com",
-    "phone": "1122334455"
+    "phone": "1122334455",
+    "profession_id": "1",
+    "industry_id": "1"
 }
 
 fetch(url, {
@@ -41,24 +43,28 @@ fetch(url, {
     "status": true,
     "message": "Success! registration completed",
     "data": {
-        "first_name": "john",
-        "last_name": "doe",
-        "email": "john@gmail.com",
-        "phone": "1122334455",
-        "updated_at": "2021-02-18T12:14:01.000000Z",
-        "created_at": "2021-02-18T12:14:01.000000Z",
-        "id": 56,
-        "full_name": "john doe",
+        "first_name": "test",
+        "last_name": "test",
+        "email": "test@test.com",
+        "phone": "123456789",
+        "profession_id": "1",
+        "industry_id": "1",
+        "address": "address test",
+        "updated_at": "2021-08-19T05:07:36.000000Z",
+        "created_at": "2021-08-19T05:07:36.000000Z",
+        "id": 54,
+        "full_name": "test test",
         "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=test&color=7F9CF5&background=EBF4FF",
         "roles": [
             {
                 "id": 2,
                 "name": "CLIENT",
                 "guard_name": "web",
-                "created_at": "2021-02-17T06:58:17.000000Z",
-                "updated_at": "2021-02-17T06:58:17.000000Z",
+                "created_at": "2021-08-18T10:15:30.000000Z",
+                "updated_at": "2021-08-18T10:15:30.000000Z",
                 "pivot": {
-                    "model_id": 56,
+                    "model_id": 54,
                     "role_id": 2,
                     "model_type": "App\\Models\\User"
                 }
@@ -91,27 +97,43 @@ fetch(url, {
 <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="first_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="last_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="phone" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
+
+</p>
+<p>
+<b><code>profession_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="profession_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
+<br>
+
+</p>
+<p>
+<b><code>industry_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="industry_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
+<br>
+
 </p>
 
 </form>
 
 
-## api/login
+## User Login
 
 
 
@@ -120,7 +142,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/login"
+    "http://localhost/api/login"
 );
 
 let headers = {
@@ -146,7 +168,7 @@ fetch(url, {
 ```json
 {
     "status": true,
-    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
+    "token": "1|LqG5UB7MeKXCNA4IUdWDzKqsFpKjCjHRHDiOxvdE",
     "data": {
         "id": 55,
         "first_name": "Abhik",
@@ -188,17 +210,507 @@ fetch(url, {
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="password" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<input type="password" name="password" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
+
 </p>
 
 </form>
 
 
-## api/user
+## Social signup
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/social-login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "John@gmail.com",
+    "social_id": "1122334455",
+    "social_account_type": "social_account_type",
+    "device_type": "device type",
+    "device_token": "device token",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "token": "2|TskImAyBQSIUR58AS5sGMUvyEIHe8nUiHTteVV4h",
+    "message": "Success! registration completed",
+    "data": {
+        "first_name": "ranit",
+        "last_name": "ray",
+        "email": "ranit@rc.com",
+        "updated_at": "2021-08-19T05:55:18.000000Z",
+        "created_at": "2021-08-19T05:55:18.000000Z",
+        "id": 55,
+        "full_name": "ranit ray",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=tghfh&color=7F9CF5&background=EBF4FF",
+        "roles": [
+            {
+                "id": 2,
+                "name": "CLIENT",
+                "guard_name": "web",
+                "created_at": "2021-08-18T10:15:30.000000Z",
+                "updated_at": "2021-08-18T10:15:30.000000Z",
+                "pivot": {
+                    "model_id": 55,
+                    "role_id": 2,
+                    "model_type": "App\\Models\\User"
+                }
+            }
+        ]
+    }
+}
+```
+<div id="execution-results-POSTapi-social-login" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-social-login"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-social-login"></code></pre>
+</div>
+<div id="execution-error-POSTapi-social-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-social-login"></code></pre>
+</div>
+<form id="form-POSTapi-social-login" data-method="POST" data-path="api/social-login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-social-login', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-social-login" onclick="tryItOut('POSTapi-social-login');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-social-login" onclick="cancelTryOut('POSTapi-social-login');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-social-login" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/social-login</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="first_name" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="last_name" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>social_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="social_id" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>social_account_type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="social_account_type" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_type" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_token" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="password" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="password_confirmation" data-endpoint="POSTapi-social-login" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## Otp Verification
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/otp-verification"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "lueilwitz.caterina@example.com",
+    "otp": 1234
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! Otp Send successfully",
+    "data": {
+        "id": 3,
+        "first_name": "Makayla",
+        "last_name": "Runte",
+        "email": "cedrick.schmitt@example.com",
+        "phone": "609.587.7230",
+        "email_verified_at": "2021-03-11T07:39:50.000000Z",
+        "otp": 2430,
+        "current_team_id": null,
+        "profile_photo_path": null,
+        "active": 0,
+        "created_at": "2021-03-11T07:39:54.000000Z",
+        "updated_at": "2021-03-12T06:36:42.000000Z",
+        "full_name": "Makayla Runte",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Makayla&color=7F9CF5&background=EBF4FF"
+    }
+}
+```
+<div id="execution-results-POSTapi-otp-verification" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-otp-verification"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-otp-verification"></code></pre>
+</div>
+<div id="execution-error-POSTapi-otp-verification" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-otp-verification"></code></pre>
+</div>
+<form id="form-POSTapi-otp-verification" data-method="POST" data-path="api/otp-verification" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-otp-verification', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-otp-verification" onclick="tryItOut('POSTapi-otp-verification');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-otp-verification" onclick="cancelTryOut('POSTapi-otp-verification');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-otp-verification" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/otp-verification</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-otp-verification" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>otp</code></b>&nbsp;&nbsp;<small>number</small>     <i>optional</i> &nbsp;
+<input type="number" name="otp" data-endpoint="POSTapi-otp-verification" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## Forgot password
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/forgot-password"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "lueilwitz.caterina@example.com",
+    "password": "danwdjdajw"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! password change successfully",
+    "data": {
+        "id": 2,
+        "first_name": "Emory",
+        "last_name": "Wiza",
+        "email": "lueilwitz.caterina@example.com",
+        "phone": "(345) 744-1545",
+        "email_verified_at": "2021-03-05T06:49:30.000000Z",
+        "current_team_id": null,
+        "profile_photo_path": null,
+        "active": 0,
+        "created_at": "2021-03-05T06:49:37.000000Z",
+        "updated_at": "2021-03-08T07:50:35.000000Z",
+        "full_name": "Emory Wiza",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Emory&color=7F9CF5&background=EBF4FF"
+    }
+}
+```
+<div id="execution-results-POSTapi-forgot-password" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-forgot-password"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-forgot-password"></code></pre>
+</div>
+<div id="execution-error-POSTapi-forgot-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-forgot-password"></code></pre>
+</div>
+<form id="form-POSTapi-forgot-password" data-method="POST" data-path="api/forgot-password" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-forgot-password', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-forgot-password" onclick="tryItOut('POSTapi-forgot-password');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-forgot-password" onclick="cancelTryOut('POSTapi-forgot-password');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-forgot-password" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/forgot-password</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-forgot-password" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="password" data-endpoint="POSTapi-forgot-password" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## Get-Industry
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/industry/all"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "data": [
+        {
+            "id": 2,
+            "industry_name": "industry2",
+            "industry_description": "industry details",
+            "active": 1,
+            "created_at": "2021-08-19T06:20:51.000000Z",
+            "updated_at": "2021-08-19T06:20:51.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 1,
+            "industry_name": "industry1",
+            "industry_description": "industry details",
+            "active": 1,
+            "created_at": "2021-08-19T05:05:40.000000Z",
+            "updated_at": "2021-08-19T05:05:40.000000Z",
+            "deleted_at": null
+        }
+    ]
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+<div id="execution-results-GETapi-industry-all" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-industry-all"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-industry-all"></code></pre>
+</div>
+<div id="execution-error-GETapi-industry-all" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-industry-all"></code></pre>
+</div>
+<form id="form-GETapi-industry-all" data-method="GET" data-path="api/industry/all" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-industry-all', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-industry-all" onclick="tryItOut('GETapi-industry-all');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-industry-all" onclick="cancelTryOut('GETapi-industry-all');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-industry-all" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/industry/all</code></b>
+</p>
+</form>
+
+
+## Get-Profession
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/profession/all"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "data": [
+        {
+            "id": 2,
+            "profession_name": "profession2",
+            "active": 1,
+            "created_at": "2021-08-19T06:20:27.000000Z",
+            "updated_at": "2021-08-19T06:20:27.000000Z"
+        },
+        {
+            "id": 1,
+            "profession_name": "profession1",
+            "active": 1,
+            "created_at": "2021-08-19T05:07:30.000000Z",
+            "updated_at": "2021-08-19T05:07:30.000000Z"
+        }
+    ]
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+<div id="execution-results-GETapi-profession-all" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-profession-all"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-profession-all"></code></pre>
+</div>
+<div id="execution-error-GETapi-profession-all" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-profession-all"></code></pre>
+</div>
+<form id="form-GETapi-profession-all" data-method="GET" data-path="api/profession/all" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-profession-all', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-profession-all" onclick="tryItOut('GETapi-profession-all');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-profession-all" onclick="cancelTryOut('GETapi-profession-all');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-profession-all" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/profession/all</code></b>
+</p>
+</form>
+
+
+## User View
 
 <small class="badge badge-darkred">requires authentication</small>
 
@@ -208,7 +720,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/user"
+    "http://localhost/api/user"
 );
 
 let headers = {
@@ -230,19 +742,29 @@ fetch(url, {
 {
     "status": true,
     "data": {
-        "id": 55,
-        "first_name": "Abhik",
-        "last_name": "paul",
-        "email": "abhik421@gmail.com",
-        "phone": "6655443321",
+        "id": 54,
+        "first_name": "test",
+        "last_name": "test",
+        "email": "test@test.com",
+        "phone": "123456789",
+        "address": null,
         "email_verified_at": null,
         "current_team_id": null,
         "profile_photo_path": null,
+        "otp": null,
+        "social_id": null,
+        "social_account_type": null,
+        "social_info": null,
+        "device_type": null,
+        "device_token": null,
+        "industry_id": 1,
+        "profession_id": 1,
         "active": 0,
-        "created_at": "2021-02-17T15:13:27.000000Z",
-        "updated_at": "2021-02-17T15:13:27.000000Z",
-        "full_name": "Abhik paul",
-        "role_name": "CLIENT"
+        "created_at": "2021-08-19T05:07:36.000000Z",
+        "updated_at": "2021-08-19T05:07:36.000000Z",
+        "full_name": "test test",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=test&color=7F9CF5&background=EBF4FF"
     }
 }
 ```
@@ -275,6 +797,307 @@ fetch(url, {
 <p>
 <label id="auth-GETapi-user" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-user" data-component="header"></label>
 </p>
+</form>
+
+
+## Edit Profile
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/edit-my-profile"
+);
+
+let headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('first_name', 'John');
+body.append('last_name', 'Doe');
+body.append('phone', '1122334455');
+body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! Profile update completed"
+}
+```
+> Example response (401):
+
+```json
+{
+    "status": false,
+    "message": "Profile update failed!"
+}
+```
+<div id="execution-results-POSTapi-edit-my-profile" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-edit-my-profile"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-edit-my-profile"></code></pre>
+</div>
+<div id="execution-error-POSTapi-edit-my-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-edit-my-profile"></code></pre>
+</div>
+<form id="form-POSTapi-edit-my-profile" data-method="POST" data-path="api/edit-my-profile" data-authed="0" data-hasfiles="1" data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-edit-my-profile', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-edit-my-profile" onclick="tryItOut('POSTapi-edit-my-profile');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-edit-my-profile" onclick="cancelTryOut('POSTapi-edit-my-profile');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-edit-my-profile" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/edit-my-profile</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="first_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="last_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="phone" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>profile_photo_path</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
+<input type="file" name="profile_photo_path" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## Update-User
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/update-user/deleniti"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! User updated",
+    "data": {
+        "id": 54,
+        "first_name": "Jack",
+        "last_name": "Dawson",
+        "email": "jack@test.com",
+        "phone": "5654665756",
+        "address": "Test Address",
+        "email_verified_at": null,
+        "current_team_id": null,
+        "profile_photo_path": null,
+        "otp": null,
+        "social_id": null,
+        "social_account_type": null,
+        "social_info": null,
+        "device_type": null,
+        "device_token": null,
+        "industry_id": "2",
+        "profession_id": "2",
+        "active": 0,
+        "created_at": "2021-08-19T05:07:36.000000Z",
+        "updated_at": "2021-08-19T08:06:38.000000Z",
+        "full_name": "test test",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=test&color=7F9CF5&background=EBF4FF"
+    }
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+<div id="execution-results-PATCHapi-update-user--user-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PATCHapi-update-user--user-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-update-user--user-"></code></pre>
+</div>
+<div id="execution-error-PATCHapi-update-user--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-update-user--user-"></code></pre>
+</div>
+<form id="form-PATCHapi-update-user--user-" data-method="PATCH" data-path="api/update-user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PATCHapi-update-user--user-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PATCHapi-update-user--user-" onclick="tryItOut('PATCHapi-update-user--user-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PATCHapi-update-user--user-" onclick="cancelTryOut('PATCHapi-update-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PATCHapi-update-user--user-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-purple">PATCH</small>
+ <b><code>api/update-user/{user}</code></b>
+</p>
+<p>
+<label id="auth-PATCHapi-update-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PATCHapi-update-user--user-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user" data-endpoint="PATCHapi-update-user--user-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+
+
+## Password Change
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/change_password"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "old_password": "11111111",
+    "new_password": "22222222",
+    "confirm_password": "22222222"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! password change successfully",
+    "data": {
+        "id": 2,
+        "first_name": "Emory",
+        "last_name": "Wiza",
+        "email": "lueilwitz.caterina@example.com",
+        "phone": "(345) 744-1545",
+        "email_verified_at": "2021-03-05T06:49:30.000000Z",
+        "current_team_id": null,
+        "profile_photo_path": null,
+        "active": 0,
+        "created_at": "2021-03-05T06:49:37.000000Z",
+        "updated_at": "2021-03-08T07:50:35.000000Z",
+        "full_name": "Emory Wiza",
+        "role_name": "CLIENT",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Emory&color=7F9CF5&background=EBF4FF"
+    }
+}
+```
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+<div id="execution-results-POSTapi-change_password" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-change_password"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-change_password"></code></pre>
+</div>
+<div id="execution-error-POSTapi-change_password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-change_password"></code></pre>
+</div>
+<form id="form-POSTapi-change_password" data-method="POST" data-path="api/change_password" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-change_password', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-change_password" onclick="tryItOut('POSTapi-change_password');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-change_password" onclick="cancelTryOut('POSTapi-change_password');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-change_password" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/change_password</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-change_password" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-change_password" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>old_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="old_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>new_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="new_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>confirm_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="password" name="confirm_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<br>
+
+</p>
+
 </form>
 
 

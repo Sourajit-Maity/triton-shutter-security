@@ -12,7 +12,7 @@ APIs for managing Tasks
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/tasks"
+    "http://localhost/api/tasks"
 );
 
 let headers = {
@@ -171,7 +171,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/tasks"
+    "http://localhost/api/tasks"
 );
 
 let headers = {
@@ -242,11 +242,13 @@ fetch(url, {
 <b><code>title</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="title" data-endpoint="POSTapi-tasks" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="description" data-endpoint="POSTapi-tasks" data-component="body" required  hidden>
 <br>
+
 </p>
 
 </form>
@@ -262,7 +264,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/tasks/5"
+    "http://localhost/api/tasks/5"
 );
 
 let headers = {
@@ -342,6 +344,7 @@ fetch(url, {
 <b><code>task</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
 <input type="number" name="task" data-endpoint="GETapi-tasks--task-" data-component="url" required  hidden>
 <br>
+
 </p>
 </form>
 
@@ -356,7 +359,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/tasks/5"
+    "http://localhost/api/tasks/5"
 );
 
 let headers = {
@@ -446,17 +449,20 @@ fetch(url, {
 <b><code>task</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
 <input type="number" name="task" data-endpoint="PUTapi-tasks--task-" data-component="url" required  hidden>
 <br>
+
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
 <b><code>title</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="title" data-endpoint="PUTapi-tasks--task-" data-component="body" required  hidden>
 <br>
+
 </p>
 <p>
 <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="description" data-endpoint="PUTapi-tasks--task-" data-component="body" required  hidden>
 <br>
+
 </p>
 
 </form>
@@ -472,7 +478,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/tasks/5"
+    "http://localhost/api/tasks/5"
 );
 
 let headers = {
@@ -530,6 +536,7 @@ fetch(url, {
 <b><code>task</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
 <input type="number" name="task" data-endpoint="DELETEapi-tasks--task-" data-component="url" required  hidden>
 <br>
+
 </p>
 </form>
 
