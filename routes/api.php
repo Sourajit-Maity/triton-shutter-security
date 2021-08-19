@@ -18,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 // user controller routes
 Route::post("register", [UserController::class, 'register']);
 Route::post("login", [UserController::class, 'login']);
+Route::post("social-login", [UserController::class, 'socialsignup']);
+Route::post("email-verification", [UserController::class, 'emailverification']);
+Route::post("otp-verification", [UserController::class, 'otpverification']);
+Route::post("forgot-password", [UserController::class, 'forgot_password']);
+Route::get("industry/all", [UserController::class, 'getindustry']);
+Route::get("profession/all", [UserController::class, 'getprofession']);
 
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
     Route::get("user", [UserController::class, "user"]);
+    Route::post("edit-my-profile", [UserController::class, "editprofile"]);
+    Route::patch('/update-user/{user}',[UserController::class,'updateuser']);
+    Route::post("user-profile-update", [UserController::class, "profileUpdate"]);
+    Route::post("change_password", [UserController::class, "password_change"]);
     Route::resource('tasks', TaskController::class);    //patch/put   =>  x-www-form-urlencode
 });
