@@ -377,7 +377,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/quidem"
+    "http://localhost/api/invites/sunt"
 );
 
 let headers = {
@@ -444,7 +444,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/consequuntur"
+    "http://localhost/api/invites/consectetur"
 );
 
 let headers = {
@@ -516,7 +516,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/dolorum"
+    "http://localhost/api/invites/dignissimos"
 );
 
 let headers = {
@@ -1077,7 +1077,8 @@ let body = {
     "full_name": "John",
     "email": "John@gmail.com",
     "phone": "1122334455",
-    "address": "test",
+    "address": "address",
+    "Profile": "test",
     "profession_id": "1",
     "industry_id": "password"
 }
@@ -1167,8 +1168,13 @@ fetch(url, {
 <b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="address" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
-Example: address
-* @bodyParam  Profile Photo string required  Example: image
+
+</p>
+<p>
+<b><code>Profile</code></b>&nbsp;&nbsp;<small>Photo</small>     <i>optional</i> &nbsp;
+<input type="text" name="Profile" data-endpoint="POSTapi-register" data-component="body"  hidden>
+<br>
+string required  Example: image
  @bodyParam  looking for string required
 </p>
 <p>
@@ -1699,6 +1705,106 @@ fetch(url, {
  <b><code>api/profession/all</code></b>
 </p>
 </form>
+<h2>User Filter list</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-user-list/1/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": [
+        {
+            "id": 52,
+            "first_name": "SOURAJIT",
+            "last_name": "MAITY",
+            "email": "sourajit@yahoo.com",
+            "phone": "1656421545",
+            "address": "&lt;p&gt;khjkhkjh&lt;\/p&gt;\n",
+            "looking_for": "&lt;p&gt;tguygjgh&lt;\/p&gt;\n",
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": null,
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "social_info": null,
+            "device_type": null,
+            "device_token": null,
+            "industry_id": 1,
+            "profession_id": 1,
+            "active": 1,
+            "created_at": "2021-08-20T10:36:43.000000Z",
+            "updated_at": "2021-08-20T10:36:43.000000Z",
+            "full_name": "SOURAJIT MAITY",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=SOURAJIT&amp;color=7F9CF5&amp;background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "industry1",
+                "industry_description": "industry description",
+                "active": 1,
+                "created_at": "2021-08-20T10:35:11.000000Z",
+                "updated_at": "2021-08-20T10:35:11.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "profession1",
+                "active": 1,
+                "created_at": "2021-08-20T10:35:31.000000Z",
+                "updated_at": "2021-08-20T10:35:31.000000Z"
+            }
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-get-user-list--industry_id---profession_id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-list--industry_id---profession_id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-user-list--industry_id---profession_id-"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-user-list--industry_id---profession_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-user-list--industry_id---profession_id-"></code></pre>
+</div>
+<form id="form-GETapi-get-user-list--industry_id---profession_id-" data-method="GET" data-path="api/get-user-list/{industry_id}/{profession_id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-list--industry_id---profession_id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-list--industry_id---profession_id-" onclick="tryItOut('GETapi-get-user-list--industry_id---profession_id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-list--industry_id---profession_id-" onclick="cancelTryOut('GETapi-get-user-list--industry_id---profession_id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-list--industry_id---profession_id-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-user-list/{industry_id}/{profession_id}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="industry_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="profession_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
 <h2>User View</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -1867,7 +1973,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/rerum"
+    "http://localhost/api/update-user/sed"
 );
 
 let headers = {

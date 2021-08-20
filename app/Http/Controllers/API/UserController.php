@@ -746,4 +746,70 @@ public function updateuser(Request $request,  User $user) {
 
     return response()->json(["status" => true, "message" => "Success! User updated", "data" => $user]);
 }
+
+/**
+ * User Filter list
+ * @urlParam industry_id number required Example: 1
+ * @urlParam profession_id number required Example: 1
+ * @response {
+    "status": true,
+    "data": [
+        {
+            "id": 52,
+            "first_name": "SOURAJIT",
+            "last_name": "MAITY",
+            "email": "sourajit@yahoo.com",
+            "phone": "1656421545",
+            "address": "<p>khjkhkjh</p>\n",
+            "looking_for": "<p>tguygjgh</p>\n",
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": null,
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "social_info": null,
+            "device_type": null,
+            "device_token": null,
+            "industry_id": 1,
+            "profession_id": 1,
+            "active": 1,
+            "created_at": "2021-08-20T10:36:43.000000Z",
+            "updated_at": "2021-08-20T10:36:43.000000Z",
+            "full_name": "SOURAJIT MAITY",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https://ui-avatars.com/api/?name=SOURAJIT&color=7F9CF5&background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "industry1",
+                "industry_description": "industry description",
+                "active": 1,
+                "created_at": "2021-08-20T10:35:11.000000Z",
+                "updated_at": "2021-08-20T10:35:11.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "profession1",
+                "active": 1,
+                "created_at": "2021-08-20T10:35:31.000000Z",
+                "updated_at": "2021-08-20T10:35:31.000000Z"
+            }
+        }
+    ]
+}
+     */
+    
+    public function getuserlist(Request $request, $industryid, $professionid){
+
+        $user = User::where(['active'=>1, 'industry_id'=>$industryid, 'profession_id'=>$professionid])->with(['industries','professions'])->get();
+ 
+        if(count($user) > 0){
+            return response()->json(["status" => true, "data" => $user]);
+        }
+        else{
+           return response()->json(["status" => true, "message" => "List not found"]);
+        }
+    }
+
 }
