@@ -113,6 +113,7 @@ public function getindustry()
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
         "id": 54,
@@ -146,6 +147,7 @@ public function getindustry()
             "profession_id"  =>  "required",
             "industry_id"  =>  "required",
             "address" => "required",
+            'profile_photo_path' => "required|image:jpeg,png,jpg,gif,svg|max:2048",
 
         ]);
 
@@ -155,8 +157,19 @@ public function getindustry()
 
         $inputs = $request->all();
 
-        $user   =   User::create($inputs);
+
+        // $user   =   User::create($inputs);
+        // $user->assignRole('CLIENT');
+
+        $user = new User($inputs);
+        
+        
+        $fileName = time().'.'.$request->profile_photo_path->extension();  
+    
+        $request->profile_photo_path->move(public_path('/storage/attachFile/'), $fileName);
+        $user->profile_photo_path= $fileName;
         $user->assignRole('CLIENT');
+        $user->save();
 
         if(!is_null($user)) {
             return response()->json(["status" => true, "message" => "Success! registration completed", "data" => $user]);
