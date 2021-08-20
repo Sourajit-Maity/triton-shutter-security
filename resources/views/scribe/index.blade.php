@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: August 19 2021</li>
+            <li>Last updated: August 20 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -587,6 +587,7 @@ fetch(url, {
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
         "id": 54,
@@ -1348,7 +1349,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/deleniti"
+    "http://localhost/api/update-user/odio"
 );
 
 let headers = {
