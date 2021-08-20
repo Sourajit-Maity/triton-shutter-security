@@ -50,6 +50,7 @@ fetch(url, {
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
         "id": 54,
@@ -905,7 +906,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/deleniti"
+    "http://localhost/api/update-user/odio"
 );
 
 let headers = {
