@@ -62,7 +62,521 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://localhost</code></pre><h1>Authenticating requests</h1>
-<p>This API is not authenticated.</p><h1>Task management</h1>
+<p>This API is not authenticated.</p><h1>CMS Management</h1>
+<p>APIs for managing basic cms functionality</p>
+<h2>CMS Homepage</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-homepage"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": {
+        "id": 1,
+        "cms_id": 1,
+        "banner_heading": "Home page heading",
+        "banner_sub_heading": "Home page sub heading",
+        "banner_description": "&lt;p&gt;Home page Description&amp;nbsp;&lt;\/p&gt;\n",
+        "banner_image": "cms_images\/436c35208ced04ea9dec31bd037036fc.png",
+        "created_at": "2021-08-18T10:15:38.000000Z",
+        "updated_at": "2021-08-19T11:02:44.000000Z"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-get-homepage" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-homepage"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-homepage"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-homepage" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-homepage"></code></pre>
+</div>
+<form id="form-GETapi-get-homepage" data-method="GET" data-path="api/get-homepage" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-homepage', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-homepage" onclick="tryItOut('GETapi-get-homepage');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-homepage" onclick="cancelTryOut('GETapi-get-homepage');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-homepage" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-homepage</code></b>
+</p>
+</form><h1>Invitation Management</h1>
+<p>APIs for managing  invitation functionality</p>
+<h2>api/invites</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/invites"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": [
+        {
+            "id": 1,
+            "inviter_id": 1,
+            "invited_id": 4,
+            "active": 1,
+            "created_at": "2021-08-20T09:42:10.000000Z",
+            "updated_at": "2021-08-20T09:42:10.000000Z",
+            "deleted_at": null,
+            "usersinvitation": {
+                "id": 1,
+                "first_name": "Admin",
+                "last_name": "Admin",
+                "email": "admin@admin.com",
+                "phone": null,
+                "address": null,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "active": 1,
+                "created_at": "2021-08-18T10:15:30.000000Z",
+                "updated_at": "2021-08-18T10:15:30.000000Z",
+                "full_name": "Admin Admin",
+                "role_name": "SUPER-ADMIN",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Admin&amp;color=7F9CF5&amp;background=EBF4FF"
+            },
+            "usersinvited": {
+                "id": 4,
+                "first_name": "Lelah",
+                "last_name": "Wuckert",
+                "email": "wyman01@example.com",
+                "phone": "+16808068368",
+                "address": null,
+                "email_verified_at": "2021-08-18T10:15:30.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "active": 0,
+                "created_at": "2021-08-18T10:15:33.000000Z",
+                "updated_at": "2021-08-18T10:15:33.000000Z",
+                "full_name": "Lelah Wuckert",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Lelah&amp;color=7F9CF5&amp;background=EBF4FF"
+            }
+        },
+        {
+            "id": 2,
+            "inviter_id": 1,
+            "invited_id": 10,
+            "active": 1,
+            "created_at": "2021-08-20T09:46:56.000000Z",
+            "updated_at": "2021-08-20T09:46:56.000000Z",
+            "deleted_at": null,
+            "usersinvitation": {
+                "id": 1,
+                "first_name": "Admin",
+                "last_name": "Admin",
+                "email": "admin@admin.com",
+                "phone": null,
+                "address": null,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "active": 1,
+                "created_at": "2021-08-18T10:15:30.000000Z",
+                "updated_at": "2021-08-18T10:15:30.000000Z",
+                "full_name": "Admin Admin",
+                "role_name": "SUPER-ADMIN",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Admin&amp;color=7F9CF5&amp;background=EBF4FF"
+            },
+            "usersinvited": {
+                "id": 10,
+                "first_name": "Terence",
+                "last_name": "Gislason",
+                "email": "karen75@example.com",
+                "phone": "(575) 795-3129",
+                "address": null,
+                "email_verified_at": "2021-08-18T10:15:30.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "active": 0,
+                "created_at": "2021-08-18T10:15:34.000000Z",
+                "updated_at": "2021-08-18T10:15:34.000000Z",
+                "full_name": "Terence Gislason",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Terence&amp;color=7F9CF5&amp;background=EBF4FF"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-invites" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-invites"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-invites"></code></pre>
+</div>
+<div id="execution-error-GETapi-invites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-invites"></code></pre>
+</div>
+<form id="form-GETapi-invites" data-method="GET" data-path="api/invites" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-invites', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-invites" onclick="tryItOut('GETapi-invites');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-invites" onclick="cancelTryOut('GETapi-invites');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-invites" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/invites</code></b>
+</p>
+<p>
+<label id="auth-GETapi-invites" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-invites" data-component="header"></label>
+</p>
+</form>
+<h2>api/invites</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/invites"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "invited_id": "5"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! invitation created",
+    "data": {
+        "invited_id": "5",
+        "inviter_id": 1,
+        "updated_at": "2021-08-20T10:00:26.000000Z",
+        "created_at": "2021-08-20T10:00:26.000000Z",
+        "id": 3
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-POSTapi-invites" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-invites"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-invites"></code></pre>
+</div>
+<div id="execution-error-POSTapi-invites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-invites"></code></pre>
+</div>
+<form id="form-POSTapi-invites" data-method="POST" data-path="api/invites" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-invites', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-invites" onclick="tryItOut('POSTapi-invites');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-invites" onclick="cancelTryOut('POSTapi-invites');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-invites" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/invites</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-invites" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-invites" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>invited_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="invited_id" data-endpoint="POSTapi-invites" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+<h2>api/invites/{invite}</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/invites/quidem"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": []
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-invites--invite-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-invites--invite-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-invites--invite-"></code></pre>
+</div>
+<div id="execution-error-GETapi-invites--invite-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-invites--invite-"></code></pre>
+</div>
+<form id="form-GETapi-invites--invite-" data-method="GET" data-path="api/invites/{invite}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-invites--invite-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-invites--invite-" onclick="tryItOut('GETapi-invites--invite-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-invites--invite-" onclick="cancelTryOut('GETapi-invites--invite-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-invites--invite-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/invites/{invite}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-invites--invite-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-invites--invite-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>invite</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="invite" data-endpoint="GETapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>invited</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="invited" data-endpoint="GETapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+<h2>api/invites/{invite}</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/invites/consequuntur"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! task updated",
+    "data": []
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-PUTapi-invites--invite-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-invites--invite-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-invites--invite-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-invites--invite-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-invites--invite-"></code></pre>
+</div>
+<form id="form-PUTapi-invites--invite-" data-method="PUT" data-path="api/invites/{invite}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-invites--invite-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-invites--invite-" onclick="tryItOut('PUTapi-invites--invite-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-invites--invite-" onclick="cancelTryOut('PUTapi-invites--invite-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-invites--invite-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/invites/{invite}</code></b>
+</p>
+<p>
+<small class="badge badge-purple">PATCH</small>
+ <b><code>api/invites/{invite}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-invites--invite-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PUTapi-invites--invite-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>invite</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="invite" data-endpoint="PUTapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>invited_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="invited_id" data-endpoint="PUTapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+<h2>api/invites/{invite}</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/invites/dolorum"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Invitation deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-DELETEapi-invites--invite-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-invites--invite-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-invites--invite-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-invites--invite-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-invites--invite-"></code></pre>
+</div>
+<form id="form-DELETEapi-invites--invite-" data-method="DELETE" data-path="api/invites/{invite}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-invites--invite-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-invites--invite-" onclick="tryItOut('DELETEapi-invites--invite-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-invites--invite-" onclick="cancelTryOut('DELETEapi-invites--invite-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-invites--invite-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/invites/{invite}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-invites--invite-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="DELETEapi-invites--invite-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>invite</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="invite" data-endpoint="DELETEapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>invitation</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="invitation" data-endpoint="DELETEapi-invites--invite-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form><h1>Task management</h1>
 <p>APIs for managing Tasks</p>
 <h2>api/tasks</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -560,12 +1074,12 @@ let headers = {
 };
 
 let body = {
-    "first_name": "John",
-    "last_name": "Doe",
+    "full_name": "John",
     "email": "John@gmail.com",
     "phone": "1122334455",
+    "address": "test",
     "profession_id": "1",
-    "industry_id": "1"
+    "industry_id": "password"
 }
 
 fetch(url, {
@@ -587,6 +1101,7 @@ fetch(url, {
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "looking_for": "looking for Artist",
         "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
@@ -631,14 +1146,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="first_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="last_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="full_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -655,6 +1164,14 @@ fetch(url, {
 
 </p>
 <p>
+<b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="address" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<br>
+Example: address
+* @bodyParam  Profile Photo string required  Example: image
+ @bodyParam  looking for string required
+</p>
+<p>
 <b><code>profession_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
 <input type="text" name="profession_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
 <br>
@@ -664,7 +1181,8 @@ fetch(url, {
 <b><code>industry_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
 <input type="text" name="industry_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
 <br>
-
+Example: 1
+* @bodyParam  password password required
 </p>
 
 </form>
@@ -1349,7 +1867,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/odio"
+    "http://localhost/api/update-user/rerum"
 );
 
 let headers = {

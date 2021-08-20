@@ -99,8 +99,12 @@ public function getindustry()
      * @bodyParam  full_name string required  Example: John
      * @bodyParam  email string required  Example: John@gmail.com
      * @bodyParam  phone string required  Example: 1122334455
+     * @bodyParam  address string required  Example: address
+     * @bodyParam  Profile Photo string required  Example: image
+     *  @bodyParam  looking for string required  Example: test
      * @bodyParam  profession_id  required  Example: 1
      * @bodyParam  industry_id  required  Example: 1
+     * * @bodyParam  password password required  Example: password
      * @response  {
     "status": true,
     "message": "Success! registration completed",
@@ -112,6 +116,7 @@ public function getindustry()
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "looking_for": "looking for Artist",
         "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
@@ -147,6 +152,7 @@ public function getindustry()
             "profession_id"  =>  "required",
             "industry_id"  =>  "required",
             "address" => "required",
+            "looking_for" => "required",
             'profile_photo_path' => "required|image:jpeg,png,jpg,gif,svg|max:2048",
 
         ]);
@@ -176,6 +182,7 @@ public function getindustry()
         $user->profession_id= $request->get('profession_id');
         $user->industry_id= $request->get('industry_id');
         $user->address= $request->get('address');
+        $user->looking_for= $request->get('looking_for');
  
         $fileName = time().'.'.$request->profile_photo_path->extension();  
     
@@ -703,19 +710,39 @@ public function getindustry()
 
 public function updateuser(Request $request,  User $user) {
     $validator      =       Validator::make($request->all(), [
-        "first_name"   =>  "required",
-        "last_name"   => "required",
+        // "first_name"   =>  "required",
+        // "last_name"   => "required",
+        "full_name"   => "required",
         "email"  => "required|email",
         "address" => "required",
         "phone"  =>  "required",
         "profession_id"  =>  "required",
         "industry_id"  =>  "required",
+        "looking_for"  =>  "required",
     ]);
     if($validator->fails()) 
         return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
 
+        // $name = $request->get('full_name');
+
+        // $splitName = explode(' ', $name, 2); 
+
+        // $first_name = $splitName[0];
+        // $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+
+        // $user= User::findOrFail($user);
+        // $user->first_name = $first_name;
+        // $user->last_name= $last_name;
+        // $user->email= $request->get('email');
+        // $user->phone= $request->get('phone');
+        // $user->profession_id= $request->get('profession_id');
+        // $user->industry_id= $request->get('industry_id');
+        // $user->address= $request->get('address');
+        //$user->looking_for= $request->get('looking_for');
+        // $user->update();
     
-    $user->update($request->all());
+       
+        $user->update($request->all());
 
     return response()->json(["status" => true, "message" => "Success! User updated", "data" => $user]);
 }

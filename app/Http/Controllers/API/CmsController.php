@@ -13,18 +13,41 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-
+/**
+ * @group  CMS Management
+ *
+ * APIs for managing basic cms functionality
+ */
 class CmsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    /** 
+ * CMS Homepage
+ * @response{
+    "status": true,
+    "data": {
+        "id": 1,
+        "cms_id": 1,
+        "banner_heading": "Home page heading",
+        "banner_sub_heading": "Home page sub heading",
+        "banner_description": "<p>Home page Description&nbsp;</p>\n",
+        "banner_image": "cms_images/436c35208ced04ea9dec31bd037036fc.png",
+        "created_at": "2021-08-18T10:15:38.000000Z",
+        "updated_at": "2021-08-19T11:02:44.000000Z"
     }
+}
+ * @response  401 {
+ *   "message": "Unauthenticated."
+*}
+ */
+
+
+public function gethomepage(){
+
+    $home = HomePage::first();          
+    return response()->json(["status" => true, "data" => $home]);
+   
+    
+}
 
     /**
      * Show the form for creating a new resource.

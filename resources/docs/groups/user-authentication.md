@@ -20,12 +20,12 @@ let headers = {
 };
 
 let body = {
-    "first_name": "John",
-    "last_name": "Doe",
+    "full_name": "John",
     "email": "John@gmail.com",
     "phone": "1122334455",
+    "address": "test",
     "profession_id": "1",
-    "industry_id": "1"
+    "industry_id": "password"
 }
 
 fetch(url, {
@@ -50,6 +50,7 @@ fetch(url, {
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
+        "looking_for": "looking for Artist",
         "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
@@ -95,14 +96,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="first_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="last_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="full_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -119,6 +114,14 @@ fetch(url, {
 
 </p>
 <p>
+<b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="address" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<br>
+Example: address
+* @bodyParam  Profile Photo string required  Example: image
+ @bodyParam  looking for string required
+</p>
+<p>
 <b><code>profession_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
 <input type="text" name="profession_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
 <br>
@@ -128,7 +131,8 @@ fetch(url, {
 <b><code>industry_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
 <input type="text" name="industry_id" data-endpoint="POSTapi-register" data-component="body"  hidden>
 <br>
-
+Example: 1
+* @bodyParam  password password required
 </p>
 
 </form>
@@ -906,7 +910,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/odio"
+    "http://localhost/api/update-user/rerum"
 );
 
 let headers = {
