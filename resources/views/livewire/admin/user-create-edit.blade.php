@@ -93,7 +93,16 @@
                     maxFileSize="4mb"/>
                     </x-admin.form-group>
                     <x-admin.form-group class="col-lg-12" wire:ignore>
-                    <x-admin.lable value="Address" />
+                    <x-admin.lable value="Looking for details" required/>
+                    <textarea
+                    x-data x-init="editor = CKEDITOR.replace('looking_for');
+                    editor.on('change', function(event){
+                        @this.set('looking_for', event.editor.getData());
+                    })" wire:model.defer="looking_for" id="looking_for" class="form-control {{ $errors->has('looking_for') ? 'is-invalid' :'' }}"></textarea>
+                    </x-admin.form-group>
+
+                    <x-admin.form-group class="col-lg-12" wire:ignore>
+                    <x-admin.lable value="Address" required/>
                     <textarea
                     x-data x-init="editor = CKEDITOR.replace('address');
                     editor.on('change', function(event){

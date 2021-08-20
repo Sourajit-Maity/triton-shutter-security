@@ -15,7 +15,7 @@ class UserCreateEdit extends Component
 {
     use WithFileUploads;
     use AlertMessage;
-    public $first_name,$blankArr, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
+    public $first_name,$blankArr,$looking_for, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
     public $address;
     public $isEdit = false;
     public $statusList = [];
@@ -68,6 +68,7 @@ class UserCreateEdit extends Component
                 'address' => ['nullable'],
                 'profession_id' => ['required'],
                 'industry_id' => ['required'],
+                'looking_for' => ['required'],
 
             ];
     }
@@ -83,6 +84,7 @@ class UserCreateEdit extends Component
                 'address' => ['nullable'],
                 'profession_id' => ['required'],
                 'industry_id' => ['required'],
+                'looking_for' => ['required'],
             ];
     }
 
@@ -98,6 +100,7 @@ class UserCreateEdit extends Component
         'email.regex'=>'Mail format is not correct.',
         'profession_id.required'=>'Profession name is required.',
         'industry_id.required'=>'Industry name is required.',
+        'looking_for.required'=>'Looking for details is required.',
     ];
 
     public function saveOrUpdate()

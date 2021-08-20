@@ -47,7 +47,8 @@ class User extends Authenticatable implements HasMedia
         'active',
         'address',
         'industry_id',
-        'profession_id'
+        'profession_id',
+        'looking_for'
     ];
 
     /**
