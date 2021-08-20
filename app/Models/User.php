@@ -83,9 +83,20 @@ class User extends Authenticatable implements HasMedia
         else
             return 0;
     }
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
     public function getFullNameAttribute()
     {
-        return "{$this->first_name} {$this->last_name}";
+        //return "{$this->first_name} {$this->last_name}";
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
     public function task()
@@ -110,4 +121,17 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Invitation::class);
     }
+
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst($value);
+    }
+ 
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucfirst($value);
+    }
+
+
 }

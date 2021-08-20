@@ -96,8 +96,7 @@ public function getindustry()
 }
 /** 
  * Register
-     * @bodyParam  first_name string required  Example: John
-     * @bodyParam  last_name string required  Example: Doe
+     * @bodyParam  full_name string required  Example: John
      * @bodyParam  email string required  Example: John@gmail.com
      * @bodyParam  phone string required  Example: 1122334455
      * @bodyParam  profession_id  required  Example: 1
@@ -139,8 +138,9 @@ public function getindustry()
  */
     public function register(Request $request) {
         $validator  =   Validator::make($request->all(), [
-            "first_name"  =>  "required",
-            "last_name"  =>  "required",
+            // "first_name"  =>  "required",
+            // "last_name"  =>  "required",
+            "full_name"  =>  "required",
             "email"  =>  "required|email|unique:users",
             "phone"  =>  "required|unique:users",
             "password"  =>  "required",
@@ -160,10 +160,23 @@ public function getindustry()
 
         // $user   =   User::create($inputs);
         // $user->assignRole('CLIENT');
+        $name = $request->get('full_name');
 
-        $user = new User($inputs);
-        
-        
+        $splitName = explode(' ', $name, 2); 
+
+        $first_name = $splitName[0];
+        $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+
+        $user = new User();
+        $user->first_name = $first_name;
+        $user->last_name= $last_name;
+        $user->email= $request->get('email');
+        $user->phone= $request->get('phone');
+        $user->password= $request->get('password');
+        $user->profession_id= $request->get('profession_id');
+        $user->industry_id= $request->get('industry_id');
+        $user->address= $request->get('address');
+ 
         $fileName = time().'.'.$request->profile_photo_path->extension();  
     
         $request->profile_photo_path->move(public_path('/storage/attachFile/'), $fileName);
