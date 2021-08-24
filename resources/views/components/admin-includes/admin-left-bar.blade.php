@@ -77,6 +77,7 @@
 									<h4 class="kt-menu__section-text">Content Management</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li>
+								
 								<li class="kt-menu__item  {{ Request::is('admin/pages*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('pages.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-file-alt"></i><span class="kt-menu__link-text">Pages</span></a></li>
 							</ul>
 						</div>

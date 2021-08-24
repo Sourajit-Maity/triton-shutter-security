@@ -43,8 +43,7 @@ class HomePageEdit extends Component
 
     public function saveOrUpdate()
     {
-        // dd($this->cms->home);
-        // dd($this);
+        
         if ($this->details->home) {
             $validatedData = $this->validate($this->validationRuleForUpdate());
             if (!is_string($this->banner_image)) {

@@ -4,11 +4,11 @@
 				<x-admin.breadcrumbs>
 						<x-admin.breadcrumbs-item href="{{ route('admin.dashboard') }}" value="Dashboard" />
 						<x-admin.breadcrumbs-separator />
-						<x-admin.breadcrumbs-item href="{{ route('industry.index') }}" value="Page List" />
+						<x-admin.breadcrumbs-item href="{{ route('pages.index') }}" value="Page List" />
 				</x-admin.breadcrumbs>
 
 			    <x-slot name="toolbar" >
-					{{--<a href="{{route('industry.create')}}" class="btn btn-brand btn-elevate btn-icon-sm">
+					{{--<a href="{{route('pages.create')}}" class="btn btn-brand btn-elevate btn-icon-sm">
 						<i class="la la-plus"></i>
 						Add New Page
 					</a>--}}
