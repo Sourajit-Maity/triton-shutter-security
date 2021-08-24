@@ -709,9 +709,8 @@ public function getindustry()
 
 
 public function updateuser(Request $request,  User $user) {
+
     $validator      =       Validator::make($request->all(), [
-        // "first_name"   =>  "required",
-        // "last_name"   => "required",
         "full_name"   => "required",
         "email"  => "required|email",
         "address" => "required",
@@ -723,28 +722,55 @@ public function updateuser(Request $request,  User $user) {
     if($validator->fails()) 
         return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
 
-        // $name = $request->get('full_name');
-
-        // $splitName = explode(' ', $name, 2); 
-
-        // $first_name = $splitName[0];
-        // $last_name = !empty($splitName[1]) ? $splitName[1] : '';
-
-        // $user= User::findOrFail($user);
-        // $user->first_name = $first_name;
-        // $user->last_name= $last_name;
-        // $user->email= $request->get('email');
-        // $user->phone= $request->get('phone');
-        // $user->profession_id= $request->get('profession_id');
-        // $user->industry_id= $request->get('industry_id');
-        // $user->address= $request->get('address');
-        //$user->looking_for= $request->get('looking_for');
-        // $user->update();
+        $path = '';
+        if ($request->hasFile('profile_photo_path')) {
     
-       
-        $user->update($request->all());
+        $messsages = array(
+            'required' => 'The :attribute field is required.'
+        );            
+        $rules = array(
+            "profile_photo_path"  =>  "mimes:jpeg,jpg,png",
+        );
+        $validator = Validator::make($request->all(), $rules,$messsages);
+            if($validator->fails()) {
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+            }
+        $path = $request->file('profile_photo_path')->store('avatars');
+    }
+        //$inputs = $request->all();
+        $name = $request->get('full_name');
+
+        $splitName = explode(' ', $name, 2); 
+
+        $first_name = $splitName[0];
+        $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+ 
+        $inputs['first_name'] = $first_name;
+        $inputs['last_name'] = $last_name;
+        $inputs['email'] = $request->get('email');
+        $inputs['address'] = $request->get('address');
+        $inputs['phone'] = $request->get('phone');
+        $inputs['profession_id'] = $request->get('profession_id');
+        $inputs['industry_id'] = $request->get('industry_id');
+        $inputs['looking_for'] = $request->get('looking_for');
+
+        if ($request->hasFile('profile_photo_path')) {
+            $imagefile = time().'.'.$request->profile_photo_path->extension();  
+            $request->profile_photo_path->move(public_path('/storage/attachFile/'), $imagefile);
+            $inputs->profile_photo_path= $imagefile;
+          }
+        
+
+        // if (!empty($inputs)) {
+        //     if($path) {
+        //         $inputs['profile_photo_path'] = $path;
+        //     }
+        
+            $user->update($inputs);
+            
 
     return response()->json(["status" => true, "message" => "Success! User updated", "data" => $user]);
+    
 }
 
 /**
@@ -760,8 +786,8 @@ public function updateuser(Request $request,  User $user) {
             "last_name": "MAITY",
             "email": "sourajit@yahoo.com",
             "phone": "1656421545",
-            "address": "<p>khjkhkjh</p>\n",
-            "looking_for": "<p>tguygjgh</p>\n",
+            "address": "<p>Test Address</p>\n",
+            "looking_for": "<p>Test Looking Details</p>\n",
             "email_verified_at": null,
             "current_team_id": null,
             "profile_photo_path": null,
@@ -811,5 +837,67 @@ public function updateuser(Request $request,  User $user) {
            return response()->json(["status" => true, "message" => "List not found"]);
         }
     }
+
+
+
+    public function piceditprofile(Request $request) {
+
+        
+        $messsages = array(
+            'required' => 'The :attribute field is required.'
+        );
+        
+        $rules = array(
+            "first_name"  =>  "required",
+            "last_name"  =>  "required",
+            "username"=>"required",
+            "bio"=>"required",
+            'username' => [
+                'required',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],            
+            
+        );
+    
+        $validator = Validator::make($request->all(), $rules,$messsages);
+
+        if($validator->fails()) {
+            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+        }
+
+        
+        $path = '';
+        if ($request->hasFile('profile_photo')) {
+           
+            $messsages = array(
+                'required' => 'The :attribute field is required.'
+            );            
+            $rules = array(
+                "profile_photo"  =>  "mimes:jpeg,jpg,png",
+            );
+            $validator = Validator::make($request->all(), $rules,$messsages);
+            if($validator->fails()) {
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+            }
+            $path = $request->file('profile_photo')->store('avatars');
+            
+            // $request->profile_photo->move(public_path('/storage/attachFile/'), $fileName);
+            // $profile_photopath= $path;
+            // User::where('id', Auth::id())->update(['profile_photo'=>$path]);
+        }
+        $inputs = $request->all();
+        if (!empty($inputs)) {
+            if($path) {
+                $inputs['profile_photo'] = $path;
+            }
+            User::where('id', auth()->user()->id)->update($inputs);
+            return response()->json(["status" => true, "message" => "Success! Profile update completed"]);
+        } else {
+            return response()->json(["status" => false, "message" => "Profile update failed!"]);
+        }
+    }
+
+
+
 
 }

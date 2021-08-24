@@ -13,9 +13,10 @@ class PageList extends Component
     use WithSorting;
     use AlertMessage;
     public $perPageList = [];  
+    public $badgeColors = ['info', 'success', 'brand', 'dark', 'primary', 'warning']; 
     protected $paginationTheme = 'bootstrap';
 
-    public $searchIndustry,$searchIndustryDescription, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
+    public $searchName, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
     protected $listeners = ['deleteConfirm', 'changeStatus'];
 
     public function mount()
@@ -28,7 +29,11 @@ class PageList extends Component
             ['value' => 100, 'text' => "100"]
         ];
     }
-
+    public function getRandomColor()
+    {
+        $arrIndex = array_rand($this->badgeColors);
+        return $this->badgeColors[$arrIndex];
+    }
     public function updatingPerPage()
     {
         $this->resetPage();
@@ -40,14 +45,14 @@ class PageList extends Component
     }
     public function resetSearch()
     {
-        $this->searchIndustry = "";
-        $this->searchIndustryDescription = "";
+        $this->searchName = "";
         $this->searchStatus = -1;
     }
     public function render()
     {
         $CmsQuery = Cms::query();
-        
+        if ($this->searchName)
+        $CmsQuery->orWhere('name', 'like', '%' . $this->searchName . '%');
         return view('livewire.admin.pages.page-list',
             [
                 'pages' => $CmsQuery

@@ -24,7 +24,7 @@
 
         <tr class="filter">
             <th>
-                <x-admin.input type="search" wire:model.defer="searchIndustry" placeholder="" autocomplete="off"
+                <x-admin.input type="search" wire:model.defer="searchName" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" />
             </th>
             <th>
