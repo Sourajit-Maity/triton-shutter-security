@@ -1,8 +1,7 @@
 # GENERATED. YOU SHOULDN'T MODIFY OR DELETE THIS FILE.
 # Scribe uses this file to know when you change something manually in your docs.
-resources/docs/groups/task-management.md=1629464748
-resources/docs/groups/user-authentication.md=1629974853
-resources/docs/index.md=1629974853
-resources/docs/authentication.md=1629974853
-resources/docs/groups/cms-management.md=1629974853
-resources/docs/groups/invitation-management.md=1629974853
+resources/docs/groups/cms-management.md=1629975619
+resources/docs/groups/invitation-management.md=1629975619
+resources/docs/groups/user-authentication.md=1629975619
+resources/docs/index.md=1629975619
+resources/docs/authentication.md=1629975619

@@ -377,7 +377,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ea"
+    "http://localhost/api/invites/nulla"
 );
 
 let headers = {
@@ -444,7 +444,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/expedita"
+    "http://localhost/api/invites/perferendis"
 );
 
 let headers = {
@@ -516,7 +516,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/doloribus"
+    "http://localhost/api/invites/commodi"
 );
 
 let headers = {
@@ -1491,7 +1491,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/quis"
+    "http://localhost/api/update-user/id"
 );
 
 let headers = {
