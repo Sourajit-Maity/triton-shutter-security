@@ -37,7 +37,7 @@ Route::middleware('auth:api')->group(function() {
     Route::patch('/update-user/{user}',[UserController::class,'updateuser']);
     Route::post("user-profile-update", [UserController::class, "profileUpdate"]);
     Route::post("change_password", [UserController::class, "password_change"]);
-    Route::resource('tasks', TaskController::class);    //patch/put   =>  x-www-form-urlencode
+    // Route::resource('tasks', TaskController::class);    //patch/put   =>  x-www-form-urlencode
     Route::resource('invites', InvitationController::class); 
 
     //Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);

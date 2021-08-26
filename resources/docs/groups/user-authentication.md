@@ -758,8 +758,8 @@ fetch(url, {
             "last_name": "MAITY",
             "email": "sourajit@yahoo.com",
             "phone": "1656421545",
-            "address": "<p>khjkhkjh<\/p>\n",
-            "looking_for": "<p>tguygjgh<\/p>\n",
+            "address": "<p>Test Address<\/p>\n",
+            "looking_for": "<p>Test Looking Details<\/p>\n",
             "email_verified_at": null,
             "current_team_id": null,
             "profile_photo_path": null,
@@ -1027,7 +1027,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/sed"
+    "http://localhost/api/update-user/quis"
 );
 
 let headers = {
