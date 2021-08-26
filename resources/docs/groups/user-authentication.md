@@ -1027,7 +1027,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/quis"
+    "http://localhost/api/update-user/id"
 );
 
 let headers = {
