@@ -39,9 +39,7 @@ class UserController extends Controller
         }
     ]
 }
- * @response  401 {
- *   "message": "Unauthenticated."
-*}
+ 
  */
 public function getprofession()
 {
@@ -79,9 +77,7 @@ public function getprofession()
         }
     ]
 }
- * @response  401 {
- *   "message": "Unauthenticated."
-*}
+ 
  */
 public function getindustry()
 {

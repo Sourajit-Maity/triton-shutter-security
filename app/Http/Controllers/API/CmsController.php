@@ -35,9 +35,7 @@ class CmsController extends Controller
         "updated_at": "2021-08-19T11:02:44.000000Z"
     }
 }
- * @response  401 {
- *   "message": "Unauthenticated."
-*}
+
  */
 
 
