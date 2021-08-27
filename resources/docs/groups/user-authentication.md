@@ -615,13 +615,6 @@ fetch(url, {
     ]
 }
 ```
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
 <div id="execution-results-GETapi-industry-all" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-industry-all"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-industry-all"></code></pre>
@@ -690,13 +683,6 @@ fetch(url, {
             "updated_at": "2021-08-19T05:07:30.000000Z"
         }
     ]
-}
-```
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
 }
 ```
 <div id="execution-results-GETapi-profession-all" hidden>
@@ -1027,7 +1013,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/id"
+    "http://localhost/api/update-user/sit"
 );
 
 let headers = {
