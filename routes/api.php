@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\CMSController;
+use App\Http\Controllers\API\CmsController;
 use App\Http\Controllers\API\InvitationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +26,7 @@ Route::post("otp-verification", [UserController::class, 'otpverification']);
 Route::post("forgot-password", [UserController::class, 'forgot_password']);
 Route::get("industry/all", [UserController::class, 'getindustry']);
 Route::get("profession/all", [UserController::class, 'getprofession']);
-Route::get("get-homepage", [CMSController::class, 'gethomepage']);
+Route::get("get-homepage", [CmsController::class, 'gethomepage']);
 
 Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);
 
