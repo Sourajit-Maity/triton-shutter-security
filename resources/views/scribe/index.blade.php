@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: August 26 2021</li>
+            <li>Last updated: August 27 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -96,12 +96,6 @@ fetch(url, {
         "created_at": "2021-08-18T10:15:38.000000Z",
         "updated_at": "2021-08-19T11:02:44.000000Z"
     }
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated."
 }</code></pre>
 <div id="execution-results-GETapi-get-homepage" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-get-homepage"></span>:</blockquote>
@@ -377,7 +371,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/nulla"
+    "http://localhost/api/invites/fugit"
 );
 
 let headers = {
@@ -444,7 +438,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/perferendis"
+    "http://localhost/api/invites/ullam"
 );
 
 let headers = {
@@ -516,7 +510,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/commodi"
+    "http://localhost/api/invites/veritatis"
 );
 
 let headers = {
@@ -1132,12 +1126,6 @@ fetch(url, {
         }
     ]
 }</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated."
-}</code></pre>
 <div id="execution-results-GETapi-industry-all" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-industry-all"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-industry-all"></code></pre>
@@ -1196,12 +1184,6 @@ fetch(url, {
             "updated_at": "2021-08-19T05:07:30.000000Z"
         }
     ]
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated."
 }</code></pre>
 <div id="execution-results-GETapi-profession-all" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-profession-all"></span>:</blockquote>
@@ -1491,7 +1473,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/id"
+    "http://localhost/api/update-user/sit"
 );
 
 let headers = {
