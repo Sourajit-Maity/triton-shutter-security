@@ -267,7 +267,7 @@ public function login(Request $request)
 
         return response()->json(["status" => true,  "token" => $token, "data" => $user]);
     } else {
-        return response()->json(["status" => false, "message" => "Whoops! invalid password"]);
+        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"]);
     }
 }
 /** 
