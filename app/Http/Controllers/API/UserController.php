@@ -104,6 +104,7 @@ public function getindustry()
      * @response  {
     "status": true,
     "message": "Success! registration completed",
+    "token": "6|V3krGzwc7vOLxIK8MUyi3NmKXcEaJk2GqB7QDBGG",
     "data": {
         "first_name": "test",
         "last_name": "test",
@@ -186,7 +187,8 @@ public function getindustry()
         $user->save();
 
         if(!is_null($user)) {
-            return response()->json(["status" => true, "message" => "Success! registration completed", "data" => $user]);
+            $token      =       $user->createToken('token')->plainTextToken;
+            return response()->json(["status" => true, "message" => "Success! registration completed","token" => $token, "data" => $user]);
         }
         else {
             return response()->json(["status" => false, "message" => "Registration failed!"]);
@@ -236,8 +238,8 @@ public function login(Request $request)
     $validator = Validator::make($request->all(), [
         "username" =>  "required",
         "password" =>  "required",
-        "device_type" => "required",
-        "device_token" => "required",
+        // "device_type" => "required",
+        // "device_token" => "required",
     ]);
 
     if ($validator->fails()) {
