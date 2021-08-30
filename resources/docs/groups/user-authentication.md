@@ -163,7 +163,7 @@ let headers = {
 };
 
 let body = {
-    "email": "user@user.com",
+    "username": "user@user.com or user",
     "password": "12345678",
     "device_type": "device type",
     "device_token": "device token"
@@ -182,21 +182,33 @@ fetch(url, {
 ```json
 {
     "status": true,
-    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
+    "token": "3|VKeacEjkrbok1aDKxqTa1eIgEXgoi8rPPWRFpTJr",
     "data": {
-        "id": 55,
-        "first_name": "Abhik",
-        "last_name": "paul",
-        "email": "abhik421@gmail.com",
-        "phone": "6655443321",
+        "id": 1,
+        "first_name": "Admin",
+        "last_name": "Admin",
+        "user_name": "Admin1",
+        "email": "admin@admin.com",
+        "phone": null,
+        "address": null,
+        "looking_for": null,
         "email_verified_at": null,
         "current_team_id": null,
         "profile_photo_path": null,
-        "active": 0,
-        "created_at": "2021-02-17T15:13:27.000000Z",
-        "updated_at": "2021-02-17T15:13:27.000000Z",
-        "full_name": "Abhik paul",
-        "role_name": "CLIENT"
+        "otp": null,
+        "social_id": null,
+        "social_account_type": null,
+        "social_info": null,
+        "device_type": "1",
+        "device_token": "1",
+        "industry_id": null,
+        "profession_id": null,
+        "active": 1,
+        "created_at": "2021-08-30T05:05:39.000000Z",
+        "updated_at": "2021-08-30T06:58:57.000000Z",
+        "full_name": "Admin Admin",
+        "role_name": "SUPER-ADMIN",
+        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Admin&color=7F9CF5&background=EBF4FF"
     }
 }
 ```
@@ -221,8 +233,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="email" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="username" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1028,7 +1040,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/non"
+    "http://localhost/api/update-user/ea"
 );
 
 let headers = {
