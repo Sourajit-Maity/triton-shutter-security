@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: August 27 2021</li>
+            <li>Last updated: August 30 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -371,7 +371,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/fugit"
+    "http://localhost/api/invites/tenetur"
 );
 
 let headers = {
@@ -438,7 +438,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ullam"
+    "http://localhost/api/invites/autem"
 );
 
 let headers = {
@@ -510,7 +510,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/veritatis"
+    "http://localhost/api/invites/minima"
 );
 
 let headers = {
@@ -609,6 +609,7 @@ fetch(url, {
     "data": {
         "first_name": "test",
         "last_name": "test",
+        "user_name": "test",
         "email": "test@test.com",
         "phone": "123456789",
         "profession_id": "1",
@@ -704,7 +705,7 @@ Example: 1
 </p>
 
 </form>
-<h2>User Login</h2>
+<h2>api/login</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -719,7 +720,9 @@ let headers = {
 
 let body = {
     "email": "user@user.com",
-    "password": "12345678"
+    "password": "12345678",
+    "device_type": "device type",
+    "device_token": "device token"
 }
 
 fetch(url, {
@@ -732,7 +735,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "status": true,
-    "token": "1|LqG5UB7MeKXCNA4IUdWDzKqsFpKjCjHRHDiOxvdE",
+    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
     "data": {
         "id": 55,
         "first_name": "Abhik",
@@ -778,6 +781,18 @@ fetch(url, {
 <p>
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="password" name="password" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_type" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_token" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1473,7 +1488,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/sit"
+    "http://localhost/api/update-user/non"
 );
 
 let headers = {

@@ -46,6 +46,7 @@ fetch(url, {
     "data": {
         "first_name": "test",
         "last_name": "test",
+        "user_name": "test",
         "email": "test@test.com",
         "phone": "123456789",
         "profession_id": "1",
@@ -144,7 +145,7 @@ Example: 1
 </form>
 
 
-## User Login
+## api/login
 
 
 
@@ -163,7 +164,9 @@ let headers = {
 
 let body = {
     "email": "user@user.com",
-    "password": "12345678"
+    "password": "12345678",
+    "device_type": "device type",
+    "device_token": "device token"
 }
 
 fetch(url, {
@@ -179,7 +182,7 @@ fetch(url, {
 ```json
 {
     "status": true,
-    "token": "1|LqG5UB7MeKXCNA4IUdWDzKqsFpKjCjHRHDiOxvdE",
+    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
     "data": {
         "id": 55,
         "first_name": "Abhik",
@@ -226,6 +229,18 @@ fetch(url, {
 <p>
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="password" name="password" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_type" data-endpoint="POSTapi-login" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>device_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="device_token" data-endpoint="POSTapi-login" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1013,7 +1028,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/sit"
+    "http://localhost/api/update-user/non"
 );
 
 let headers = {

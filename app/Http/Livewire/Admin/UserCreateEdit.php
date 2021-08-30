@@ -15,7 +15,7 @@ class UserCreateEdit extends Component
 {
     use WithFileUploads;
     use AlertMessage;
-    public $first_name,$blankArr,$looking_for, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
+    public $first_name,$user_name,$blankArr,$looking_for, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
     public $address;
     public $isEdit = false;
     public $statusList = [];
@@ -59,6 +59,7 @@ class UserCreateEdit extends Component
             [
                 'first_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'last_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'user_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'email' => ['required', 'email', 'max:255', Rule::unique('users'), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
                 'phone' => ['required', Rule::unique('users'), 'min:8', 'max:13', 'regex:/^([0-9\s+\(\)]*)$/'],
                 'password' => ['required', 'max:255', 'min:6', 'confirmed'],
@@ -78,6 +79,7 @@ class UserCreateEdit extends Component
             [
                 'first_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'last_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'user_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'active' => ['required'],
                 'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->user->id), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
                 'phone' => ['required', Rule::unique('users')->ignore($this->user->id), 'regex:/^([0-9\s+\(\)]*)$/', 'min:8', 'max:13'],
@@ -93,6 +95,8 @@ class UserCreateEdit extends Component
         'first_name.regex'=>'First name should be alphabate.',
         'last_name.required'=>'Last name is required.',
         'last_name.regex'=>'Last name should be alphabate.',
+        'user_name.required'=>'Last name is required.',
+        'user_name.regex'=>'Last name should be alphabate.',
         'email.required'=>'Email id is required.',
         'email.email' => 'Give Correct format',
         'phone.required'=>'Phone number is required.',
