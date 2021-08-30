@@ -21,7 +21,7 @@ class UserList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $searchName, $searchIndustry, $searchProfession, $searchEmail, $searchPhone, $searchStatus = -1, $perPage = 5;
+    public $searchName, $searchIndustry,$searchUsername, $searchProfession, $searchEmail, $searchPhone, $searchStatus = -1, $perPage = 5;
     protected $listeners = ['deleteConfirm', 'changeStatus'];
 
     public function mount()
@@ -68,6 +68,8 @@ class UserList extends Component
             );
         if ($this->searchEmail)
             $userQuery->orWhere('email', 'like', '%' . $this->searchEmail . '%');
+        if ($this->searchUsername)
+            $userQuery->orWhere('user_name', 'like', '%' . $this->searchUsername . '%');
         if ($this->searchPhone)
             $userQuery->orWhere('phone', 'like', '%' . $this->searchPhone . '%');
         if ($this->searchStatus >= 0)

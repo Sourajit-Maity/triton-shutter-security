@@ -19,20 +19,23 @@
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">Name <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('first_name')"></i>
             </th>
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
+                aria-label="Company Agent: activate to sort column ascending">Username <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('user_name')"></i></th>
             <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-label="Company Email: activate to sort column ascending">Email <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('email')"></i></th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
                 aria-label="Company Agent: activate to sort column ascending">Phone <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('phone')"></i></th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
                 aria-label="Company Agent: activate to sort column ascending">Industry <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('industry_id')"></i></th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
                 aria-label="Company Agent: activate to sort column ascending">Profession<i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('profession_id')"></i></th>
 
-            <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
+            <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
                 aria-label="Status: activate to sort column ascending">Status</th>
             <th class="align-center" rowspan="1" colspan="1" style="width: 15%;" aria-label="Actions">Actions</th>
         </tr>
@@ -40,6 +43,10 @@
         <tr class="filter">
             <th>
                 <x-admin.input type="search" wire:model.defer="searchName" placeholder="" autocomplete="off"
+                    class="form-control-sm form-filter" />
+            </th>
+            <th>
+                <x-admin.input type="search" wire:model.defer="searchUsername" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" />
             </th>
             <th>
@@ -107,6 +114,10 @@
                         </div>
                     </div>
                 </td>
+                @if (isset($user->user_name))
+                <td>{{ $user->user_name }}</td>
+                @else <td></td>
+                @endif
                 <td><a class="kt-link" href="mailto:adingate15@furl.net">{{ $user->email }}</a></td>
                 <td>{{ $user->phone }}</td>
                 @if (isset($user->industries->industry_name))

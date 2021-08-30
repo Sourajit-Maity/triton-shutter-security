@@ -10,6 +10,11 @@
                         <x-admin.input type="text" wire:model.defer="last_name" placeholder="Last Name"  class="{{ $errors->has('last_name') ? 'is-invalid' :'' }}" />
                         <x-admin.input-error for="last_name" />
                     </x-admin.form-group>
+                    <x-admin.form-group>
+                        <x-admin.lable value="User Name"  required />
+                        <x-admin.input type="text" wire:model.defer="user_name" placeholder="User Name"  class="{{ $errors->has('user_name') ? 'is-invalid' :'' }}" />
+                        <x-admin.input-error for="user_name" />
+                    </x-admin.form-group>
 
                     <x-admin.form-group>
                         <x-admin.lable value="Industry" required/>

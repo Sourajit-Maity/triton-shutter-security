@@ -107,6 +107,7 @@ public function getindustry()
     "data": {
         "first_name": "test",
         "last_name": "test",
+        "user_name": "test",
         "email": "test@test.com",
         "phone": "123456789",
         "profession_id": "1",
@@ -142,6 +143,7 @@ public function getindustry()
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
             "full_name"  =>  "required",
+            "user_name"  =>  "required",
             "email"  =>  "required|email|unique:users",
             "phone"  =>  "required|unique:users",
             "password"  =>  "required",
@@ -149,7 +151,7 @@ public function getindustry()
             "industry_id"  =>  "required",
             "address" => "required",
             "looking_for" => "required",
-            'profile_photo_path' => "required|image:jpeg,png,jpg,gif,svg|max:2048",
+           
 
         ]);
 
@@ -172,6 +174,7 @@ public function getindustry()
         $user = new User();
         $user->first_name = $first_name;
         $user->last_name= $last_name;
+        $user->user_name= $request->get('user_name');
         $user->email= $request->get('email');
         $user->phone= $request->get('phone');
         $user->password= $request->get('password');
@@ -194,13 +197,14 @@ public function getindustry()
             return response()->json(["status" => false, "message" => "Registration failed!"]);
         }       
     }
-/** 
- * User Login
- * @bodyParam email string required Example: user@user.com
- * @bodyParam password string required Example: 12345678
- * @response  {
+    /**
+     * @bodyParam email string required Example: user@user.com
+     * @bodyParam password string required Example: 12345678
+     * @bodyParam  device_type string required Example: device type
+     * @bodyParam  device_token string required Example: device token
+     * @response  {
     "status": true,
-    "token": "1|LqG5UB7MeKXCNA4IUdWDzKqsFpKjCjHRHDiOxvdE",
+    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
     "data": {
         "id": 55,
         "first_name": "Abhik",
@@ -215,36 +219,42 @@ public function getindustry()
         "updated_at": "2021-02-17T15:13:27.000000Z",
         "full_name": "Abhik paul",
         "role_name": "CLIENT"
+        }
+    }
+     */
+public function login(Request $request)
+{
+
+    $validator = Validator::make($request->all(), [
+        "email" =>  "required|email",
+        "password" =>  "required",
+        "device_type" => "required",
+        "device_token" => "required",
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(["validation_errors" => $validator->errors()]);
+    }
+
+    $useremail = User::where("email", $request->email)->first();
+    $username = User::where("user_name", $request->user_name)->first();
+
+    if (is_null($useremail || $username)) {
+        return response()->json(["status" => false, "message" => "Failed! email or username not found"]);
+    }
+
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $user       =       Auth::user();
+        //dd($user);
+        $token      =       $user->createToken('token')->plainTextToken;
+        // dd($request);
+        User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+
+        return response()->json(["status" => true,  "token" => $token, "data" => $user]);
+    } else {
+        return response()->json(["status" => false, "message" => "Whoops! invalid password"]);
     }
 }
- */
-    public function login(Request $request) {
-
-        $validator = Validator::make($request->all(), [
-            "email" =>  "required|email",
-            "password" =>  "required",
-        ]);
-
-        if($validator->fails()) {
-            return response()->json(["validation_errors" => $validator->errors()]);
-        }
-
-        $user=User::where("email", $request->email)->first();
-
-        if(is_null($user)) {
-            return response()->json(["status" => false, "message" => "Failed! email not found"]);
-        }
-
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $user       =       Auth::user();
-            $token      =       $user->createToken('token')->plainTextToken;
-
-            return response()->json(["status" => true,  "token" => $token, "data" => $user]);
-        }
-        else {
-            return response()->json(["status" => false, "message" => "Whoops! invalid password"]);
-        }
-    }
 /** 
  * User View
  * @authenticated
@@ -648,7 +658,7 @@ public function getindustry()
             return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
         }
         $user = User::where('social_id', $request->social_id)->first();
-        // dd($user);
+
         if (empty($user)) {
             $inputs = $request->all();
 
@@ -658,7 +668,7 @@ public function getindustry()
             return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
         } else {
             $token      =       $user->createToken('token')->plainTextToken;
-            // dd($request);
+
             User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
 
             return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
@@ -708,6 +718,7 @@ public function updateuser(Request $request,  User $user) {
 
     $validator      =       Validator::make($request->all(), [
         "full_name"   => "required",
+        "user_name"   => "required",
         "email"  => "required|email",
         "address" => "required",
         "phone"  =>  "required",
@@ -743,6 +754,7 @@ public function updateuser(Request $request,  User $user) {
  
         $inputs['first_name'] = $first_name;
         $inputs['last_name'] = $last_name;
+        $inputs['user_name'] = $request->get('user_name');
         $inputs['email'] = $request->get('email');
         $inputs['address'] = $request->get('address');
         $inputs['phone'] = $request->get('phone');
