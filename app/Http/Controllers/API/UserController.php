@@ -198,35 +198,48 @@ public function getindustry()
         }       
     }
     /**
-     * @bodyParam email string required Example: user@user.com
+     * @bodyParam username string required Example: user@user.com or user
      * @bodyParam password string required Example: 12345678
      * @bodyParam  device_type string required Example: device type
      * @bodyParam  device_token string required Example: device token
      * @response  {
     "status": true,
-    "token": "6|Imv8VDsE27b1sRclxv91emCSIbLpxLmfvK3wFsAa",
+    "token": "3|VKeacEjkrbok1aDKxqTa1eIgEXgoi8rPPWRFpTJr",
     "data": {
-        "id": 55,
-        "first_name": "Abhik",
-        "last_name": "paul",
-        "email": "abhik421@gmail.com",
-        "phone": "6655443321",
+        "id": 1,
+        "first_name": "Admin",
+        "last_name": "Admin",
+        "user_name": "Admin1",
+        "email": "admin@admin.com",
+        "phone": null,
+        "address": null,
+        "looking_for": null,
         "email_verified_at": null,
         "current_team_id": null,
         "profile_photo_path": null,
-        "active": 0,
-        "created_at": "2021-02-17T15:13:27.000000Z",
-        "updated_at": "2021-02-17T15:13:27.000000Z",
-        "full_name": "Abhik paul",
-        "role_name": "CLIENT"
-        }
+        "otp": null,
+        "social_id": null,
+        "social_account_type": null,
+        "social_info": null,
+        "device_type": "1",
+        "device_token": "1",
+        "industry_id": null,
+        "profession_id": null,
+        "active": 1,
+        "created_at": "2021-08-30T05:05:39.000000Z",
+        "updated_at": "2021-08-30T06:58:57.000000Z",
+        "full_name": "Admin Admin",
+        "role_name": "SUPER-ADMIN",
+        "profile_photo_url": "https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF"
     }
+}
      */
 public function login(Request $request)
 {
+    $input = $request->all();
 
     $validator = Validator::make($request->all(), [
-        "email" =>  "required|email",
+        "username" =>  "required",
         "password" =>  "required",
         "device_type" => "required",
         "device_token" => "required",
@@ -239,11 +252,13 @@ public function login(Request $request)
     $useremail = User::where("email", $request->email)->first();
     $username = User::where("user_name", $request->user_name)->first();
 
+    $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
+
     if (is_null($useremail || $username)) {
         return response()->json(["status" => false, "message" => "Failed! email or username not found"]);
     }
-
-    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+   
+    if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
         $user       =       Auth::user();
         //dd($user);
         $token      =       $user->createToken('token')->plainTextToken;
