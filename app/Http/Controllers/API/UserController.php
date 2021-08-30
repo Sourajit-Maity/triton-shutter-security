@@ -143,7 +143,7 @@ public function getindustry()
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
             "full_name"  =>  "required",
-            "user_name"  =>  "required",
+            "user_name"  =>  "required|unique:users",
             "email"  =>  "required|email|unique:users",
             "phone"  =>  "required|unique:users",
             "password"  =>  "required",
@@ -182,11 +182,6 @@ public function getindustry()
         $user->industry_id= $request->get('industry_id');
         $user->address= $request->get('address');
         $user->looking_for= $request->get('looking_for');
- 
-        $fileName = time().'.'.$request->profile_photo_path->extension();  
-    
-        $request->profile_photo_path->move(public_path('/storage/attachFile/'), $fileName);
-        $user->profile_photo_path= $fileName;
         $user->assignRole('CLIENT');
         $user->save();
 
