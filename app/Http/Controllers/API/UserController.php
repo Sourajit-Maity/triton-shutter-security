@@ -145,12 +145,10 @@ public function getindustry()
             // "last_name"  =>  "required",
             "full_name"  =>  "required",
             "user_name"  =>  "required|unique:users",
-            "email"  =>  "required|email|unique:users",
-           
+            "email"  =>  "required|email|unique:users",           
             "password"  =>  "required",
             "profession_id"  =>  "required",
-            "industry_id"  =>  "required",
-           
+            "industry_id"  =>  "required",          
             "looking_for" => "required",
            
 
