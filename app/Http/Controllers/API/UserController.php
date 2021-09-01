@@ -143,7 +143,7 @@ public function getindustry()
         $validator  =   Validator::make($request->all(), [
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
-            "full_name"  =>  "required",
+            "full_name"  =>  'required', 'max:255', 'regex:/^[a-zA-Z]+$/u',
             "user_name"  =>  "required|unique:users",
             "email"  =>  "required|email|unique:users",           
             "password"  =>  "required",
@@ -153,6 +153,7 @@ public function getindustry()
            
 
         ]);
+
 
         if($validator->fails()) {
             return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
@@ -189,7 +190,7 @@ public function getindustry()
             return response()->json(["status" => true, "message" => "Success! registration completed","token" => $token, "data" => $user]);
         }
         else {
-            return response()->json(["status" => false, "message" => "Registration failed!"]);
+            return response()->json(["status" => false, "message" => "Registration failed!"],401);
         }       
     }
     /**
@@ -250,7 +251,7 @@ public function login(Request $request)
     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
 
     if (is_null($useremail || $username)) {
-        return response()->json(["status" => false, "message" => "Failed! email or username not found"]);
+        return response()->json(["status" => false, "message" => "Failed! email or username not found"],401);
     }
    
     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
@@ -262,7 +263,8 @@ public function login(Request $request)
 
         return response()->json(["status" => true,  "token" => $token, "data" => $user]);
     } else {
-        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"]);
+
+        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"],401);
     }
 }
 /** 
@@ -397,7 +399,7 @@ public function login(Request $request)
             ]);
 
             if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
             }
 
             $user->password = $request->confirm_password;
@@ -405,7 +407,7 @@ public function login(Request $request)
 
             return response()->json(["status" => true, "message" => "Success! password change successfully", "data" => $user]);
         } else {
-            return response()->json(["status" => false, "message" => "Whoops! Old password is invalid"]);
+            return response()->json(["status" => false, "message" => "Whoops! Old password is invalid"],401);
         }
     }
 
@@ -567,22 +569,46 @@ public function login(Request $request)
     public function editprofile(Request $request)
     {
 
-        if ($request->has('first_name') && $request->has('last_name') && $request->has('email') && $request->has('phone')) {
+        if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
             $validator  =   Validator::make($request->all(), [
-                "first_name"  =>  "required",
-                "last_name"  =>  "required",
+                "full_name"  =>  "required",
+                //"last_name"  =>  "required",
                 //"email"  =>  "required",
-                "phone"  =>  "requiredphp",
+                //"phone"  =>  "requiredphp",
                 // "profile_photo_path" => "required",
+                "address" => "required",
                 "profession_id"  =>  "required",
                 "industry_id"  =>  "required",
+                "looking_for"  =>  "required",
             ]);
             if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
             }
         }
 
-        $inputs = $request->all();
+       // $inputs = $request->all();
+
+       $name = $request->get('full_name');
+       
+
+       $splitName = explode(' ', $name, 2); 
+
+       $first_name = $splitName[0];
+       
+       $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+       
+       $inputs['first_name'] = $first_name;
+       $inputs['last_name'] = $last_name;
+       $inputs['user_name'] = $request->get('user_name');
+       $inputs['email'] = $request->get('email');
+       $inputs['address'] = $request->get('address');
+       $inputs['phone'] = $request->get('phone');
+       $inputs['profession_id'] = $request->get('profession_id');
+       $inputs['industry_id'] = $request->get('industry_id');
+       $inputs['looking_for'] = $request->get('looking_for');
+
+       dd($inputs);
+
         if ($request->hasFile('profile_photo_path')) {
             $this->validate(request(), [
                 'profile_photo_path' => 'mimes:jpeg,jpg,png',
@@ -602,7 +628,7 @@ public function login(Request $request)
             User::where('id', auth()->user()->id)->update($inputs);
             return response()->json(["status" => true, "message" => "Success! Profile update completed"]);
         } else {
-            return response()->json(["status" => false, "message" => "Profile update failed!"]);
+            return response()->json(["status" => false, "message" => "Profile update failed!"],401);
         }
     }
 
@@ -731,7 +757,6 @@ public function updateuser(Request $request,  User $user) {
         "user_name"   => "required",
         "email"  => "required|email",
         "address" => "required",
-        "phone"  =>  "required",
         "profession_id"  =>  "required",
         "industry_id"  =>  "required",
         "looking_for"  =>  "required",
@@ -777,13 +802,7 @@ public function updateuser(Request $request,  User $user) {
             $request->profile_photo_path->move(public_path('/storage/attachFile/'), $imagefile);
             $inputs->profile_photo_path= $imagefile;
           }
-        
 
-        // if (!empty($inputs)) {
-        //     if($path) {
-        //         $inputs['profile_photo_path'] = $path;
-        //     }
-        
             $user->update($inputs);
             
 
