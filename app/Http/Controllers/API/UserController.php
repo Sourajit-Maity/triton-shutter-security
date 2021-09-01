@@ -559,8 +559,20 @@ public function login(Request $request)
  * @bodyParam  profile_photo_path  file 
  * @response {
     "status": true,
-    "message": "Success! Profile update completed"
+    "message": "Success! Profile update completed",
+    "data": {
+        "first_name": "sourajit",
+        "last_name": "m",
+        "user_name": "sourm",
+        "email": "sourajitm8@gmail.com1",
+        "address": "test address",
+        "phone": null,
+        "profession_id": "1",
+        "industry_id": "1",
+        "looking_for": "dgdh",
+        "profile_photo_path": "/uploads/profile-photos/16304800051228993330.png"
     }
+}
      * @response  401 {
     "status": false,
     "message": "Profile update failed!"
@@ -607,7 +619,7 @@ public function login(Request $request)
        $inputs['industry_id'] = $request->get('industry_id');
        $inputs['looking_for'] = $request->get('looking_for');
 
-       dd($inputs);
+       //dd($inputs);
 
         if ($request->hasFile('profile_photo_path')) {
             $this->validate(request(), [
@@ -626,7 +638,8 @@ public function login(Request $request)
 
         if (!empty($inputs)) {
             User::where('id', auth()->user()->id)->update($inputs);
-            return response()->json(["status" => true, "message" => "Success! Profile update completed"]);
+            
+            return response()->json(["status" => true, "message" => "Success! Profile update completed", "data" => $inputs]);
         } else {
             return response()->json(["status" => false, "message" => "Profile update failed!"],401);
         }
