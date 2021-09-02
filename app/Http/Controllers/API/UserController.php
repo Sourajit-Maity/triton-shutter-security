@@ -114,7 +114,7 @@ public function getindustry()
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
-        "looking_for": "looking for Artist",
+        "message": "looking for Artist",
         "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
@@ -149,7 +149,7 @@ public function getindustry()
             "password"  =>  "required",
             "profession_id"  =>  "required",
             "industry_id"  =>  "required",          
-            "looking_for" => "required",
+            "message" => "required",
            
 
         ]);
@@ -181,7 +181,7 @@ public function getindustry()
         $user->profession_id= $request->get('profession_id');
         $user->industry_id= $request->get('industry_id');
         $user->address= $request->get('address');
-        $user->looking_for= $request->get('looking_for');
+        $user->message= $request->get('message');
         $user->assignRole('CLIENT');
         $user->save();
 
@@ -279,6 +279,9 @@ public function login(Request $request)
         "email": "test@test.com",
         "phone": "123456789",
         "address": null,
+        "message": "message",
+        "looking_for": 1,
+        "offering": 0,
         "email_verified_at": null,
         "current_team_id": null,
         "profile_photo_path": null,
@@ -290,6 +293,10 @@ public function login(Request $request)
         "device_token": null,
         "industry_id": 1,
         "profession_id": 1,
+         "latitude": null,
+        "longitude": null,
+        "available_from": "00:00:23",
+        "available_to": "00:00:05",
         "active": 0,
         "created_at": "2021-08-19T05:07:36.000000Z",
         "updated_at": "2021-08-19T05:07:36.000000Z",
@@ -569,7 +576,11 @@ public function login(Request $request)
         "phone": null,
         "profession_id": "1",
         "industry_id": "1",
-        "looking_for": "dgdh",
+        "message": "message",
+        "looking_for": "1",
+        "offering": "0",
+        "available_from": "23.14",
+        "available_to": "5.01",
         "profile_photo_path": "/uploads/profile-photos/16304800051228993330.png"
     }
 }
@@ -591,7 +602,11 @@ public function login(Request $request)
                 "address" => "required",
                 "profession_id"  =>  "required",
                 "industry_id"  =>  "required",
-                "looking_for"  =>  "required",
+                "message"  =>  "required",
+                "available_from"  =>  "required",
+                "available_to"  =>  "required",
+
+
             ]);
             if ($validator->fails()) {
                 return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
@@ -617,7 +632,11 @@ public function login(Request $request)
        $inputs['phone'] = $request->get('phone');
        $inputs['profession_id'] = $request->get('profession_id');
        $inputs['industry_id'] = $request->get('industry_id');
+       $inputs['message'] = $request->get('message');
        $inputs['looking_for'] = $request->get('looking_for');
+       $inputs['offering'] = $request->get('offering');
+       $inputs['available_from'] = $request->get('available_from');
+       $inputs['available_to'] = $request->get('available_to');
 
        //dd($inputs);
 
@@ -744,11 +763,18 @@ public function login(Request $request)
         "otp": null,
         "social_id": null,
         "social_account_type": null,
+        "latitude": null,
+        "longitude": null,
+        "available_from": "12.00",
+        "available_to": "5.00",
         "social_info": null,
         "device_type": null,
         "device_token": null,
         "industry_id": "2",
         "profession_id": "2",
+        "message": "message",
+        "looking_for": "1",
+        "offering": "0",
         "active": 0,
         "created_at": "2021-08-19T05:07:36.000000Z",
         "updated_at": "2021-08-19T08:06:38.000000Z",
@@ -772,7 +798,9 @@ public function updateuser(Request $request,  User $user) {
         "address" => "required",
         "profession_id"  =>  "required",
         "industry_id"  =>  "required",
-        "looking_for"  =>  "required",
+        "message"  =>  "required",
+        "available_from"  =>  "required",
+        "available_to"  =>  "required",
     ]);
     if($validator->fails()) 
         return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
@@ -808,7 +836,11 @@ public function updateuser(Request $request,  User $user) {
         $inputs['phone'] = $request->get('phone');
         $inputs['profession_id'] = $request->get('profession_id');
         $inputs['industry_id'] = $request->get('industry_id');
+        $inputs['message'] = $request->get('message');
         $inputs['looking_for'] = $request->get('looking_for');
+        $inputs['offering'] = $request->get('offering');
+        $inputs['available_from'] = $request->get('available_from');
+        $inputs['available_to'] = $request->get('available_to');
 
         if ($request->hasFile('profile_photo_path')) {
             $imagefile = time().'.'.$request->profile_photo_path->extension();  
