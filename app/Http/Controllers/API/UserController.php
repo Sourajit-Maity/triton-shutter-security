@@ -886,59 +886,103 @@ public function updateuser(Request $request,  User $user) {
  * User Filter list
  * @urlParam industry_id number required Example: 1
  * @urlParam profession_id number required Example: 1
+ * @urlParam looking_for number required Example: 1/0
+ * @urlParam offering number required Example: 1/0
+ *  @urlParam latitude number required Example: 1
+ * @urlParam longitude number required Example: 1
+ *  @urlParam radius number required Example: 1-5
  * @response {
     "status": true,
     "data": [
         {
             "id": 52,
-            "first_name": "SOURAJIT",
-            "last_name": "MAITY",
-            "email": "sourajit@yahoo.com",
-            "phone": "1656421545",
-            "address": "<p>Test Address</p>\n",
-            "looking_for": "<p>Test Looking Details</p>\n",
-            "email_verified_at": null,
-            "current_team_id": null,
-            "profile_photo_path": null,
-            "otp": null,
-            "social_id": null,
-            "social_account_type": null,
-            "social_info": null,
-            "device_type": null,
-            "device_token": null,
+            "user_name": "sourm",
+            "first_name": "Sourajit",
+            "last_name": "M",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm8@gmail.com1",
             "industry_id": 1,
             "profession_id": 1,
-            "active": 1,
-            "created_at": "2021-08-20T10:36:43.000000Z",
-            "updated_at": "2021-08-20T10:36:43.000000Z",
-            "full_name": "SOURAJIT MAITY",
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "Sourajit M",
             "role_name": "CLIENT",
-            "profile_photo_url": "https://ui-avatars.com/api/?name=SOURAJIT&color=7F9CF5&background=EBF4FF",
+            "profile_photo_url": "https://ui-avatars.com/api/?name=Sourajit&color=7F9CF5&background=EBF4FF",
             "industries": {
                 "id": 1,
-                "industry_name": "industry1",
-                "industry_description": "industry description",
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
                 "active": 1,
-                "created_at": "2021-08-20T10:35:11.000000Z",
-                "updated_at": "2021-08-20T10:35:11.000000Z",
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
                 "deleted_at": null
             },
             "professions": {
                 "id": 1,
-                "profession_name": "profession1",
+                "profession_name": "gfhf",
                 "active": 1,
-                "created_at": "2021-08-20T10:35:31.000000Z",
-                "updated_at": "2021-08-20T10:35:31.000000Z"
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
             }
         }
     ]
 }
      */
     
-    public function getuserlist(Request $request, $industryid, $professionid){
+    public function getuserlist(Request $request, $industryid, $professionid,$looking_for, $offering,$latitude,$longitude,$radius){
 
-        $user = User::where(['active'=>1, 'industry_id'=>$industryid, 'profession_id'=>$professionid])->with(['industries','professions'])->get();
- 
+        //1st function
+      
+
+        // $shops          =       DB::table("users");
+
+        // $shops          =       $shops->select("*", DB::raw("6371 * acos(cos(radians(" . $latitude . "))
+        //                         * cos(radians(latitude)) * cos(radians(longitude) - radians(" . $longitude . "))
+        //                         + sin(radians(" .$latitude. ")) * sin(radians(latitude))) AS distance"));
+        // $shops          =       $shops->having('distance', '<', 20);
+        // $shops          =       $shops->orderBy('distance', 'asc');
+
+        // $shops          =       $shops->get();
+
+        //2nd function
+        // $circle_radius = 3959;
+        // $max_distance = 20;
+        // $lat = $latitude;
+        // $lng = $longitude;
+
+        //     return $user = DB::select(
+        //                 'SELECT * FROM
+        //                         (SELECT id, name, address, phone, latitude, longitude, (' . $circle_radius . ' * acos(cos(radians(' . $lat . ')) * cos(radians(latitude)) *
+        //                         cos(radians(longitude) - radians(' . $lng . ')) +
+        //                         sin(radians(' . $lat . ')) * sin(radians(latitude))))
+        //                         AS distance
+        //                         FROM users) AS distances
+        //                     WHERE distance < ' . $max_distance . '
+        //                     ORDER BY distance
+        //                     OFFSET 0
+        //                     LIMIT 20;
+        //                 ');
+
+        $user = User::selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+        ( 6371 * acos( cos( radians(?) ) *
+          cos( radians( latitude ) )
+          * cos( radians( longitude ) - radians(?)
+          ) + sin( radians(?) ) *
+          sin( radians( latitude ) ) )
+        ) AS distance", [$latitude, $longitude, $latitude])
+            ->where(['active'=>1, 'industry_id'=>$industryid, 'profession_id'=>$professionid, 'offering'=> $offering, 'looking_for'=> $looking_for])->with(['industries','professions'])
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->offset(0)
+            ->limit(20)
+            ->get();
+
+
         if(count($user) > 0){
             return response()->json(["status" => true, "data" => $user]);
         }
