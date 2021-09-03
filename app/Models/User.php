@@ -49,7 +49,14 @@ class User extends Authenticatable implements HasMedia
         'industry_id',
         'profession_id',
         'looking_for',
-        'user_name'
+        'user_name',
+        'device_token',
+        'latitude',
+        'longitude',
+        'message',
+        'offering',
+        'available_from',
+        'available_to',
     ];
 
     /**

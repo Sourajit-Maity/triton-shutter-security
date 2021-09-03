@@ -47,6 +47,19 @@
                         <x-admin.input type="text" wire:model.defer="phone" placeholder="Phone" autocomplete="off" class="{{ $errors->has('phone') ? 'is-invalid' :'' }}"/>
                         <x-admin.input-error for="phone" />
                     </x-admin.form-group>
+
+                    <x-admin.form-group>
+                        <x-admin.lable value="Available From" required />
+                        <x-admin.input type="time" wire:model.defer="available_from" placeholder="available from" autocomplete="off" class="{{ $errors->has('available_from') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="available_from" />
+                    </x-admin.form-group>
+
+                    <x-admin.form-group>
+                        <x-admin.lable value="Available To" required />
+                        <x-admin.input type="time" wire:model.defer="available_to" placeholder="available to" autocomplete="off" class="{{ $errors->has('available_to') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="available_to" />
+                    </x-admin.form-group>
+
                     @if(!$isEdit)
                     <x-admin.form-group>
                         <x-admin.lable value="Password"  required />
@@ -68,6 +81,31 @@
                         </x-admin.dropdown>
                         <x-admin.input-error for="active" />
                     </x-admin.form-group>
+                   
+                    <x-admin.form-group>
+                        <x-admin.lable value="Looking for" />
+                        <x-admin.dropdown  wire:model.defer="looking_for" placeHolderText="Please select one" autocomplete="off" class="{{ $errors->has('looking_for') ? 'is-invalid' :'' }}">
+                                @foreach ($statusType as $status)
+                                    <x-admin.dropdown-item  :value="$status['value']" :text="$status['text']"/>                          
+                                @endforeach
+                        </x-admin.dropdown>
+                        <x-admin.input-error for="looking_for" />
+                    </x-admin.form-group>
+
+
+                      <x-admin.form-group>
+                        <x-admin.lable value="Offering" />
+                        <x-admin.dropdown  wire:model.defer="offering" placeHolderText="Please select one" autocomplete="off" class="{{ $errors->has('offering') ? 'is-invalid' :'' }}">
+                                @foreach ($statusType as $status)
+                                    <x-admin.dropdown-item  :value="$status['value']" :text="$status['text']"/>                          
+                                @endforeach
+                        </x-admin.dropdown>
+                        <x-admin.input-error for="offering" />
+                    </x-admin.form-group>   
+                       
+                      
+
+                    
                     <x-admin.form-group class="col-lg-6" >
                     <x-admin.lable value="Profile Image" required/>
                     @if($model_image)
@@ -98,12 +136,12 @@
                     maxFileSize="4mb"/>
                     </x-admin.form-group>
                     <x-admin.form-group class="col-lg-12" wire:ignore>
-                    <x-admin.lable value="Looking for details" required/>
+                    <x-admin.lable value="Message details" required/>
                     <textarea
-                    x-data x-init="editor = CKEDITOR.replace('looking_for');
+                    x-data x-init="editor = CKEDITOR.replace('message');
                     editor.on('change', function(event){
-                        @this.set('looking_for', event.editor.getData());
-                    })" wire:model.defer="looking_for" id="looking_for" class="form-control {{ $errors->has('looking_for') ? 'is-invalid' :'' }}"></textarea>
+                        @this.set('message', event.editor.getData());
+                    })" wire:model.defer="message" id="message" class="form-control {{ $errors->has('message') ? 'is-invalid' :'' }}"></textarea>
                     </x-admin.form-group>
 
                     <x-admin.form-group class="col-lg-12" wire:ignore>

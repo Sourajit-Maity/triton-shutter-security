@@ -21,7 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable()->unique();
             $table->longtext('address')->nullable();
-            $table->longtext('looking_for')->nullable();
+            $table->longtext('message')->nullable();
+            $table->boolean('looking_for')->default(false);
+            $table->boolean('offering')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -30,6 +32,10 @@ class CreateUsersTable extends Migration
             $table->string('otp')->nullable();
             $table->string('social_id')->nullable();
             $table->string('social_account_type')->nullable();
+            $table->float('latitude', 10, 6)->nullable();
+            $table->float('longitude', 10, 6)->nullable();
+            $table->string('available_from')->nullable();
+            $table->string('available_to')->nullable();
             $table->json('social_info')->nullable();
             $table->string('device_type')->nullable();
             $table->string('device_token')->nullable();

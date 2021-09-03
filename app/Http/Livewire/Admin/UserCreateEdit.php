@@ -15,10 +15,11 @@ class UserCreateEdit extends Component
 {
     use WithFileUploads;
     use AlertMessage;
-    public $first_name,$user_name,$blankArr,$looking_for, $last_name,$profession_id,$industry_id, $email, $password, $phone, $active, $password_confirmation, $user, $model_id;
-    public $address;
+    public $first_name,$user_name,$blankArr,$looking_for,$message, $last_name,$profession_id,$industry_id, $email, $password,$offering, $phone, $active, $password_confirmation, $user, $model_id;
+    public $address,$available_to,$available_from;
     public $isEdit = false;
     public $statusList = [];
+    public $statusType = [];
     public $photo;
     public $photos = [];
     public $professions = [];
@@ -46,6 +47,13 @@ class UserCreateEdit extends Component
             ['value' => 1, 'text' => "Active"],
             ['value' => 0, 'text' => "Inactive"]
         ];
+
+        $this->statusType = [
+            ['value' => 0, 'text' => "Choose Type"],
+            ['value' => 1, 'text' => "Yes"],
+            ['value' => 0, 'text' => "No"]
+        ];
+
         $this->model_image = Media::where(['model_id' => $this->user->id, 'collection_name' => 'images'])->first();
         if (!$this->model_image == null) {
             $this->imgId = $this->model_image->id;
@@ -69,7 +77,11 @@ class UserCreateEdit extends Component
                 'address' => ['nullable'],
                 'profession_id' => ['required'],
                 'industry_id' => ['required'],
-                'looking_for' => ['required'],
+                'available_from' => ['required'],
+                'available_to' => ['required'],
+                'looking_for' => ['nullable'],
+                'offering' => ['nullable'],
+                'message' => ['required'],
 
             ];
     }
@@ -86,7 +98,11 @@ class UserCreateEdit extends Component
                 'address' => ['nullable'],
                 'profession_id' => ['required'],
                 'industry_id' => ['required'],
-                'looking_for' => ['required'],
+                'looking_for' => ['nullable'],
+                'offering' => ['nullable'],
+                'message' => ['required'],
+                'available_from' => ['required'],
+                'available_to' => ['required'],
             ];
     }
 
@@ -104,7 +120,7 @@ class UserCreateEdit extends Component
         'email.regex'=>'Mail format is not correct.',
         'profession_id.required'=>'Profession name is required.',
         'industry_id.required'=>'Industry name is required.',
-        'looking_for.required'=>'Looking for details is required.',
+        'message.required'=>'Looking for details is required.',
     ];
 
     public function saveOrUpdate()
