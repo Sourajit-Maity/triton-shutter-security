@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Industry;
 use App\Models\Profession;
-
+use DateTime;
 /**
  * @group  User Authentication
  *
@@ -629,11 +629,16 @@ public function login(Request $request)
        // $inputs = $request->all();
 
        $name = $request->get('full_name');
-    //    $available_form = $request->get('available_from');
-    //    $available_to = $request->get('available_to');
+       $available_form = $request->get('available_from');
+       $available_to = $request->get('available_to');
     //    dd($available_form);
-
-       $splitName = explode(' ', $name, 2); 
+        //$available_form_convert = (date("Y-m-d",$available_form)); 
+        $dt1 = new DateTime("@$available_form");
+        $available_form_convert = $dt1->format('Y-m-d H:i:s');
+        $dt2 = new DateTime("@$available_to");
+        $available_to_convert = $dt1->format('Y-m-d H:i:s');
+        //dd($available_to_convert);
+        $splitName = explode(' ', $name, 2); 
 
        $first_name = $splitName[0];
        
@@ -650,8 +655,8 @@ public function login(Request $request)
        $inputs['message'] = $request->get('message');
        $inputs['looking_for'] = $request->get('looking_for');
        $inputs['offering'] = $request->get('offering');
-       $inputs['available_from'] = $request->get('available_from');
-       $inputs['available_to'] = $request->get('available_to');
+       $inputs['available_from'] = $available_to_convert;
+       $inputs['available_to'] = $available_to_convert;
 
        $inputs['longitude'] = $request->get('longitude');
        $inputs['latitude'] = $request->get('latitude');
