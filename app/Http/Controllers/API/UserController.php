@@ -568,10 +568,10 @@ public function login(Request $request)
  * @bodyParam  email string   Example: John@gmail.com
  * @bodyParam  phone string   Example: 1122334455
  * @bodyParam  address string   Example: address
- * @bodyParam  available_to  required  Example: time
+ * @bodyParam  available_to  required  Example: 1630651142
  *  @bodyParam  looking for  required  Example: 1
  * @bodyParam  offering  required  Example: 1
- * @bodyParam  available_from    Example: time
+ * @bodyParam  available_from    Example: 1630651142
  * @bodyParam  profile_photo_path  file 
  * @response {
     "status": true,
