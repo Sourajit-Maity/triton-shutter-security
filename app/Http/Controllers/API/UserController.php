@@ -560,9 +560,18 @@ public function login(Request $request)
 
 /**
  * Edit Profile
- * @bodyParam  first_name string required  Example: John
- * @bodyParam  last_name string required  Example: Doe
- * @bodyParam  phone string required  Example: 1122334455
+ * @bodyParam  full_name string required  Example: John Doe
+ * @bodyParam  profession_id string required  Example: 1
+ * @bodyParam  industry_id string required  Example: 1
+ *  @bodyParam  latitude string required  Example: lat
+ *  @bodyParam  longitude string required  Example: long
+ * @bodyParam  email string   Example: John@gmail.com
+ * @bodyParam  phone string   Example: 1122334455
+ * @bodyParam  address string   Example: address
+ * @bodyParam  available_to  required  Example: time
+ *  @bodyParam  looking for  required  Example: 1
+ * @bodyParam  offering  required  Example: 1
+ * @bodyParam  available_from    Example: time
  * @bodyParam  profile_photo_path  file 
  * @response {
     "status": true,
@@ -581,6 +590,8 @@ public function login(Request $request)
         "offering": "0",
         "available_from": "23.14",
         "available_to": "5.01",
+        "longitude": "74.52",
+        "latitude": "45.12",
         "profile_photo_path": "/uploads/profile-photos/16304800051228993330.png"
     }
 }
@@ -599,12 +610,14 @@ public function login(Request $request)
                 //"email"  =>  "required",
                 //"phone"  =>  "requiredphp",
                 // "profile_photo_path" => "required",
-                "address" => "required",
+                // "address" => "required",
                 "profession_id"  =>  "required",
                 "industry_id"  =>  "required",
                 "message"  =>  "required",
-                "available_from"  =>  "required",
-                "available_to"  =>  "required",
+                // "available_from"  =>  "required",
+                // "available_to"  =>  "required",
+                // "latitude"  =>  "required",
+                // "longitude"  =>  "required",
 
 
             ]);
@@ -616,7 +629,9 @@ public function login(Request $request)
        // $inputs = $request->all();
 
        $name = $request->get('full_name');
-       
+    //    $available_form = $request->get('available_from');
+    //    $available_to = $request->get('available_to');
+    //    dd($available_form);
 
        $splitName = explode(' ', $name, 2); 
 
@@ -637,6 +652,9 @@ public function login(Request $request)
        $inputs['offering'] = $request->get('offering');
        $inputs['available_from'] = $request->get('available_from');
        $inputs['available_to'] = $request->get('available_to');
+
+       $inputs['longitude'] = $request->get('longitude');
+       $inputs['latitude'] = $request->get('latitude');
 
        //dd($inputs);
 
@@ -763,8 +781,8 @@ public function login(Request $request)
         "otp": null,
         "social_id": null,
         "social_account_type": null,
-        "latitude": null,
-        "longitude": null,
+         "latitude": "22.86",
+        "longitude": "45.65",
         "available_from": "12.00",
         "available_to": "5.00",
         "social_info": null,
@@ -801,6 +819,8 @@ public function updateuser(Request $request,  User $user) {
         "message"  =>  "required",
         "available_from"  =>  "required",
         "available_to"  =>  "required",
+        "latitude"  =>  "required",
+        "longitude"  =>  "required",
     ]);
     if($validator->fails()) 
         return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
@@ -841,6 +861,8 @@ public function updateuser(Request $request,  User $user) {
         $inputs['offering'] = $request->get('offering');
         $inputs['available_from'] = $request->get('available_from');
         $inputs['available_to'] = $request->get('available_to');
+        $inputs['longitude'] = $request->get('longitude');
+        $inputs['latitude'] = $request->get('latitude');
 
         if ($request->hasFile('profile_photo_path')) {
             $imagefile = time().'.'.$request->profile_photo_path->extension();  

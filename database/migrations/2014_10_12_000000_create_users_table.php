@@ -34,8 +34,8 @@ class CreateUsersTable extends Migration
             $table->string('social_account_type')->nullable();
             $table->float('latitude', 10, 6)->nullable();
             $table->float('longitude', 10, 6)->nullable();
-            $table->timeTz('available_from', $precision = 0)->nullable();
-            $table->timeTz('available_to', $precision = 0)->nullable();
+            $table->string('available_from')->nullable();
+            $table->string('available_to')->nullable();
             $table->json('social_info')->nullable();
             $table->string('device_type')->nullable();
             $table->string('device_token')->nullable();
