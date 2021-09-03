@@ -28,7 +28,8 @@ Route::get("industry/all", [UserController::class, 'getindustry']);
 Route::get("profession/all", [UserController::class, 'getprofession']);
 Route::get("get-homepage", [CmsController::class, 'gethomepage']);
 
-Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);
+ Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}", [UserController::class, 'getuserlist']);
+//Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}", [UserController::class, 'getuserlist']);
 
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
