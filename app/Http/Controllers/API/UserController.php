@@ -687,7 +687,53 @@ public function login(Request $request)
         }
     }
 
+/**
+ * Location Sink
+ *  @bodyParam  latitude string required  Example: 33.15
+ *  @bodyParam  longitude string required  Example: 85.14
 
+ * @response {
+    "status": true,
+    "message": "Success! Location update completed",
+    "data": {
+        "longitude": "33.15",
+        "latitude": "85.14"
+    }
+}
+     * @response  401 {
+    "status": false,
+    "message": "Location update failed!"
+    }
+     */
+    public function sinklocation(Request $request)
+    {
+
+        if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
+            $validator  =   Validator::make($request->all(), [
+                "latitude"  =>  "required",
+                "longitude"  =>  "required",
+
+
+            ]);
+            if ($validator->fails()) {
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
+            }
+        }
+
+        $inputs = $request->all();
+    
+       //dd($inputs);
+
+  
+
+        if (!empty($inputs)) {
+            User::where('id', auth()->user()->id)->update($inputs);
+            
+            return response()->json(["status" => true, "message" => "Success! Location update completed", "data" => $inputs]);
+        } else {
+            return response()->json(["status" => false, "message" => "Profile update failed!"],401);
+        }
+    }
 /**
  *Social signup
  * @bodyParam  first_name string required  Example: John
