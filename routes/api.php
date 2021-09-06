@@ -35,6 +35,7 @@ Route::get("get-homepage", [CmsController::class, 'gethomepage']);
 Route::middleware('auth:api')->group(function() {
     Route::get("user", [UserController::class, "user"]);
     Route::post("edit-my-profile", [UserController::class, "editprofile"]);
+    Route::post("sink-location", [UserController::class, "sinklocation"]);
     Route::patch('/update-user/{user}',[UserController::class,'updateuser']);
     Route::post("user-profile-update", [UserController::class, "profileUpdate"]);
     Route::post("change_password", [UserController::class, "password_change"]);
