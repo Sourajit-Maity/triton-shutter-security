@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -1013,7 +1014,8 @@ public function updateuser(Request $request,  User $user) {
         //                     OFFSET 0
         //                     LIMIT 20;
         //                 ');
-
+      
+            
         $user = User::selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
         ( 6371 * acos( cos( radians(?) ) *
           cos( radians( latitude ) )
@@ -1028,9 +1030,151 @@ public function updateuser(Request $request,  User $user) {
             ->limit(20)
             ->get();
 
+            
+            if(count($user) > 0){
+                return response()->json(["status" => true, "data" => $user]);
+            }
+            else{
+               return response()->json(["status" => true, "message" => "List not found"]);
+            }
+      
+        
+    }
 
-        if(count($user) > 0){
-            return response()->json(["status" => true, "data" => $user]);
+
+
+    //if condition user search
+    /**
+ * User Filter list Post method Or condition
+ * @urlParam industry_id number required Example: 1
+ * @urlParam profession_id number required Example: 1
+ * @urlParam looking_for number required Example: 1/0
+ * @urlParam offering number required Example: 1/0
+ *  @urlParam latitude number required Example: 1
+ * @urlParam longitude number required Example: 1
+ *  @urlParam radius number required Example: 1-5
+ * @response {
+    "status": true,
+    "data": [
+        {
+            "id": 52,
+            "user_name": "sourm",
+            "first_name": "Sourajit",
+            "last_name": "M",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm8@gmail.com1",
+            "industry_id": 1,
+            "profession_id": 1,
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "Sourajit M",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https://ui-avatars.com/api/?name=Sourajit&color=7F9CF5&background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "gfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
+            }
+        },
+        {
+            "id": 55,
+            "user_name": "sourw",
+            "first_name": "East",
+            "last_name": "Zone",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm@gmail.com",
+            "industry_id": 1,
+            "profession_id": 1,
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "East Zone",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https://ui-avatars.com/api/?name=East&color=7F9CF5&background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "gfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
+            }
+        }
+    ]
+}
+     */
+    public function filter(Request $request, User $user)
+    {
+        
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+        $radius = $request->input('radius');
+        $user = $user->newQuery();
+    
+
+        if ($request->has('industry_id')) {
+            $user->where('industry_id', $request->input('industry_id'));
+        }
+    
+
+        if ($request->has('profession_id')) {
+            $user->where('profession_id', $request->input('profession_id'));
+        }
+    
+
+        if ($request->has('offering')) {
+            $user->where('offering', $request->input('offering'));
+        }
+
+        if ($request->has('looking_for')) {
+            $user->where('looking_for', $request->input('looking_for'));
+        }
+
+        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+        ( 6371 * acos( cos( radians(?) ) *
+          cos( radians( latitude ) )
+          * cos( radians( longitude ) - radians(?)
+          ) + sin( radians(?) ) *
+          sin( radians( latitude ) ) )
+        ) AS distance", [$latitude, $longitude, $latitude])
+        ->orWhere(['active'=>1])
+            ->with(['industries','professions'])
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->offset(0)
+            ->limit(20)
+        ->get();
+
+        if(count($userdata) > 0){
+            return response()->json(["status" => true, "data" => $userdata]);
         }
         else{
            return response()->json(["status" => true, "message" => "List not found"]);
@@ -1038,7 +1182,7 @@ public function updateuser(Request $request,  User $user) {
     }
 
 
-
+    //picture update
     public function piceditprofile(Request $request) {
 
         
@@ -1095,8 +1239,6 @@ public function updateuser(Request $request,  User $user) {
             return response()->json(["status" => false, "message" => "Profile update failed!"]);
         }
     }
-
-
 
 
 }
