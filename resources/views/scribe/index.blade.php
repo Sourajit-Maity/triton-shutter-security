@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: August 30 2021</li>
+            <li>Last updated: September 6 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -371,7 +371,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/distinctio"
+    "http://localhost/api/invites/quis"
 );
 
 let headers = {
@@ -438,7 +438,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/cumque"
+    "http://localhost/api/invites/qui"
 );
 
 let headers = {
@@ -510,7 +510,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/dolore"
+    "http://localhost/api/invites/numquam"
 );
 
 let headers = {
@@ -606,6 +606,7 @@ fetch(url, {
 <pre><code class="language-json">{
     "status": true,
     "message": "Success! registration completed",
+    "token": "6|V3krGzwc7vOLxIK8MUyi3NmKXcEaJk2GqB7QDBGG",
     "data": {
         "first_name": "test",
         "last_name": "test",
@@ -615,7 +616,7 @@ fetch(url, {
         "profession_id": "1",
         "industry_id": "1",
         "address": "address test",
-        "looking_for": "looking for Artist",
+        "message": "looking for Artist",
         "profile_photo_path": "1629438076.png",
         "updated_at": "2021-08-19T05:07:36.000000Z",
         "created_at": "2021-08-19T05:07:36.000000Z",
@@ -1237,7 +1238,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1"
+    "http://localhost/api/get-user-list/1/1/1/1/quae/1/dolores"
 );
 
 let headers = {
@@ -1257,79 +1258,255 @@ fetch(url, {
     "data": [
         {
             "id": 52,
-            "first_name": "SOURAJIT",
-            "last_name": "MAITY",
-            "email": "sourajit@yahoo.com",
-            "phone": "1656421545",
-            "address": "&lt;p&gt;Test Address&lt;\/p&gt;\n",
-            "looking_for": "&lt;p&gt;Test Looking Details&lt;\/p&gt;\n",
-            "email_verified_at": null,
-            "current_team_id": null,
-            "profile_photo_path": null,
-            "otp": null,
-            "social_id": null,
-            "social_account_type": null,
-            "social_info": null,
-            "device_type": null,
-            "device_token": null,
+            "user_name": "sourm",
+            "first_name": "Sourajit",
+            "last_name": "M",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm8@gmail.com1",
             "industry_id": 1,
             "profession_id": 1,
-            "active": 1,
-            "created_at": "2021-08-20T10:36:43.000000Z",
-            "updated_at": "2021-08-20T10:36:43.000000Z",
-            "full_name": "SOURAJIT MAITY",
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "Sourajit M",
             "role_name": "CLIENT",
-            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=SOURAJIT&amp;color=7F9CF5&amp;background=EBF4FF",
+            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Sourajit&amp;color=7F9CF5&amp;background=EBF4FF",
             "industries": {
                 "id": 1,
-                "industry_name": "industry1",
-                "industry_description": "industry description",
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
                 "active": 1,
-                "created_at": "2021-08-20T10:35:11.000000Z",
-                "updated_at": "2021-08-20T10:35:11.000000Z",
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
                 "deleted_at": null
             },
             "professions": {
                 "id": 1,
-                "profession_name": "profession1",
+                "profession_name": "gfhf",
                 "active": 1,
-                "created_at": "2021-08-20T10:35:31.000000Z",
-                "updated_at": "2021-08-20T10:35:31.000000Z"
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
             }
         }
     ]
 }</code></pre>
-<div id="execution-results-GETapi-get-user-list--industry_id---profession_id-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-list--industry_id---profession_id-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-user-list--industry_id---profession_id-"></code></pre>
+<div id="execution-results-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
 </div>
-<div id="execution-error-GETapi-get-user-list--industry_id---profession_id-" hidden>
+<div id="execution-error-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-user-list--industry_id---profession_id-"></code></pre>
+    <pre><code id="execution-error-message-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
 </div>
-<form id="form-GETapi-get-user-list--industry_id---profession_id-" data-method="GET" data-path="api/get-user-list/{industry_id}/{profession_id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-list--industry_id---profession_id-', this);">
+<form id="form-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-method="GET" data-path="api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-list--industry_id---profession_id-" onclick="tryItOut('GETapi-get-user-list--industry_id---profession_id-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-list--industry_id---profession_id-" onclick="cancelTryOut('GETapi-get-user-list--industry_id---profession_id-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-list--industry_id---profession_id-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="tryItOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="cancelTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/get-user-list/{industry_id}/{profession_id}</code></b>
+ <b><code>api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}</code></b>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
 <b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="industry_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id-" data-component="url" required  hidden>
+<input type="number" name="industry_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
 <br>
 
 </p>
 <p>
 <b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="profession_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id-" data-component="url" required  hidden>
+<input type="number" name="profession_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
 <br>
 
+</p>
+<p>
+<b><code>looking_for</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="looking_for" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>offering</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="offering" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
+<br>
+Example: 1/0
+ @urlParam latitude number required
+</p>
+<p>
+<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="latitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="longitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
+<br>
+Example: 1
+ @urlParam radius number required
+</p>
+<p>
+<b><code>radius</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="radius" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+<h2>User Filter list Post method Or condition</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/search"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": [
+        {
+            "id": 52,
+            "user_name": "sourm",
+            "first_name": "Sourajit",
+            "last_name": "M",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm8@gmail.com1",
+            "industry_id": 1,
+            "profession_id": 1,
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "Sourajit M",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Sourajit&amp;color=7F9CF5&amp;background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "gfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
+            }
+        },
+        {
+            "id": 55,
+            "user_name": "sourw",
+            "first_name": "East",
+            "last_name": "Zone",
+            "looking_for": 1,
+            "available_from": "2021-09-03 06:39:02",
+            "available_to": "2021-09-03 06:39:02",
+            "offering": 0,
+            "email": "sourajitm@gmail.com",
+            "industry_id": 1,
+            "profession_id": 1,
+            "address": "gfdgdgd",
+            "latitude": 45.12,
+            "longitude": 74.52,
+            "distance": 0,
+            "full_name": "East Zone",
+            "role_name": "CLIENT",
+            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=East&amp;color=7F9CF5&amp;background=EBF4FF",
+            "industries": {
+                "id": 1,
+                "industry_name": "fghf",
+                "industry_description": "fghfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:29.000000Z",
+                "updated_at": "2021-09-03T07:07:29.000000Z",
+                "deleted_at": null
+            },
+            "professions": {
+                "id": 1,
+                "profession_name": "gfhf",
+                "active": 1,
+                "created_at": "2021-09-03T07:07:21.000000Z",
+                "updated_at": "2021-09-03T07:07:21.000000Z"
+            }
+        }
+    ]
+}</code></pre>
+<div id="execution-results-POSTapi-search" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
+</div>
+<div id="execution-error-POSTapi-search" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-search"></code></pre>
+</div>
+<form id="form-POSTapi-search" data-method="POST" data-path="api/search" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-search', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-search" onclick="tryItOut('POSTapi-search');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-search" onclick="cancelTryOut('POSTapi-search');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-search" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/search</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="industry_id" data-endpoint="POSTapi-search" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="profession_id" data-endpoint="POSTapi-search" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>looking_for</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="looking_for" data-endpoint="POSTapi-search" data-component="url" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>offering</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="offering" data-endpoint="POSTapi-search" data-component="url" required  hidden>
+<br>
+Example: 1/0
+ @urlParam latitude number required
+</p>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="longitude" data-endpoint="POSTapi-search" data-component="url" required  hidden>
+<br>
+Example: 1
+ @urlParam radius number required
 </p>
 </form>
 <h2>User View</h2>
@@ -1362,6 +1539,9 @@ fetch(url, {
         "email": "test@test.com",
         "phone": "123456789",
         "address": null,
+        "message": "message",
+        "looking_for": 1,
+        "offering": 0,
         "email_verified_at": null,
         "current_team_id": null,
         "profile_photo_path": null,
@@ -1373,6 +1553,10 @@ fetch(url, {
         "device_token": null,
         "industry_id": 1,
         "profession_id": 1,
+        "latitude": null,
+        "longitude": null,
+        "available_from": "00:00:23",
+        "available_to": "00:00:05",
         "active": 0,
         "created_at": "2021-08-19T05:07:36.000000Z",
         "updated_at": "2021-08-19T05:07:36.000000Z",
@@ -1424,9 +1608,15 @@ let headers = {
 };
 
 const body = new FormData();
-body.append('first_name', 'John');
-body.append('last_name', 'Doe');
+body.append('full_name', 'John Doe');
+body.append('profession_id', '1');
+body.append('industry_id', 'long');
+body.append('email', 'John@gmail.com');
 body.append('phone', '1122334455');
+body.append('address', 'address');
+body.append('available_to', '1');
+body.append('offering', '1');
+body.append('available_from', 'in');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1439,7 +1629,25 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-json">{
     "status": true,
-    "message": "Success! Profile update completed"
+    "message": "Success! Profile update completed",
+    "data": {
+        "first_name": "sourajit",
+        "last_name": "m",
+        "user_name": "sourm",
+        "email": "sourajitm8@gmail.com1",
+        "address": "test address",
+        "phone": null,
+        "profession_id": "1",
+        "industry_id": "1",
+        "message": "message",
+        "looking_for": "1",
+        "offering": "0",
+        "available_from": "23.14",
+        "available_to": "5.01",
+        "longitude": "74.52",
+        "latitude": "45.12",
+        "profile_photo_path": "\/uploads\/profile-photos\/16304800051228993330.png"
+    }
 }</code></pre>
 <blockquote>
 <p>Example response (401):</p>
@@ -1469,26 +1677,134 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="first_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="full_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
-<b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="last_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<b><code>profession_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="profession_id" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
-<b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="phone" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<b><code>industry_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="industry_id" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
+<br>
+Example: 1
+ @bodyParam  latitude string required  Example: lat
+ @bodyParam  longitude string required
+</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
 <br>
 
+</p>
+<p>
+<b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="phone" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+<p>
+<b><code>address</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="address" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+<p>
+<b><code>available_to</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="available_to" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+Example: 1630651142
+ @bodyParam  looking for  required
+</p>
+<p>
+<b><code>offering</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="offering" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+<p>
+<b><code>available_from</code></b>&nbsp;&nbsp;<small>Example:</small>     <i>optional</i> &nbsp;
+<input type="text" name="available_from" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+1630651142
 </p>
 <p>
 <b><code>profile_photo_path</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
 <input type="file" name="profile_photo_path" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+<h2>Location Sink</h2>
+<p>@bodyParam  latitude string required  Example: 33.15</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/sink-location"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "longitude": "85.14"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Location update completed",
+    "data": {
+        "longitude": "33.15",
+        "latitude": "85.14"
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": false,
+    "message": "Location update failed!"
+}</code></pre>
+<div id="execution-results-POSTapi-sink-location" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-sink-location"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-sink-location"></code></pre>
+</div>
+<div id="execution-error-POSTapi-sink-location" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-sink-location"></code></pre>
+</div>
+<form id="form-POSTapi-sink-location" data-method="POST" data-path="api/sink-location" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-sink-location', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-sink-location" onclick="tryItOut('POSTapi-sink-location');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-sink-location" onclick="cancelTryOut('POSTapi-sink-location');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-sink-location" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/sink-location</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="longitude" data-endpoint="POSTapi-sink-location" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1500,7 +1816,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/ea"
+    "http://localhost/api/update-user/corporis"
 );
 
 let headers = {
@@ -1531,11 +1847,18 @@ fetch(url, {
         "otp": null,
         "social_id": null,
         "social_account_type": null,
+        "latitude": "22.86",
+        "longitude": "45.65",
+        "available_from": "12.00",
+        "available_to": "5.00",
         "social_info": null,
         "device_type": null,
         "device_token": null,
         "industry_id": "2",
         "profession_id": "2",
+        "message": "message",
+        "looking_for": "1",
+        "offering": "0",
         "active": 0,
         "created_at": "2021-08-19T05:07:36.000000Z",
         "updated_at": "2021-08-19T08:06:38.000000Z",
