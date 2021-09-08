@@ -614,7 +614,7 @@ public function login(Request $request)
                 // "address" => "required",
                 "profession_id"  =>  "required",
                 "industry_id"  =>  "required",
-                "message"  =>  "required",
+               // "message"  =>  "required",
                 // "available_from"  =>  "required",
                 // "available_to"  =>  "required",
                 // "latitude"  =>  "required",
@@ -1157,6 +1157,10 @@ public function updateuser(Request $request,  User $user) {
         if ($request->has('looking_for')) {
             $user->where('looking_for', $request->input('looking_for'));
         }
+
+        // if ($request->has('latitude' || 'longitude')) {
+        //     $user->where('latitude', $request->input('latitude') || 'longitude', $request->input('longitude'));
+        // }
 
         $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
         ( 6371 * acos( cos( radians(?) ) *
