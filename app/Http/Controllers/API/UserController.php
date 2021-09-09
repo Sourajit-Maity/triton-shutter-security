@@ -616,8 +616,8 @@ public function login(Request $request)
                 "message"  =>  "required",
                  "available_from"  =>  "required",
                  "available_to"  =>  "required",
-                 "latitude"  =>  "required",
-                 "longitude"  =>  "required",
+                 //"latitude"  =>  "required",
+                // "longitude"  =>  "required",
 
 
             ]);
