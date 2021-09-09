@@ -150,7 +150,7 @@ public function getindustry()
             "password"  =>  "required",
             "profession_id"  =>  "required",
             "industry_id"  =>  "required",          
-            "message" => "required",
+           // "message" => "required",
            
 
         ]);
@@ -607,18 +607,17 @@ public function login(Request $request)
         if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
             $validator  =   Validator::make($request->all(), [
                 "full_name"  =>  "required",
-                //"last_name"  =>  "required",
-                //"email"  =>  "required",
+                "email"  =>  "required",
                 //"phone"  =>  "requiredphp",
                 // "profile_photo_path" => "required",
-                // "address" => "required",
+                 "address" => "required",
                 "profession_id"  =>  "required",
                 "industry_id"  =>  "required",
-               // "message"  =>  "required",
-                // "available_from"  =>  "required",
-                // "available_to"  =>  "required",
-                // "latitude"  =>  "required",
-                // "longitude"  =>  "required",
+                "message"  =>  "required",
+                 "available_from"  =>  "required",
+                 "available_to"  =>  "required",
+                 "latitude"  =>  "required",
+                 "longitude"  =>  "required",
 
 
             ]);
