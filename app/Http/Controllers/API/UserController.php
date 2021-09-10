@@ -842,7 +842,7 @@ public function login(Request $request)
             "social_account_type"  =>  "required",
             "device_token" => "required",
             "device_type" => "required",
-            "password" => "required",
+
 
         ]);
         if ($validator->fails()) {
