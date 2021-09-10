@@ -144,7 +144,7 @@ public function getindustry()
         $validator  =   Validator::make($request->all(), [
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
-            "full_name"  =>  'required', 'max:255', 'regex:/^[a-zA-Z]+$/u',
+            "full_name"  =>  'required|max:255|regex:/^[a-zA-Z]+$/u',
             "user_name"  =>  "required|unique:users",
             "email"  =>  "required|email|unique:users",           
             "password"  =>  "required",
@@ -843,13 +843,12 @@ public function login(Request $request)
             "device_token" => "required",
             "device_type" => "required",
 
-
         ]);
         if ($validator->fails()) {
             return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
         }
         $user = User::where('social_id', $request->social_id)->first();
-        // dd($user);
+         //dd($user);
         if (empty($user)) {
             $inputs = $request->all();
 
