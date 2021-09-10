@@ -50,13 +50,18 @@ class User extends Authenticatable implements HasMedia
         'profession_id',
         'looking_for',
         'user_name',
-        'device_token',
         'latitude',
         'longitude',
         'message',
         'offering',
         'available_from',
         'available_to',
+        'device_type',
+        'device_token',
+        'profile_photo_path',
+        'active',
+        'social_id',
+        'social_account_type',
     ];
 
     /**

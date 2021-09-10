@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('looking_for')->default(false);
             $table->boolean('offering')->default(false);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
