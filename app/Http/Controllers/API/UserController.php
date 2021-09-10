@@ -144,7 +144,7 @@ public function getindustry()
         $validator  =   Validator::make($request->all(), [
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
-            "full_name"  =>  'required|max:255|regex:/^[a-zA-Z]+$/u',
+            "full_name"  =>  'required|max:255',
             "user_name"  =>  "required|unique:users",
             "email"  =>  "required|email|unique:users",           
             "password"  =>  "required",
