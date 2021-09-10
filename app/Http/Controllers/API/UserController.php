@@ -629,14 +629,14 @@ public function login(Request $request)
        // $inputs = $request->all();
 
        $name = $request->get('full_name');
-       $available_form = $request->get('available_from');
-       $available_to = $request->get('available_to');
+    //    $available_form = $request->get('available_from');
+    //    $available_to = $request->get('available_to');
     //    dd($available_form);
         //$available_form_convert = (date("Y-m-d",$available_form)); 
-        $dt1 = new DateTime("@$available_form");
-        $available_form_convert = $dt1->format('Y-m-d H:i:s');
-        $dt2 = new DateTime("@$available_to");
-        $available_to_convert = $dt1->format('Y-m-d H:i:s');
+        // $dt1 = new DateTime("@$available_form");
+        // $available_form_convert = $dt1->format('Y-m-d H:i:s');
+        // $dt2 = new DateTime("@$available_to");
+        // $available_to_convert = $dt1->format('Y-m-d H:i:s');
         //dd($available_to_convert);
         $splitName = explode(' ', $name, 2); 
 
@@ -655,8 +655,8 @@ public function login(Request $request)
        $inputs['message'] = $request->get('message');
        $inputs['looking_for'] = $request->get('looking_for');
        $inputs['offering'] = $request->get('offering');
-       $inputs['available_from'] = $available_to_convert;
-       $inputs['available_to'] = $available_to_convert;
+       $inputs['available_from'] = $request->get('available_from');
+       $inputs['available_to'] = $request->get('available_to');
 
        $inputs['longitude'] = $request->get('longitude');
        $inputs['latitude'] = $request->get('latitude');
@@ -778,6 +778,60 @@ public function login(Request $request)
 }
      
      */
+    // public function socialsignup(Request $request)
+    // {
+    //     $validator  =   Validator::make($request->all(), [
+    //         // "first_name"  =>  "required",
+    //         // "last_name"  =>  "required",
+    //         "full_name"  =>  "required",
+    //         "email"  =>  "required|email",
+    //         "social_id"  =>  "required",
+    //         "social_account_type"  =>  "required",
+    //         "device_token" => "required",
+    //         "device_type" => "required",
+    //         //"password" => "required",
+
+    //     ]);
+    //     if ($validator->fails()) {
+    //         return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+    //     }
+    //     $user = User::where('social_id', $request->social_id)->first();
+
+    //     if (empty($user)) {
+    //        // $inputs = $request->all();
+
+    //         //$user   =   User::create($inputs);
+    //         $name = $request->get('full_name');
+
+    //         $splitName = explode(' ', $name, 2); 
+
+    //         $first_name = $splitName[0];
+    //         $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+
+    //         $user = new User();
+    //         $user->first_name = $first_name;
+    //         $user->last_name= $last_name;
+    //         $user->email= $request->get('email');
+    //         $user->social_id= $request->get('social_id');
+    //         $user->password= $request->get('password');
+    //         $user->social_account_type= $request->get('social_account_type');
+    //         $user->device_token= $request->get('device_token');
+    //         $user->device_type= $request->get('device_type');
+           
+    //         $user->assignRole('CLIENT');
+    //         $user->save();
+    //         $token  =   $user->createToken('token')->plainTextToken;
+    //         //$user->assignRole('CLIENT');
+    //         return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
+    //     } else {
+    //         $token      =       $user->createToken('token')->plainTextToken;
+
+    //         User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+
+    //         return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
+          
+    //     }
+    // }
     public function socialsignup(Request $request)
     {
         $validator  =   Validator::make($request->all(), [
@@ -795,7 +849,7 @@ public function login(Request $request)
             return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
         }
         $user = User::where('social_id', $request->social_id)->first();
-
+        // dd($user);
         if (empty($user)) {
             $inputs = $request->all();
 
@@ -805,14 +859,13 @@ public function login(Request $request)
             return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
         } else {
             $token      =       $user->createToken('token')->plainTextToken;
-
+            // dd($request);
             User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
 
             return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
-          
+            // return response()->json(["status" => false, "message" => "Registration failed!"]);
         }
     }
-
     /** 
  * Update-User
  * @authenticated
