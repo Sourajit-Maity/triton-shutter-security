@@ -59,7 +59,6 @@ class User extends Authenticatable implements HasMedia
         'device_type',
         'device_token',
         'profile_photo_path',
-        'active',
         'social_id',
         'social_account_type',
     ];
