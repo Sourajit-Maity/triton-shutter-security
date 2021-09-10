@@ -781,14 +781,15 @@ public function login(Request $request)
     public function socialsignup(Request $request)
     {
         $validator  =   Validator::make($request->all(), [
-            "first_name"  =>  "required",
-            "last_name"  =>  "required",
+            // "first_name"  =>  "required",
+            // "last_name"  =>  "required",
+            "full_name"  =>  "required",
             "email"  =>  "required|email",
             "social_id"  =>  "required",
             "social_account_type"  =>  "required",
             "device_token" => "required",
             "device_type" => "required",
-            "password" => "required",
+            //"password" => "required",
 
         ]);
         if ($validator->fails()) {
@@ -797,11 +798,30 @@ public function login(Request $request)
         $user = User::where('social_id', $request->social_id)->first();
 
         if (empty($user)) {
-            $inputs = $request->all();
+           // $inputs = $request->all();
 
-            $user   =   User::create($inputs);
-            $token  =   $user->createToken('token')->plainTextToken;
+            //$user   =   User::create($inputs);
+            $name = $request->get('full_name');
+
+            $splitName = explode(' ', $name, 2); 
+
+            $first_name = $splitName[0];
+            $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+
+            $user = new User();
+            $user->first_name = $first_name;
+            $user->last_name= $last_name;
+            $user->email= $request->get('email');
+            $user->social_id= $request->get('social_id');
+            $user->password= $request->get('password');
+            $user->social_account_type= $request->get('social_account_type');
+            $user->device_token= $request->get('device_token');
+            $user->device_type= $request->get('device_type');
+           
             $user->assignRole('CLIENT');
+            $user->save();
+            $token  =   $user->createToken('token')->plainTextToken;
+            //$user->assignRole('CLIENT');
             return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
         } else {
             $token      =       $user->createToken('token')->plainTextToken;
