@@ -152,7 +152,6 @@ public function getindustry()
             "industry_id"  =>  "required",          
            // "message" => "required",
            
-
         ]);
 
 
