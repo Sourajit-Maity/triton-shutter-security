@@ -50,13 +50,13 @@
 
                     <x-admin.form-group>
                         <x-admin.lable value="Available From" required />
-                        <x-admin.input type="time" wire:model.defer="available_from" placeholder="available from" autocomplete="off" class="{{ $errors->has('available_from') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input type="text" wire:model.defer="available_from" placeholder="available from" autocomplete="off" class="{{ $errors->has('available_from') ? 'is-invalid' :'' }}"/>
                         <x-admin.input-error for="available_from" />
                     </x-admin.form-group>
 
                     <x-admin.form-group>
                         <x-admin.lable value="Available To" required />
-                        <x-admin.input type="time" wire:model.defer="available_to" placeholder="available to" autocomplete="off" class="{{ $errors->has('available_to') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input type="text" wire:model.defer="available_to" placeholder="available to" autocomplete="off" class="{{ $errors->has('available_to') ? 'is-invalid' :'' }}"/>
                         <x-admin.input-error for="available_to" />
                     </x-admin.form-group>
 

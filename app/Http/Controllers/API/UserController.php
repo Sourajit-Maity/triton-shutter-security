@@ -95,6 +95,7 @@ public function getindustry()
  * Register
      * @bodyParam  full_name string required  Example: John
      * @bodyParam  email string required  Example: John@gmail.com
+     * @bodyParam user_name string required  Example: John
      * @bodyParam  phone string required  Example: 1122334455
      * @bodyParam  address string required  Example: address
      * @bodyParam  Profile Photo string required  Example: image
@@ -561,6 +562,7 @@ public function login(Request $request)
 /**
  * Edit Profile
  * @bodyParam  full_name string required  Example: John Doe
+ * * @bodyParam user_name string required  Example: John
  * @bodyParam  profession_id string required  Example: 1
  * @bodyParam  industry_id string required  Example: 1
  *  @bodyParam  latitude string required  Example: lat
@@ -656,10 +658,11 @@ public function login(Request $request)
        $inputs['offering'] = $request->get('offering');
        $inputs['available_from'] = $request->get('available_from');
        $inputs['available_to'] = $request->get('available_to');
-
+  
        $inputs['longitude'] = $request->get('longitude');
        $inputs['latitude'] = $request->get('latitude');
 
+       $full_name = $request->get('full_name');
        //dd($inputs);
 
         if ($request->hasFile('profile_photo_path')) {
@@ -680,7 +683,7 @@ public function login(Request $request)
         if (!empty($inputs)) {
             User::where('id', auth()->user()->id)->update($inputs);
             
-            return response()->json(["status" => true, "message" => "Success! Profile update completed", "data" => $inputs]);
+            return response()->json(["status" => true, "message" => "Success! Profile update completed", "data" => $inputs, $full_name]);
         } else {
             return response()->json(["status" => false, "message" => "Profile update failed!"],401);
         }
