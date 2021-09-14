@@ -22,6 +22,7 @@ let headers = {
 let body = {
     "full_name": "John",
     "email": "John@gmail.com",
+    "user_name": "John",
     "phone": "1122334455",
     "address": "address",
     "Profile": "test",
@@ -107,6 +108,12 @@ fetch(url, {
 <p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>user_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -744,7 +751,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/quae/1/dolores"
+    "http://localhost/api/get-user-list/1/1/1/1/voluptatem/1/reprehenderit"
 );
 
 let headers = {
@@ -1148,7 +1155,7 @@ let headers = {
 };
 
 const body = new FormData();
-body.append('full_name', 'John Doe');
+body.append('full_name', 'John');
 body.append('profession_id', '1');
 body.append('industry_id', 'long');
 body.append('email', 'John@gmail.com');
@@ -1156,7 +1163,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'in');
+body.append('available_from', 'ut');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1225,7 +1232,8 @@ fetch(url, {
 <b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="full_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
 <br>
-
+Example: John Doe
+* @bodyParam user_name string required
 </p>
 <p>
 <b><code>profession_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1377,7 +1385,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/corporis"
+    "http://localhost/api/update-user/id"
 );
 
 let headers = {

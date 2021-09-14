@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 6 2021</li>
+            <li>Last updated: September 14 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -371,7 +371,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/quis"
+    "http://localhost/api/invites/voluptatem"
 );
 
 let headers = {
@@ -438,7 +438,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/qui"
+    "http://localhost/api/invites/repellendus"
 );
 
 let headers = {
@@ -510,7 +510,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/numquam"
+    "http://localhost/api/invites/vitae"
 );
 
 let headers = {
@@ -588,6 +588,7 @@ let headers = {
 let body = {
     "full_name": "John",
     "email": "John@gmail.com",
+    "user_name": "John",
     "phone": "1122334455",
     "address": "address",
     "Profile": "test",
@@ -669,6 +670,12 @@ fetch(url, {
 <p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-register" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>user_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user_name" data-endpoint="POSTapi-register" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1238,7 +1245,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/quae/1/dolores"
+    "http://localhost/api/get-user-list/1/1/1/1/voluptatem/1/reprehenderit"
 );
 
 let headers = {
@@ -1608,7 +1615,7 @@ let headers = {
 };
 
 const body = new FormData();
-body.append('full_name', 'John Doe');
+body.append('full_name', 'John');
 body.append('profession_id', '1');
 body.append('industry_id', 'long');
 body.append('email', 'John@gmail.com');
@@ -1616,7 +1623,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'in');
+body.append('available_from', 'ut');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1680,7 +1687,8 @@ fetch(url, {
 <b><code>full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="full_name" data-endpoint="POSTapi-edit-my-profile" data-component="body" required  hidden>
 <br>
-
+Example: John Doe
+* @bodyParam user_name string required
 </p>
 <p>
 <b><code>profession_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -1816,7 +1824,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/corporis"
+    "http://localhost/api/update-user/id"
 );
 
 let headers = {
