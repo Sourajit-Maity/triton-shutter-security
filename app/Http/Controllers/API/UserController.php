@@ -562,7 +562,7 @@ public function login(Request $request)
 /**
  * Edit Profile
  * @bodyParam  full_name string required  Example: John Doe
- * * @bodyParam user_name string required  Example: John
+ * @bodyParam user_name string required  Example: John
  * @bodyParam  profession_id string required  Example: 1
  * @bodyParam  industry_id string required  Example: 1
  *  @bodyParam  latitude string required  Example: lat
