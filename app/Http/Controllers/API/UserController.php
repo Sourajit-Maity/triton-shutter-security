@@ -99,46 +99,49 @@ public function getindustry()
      * @bodyParam  phone string required  Example: 1122334455
      * @bodyParam  address string required  Example: address
      * @bodyParam  Profile Photo string required  Example: image
-     *  @bodyParam  looking for string required  Example: test
+     *  @bodyParam  looking for string required  Example: 1
      * @bodyParam  profession_id  required  Example: 1
      * @bodyParam  industry_id  required  Example: 1
+     *  @bodyParam  offering for string required  Example: 1
      * * @bodyParam  password password required  Example: password
      * @response  {
     "status": true,
-    "message": "Success! registration completed",
-    "token": "6|V3krGzwc7vOLxIK8MUyi3NmKXcEaJk2GqB7QDBGG",
+    "message": "Success! Registration completed",
+    "token": "89|wTbWEMzBDJo5HakTF3JeCQWgntkTb4lrdfAHQKDw",
     "data": {
-        "first_name": "test",
-        "last_name": "test",
-        "user_name": "test",
-        "email": "test@test.com",
-        "phone": "123456789",
+        "first_name": "Jay",
+        "last_name": "Sinha",
+        "user_name": "jay12",
+        "email": "jay12@yopmail.com",
+        "phone": null,
         "profession_id": "1",
         "industry_id": "1",
-        "address": "address test",
-        "message": "looking for Artist",
-        "profile_photo_path": "1629438076.png",
-        "updated_at": "2021-08-19T05:07:36.000000Z",
-        "created_at": "2021-08-19T05:07:36.000000Z",
-        "id": 54,
-        "full_name": "test test",
+        "address": null,
+        "message": null,
+        "looking_for": "1",
+        "offering": "0",
+        "updated_at": "2021-09-15T15:43:33.000000Z",
+        "created_at": "2021-09-15T15:43:33.000000Z",
+        "id": 82,
+        "full_name": "Jay Sinha",
         "role_name": "CLIENT",
-        "profile_photo_url": "https://ui-avatars.com/api/?name=test&color=7F9CF5&background=EBF4FF",
+        "profile_photo_url": "https://ui-avatars.com/api/?name=Jay&color=7F9CF5&background=EBF4FF",
         "roles": [
             {
                 "id": 2,
                 "name": "CLIENT",
                 "guard_name": "web",
-                "created_at": "2021-08-18T10:15:30.000000Z",
-                "updated_at": "2021-08-18T10:15:30.000000Z",
+                "created_at": "2021-09-10T13:37:58.000000Z",
+                "updated_at": "2021-09-10T13:37:58.000000Z",
                 "pivot": {
-                    "model_id": 54,
+                    "model_id": 82,
                     "role_id": 2,
                     "model_type": "App\\Models\\User"
                 }
             }
         ]
     }
+}
 }
  */
     public function register(Request $request) {
