@@ -150,7 +150,9 @@ public function getindustry()
             "email"  =>  "required|email|unique:users",           
             "password"  =>  "required",
             "profession_id"  =>  "required",
-            "industry_id"  =>  "required",          
+            "industry_id"  =>  "required",     
+            "looking_for"  =>  "required",
+            "offering"  =>  "required",      
            // "message" => "required",
            
         ]);
@@ -183,6 +185,8 @@ public function getindustry()
         $user->industry_id= $request->get('industry_id');
         $user->address= $request->get('address');
         $user->message= $request->get('message');
+        $user->looking_for= $request->get('looking_for');
+        $user->offering= $request->get('offering');
         $user->assignRole('CLIENT');
         $user->save();
 
