@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Industry;
 use App\Models\Profession;
 use DateTime;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 /**
  * @group  User Authentication
  *
@@ -238,41 +240,98 @@ public function getindustry()
     }
 }
      */
-public function login(Request $request)
-{
-    $input = $request->all();
+// public function login(Request $request)
+// {
+//     $input = $request->all();
 
-    $validator = Validator::make($request->all(), [
-        "username" =>  "required",
-        "password" =>  "required",
-        // "device_type" => "required",
-        // "device_token" => "required",
-    ]);
+//     $validator = Validator::make($request->all(), [
+//         "username" =>  "required",
+//         "password" =>  "required",
+//         // "device_type" => "required",
+//         // "device_token" => "required",
+//     ]);
 
-    if ($validator->fails()) {
-        return response()->json(["validation_errors" => $validator->errors()]);
-    }
+//     if ($validator->fails()) {
+//         return response()->json(["validation_errors" => $validator->errors()]);
+//     }
 
-    $useremail = User::where("email", $request->email)->first();
-    $username = User::where("user_name", $request->user_name)->first();
+//     $useremail = User::where("email", $request->email)->first();
+//     $username = User::where("user_name", $request->user_name)->first();
 
-    $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
+//     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
 
-    // if (is_null($useremail || $username)) {
-    //     return response()->json(["status" => false, "message" => "Failed! email or username not found"],401);
-    // }
+//     // if (is_null($useremail || $username)) {
+//     //     return response()->json(["status" => false, "message" => "Failed! email or username not found"],401);
+//     // }
    
-    if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
-        $user       =       Auth::user();
-        //dd($user);
-        $token      =       $user->createToken('token')->plainTextToken;
-        // dd($request);
-        User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+//     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
+//         $user       =       Auth::user();
+//         //dd($user);
+//         $token      =       $user->createToken('token')->plainTextToken;
+//         // dd($request);
+//         User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
 
-        return response()->json(["status" => true,  "token" => $token, "data" => $user]);
-    } else {
+//         return response()->json(["status" => true,  "token" => $token, "data" => $user]);
+//     } else {
 
-        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"],401);
+//         return response()->json(["status" => false, "message" => "Whoops! invalid username or password"],401);
+//     }
+// }
+
+
+
+//
+
+public function login(Request $request) {
+    try {
+        $rules = [
+            'email'=>'required|email',
+            'password' => 'required',
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()){
+          
+            return response()->json([
+                'status'=>false,
+                'message' => $validator->errors()->all()[0],
+                'data'=> new \stdClass()
+            ],422);
+            
+        }
+
+        $check_general = User::where('email', $request->email)->first();
+        //dd( $check_general);
+        if(!$check_general){
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid email',
+                'data'=> new \stdClass()
+            ],401);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        if ( ! Hash::check($request->password, $user->password, [])) {
+            // throw new \Exception('Error in Login');
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid password',
+                'data'=> new \stdClass()
+            ],401);
+        }
+        $tokenResult = $user->createToken('authToken')->plainTextToken;
+        return response()->json([
+            'status' => true,
+            'access_token' => $tokenResult,
+            'token_type' => 'Bearer',
+            'message' => 'Successfully Login!',
+            'data' => $user
+        ]);
+    } catch (Exception $error) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Error in Login',
+            'data'=> new \stdClass()
+        ],500);
     }
 }
 /** 
