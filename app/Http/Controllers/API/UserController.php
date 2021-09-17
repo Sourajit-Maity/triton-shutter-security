@@ -200,7 +200,7 @@ public function getindustry()
             return response()->json(["status" => true, "message" => "Success! Registration completed","token" => $token, "data" => $user]);
         }
         else {
-            return response()->json(["status" => false, "message" => "Registration failed!"],401);
+            return response()->json(["status" => false, "message" => "Registration failed!"],201);
         }       
     }
     /**
@@ -262,9 +262,9 @@ public function login(Request $request)
 
     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
 
-    if (is_null($useremail || $username)) {
-        return response()->json(["status" => false, "message" => "Failed! email or username not found"],201);
-    }
+    // if (is_null($useremail || $username)) {
+    //     return response()->json(["status" => false, "message" => "Failed! email or username not found"],201);
+    // }
    
     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
         $user       =       Auth::user();
@@ -276,9 +276,10 @@ public function login(Request $request)
         return response()->json(["status" => true,  "token" => $token, "data" => $user]);
     } else {
 
-        return response()->json(["status" => true, "message" => "Whoops! invalid username or password"],401);
+        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"]);
     }
-    }catch(\Exception $e) {
+    }
+    catch(\Exception $e) {
         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
     }
 }
@@ -423,7 +424,7 @@ public function login(Request $request)
             ]);
 
             if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()],201);
             }
 
             $user->password = $request->confirm_password;
@@ -431,7 +432,7 @@ public function login(Request $request)
 
             return response()->json(["status" => true, "message" => "Success! password change successfully", "data" => $user]);
         } else {
-            return response()->json(["status" => false, "message" => "Whoops! Old password is invalid"],401);
+            return response()->json(["status" => false, "message" => "Whoops! Old password is invalid"],201);
         }
     }
 
