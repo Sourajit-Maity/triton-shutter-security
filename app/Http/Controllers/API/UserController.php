@@ -258,9 +258,9 @@ public function login(Request $request)
 
     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
 
-    if (is_null($useremail || $username)) {
-        return response()->json(["status" => false, "message" => "Failed! email or username not found"],401);
-    }
+    // if (is_null($useremail || $username)) {
+    //     return response()->json(["status" => false, "message" => "Failed! email or username not found"],401);
+    // }
    
     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
         $user       =       Auth::user();
@@ -272,7 +272,7 @@ public function login(Request $request)
         return response()->json(["status" => true,  "token" => $token, "data" => $user]);
     } else {
 
-        return response()->json(["status" => false, "message" => "Whoops! invalid username or password"],401);
+        return response()->json(["status" => true, "message" => "Whoops! invalid username or password"],401);
     }
 }
 /** 
