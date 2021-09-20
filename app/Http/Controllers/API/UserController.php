@@ -147,6 +147,7 @@ public function getindustry()
 }
  */
     public function register(Request $request) {
+     try{
         $validator  =   Validator::make($request->all(), [
             // "first_name"  =>  "required",
             // "last_name"  =>  "required",
@@ -201,7 +202,11 @@ public function getindustry()
         }
         else {
             return response()->json(["status" => false, "message" => "Registration failed!"],201);
-        }       
+        }
+    }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    }       
     }
     /**
      * @bodyParam username string required Example: user@user.com or user
@@ -243,7 +248,7 @@ public function getindustry()
 public function login(Request $request)
 {
 
-    try{
+try{
     $input = $request->all();
 
     $validator = Validator::make($request->all(), [
@@ -621,89 +626,93 @@ public function login(Request $request)
      */
     public function editprofile(Request $request)
     {
+        try{
+            if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
+                $validator  =   Validator::make($request->all(), [
+                    "full_name"  =>  "required",
+                    "email"  =>  "required",
+                    //"phone"  =>  "required",
+                    // "profile_photo_path" => "required",
+                    "address" => "required",
+                    "profession_id"  =>  "required",
+                    "industry_id"  =>  "required",
+                    "message"  =>  "required",
+                    "available_from"  =>  "required",
+                    "available_to"  =>  "required",
+                    //"latitude"  =>  "required",
+                    // "longitude"  =>  "required",
 
-        if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
-            $validator  =   Validator::make($request->all(), [
-                "full_name"  =>  "required",
-                "email"  =>  "required",
-                //"phone"  =>  "requiredphp",
-                // "profile_photo_path" => "required",
-                 "address" => "required",
-                "profession_id"  =>  "required",
-                "industry_id"  =>  "required",
-                "message"  =>  "required",
-                 "available_from"  =>  "required",
-                 "available_to"  =>  "required",
-                 //"latitude"  =>  "required",
-                // "longitude"  =>  "required",
 
-
-            ]);
-            if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()],401);
+                ]);
+                if ($validator->fails()) {
+                    return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                }
             }
-        }
 
-       // $inputs = $request->all();
+        // $inputs = $request->all();
 
-       $name = $request->get('full_name');
-    //    $available_form = $request->get('available_from');
-    //    $available_to = $request->get('available_to');
-    //    dd($available_form);
-        //$available_form_convert = (date("Y-m-d",$available_form)); 
-        // $dt1 = new DateTime("@$available_form");
-        // $available_form_convert = $dt1->format('Y-m-d H:i:s');
-        // $dt2 = new DateTime("@$available_to");
-        // $available_to_convert = $dt1->format('Y-m-d H:i:s');
-        //dd($available_to_convert);
-        $splitName = explode(' ', $name, 2); 
+        $name = $request->get('full_name');
+        //    $available_form = $request->get('available_from');
+        //    $available_to = $request->get('available_to');
+        //    dd($available_form);
+            //$available_form_convert = (date("Y-m-d",$available_form)); 
+            // $dt1 = new DateTime("@$available_form");
+            // $available_form_convert = $dt1->format('Y-m-d H:i:s');
+            // $dt2 = new DateTime("@$available_to");
+            // $available_to_convert = $dt1->format('Y-m-d H:i:s');
+            //dd($available_to_convert);
+            $splitName = explode(' ', $name, 2); 
 
-       $first_name = $splitName[0];
-       
-       $last_name = !empty($splitName[1]) ? $splitName[1] : '';
-       
-       $inputs['first_name'] = $first_name;
-       $inputs['last_name'] = $last_name;
-       $inputs['user_name'] = $request->get('user_name');
-       $inputs['email'] = $request->get('email');
-       $inputs['address'] = $request->get('address');
-       $inputs['phone'] = $request->get('phone');
-       $inputs['profession_id'] = $request->get('profession_id');
-       $inputs['industry_id'] = $request->get('industry_id');
-       $inputs['message'] = $request->get('message');
-       $inputs['looking_for'] = $request->get('looking_for');
-       $inputs['offering'] = $request->get('offering');
-       $inputs['available_from'] = $request->get('available_from');
-       $inputs['available_to'] = $request->get('available_to');
-  
-       $inputs['longitude'] = $request->get('longitude');
-       $inputs['latitude'] = $request->get('latitude');
+        $first_name = $splitName[0];
+        
+        $last_name = !empty($splitName[1]) ? $splitName[1] : '';
+        
+        $inputs['first_name'] = $first_name;
+        $inputs['last_name'] = $last_name;
+        $inputs['user_name'] = $request->get('user_name');
+        $inputs['email'] = $request->get('email');
+        $inputs['address'] = $request->get('address');
+        $inputs['phone'] = $request->get('phone');
+        $inputs['profession_id'] = $request->get('profession_id');
+        $inputs['industry_id'] = $request->get('industry_id');
+        $inputs['message'] = $request->get('message');
+        $inputs['looking_for'] = $request->get('looking_for');
+        $inputs['offering'] = $request->get('offering');
+        $inputs['available_from'] = $request->get('available_from');
+        $inputs['available_to'] = $request->get('available_to');
+    
+        $inputs['longitude'] = $request->get('longitude');
+        $inputs['latitude'] = $request->get('latitude');
 
-       $full_name = $request->get('full_name');
-       //dd($inputs);
+        $full_name = $request->get('full_name');
+        //dd($inputs);
 
-        if ($request->hasFile('profile_photo_path')) {
-            $this->validate(request(), [
-                'profile_photo_path' => 'mimes:jpeg,jpg,png',
-            ], [
-                'profile_photo_path.mimes' => 'Image must be jpeg,jpg or png type.',
-            ]);
+            if ($request->hasFile('profile_photo_path')) {
+                $this->validate(request(), [
+                    'profile_photo_path' => 'mimes:jpeg,jpg,png',
+                ], [
+                    'profile_photo_path.mimes' => 'Image must be jpeg,jpg or png type.',
+                ]);
 
-            $fileName = time() . rand() . '.' . $request->profile_photo_path->extension();
-            $request->file('profile_photo_path')->storeAs(
-                'public/uploads/profile-photos/',
-                $fileName
-            );
-            $inputs['profile_photo_path'] = '/uploads/profile-photos/' . $fileName;
-        }
+                $fileName = time() . rand() . '.' . $request->profile_photo_path->extension();
+                $request->file('profile_photo_path')->storeAs(
+                    'public/uploads/profile-photos/',
+                    $fileName
+                );
+                $inputs['profile_photo_path'] = '/uploads/profile-photos/' . $fileName;
+            }
 
-        if (!empty($inputs)) {
-            User::where('id', auth()->user()->id)->update($inputs);
-            
-            return response()->json(["status" => true, "message" => "Success! Profile update completed", "data" => $inputs, $full_name]);
-        } else {
-            return response()->json(["status" => false, "message" => "Profile update failed!"],401);
-        }
+            if (!empty($inputs)) {
+                User::where('id', auth()->user()->id)->update($inputs);
+                
+                return response()->json(["status" => true, "message" => "Success! Profile update completed", "data" => $inputs, $full_name]);
+            } else {
+                return response()->json(["status" => false, "message" => "Profile update failed!"]);
+            }
+    }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    }
     }
 
 /**
@@ -725,8 +734,8 @@ public function login(Request $request)
     }
      */
     public function sinklocation(Request $request)
-    {
-
+     {
+        try{
         if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
             $validator  =   Validator::make($request->all(), [
                 "latitude"  =>  "required",
@@ -743,8 +752,6 @@ public function login(Request $request)
     
        //dd($inputs);
 
-  
-
         if (!empty($inputs)) {
             User::where('id', auth()->user()->id)->update($inputs);
             
@@ -752,6 +759,10 @@ public function login(Request $request)
         } else {
             return response()->json(["status" => false, "message" => "Profile update failed!"],401);
         }
+    }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    }
     }
 /**
  *Social signup
@@ -853,36 +864,41 @@ public function login(Request $request)
     // }
     public function socialsignup(Request $request)
     {
-        $validator  =   Validator::make($request->all(), [
-            "first_name"  =>  "required",
-            "last_name"  =>  "required",
-            "email"  =>  "required|email",
-            "social_id"  =>  "required",
-            "social_account_type"  =>  "required",
-            "device_token" => "required",
-            "device_type" => "required",
+        try{
+            $validator  =   Validator::make($request->all(), [
+                "first_name"  =>  "required",
+                "last_name"  =>  "required",
+                "email"  =>  "required|email",
+                "social_id"  =>  "required",
+                "social_account_type"  =>  "required",
+                "device_token" => "required",
+                "device_type" => "required",
 
-        ]);
-        if ($validator->fails()) {
-            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
-        }
-        $user = User::where('social_id', $request->social_id)->first();
-         //dd($user);
-        if (empty($user)) {
-            $inputs = $request->all();
+            ]);
+            if ($validator->fails()) {
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+            }
+            $user = User::where('social_id', $request->social_id)->first();
+            //dd($user);
+            if (empty($user)) {
+                $inputs = $request->all();
 
-            $user   =   User::create($inputs);
-            $token  =   $user->createToken('token')->plainTextToken;
-            $user->assignRole('CLIENT');
-            return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
-        } else {
-            $token      =       $user->createToken('token')->plainTextToken;
-            // dd($request);
-            User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+                $user   =   User::create($inputs);
+                $token  =   $user->createToken('token')->plainTextToken;
+                $user->assignRole('CLIENT');
+                return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
+            } else {
+                $token      =       $user->createToken('token')->plainTextToken;
+                // dd($request);
+                User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
 
-            return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
-            // return response()->json(["status" => false, "message" => "Registration failed!"]);
-        }
+                return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
+                // return response()->json(["status" => false, "message" => "Registration failed!"]);
+            }
+    }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    }
     }
     /** 
  * Update-User
