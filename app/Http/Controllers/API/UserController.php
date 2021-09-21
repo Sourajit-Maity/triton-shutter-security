@@ -2922,11 +2922,16 @@ public function updateuser(Request $request,  User $user) {
      */
     public function filter(Request $request, User $user)
     {
-        
+        if ($request->input('radius')) {
+            $radius = $request->input('radius');
+        }
+        else{
+            $radius = 5;
+        }
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
         //$radius = $request->input('radius');
-        $radius = 5;
+        //$radius = 5;
         $user = $user->newQuery();
     
 
@@ -2959,13 +2964,12 @@ public function updateuser(Request $request,  User $user) {
           ) + sin( radians(?) ) *
           sin( radians( latitude ) ) )
         ) AS distance", [$latitude, $longitude, $latitude])
-        ->orWhere(['active'=>1])             
-            ->with(['industries','professions'])
             ->having("distance", "<", $radius)
             ->orderBy("distance",'asc')
-            ->offset(0)
-            ->limit(20)
             ->where('id', '!=', auth()->id())
+            ->with(['industries','professions'])
+            ->offset(0)
+            ->limit(20)            
         ->get();
 
         if(count($userdata) > 0){
