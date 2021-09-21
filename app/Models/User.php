@@ -146,5 +146,7 @@ class User extends Authenticatable implements HasMedia
         $this->attributes['last_name'] = ucfirst($value);
     }
 
-
+    public function filter(){
+        return $this->hasOne(Filter::class);
+    }
 }

@@ -45,6 +45,7 @@ Route::middleware('auth:api')->group(function() {
     Route::resource('invites', InvitationController::class); 
     Route::get("user/all", [UserController::class, 'getAllUser']);
     Route::post('/search', [UserController::class,'filter']);
+    Route::get('/last-filter-data', [UserController::class,'lastFilterData']);
 
     //Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);
 
