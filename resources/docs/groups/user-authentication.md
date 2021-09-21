@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/quia/1/ullam"
+    "http://localhost/api/get-user-list/1/1/1/1/exercitationem/1/qui"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'sequi');
+body.append('available_from', 'consequatur');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/aliquam"
+    "http://localhost/api/update-user/nisi"
 );
 
 let headers = {
@@ -3335,6 +3335,106 @@ Example: 1/0
 <br>
 Example: 1
  @urlParam radius number required
+</p>
+</form>
+
+
+## api/last-filter-data
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/last-filter-data"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "data": {
+        "id": 9,
+        "latitude": 45.15,
+        "longitude": 74.52,
+        "looking_for": 1,
+        "offering": 0,
+        "industry_id": null,
+        "profession_id": null,
+        "user_id": 56,
+        "radius": null,
+        "created_at": "2021-09-21T14:27:41.000000Z",
+        "updated_at": "2021-09-21T14:27:41.000000Z",
+        "user": {
+            "id": 56,
+            "first_name": "East",
+            "last_name": "Zones1121",
+            "user_name": "ray11121121",
+            "email": "ra@gmail.com1121",
+            "phone": null,
+            "address": "seminyak",
+            "message": "ghfhg",
+            "looking_for": 1,
+            "offering": 0,
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": "\/uploads\/profile-photos\/1632234398932385192.png",
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "latitude": 22.14,
+            "longitude": 88.21,
+            "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+            "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+            "social_info": null,
+            "device_type": null,
+            "device_token": null,
+            "industry_id": 1,
+            "profession_id": 1,
+            "active": 0,
+            "created_at": "2021-09-21T14:25:29.000000Z",
+            "updated_at": "2021-09-21T14:26:38.000000Z",
+            "full_name": "East Zones1121",
+            "role_name": "CLIENT",
+            "profile_photo_url": "http:\/\/localhost\/storage\/uploads\/profile-photos\/1632234398932385192.png"
+        }
+    }
+}
+```
+<div id="execution-results-GETapi-last-filter-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-last-filter-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-last-filter-data"></code></pre>
+</div>
+<div id="execution-error-GETapi-last-filter-data" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-last-filter-data"></code></pre>
+</div>
+<form id="form-GETapi-last-filter-data" data-method="GET" data-path="api/last-filter-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-last-filter-data', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-last-filter-data" onclick="tryItOut('GETapi-last-filter-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-last-filter-data" onclick="cancelTryOut('GETapi-last-filter-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-last-filter-data" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/last-filter-data</code></b>
 </p>
 </form>
 
