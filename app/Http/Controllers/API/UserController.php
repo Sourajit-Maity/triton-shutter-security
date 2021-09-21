@@ -197,11 +197,11 @@ public function getindustry()
         $user->save();
 
         if(!is_null($user)) {
-            $token      =       $user->createToken('token')->plainTextToken;
+            $token  =   $user->createToken('token')->plainTextToken;
             return response()->json(["status" => true, "message" => "Success! Registration completed","token" => $token, "data" => $user]);
         }
         else {
-            return response()->json(["status" => false, "message" => "Registration failed!"],201);
+            return response()->json(["status" => false, "message" => "Registration failed!"]);
         }
     }
     catch(\Exception $e) {
