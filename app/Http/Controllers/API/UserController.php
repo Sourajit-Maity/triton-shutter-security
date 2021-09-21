@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Industry;
+use App\Models\Filter;
 use App\Models\Profession;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
@@ -2952,6 +2953,19 @@ public function updateuser(Request $request,  User $user) {
         if ($request->has('looking_for')) {
             $user->where('looking_for', $request->input('looking_for'));
         }
+        //filter-data save start
+        $validator      =   Validator::make($request->all(), [
+            "latitude"   =>      "required",
+            "longitude"   =>      "required",         
+        ]);
+
+        if($validator->fails())
+            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+
+            $filter=new Filter($request->all());
+            $filter->user_id=auth()->user()->id;
+            $filter->save();
+         //filter-data save end       
 
         // if ($request->has('latitude' || 'longitude')) {
         //     $user->where('latitude', $request->input('latitude') || 'longitude', $request->input('longitude'));
@@ -2974,69 +2988,77 @@ public function updateuser(Request $request,  User $user) {
 
         if(count($userdata) > 0){
             return response()->json(["status" => true, "data" => $userdata]);
+            
         }
         else{
            return response()->json(["status" => true, "message" => "List not found"]);
         }
     }
 
+// Filter Data
+    /**
+ 
+ * @response {
+    "status": true,
+    "data": {
+        "id": 9,
+        "latitude": 45.15,
+        "longitude": 74.52,
+        "looking_for": 1,
+        "offering": 0,
+        "industry_id": null,
+        "profession_id": null,
+        "user_id": 56,
+        "radius": null,
+        "created_at": "2021-09-21T14:27:41.000000Z",
+        "updated_at": "2021-09-21T14:27:41.000000Z",
+        "user": {
+            "id": 56,
+            "first_name": "East",
+            "last_name": "Zones1121",
+            "user_name": "ray11121121",
+            "email": "ra@gmail.com1121",
+            "phone": null,
+            "address": "seminyak",
+            "message": "ghfhg",
+            "looking_for": 1,
+            "offering": 0,
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": "/uploads/profile-photos/1632234398932385192.png",
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "latitude": 22.14,
+            "longitude": 88.21,
+            "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+            "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+            "social_info": null,
+            "device_type": null,
+            "device_token": null,
+            "industry_id": 1,
+            "profession_id": 1,
+            "active": 0,
+            "created_at": "2021-09-21T14:25:29.000000Z",
+            "updated_at": "2021-09-21T14:26:38.000000Z",
+            "full_name": "East Zones1121",
+            "role_name": "CLIENT",
+            "profile_photo_url": "http://localhost/storage/uploads/profile-photos/1632234398932385192.png"
+        }
+    }
+}
+     */
+    public function lastFilterData() {
+        $userid= Auth::user()->id;
+        $filterdata = Filter::where('user_id', $userid)->latest()->first();
 
-    //picture update
-    public function piceditprofile(Request $request) {
-
-        
-        $messsages = array(
-            'required' => 'The :attribute field is required.'
-        );
-        
-        $rules = array(
-            "first_name"  =>  "required",
-            "last_name"  =>  "required",
-            "username"=>"required",
-            "bio"=>"required",
-            'username' => [
-                'required',
-                Rule::unique('users')->ignore(Auth::id()),
-            ],            
-            
-        );
-    
-        $validator = Validator::make($request->all(), $rules,$messsages);
-
-        if($validator->fails()) {
-            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+        if(!is_null($filterdata)) { 
+            return response()->json(["status" => true, "data" => $filterdata]);
         }
 
-        
-        $path = '';
-        if ($request->hasFile('profile_photo')) {
-           
-            $messsages = array(
-                'required' => 'The :attribute field is required.'
-            );            
-            $rules = array(
-                "profile_photo"  =>  "mimes:jpeg,jpg,png",
-            );
-            $validator = Validator::make($request->all(), $rules,$messsages);
-            if($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
-            }
-            $path = $request->file('profile_photo')->store('avatars');
-            
-            // $request->profile_photo->move(public_path('/storage/attachFile/'), $fileName);
-            // $profile_photopath= $path;
-            // User::where('id', Auth::id())->update(['profile_photo'=>$path]);
-        }
-        $inputs = $request->all();
-        if (!empty($inputs)) {
-            if($path) {
-                $inputs['profile_photo'] = $path;
-            }
-            User::where('id', auth()->user()->id)->update($inputs);
-            return response()->json(["status" => true, "message" => "Success! Profile update completed"]);
-        } else {
-            return response()->json(["status" => false, "message" => "Profile update failed!"]);
-        }
+        else {
+            return response()->json(["status" => false, "message" => "Whoops! no data found"]);
+        }        
     }
 
 
