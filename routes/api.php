@@ -4,6 +4,7 @@ use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CmsController;
 use App\Http\Controllers\API\InvitationController;
+use App\Http\Controllers\API\FCMController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,11 @@ Route::middleware('auth:api')->group(function() {
     Route::get("user/all", [UserController::class, 'getAllUser']);
     Route::post('/search', [UserController::class,'filter']);
     Route::get('/last-filter-data', [UserController::class,'lastFilterData']);
+
+    // Route::post('/save-tokens', [FCMController::class,'index']);
+    Route::post('/save-token', [FCMController::class, 'saveToken'])->name('save-token');
+    Route::get('/get-token', [FCMController::class, 'getToken'])->name('get-token');
+    // Route::post('/send-notification', [FCMController::class, 'sendNotification'])->name('send.notification');
 
     //Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);
 

@@ -41,7 +41,8 @@ class CreateUsersTable extends Migration
             $table->string('device_token')->nullable();
             $table->foreignId('industry_id')->nullable()->references('id')->on('industries')->onDelete('cascade');
             $table->foreignId('profession_id')->nullable()->references('id')->on('professions')->onDelete('cascade');
-            $table->boolean('active')->default(false);
+            $table->longText('fcm_token')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

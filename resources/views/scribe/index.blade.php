@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 21 2021</li>
+            <li>Last updated: September 22 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -115,6 +115,99 @@ fetch(url, {
 <p>
 <small class="badge badge-green">GET</small>
  <b><code>api/get-homepage</code></b>
+</p>
+</form><h1>Fcm Token Management</h1>
+<p>APIs for managing basic cms functionality</p>
+<h2>Token save</h2>
+<p>@bodyParam  device_token string required</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/save-token"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Token saved successfully",
+    "data": {
+        "device_token": "czczx"
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-save-token" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-save-token"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-save-token"></code></pre>
+</div>
+<div id="execution-error-POSTapi-save-token" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-save-token"></code></pre>
+</div>
+<form id="form-POSTapi-save-token" data-method="POST" data-path="api/save-token" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-token', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-token" onclick="tryItOut('POSTapi-save-token');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-token" onclick="cancelTryOut('POSTapi-save-token');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-token" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/save-token</code></b>
+</p>
+</form>
+<h2>api/get-token</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-token"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": "czczx"
+}</code></pre>
+<div id="execution-results-GETapi-get-token" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-token"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-token"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-token" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-token"></code></pre>
+</div>
+<form id="form-GETapi-get-token" data-method="GET" data-path="api/get-token" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-token', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-token" onclick="tryItOut('GETapi-get-token');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-token" onclick="cancelTryOut('GETapi-get-token');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-token" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-token</code></b>
 </p>
 </form><h1>Invitation Management</h1>
 <p>APIs for managing  invitation functionality</p>
@@ -371,7 +464,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/enim"
+    "http://localhost/api/invites/aspernatur"
 );
 
 let headers = {
@@ -438,7 +531,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/pariatur"
+    "http://localhost/api/invites/unde"
 );
 
 let headers = {
@@ -510,7 +603,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/aliquam"
+    "http://localhost/api/invites/laboriosam"
 );
 
 let headers = {
@@ -1249,7 +1342,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/exercitationem/1/qui"
+    "http://localhost/api/get-user-list/1/1/1/1/quia/1/laborum"
 );
 
 let headers = {
@@ -1478,7 +1571,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'consequatur');
+body.append('available_from', 'ut');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1684,7 +1777,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/nisi"
+    "http://localhost/api/update-user/et"
 );
 
 let headers = {

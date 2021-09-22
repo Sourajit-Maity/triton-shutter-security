@@ -1959,7 +1959,7 @@ try{
         "username" =>  "required",
         "password" =>  "required",
         // "device_type" => "required",
-        // "device_token" => "required",
+         "device_token" => "required",
     ]);
 
     if ($validator->fails()) {
