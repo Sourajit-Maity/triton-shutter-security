@@ -22,7 +22,7 @@ class CreateFiltersTable extends Migration
             $table->foreignId('industry_id')->nullable()->references('id')->on('industries')->onDelete('cascade');
             $table->foreignId('profession_id')->nullable()->references('id')->on('professions')->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('radius')->nullable();
+            $table->integer('radius')->nullable();
             $table->timestamps();
         });
     }
