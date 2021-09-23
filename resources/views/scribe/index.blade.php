@@ -464,7 +464,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/enim"
+    "http://localhost/api/invites/sed"
 );
 
 let headers = {
@@ -531,7 +531,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/praesentium"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
@@ -603,7 +603,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/nihil"
+    "http://localhost/api/invites/placeat"
 );
 
 let headers = {
@@ -1342,7 +1342,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/iusto/1/minima"
+    "http://localhost/api/get-user-list/1/1/1/1/possimus/1/magnam"
 );
 
 let headers = {
@@ -1571,7 +1571,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'possimus');
+body.append('available_from', 'vel');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1777,7 +1777,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/ducimus"
+    "http://localhost/api/update-user/iste"
 );
 
 let headers = {
