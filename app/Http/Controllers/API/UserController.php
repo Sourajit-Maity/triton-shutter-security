@@ -1961,7 +1961,7 @@ try{
         "username" =>  "required",
         "password" =>  "required",
         // "device_type" => "required",
-         "device_token" => "required",
+         //"device_token" => "required",
     ]);
 
     if ($validator->fails()) {
@@ -3151,7 +3151,7 @@ public function updateuser(Request $request,  User $user) {
         $longitude = $request->input('longitude');
 
         $user = $user->newQuery();    
-        
+
         if ($request->has('industry_id')) {
             $user->where('industry_id', $industryid);
         }
