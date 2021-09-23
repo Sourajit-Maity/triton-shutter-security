@@ -14,6 +14,8 @@ use App\Models\Profession;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 /**
  * @group  User Authentication
  *
@@ -3062,4 +3064,135 @@ public function updateuser(Request $request,  User $user) {
     }
 
 
+  // Filter Data Store
+    /**
+     *  @bodyParam  industry_id string required  Example: 1
+     * @bodyParam  profession_id string required  Example: 1
+     * @bodyParam looking_for string required  Example: 1/0
+     * @bodyParam  offering string required  Example: 1/0
+     * @bodyParam  radius string required  Example: 1-5
+ 
+ * @response{
+    "status": true,
+    "message": "Data Saved successfully.",
+    "data": {
+        "profession_id": "1",
+        "offering": "1",
+        "radius": "1",
+        "user_id": 54,
+        "updated_at": "2021-09-23T07:22:53.000000Z",
+        "created_at": "2021-09-23T07:22:53.000000Z",
+        "id": 9
+    }
+}
+     */  
+    public function storeFilterData(Request $request, User $user)
+    { 
+        try{
+            DB::beginTransaction();
+            $filter=new Filter($request->all());
+            $filter->user_id=auth()->user()->id;
+            $filter->save();
+ 
+        
+            DB::commit();
+            return response()->json(["status" => true,"message"=> 'Data Saved successfully.', "data" => $filter]);
+
+           }
+           catch(\Exception $e) {
+            DB::rollback();
+               return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+          }
+    }
+
+     // Filter Data Store
+    /**
+     *  @bodyParam  industry_id string required  Example: 1
+     * @bodyParam  profession_id string required  Example: 1
+     * @bodyParam looking_for string required  Example: 1/0
+     * @bodyParam  offering string required  Example: 1/0
+     * @bodyParam  radius string required  Example: 1-5
+ 
+ * @response{
+    "status": true,
+    "message": "Data Saved successfully.",
+    "data": {
+        "profession_id": "1",
+        "offering": "1",
+        "radius": "1",
+        "user_id": 54,
+        "updated_at": "2021-09-23T07:22:53.000000Z",
+        "created_at": "2021-09-23T07:22:53.000000Z",
+        "id": 9
+    }
+}
+     */  
+    public function getFilterData(Request $request, User $user)
+    { 
+        $userid= Auth::user()->id;
+        $filterdata = Filter::where('user_id', $userid)->latest()->first();
+
+        $industryid = Filter::where('user_id', $userid)->latest()->value('industry_id');
+        $professionid = Filter::where('user_id', $userid)->latest()->value('profession_id');
+        $lookingforid = Filter::where('user_id', $userid)->latest()->value('looking_for');
+        $offeringid = Filter::where('user_id', $userid)->latest()->value('offering');
+        $radius = Filter::where('user_id', $userid)->latest()->value('radius');
+       // dd($offeringid);
+
+        $validator      =   Validator::make($request->all(), [
+            "latitude"   =>      "required",
+            "longitude"   =>      "required",         
+        ]);
+
+        if($validator->fails())
+            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+        
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        $user = $user->newQuery();    
+        
+        if ($request->has('industry_id')) {
+            $user->where('industry_id', $industryid);
+        }
+    
+
+        if ($request->has('profession_id')) {
+            $user->where('profession_id', $professionid);
+        }
+    
+
+        if ($request->has('offering')) {
+            $user->where('offering', $offeringid);
+        }
+
+        if ($request->has('looking_for')) {
+            $user->where('looking_for', $lookingforid);
+        }
+        
+
+        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+        ( 6371 * acos( cos( radians(?) ) *
+          cos( radians( latitude ) )
+          * cos( radians( longitude ) - radians(?)
+          ) + sin( radians(?) ) *
+          sin( radians( latitude ) ) )
+        ) AS distance", [$latitude, $longitude, $latitude])
+            ->having("distance", "<", $radius)
+            ->orderBy("distance",'asc')
+            ->where('id', '!=', auth()->id())
+            ->with(['industries','professions'])
+            ->offset(0)
+            ->limit(20)            
+        ->get();
+
+        if(count($userdata) > 0){
+            return response()->json(["status" => true, "data" => $userdata]);
+            
+        }
+        else{
+           return response()->json(["status" => true, "message" => "List not found"]);
+        }
+    
+    }
 }

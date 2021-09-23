@@ -47,6 +47,8 @@ Route::middleware('auth:api')->group(function() {
     Route::get("user/all", [UserController::class, 'getAllUser']);
     Route::post('/search', [UserController::class,'filter']);
     Route::get('/last-filter-data', [UserController::class,'lastFilterData']);
+    Route::post('/store-filter-data', [UserController::class,'storeFilterData']);
+    Route::get('/get-filter-data', [UserController::class,'getFilterData']);
 
     // Route::post('/save-tokens', [FCMController::class,'index']);
     Route::post('/save-token', [FCMController::class, 'saveToken'])->name('save-token');
