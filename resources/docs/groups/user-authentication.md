@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/possimus/1/magnam"
+    "http://localhost/api/get-user-list/1/1/1/1/voluptatem/1/dolor"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'vel');
+body.append('available_from', 'consequatur');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/iste"
+    "http://localhost/api/update-user/eius"
 );
 
 let headers = {
@@ -3178,7 +3178,7 @@ fetch(url, {
 </form>
 
 
-## User Filter list Post method Or condition
+## api/search
 
 
 
@@ -3203,87 +3203,6 @@ fetch(url, {
 ```
 
 
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "data": [
-        {
-            "id": 52,
-            "user_name": "sourm",
-            "first_name": "Sourajit",
-            "last_name": "M",
-            "looking_for": 1,
-            "available_from": "2021-09-03 06:39:02",
-            "available_to": "2021-09-03 06:39:02",
-            "offering": 0,
-            "email": "sourajitm8@gmail.com1",
-            "industry_id": 1,
-            "profession_id": 1,
-            "address": "gfdgdgd",
-            "latitude": 45.12,
-            "longitude": 74.52,
-            "distance": 0,
-            "full_name": "Sourajit M",
-            "role_name": "CLIENT",
-            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Sourajit&color=7F9CF5&background=EBF4FF",
-            "industries": {
-                "id": 1,
-                "industry_name": "fghf",
-                "industry_description": "fghfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:29.000000Z",
-                "updated_at": "2021-09-03T07:07:29.000000Z",
-                "deleted_at": null
-            },
-            "professions": {
-                "id": 1,
-                "profession_name": "gfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:21.000000Z",
-                "updated_at": "2021-09-03T07:07:21.000000Z"
-            }
-        },
-        {
-            "id": 55,
-            "user_name": "sourw",
-            "first_name": "East",
-            "last_name": "Zone",
-            "looking_for": 1,
-            "available_from": "2021-09-03 06:39:02",
-            "available_to": "2021-09-03 06:39:02",
-            "offering": 0,
-            "email": "sourajitm@gmail.com",
-            "industry_id": 1,
-            "profession_id": 1,
-            "address": "gfdgdgd",
-            "latitude": 45.12,
-            "longitude": 74.52,
-            "distance": 0,
-            "full_name": "East Zone",
-            "role_name": "CLIENT",
-            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=East&color=7F9CF5&background=EBF4FF",
-            "industries": {
-                "id": 1,
-                "industry_name": "fghf",
-                "industry_description": "fghfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:29.000000Z",
-                "updated_at": "2021-09-03T07:07:29.000000Z",
-                "deleted_at": null
-            },
-            "professions": {
-                "id": 1,
-                "profession_name": "gfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:21.000000Z",
-                "updated_at": "2021-09-03T07:07:21.000000Z"
-            }
-        }
-    ]
-}
-```
 <div id="execution-results-POSTapi-search" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
@@ -3302,39 +3221,6 @@ fetch(url, {
 <p>
 <small class="badge badge-black">POST</small>
  <b><code>api/search</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="industry_id" data-endpoint="POSTapi-search" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="profession_id" data-endpoint="POSTapi-search" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>looking_for</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="looking_for" data-endpoint="POSTapi-search" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>offering</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="offering" data-endpoint="POSTapi-search" data-component="url" required  hidden>
-<br>
-Example: 1/0
- @urlParam latitude number required
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="longitude" data-endpoint="POSTapi-search" data-component="url" required  hidden>
-<br>
-Example: 1
- @urlParam radius number required
 </p>
 </form>
 
@@ -3456,12 +3342,56 @@ let headers = {
     "Accept": "application/json",
 };
 
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response => response.json());
+```
+
+
+<div id="execution-results-POSTapi-store-filter-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-store-filter-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-store-filter-data"></code></pre>
+</div>
+<div id="execution-error-POSTapi-store-filter-data" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-store-filter-data"></code></pre>
+</div>
+<form id="form-POSTapi-store-filter-data" data-method="POST" data-path="api/store-filter-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-store-filter-data', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-store-filter-data" onclick="tryItOut('POSTapi-store-filter-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-store-filter-data" onclick="cancelTryOut('POSTapi-store-filter-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-store-filter-data" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/store-filter-data</code></b>
+</p>
+</form>
+
+
+## api/get-filter-data
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/get-filter-data"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
 let body = {
-    "industry_id": "1",
-    "profession_id": "1",
-    "looking_for": "1\/0",
-    "offering": "1\/0",
-    "radius": "1-5"
+    "latitude": "22.43",
+    "longitude": "82.15"
 }
 
 fetch(url, {
@@ -3489,157 +3419,35 @@ fetch(url, {
     }
 }
 ```
-<div id="execution-results-POSTapi-store-filter-data" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-store-filter-data"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-store-filter-data"></code></pre>
+<div id="execution-results-POSTapi-get-filter-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-get-filter-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-get-filter-data"></code></pre>
 </div>
-<div id="execution-error-POSTapi-store-filter-data" hidden>
+<div id="execution-error-POSTapi-get-filter-data" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-store-filter-data"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-get-filter-data"></code></pre>
 </div>
-<form id="form-POSTapi-store-filter-data" data-method="POST" data-path="api/store-filter-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-store-filter-data', this);">
+<form id="form-POSTapi-get-filter-data" data-method="POST" data-path="api/get-filter-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-get-filter-data', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-store-filter-data" onclick="tryItOut('POSTapi-store-filter-data');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-store-filter-data" onclick="cancelTryOut('POSTapi-store-filter-data');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-store-filter-data" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-get-filter-data" onclick="tryItOut('POSTapi-get-filter-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-get-filter-data" onclick="cancelTryOut('POSTapi-get-filter-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-get-filter-data" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
- <b><code>api/store-filter-data</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>industry_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="industry_id" data-endpoint="POSTapi-store-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>profession_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="profession_id" data-endpoint="POSTapi-store-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>looking_for</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="looking_for" data-endpoint="POSTapi-store-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>offering</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="offering" data-endpoint="POSTapi-store-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>radius</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="radius" data-endpoint="POSTapi-store-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-
-</form>
-
-
-## api/get-filter-data
-
-
-
-
-> Example request:
-
-```javascript
-const url = new URL(
-    "http://localhost/api/get-filter-data"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "industry_id": "1",
-    "profession_id": "1",
-    "looking_for": "1\/0",
-    "offering": "1\/0",
-    "radius": "1-5"
-}
-
-fetch(url, {
-    method: "GET",
-    headers,
-    body: JSON.stringify(body),
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "message": "Data Saved successfully.",
-    "data": {
-        "profession_id": "1",
-        "offering": "1",
-        "radius": "1",
-        "user_id": 54,
-        "updated_at": "2021-09-23T07:22:53.000000Z",
-        "created_at": "2021-09-23T07:22:53.000000Z",
-        "id": 9
-    }
-}
-```
-<div id="execution-results-GETapi-get-filter-data" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-filter-data"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-filter-data"></code></pre>
-</div>
-<div id="execution-error-GETapi-get-filter-data" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-filter-data"></code></pre>
-</div>
-<form id="form-GETapi-get-filter-data" data-method="GET" data-path="api/get-filter-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-filter-data', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-filter-data" onclick="tryItOut('GETapi-get-filter-data');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-filter-data" onclick="cancelTryOut('GETapi-get-filter-data');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-filter-data" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
  <b><code>api/get-filter-data</code></b>
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>industry_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="industry_id" data-endpoint="GETapi-get-filter-data" data-component="body" required  hidden>
+<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="latitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
-<b><code>profession_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="profession_id" data-endpoint="GETapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>looking_for</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="looking_for" data-endpoint="GETapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>offering</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="offering" data-endpoint="GETapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>radius</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="radius" data-endpoint="GETapi-get-filter-data" data-component="body" required  hidden>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="longitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
 <br>
 
 </p>
