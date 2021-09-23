@@ -3107,11 +3107,8 @@ public function updateuser(Request $request,  User $user) {
 
      // Filter Data Store
     /**
-     *  @bodyParam  industry_id string required  Example: 1
-     * @bodyParam  profession_id string required  Example: 1
-     * @bodyParam looking_for string required  Example: 1/0
-     * @bodyParam  offering string required  Example: 1/0
-     * @bodyParam  radius string required  Example: 1-5
+     *  @bodyParam  latitude string required  Example: 22.43
+     * @bodyParam  longitude string required  Example: 82.15
  
  * @response{
     "status": true,
