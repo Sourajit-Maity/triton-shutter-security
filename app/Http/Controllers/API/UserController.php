@@ -3189,7 +3189,7 @@ public function updateuser(Request $request,  User $user) {
                 
             }
             else{
-                return response()->json(["status" => true, "message" => "List not found"]);
+                return response()->json(["status" => true, "data" => $userdata, "message" => "List not found"]);
             }
         }
         
@@ -3274,24 +3274,10 @@ public function updateuser(Request $request,  User $user) {
     }
 
 
-
-    //////////////
-
     public function storeFilterData(Request $request, User $user)
     { 
-        // $validator  =   Validator::make($request->all(), [
-        //     "industry_id"  =>  "required",
-        //     "profession_id"  =>  "required",
-        //     "looking_for"  =>  "required",
-        //     "offering"  =>  "required",
-        //     "radius"  =>  "required",
-
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
-        // }
+       
         $user = Filter::where('user_id', Auth::user()->id)->first();
-        // dd($user);
         if (empty($user)) {
 
             $filter=new Filter($request->all());
