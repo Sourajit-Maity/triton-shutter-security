@@ -3137,7 +3137,7 @@ public function updateuser(Request $request,  User $user) {
         $lookingforid = Filter::where('user_id', $userid)->latest()->value('looking_for');
         $offeringid = Filter::where('user_id', $userid)->latest()->value('offering');
         $radius = Filter::where('user_id', $userid)->latest()->value('radius');
-       // dd($offeringid);
+        //dd($offeringid);
 
         $validator      =   Validator::make($request->all(), [
             "latitude"   =>      "required",
@@ -3193,6 +3193,7 @@ public function updateuser(Request $request,  User $user) {
         else{
            return response()->json(["status" => true, "message" => "List not found"]);
         }
-    
+
+        
     }
 }
