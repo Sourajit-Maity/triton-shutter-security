@@ -17,7 +17,7 @@ class CreateInvitationsTable extends Migration
             $table->id();
             $table->foreignId('inviter_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('invited_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');;
-            $table->boolean('active')->default(true); 
+            $table->boolean('accept')->default(true); 
             $table->timestamps();
             $table->softDeletes();
         });

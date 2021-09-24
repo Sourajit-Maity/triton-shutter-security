@@ -12,7 +12,7 @@ class Filter extends Model
     protected $fillable = [ 
         'user_id', 'latitude', 'longitude',
         'industry_id', 'profession_id', 'looking_for',
-        'offering', 'radius', 
+        'offering', 'radius', 'online'
     ];
     public function user(){
         return $this->belongsTo(User::class);

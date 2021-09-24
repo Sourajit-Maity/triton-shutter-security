@@ -1854,9 +1854,10 @@ public function getindustry()
  */
     public function register(Request $request) {
      try{
+
+       
         $validator  =   Validator::make($request->all(), [
-            // "first_name"  =>  "required",
-            // "last_name"  =>  "required",
+
             "full_name"  =>  'required|max:255',
             "user_name"  =>  "required|unique:users",
             "email"  =>  "required|email|unique:users",           
@@ -1865,13 +1866,13 @@ public function getindustry()
             "industry_id"  =>  "required",     
             "looking_for"  =>  "required",
             "offering"  =>  "required",      
-           // "message" => "required",
            
         ]);
+        
 
 
         if($validator->fails()) {
-            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+            return response()->json(["status" => false, "message" => $validator->errors()->all()[0]]);
         }
 
         $inputs = $request->all();
@@ -1965,7 +1966,7 @@ try{
     ]);
 
     if ($validator->fails()) {
-        return response()->json(["validation_errors" => $validator->errors()]);
+        return response()->json(["message" => $validator->errors()]);
     }
 
     $useremail = User::where("email", $request->email)->first();
@@ -2351,7 +2352,7 @@ try{
 
                 ]);
                 if ($validator->fails()) {
-                    return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                    return response()->json(["status" => false, "message" => $validator->errors()]);
                 }
             }
 
@@ -2450,7 +2451,7 @@ try{
 
             ]);
             if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()],201);
+                return response()->json(["status" => false, "message" => $validator->errors()],201);
             }
         }
 
@@ -2582,7 +2583,7 @@ try{
 
             ]);
             if ($validator->fails()) {
-                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                return response()->json(["status" => false, "message" => $validator->errors()]);
             }
             $user = User::where('social_id', $request->social_id)->first();
             //dd($user);
@@ -3135,7 +3136,7 @@ public function updateuser(Request $request,  User $user) {
         ]);
 
         if($validator->fails())
-        return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+        return response()->json(["status" => false, "message" => $validator->errors()]);
 
             $userid= Auth::user()->id;
 
@@ -3144,6 +3145,7 @@ public function updateuser(Request $request,  User $user) {
             $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
             $radius = Filter::where('user_id', $userid)->value('radius');
+            $currentlyonline = Filter::where('user_id', $userid)->value('online');
             //dd($professionid);
 
             $latitude = $request->input('latitude');
@@ -3167,9 +3169,11 @@ public function updateuser(Request $request,  User $user) {
             if ($lookingforid !='0') {
                 $user->where('looking_for', $lookingforid);
             }
+            if ($currentlyonline !='0') {
+                $user->where('online', $currentlyonline);
+            }
             
-
-            $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+            $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
             ( 6371 * acos( cos( radians(?) ) *
             cos( radians( latitude ) )
             * cos( radians( longitude ) - radians(?)
@@ -3294,5 +3298,55 @@ public function updateuser(Request $request,  User $user) {
            
         }
     
+    }
+
+
+
+    /**
+ * Location Sink
+ *  @bodyParam  latitude string required  Example: 33.15
+ *  @bodyParam  longitude string required  Example: 85.14
+
+ * @response {
+    "status": true,
+    "message": "Success! Location update completed",
+    "data": {
+        "longitude": "33.15",
+        "latitude": "85.14"
+    }
+}
+     * @response  401 {
+    "status": false,
+    "message": "Location update failed!"
+    }
+     */
+    public function userOnlineUpdate(Request $request)
+     {
+        try{
+        if ($request->has('full_name') && $request->has('email')) {
+            $validator  =   Validator::make($request->all(), [
+                "currently_online"  =>  "required",
+
+            ]);
+            if ($validator->fails()) {
+                return response()->json(["status" => false, "message" => $validator->errors()],201);
+            }
+        }
+
+        $inputs = $request->all();
+    
+       //dd($inputs);
+
+        if (!empty($inputs)) {
+            User::where('id', auth()->user()->id)->update($inputs);
+            
+            return response()->json(["status" => true, "message" => "Success!  update completed", "data" => $inputs]);
+        } else {
+            return response()->json(["status" => false, "message" => "update failed!"],201);
+        }
+    }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    }
     }
 }

@@ -43,6 +43,8 @@ class CreateUsersTable extends Migration
             $table->foreignId('profession_id')->nullable()->references('id')->on('professions')->onDelete('cascade');
             $table->longText('fcm_token')->nullable();
             $table->boolean('active')->default(true);
+            $table->boolean('invitation_accept')->default(false);
+            $table->boolean('currently_online')->default(true);
             $table->timestamps();
         });
     }
