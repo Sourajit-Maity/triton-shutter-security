@@ -15,14 +15,13 @@ class CreateFiltersTable extends Migration
     {
         Schema::create('filters', function (Blueprint $table) {
             $table->id();
-            $table->float('latitude', 10, 6)->nullable();
-            $table->float('longitude', 10, 6)->nullable();
             $table->boolean('looking_for')->default(false);
             $table->boolean('offering')->default(false);
             $table->foreignId('industry_id')->nullable()->references('id')->on('industries')->onDelete('cascade');
             $table->foreignId('profession_id')->nullable()->references('id')->on('professions')->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('radius')->nullable();
+            $table->boolean('online')->default(false);
             $table->timestamps();
         });
     }
