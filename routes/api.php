@@ -54,8 +54,8 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/save-token', [FCMController::class, 'saveToken'])->name('save-token');
     Route::get('/get-token', [FCMController::class, 'getToken'])->name('get-token');
 
-    Route::post('/save-user-distance', [UserController::class, 'saveUserDistance'])->name('save-user-distance');
-    Route::get('/get-user-distance', [UserController::class, 'getUserDistance'])->name('get-user-distance');
+    Route::post('/save-user-setting', [UserController::class, 'saveUserSetting'])->name('save-user-setting');
+    Route::get('/get-user-setting', [UserController::class, 'getUserSetting'])->name('get-user-setting');
     // Route::post('/send-notification', [FCMController::class, 'sendNotification'])->name('send.notification');
 
     //Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);

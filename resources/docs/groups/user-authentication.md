@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/voluptate/1/corrupti"
+    "http://localhost/api/get-user-list/1/1/1/1/veniam/1/libero"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'doloremque');
+body.append('available_from', 'perferendis');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/distinctio"
+    "http://localhost/api/update-user/voluptatum"
 );
 
 let headers = {
@@ -3455,7 +3455,7 @@ fetch(url, {
 </form>
 
 
-## api/save-user-distance
+## api/save-user-setting
 
 
 
@@ -3464,7 +3464,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/save-user-distance"
+    "http://localhost/api/save-user-setting"
 );
 
 let headers = {
@@ -3503,41 +3503,41 @@ fetch(url, {
     }
 }
 ```
-<div id="execution-results-POSTapi-save-user-distance" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-save-user-distance"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-save-user-distance"></code></pre>
+<div id="execution-results-POSTapi-save-user-setting" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-save-user-setting"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-save-user-setting"></code></pre>
 </div>
-<div id="execution-error-POSTapi-save-user-distance" hidden>
+<div id="execution-error-POSTapi-save-user-setting" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-save-user-distance"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-save-user-setting"></code></pre>
 </div>
-<form id="form-POSTapi-save-user-distance" data-method="POST" data-path="api/save-user-distance" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-user-distance', this);">
+<form id="form-POSTapi-save-user-setting" data-method="POST" data-path="api/save-user-setting" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-user-setting', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-user-distance" onclick="tryItOut('POSTapi-save-user-distance');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-user-distance" onclick="cancelTryOut('POSTapi-save-user-distance');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-user-distance" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-user-setting" onclick="tryItOut('POSTapi-save-user-setting');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-user-setting" onclick="cancelTryOut('POSTapi-save-user-setting');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-user-setting" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
- <b><code>api/save-user-distance</code></b>
+ <b><code>api/save-user-setting</code></b>
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
 <b><code>distance</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="distance" data-endpoint="POSTapi-save-user-distance" data-component="body" required  hidden>
+<input type="number" name="distance" data-endpoint="POSTapi-save-user-setting" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
 <b><code>current_location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="current_location" data-endpoint="POSTapi-save-user-distance" data-component="body" required  hidden>
+<input type="text" name="current_location" data-endpoint="POSTapi-save-user-setting" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
 <b><code>hide_profile</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
-<input type="text" name="hide_profile" data-endpoint="POSTapi-save-user-distance" data-component="body"  hidden>
+<input type="text" name="hide_profile" data-endpoint="POSTapi-save-user-setting" data-component="body"  hidden>
 <br>
 
 </p>
@@ -3545,7 +3545,7 @@ fetch(url, {
 </form>
 
 
-## api/get-user-distance
+## api/get-user-setting
 
 
 
@@ -3554,7 +3554,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-distance"
+    "http://localhost/api/get-user-setting"
 );
 
 let headers = {
@@ -3621,24 +3621,24 @@ fetch(url, {
     }
 }
 ```
-<div id="execution-results-GETapi-get-user-distance" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-distance"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-user-distance"></code></pre>
+<div id="execution-results-GETapi-get-user-setting" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-setting"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-user-setting"></code></pre>
 </div>
-<div id="execution-error-GETapi-get-user-distance" hidden>
+<div id="execution-error-GETapi-get-user-setting" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-user-distance"></code></pre>
+    <pre><code id="execution-error-message-GETapi-get-user-setting"></code></pre>
 </div>
-<form id="form-GETapi-get-user-distance" data-method="GET" data-path="api/get-user-distance" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-distance', this);">
+<form id="form-GETapi-get-user-setting" data-method="GET" data-path="api/get-user-setting" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-setting', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-distance" onclick="tryItOut('GETapi-get-user-distance');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-distance" onclick="cancelTryOut('GETapi-get-user-distance');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-distance" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-setting" onclick="tryItOut('GETapi-get-user-setting');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-setting" onclick="cancelTryOut('GETapi-get-user-setting');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-setting" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/get-user-distance</code></b>
+ <b><code>api/get-user-setting</code></b>
 </p>
 </form>
 
