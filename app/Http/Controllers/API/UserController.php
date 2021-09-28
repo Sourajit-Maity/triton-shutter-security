@@ -3363,7 +3363,7 @@ public function updateuser(Request $request,  User $user) {
     "message": "Success! data save completed",
     "data": {
         "distance": "5",
-        "current_location": "abc abjgdfhfgh",
+        "share_current_loc": "1",
         "hide_profile": "0",
         "user_id": 53,
         "updated_at": "2021-09-28T07:13:27.000000Z",

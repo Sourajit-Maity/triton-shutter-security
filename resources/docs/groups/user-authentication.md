@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/veniam/1/libero"
+    "http://localhost/api/get-user-list/1/1/1/1/est/1/consectetur"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'perferendis');
+body.append('available_from', 'aut');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/voluptatum"
+    "http://localhost/api/update-user/fugit"
 );
 
 let headers = {
@@ -3494,7 +3494,7 @@ fetch(url, {
     "message": "Success! data save completed",
     "data": {
         "distance": "5",
-        "current_location": "abc abjgdfhfgh",
+        "share_current_loc": "1",
         "hide_profile": "0",
         "user_id": 53,
         "updated_at": "2021-09-28T07:13:27.000000Z",
