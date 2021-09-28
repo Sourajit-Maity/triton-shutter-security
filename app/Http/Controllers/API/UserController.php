@@ -3373,7 +3373,7 @@ public function updateuser(Request $request,  User $user) {
 }
 */
 
-    public function saveUserDistance(Request $request)
+    public function saveUserSetting(Request $request)
      {
         try{
 
@@ -3462,7 +3462,7 @@ public function updateuser(Request $request,  User $user) {
 }
      */
  
-        public function getUserDistance() {
+        public function getUserSetting() {
             $userid= Auth::user()->id;
             $distancedata = UserDistance::where('user_id', $userid)->first();
     
