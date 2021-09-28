@@ -2347,6 +2347,7 @@ try{
                     "message"  =>  "required",
                     "available_from"  =>  "required",
                     "available_to"  =>  "required",
+                    "time_available" =>  "required",
                     //"latitude"  =>  "required",
                     // "longitude"  =>  "required",
 
@@ -2360,9 +2361,8 @@ try{
         // $inputs = $request->all();
 
         $name = $request->get('full_name');
-            $available_form = $request->get('available_from');
-        //    $available_to = $request->get('available_to');
-           $startTime = Carbon::parse($available_form);
+            //$available_form = $request->get('available_from');
+        //    $available_to = $request->get('available_to');          
            // dd($available_form);
             //$available_form_convert = (date("Y-m-d",$available_form)); 
             // $dt1 = new DateTime("@$available_form");
@@ -2389,7 +2389,7 @@ try{
         $inputs['offering'] = $request->get('offering');
         $inputs['available_from'] = $request->get('available_from');
         $inputs['available_to'] = $request->get('available_to');
-    
+        $inputs['time_available'] = $request->get('time_available');
         $inputs['longitude'] = $request->get('longitude');
         $inputs['latitude'] = $request->get('latitude');
 
@@ -3379,7 +3379,7 @@ public function updateuser(Request $request,  User $user) {
 
             $validator      =   Validator::make($request->all(), [
                 "distance"   =>      "required",
-                "current_location"   =>      "required",  
+                "share_current_loc"   =>      "required",  
                 "hide_profile"    =>      "required",      
             ]);
     
@@ -3397,7 +3397,7 @@ public function updateuser(Request $request,  User $user) {
         } else {
             $inputs = $request->all();
             $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
-            "current_location" => $request->current_location, "hide_profile" => $request->hide_profile,));
+            "share_current_loc" => $request->share_current_loc, "hide_profile" => $request->hide_profile,));
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            
