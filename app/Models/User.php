@@ -150,4 +150,8 @@ class User extends Authenticatable implements HasMedia
     public function filter(){
         return $this->hasOne(Filter::class);
     }
+
+    public function userdistance(){
+        return $this->hasOne(UserDistance::class);
+    }
 }

@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Industry;
 use App\Models\Filter;
 use App\Models\Profession;
+use App\Models\UserDistance;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -2359,9 +2360,10 @@ try{
         // $inputs = $request->all();
 
         $name = $request->get('full_name');
-        //    $available_form = $request->get('available_from');
+            $available_form = $request->get('available_from');
         //    $available_to = $request->get('available_to');
-        //    dd($available_form);
+           $startTime = Carbon::parse($available_form);
+           // dd($available_form);
             //$available_form_convert = (date("Y-m-d",$available_form)); 
             // $dt1 = new DateTime("@$available_form");
             // $available_form_convert = $dt1->format('Y-m-d H:i:s');
@@ -3349,4 +3351,127 @@ public function updateuser(Request $request,  User $user) {
         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
     }
     }
+
+ // Filter Data Store
+    /**
+     *  @bodyParam  distance int required  Example: 1-15
+     * @bodyParam  current_location string required  Example: address
+     * @bodyParam  hide_profile required  Example: 1
+ 
+ * @response{
+    "status": true,
+    "message": "Success! data save completed",
+    "data": {
+        "distance": "5",
+        "current_location": "abc abjgdfhfgh",
+        "hide_profile": "0",
+        "user_id": 53,
+        "updated_at": "2021-09-28T07:13:27.000000Z",
+        "created_at": "2021-09-28T07:13:27.000000Z",
+        "id": 2
+    }
+}
+*/
+
+    public function saveUserDistance(Request $request)
+     {
+        try{
+
+            $validator      =   Validator::make($request->all(), [
+                "distance"   =>      "required",
+                "current_location"   =>      "required",  
+                "hide_profile"    =>      "required",      
+            ]);
+    
+            if($validator->fails())
+            return response()->json(["status" => false, "message" => $validator->errors()]);
+    
+        $user = UserDistance::where('user_id', Auth::user()->id)->first();
+        if (empty($user)) {
+
+            $distance=new UserDistance($request->all());
+            $distance->user_id=auth()->user()->id;
+            $distance->save();
+
+            return response()->json(["status" => true,  "message" => "Success! data save completed", "data" => $distance]);
+        } else {
+            $inputs = $request->all();
+            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
+            "current_location" => $request->current_location, "hide_profile" => $request->hide_profile,));
+
+            return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
+           
+        }
+      }
+        catch(\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+        }
+    }
+
+
+
+    // Fcm token fetch
+    /**
+ 
+ * @response {
+    "status": true,
+    "data": {
+        "id": 1,
+        "distance": "5",
+        "current_location": "abc abjgdfhfgh",
+        "user_id": 53,
+        "hide_profile": 0,
+        "created_at": "2021-09-28T07:07:26.000000Z",
+        "updated_at": "2021-09-28T07:08:12.000000Z",
+        "user": {
+            "id": 53,
+            "first_name": "Ray",
+            "last_name": "Martin",
+            "user_name": "ray",
+            "email": "ray@test.com",
+            "phone": null,
+            "address": "seminyak",
+            "message": "ghfhg",
+            "looking_for": 1,
+            "offering": 1,
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": "/uploads/profile-photos/1632807017436204422.png",
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "latitude": 42.75,
+            "longitude": 88.21,
+            "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+            "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+            "social_info": null,
+            "device_type": null,
+            "device_token": "22",
+            "industry_id": 1,
+            "profession_id": 1,
+            "fcm_token": null,
+            "active": 1,
+            "invitation_accept": 0,
+            "created_at": "2021-09-24T10:14:15.000000Z",
+            "updated_at": "2021-09-28T05:38:20.000000Z",
+            "full_name": "Ray Martin",
+            "role_name": "CLIENT",
+            "profile_photo_url": "http://localhost/storage/uploads/profile-photos/1632807017436204422.png"
+        }
+    }
+}
+     */
+ 
+        public function getUserDistance() {
+            $userid= Auth::user()->id;
+            $distancedata = UserDistance::where('user_id', $userid)->first();
+    
+            if(!is_null($distancedata)) { 
+                return response()->json(["status" => true, "data" => $distancedata]);
+            }
+    
+            else {
+                return response()->json(["status" => false, "message" => "Whoops! no data found"]);
+            }        
+        }
 }
