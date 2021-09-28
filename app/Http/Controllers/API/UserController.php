@@ -2376,7 +2376,7 @@ try{
                         'status'=>false,
                         'message' => $validator->errors()->all()[0],
                         'data'=> new \stdClass()
-                    ],422);
+                    ]);
                     
                 }
 
