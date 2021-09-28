@@ -3379,7 +3379,7 @@ public function updateuser(Request $request,  User $user) {
 
             $validator      =   Validator::make($request->all(), [
                 "distance"   =>      "required",
-                "current_location"   =>      "required",  
+                "share_current_loc"   =>      "required",  
                 "hide_profile"    =>      "required",      
             ]);
     
@@ -3397,7 +3397,7 @@ public function updateuser(Request $request,  User $user) {
         } else {
             $inputs = $request->all();
             $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
-            "current_location" => $request->current_location, "hide_profile" => $request->hide_profile,));
+            "share_current_loc" => $request->share_current_loc, "hide_profile" => $request->hide_profile,));
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            

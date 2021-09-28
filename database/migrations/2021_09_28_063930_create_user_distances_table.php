@@ -16,7 +16,7 @@ class CreateUserDistancesTable extends Migration
         Schema::create('user_distances', function (Blueprint $table) {
             $table->id();
             $table->string('distance');
-            $table->string('current_location')->nullable();        
+            $table->boolean('share_current_loc')->default(true);       
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');;
             $table->boolean('hide_profile')->default(true);
             $table->timestamps();
