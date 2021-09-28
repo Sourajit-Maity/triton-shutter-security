@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 23 2021</li>
+            <li>Last updated: September 28 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -464,7 +464,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ad"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
@@ -531,7 +531,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ipsam"
+    "http://localhost/api/invites/vero"
 );
 
 let headers = {
@@ -603,7 +603,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ut"
+    "http://localhost/api/invites/facere"
 );
 
 let headers = {
@@ -1342,7 +1342,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/voluptatem/1/dolor"
+    "http://localhost/api/get-user-list/1/1/1/1/voluptate/1/corrupti"
 );
 
 let headers = {
@@ -1571,7 +1571,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'consequatur');
+body.append('available_from', 'doloremque');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1777,7 +1777,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/eius"
+    "http://localhost/api/update-user/distinctio"
 );
 
 let headers = {
@@ -3926,6 +3926,173 @@ fetch(url, {
 
 </p>
 
+</form>
+<h2>api/save-user-distance</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/save-user-distance"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "distance": 1,
+    "current_location": "address",
+    "hide_profile": "1"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! data save completed",
+    "data": {
+        "distance": "5",
+        "current_location": "abc abjgdfhfgh",
+        "hide_profile": "0",
+        "user_id": 53,
+        "updated_at": "2021-09-28T07:13:27.000000Z",
+        "created_at": "2021-09-28T07:13:27.000000Z",
+        "id": 2
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-save-user-distance" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-save-user-distance"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-save-user-distance"></code></pre>
+</div>
+<div id="execution-error-POSTapi-save-user-distance" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-save-user-distance"></code></pre>
+</div>
+<form id="form-POSTapi-save-user-distance" data-method="POST" data-path="api/save-user-distance" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-user-distance', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-user-distance" onclick="tryItOut('POSTapi-save-user-distance');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-user-distance" onclick="cancelTryOut('POSTapi-save-user-distance');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-user-distance" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/save-user-distance</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>distance</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="distance" data-endpoint="POSTapi-save-user-distance" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>current_location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="current_location" data-endpoint="POSTapi-save-user-distance" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>hide_profile</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="hide_profile" data-endpoint="POSTapi-save-user-distance" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+<h2>api/get-user-distance</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-user-distance"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "data": {
+        "id": 1,
+        "distance": "5",
+        "current_location": "abc abjgdfhfgh",
+        "user_id": 53,
+        "hide_profile": 0,
+        "created_at": "2021-09-28T07:07:26.000000Z",
+        "updated_at": "2021-09-28T07:08:12.000000Z",
+        "user": {
+            "id": 53,
+            "first_name": "Ray",
+            "last_name": "Martin",
+            "user_name": "ray",
+            "email": "ray@test.com",
+            "phone": null,
+            "address": "seminyak",
+            "message": "ghfhg",
+            "looking_for": 1,
+            "offering": 1,
+            "email_verified_at": null,
+            "current_team_id": null,
+            "profile_photo_path": "\/uploads\/profile-photos\/1632807017436204422.png",
+            "otp": null,
+            "social_id": null,
+            "social_account_type": null,
+            "latitude": 42.75,
+            "longitude": 88.21,
+            "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+            "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+            "social_info": null,
+            "device_type": null,
+            "device_token": "22",
+            "industry_id": 1,
+            "profession_id": 1,
+            "fcm_token": null,
+            "active": 1,
+            "invitation_accept": 0,
+            "created_at": "2021-09-24T10:14:15.000000Z",
+            "updated_at": "2021-09-28T05:38:20.000000Z",
+            "full_name": "Ray Martin",
+            "role_name": "CLIENT",
+            "profile_photo_url": "http:\/\/localhost\/storage\/uploads\/profile-photos\/1632807017436204422.png"
+        }
+    }
+}</code></pre>
+<div id="execution-results-GETapi-get-user-distance" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-distance"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-user-distance"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-user-distance" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-user-distance"></code></pre>
+</div>
+<form id="form-GETapi-get-user-distance" data-method="GET" data-path="api/get-user-distance" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-distance', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-distance" onclick="tryItOut('GETapi-get-user-distance');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-distance" onclick="cancelTryOut('GETapi-get-user-distance');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-distance" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-user-distance</code></b>
+</p>
 </form>
     </div>
     <div class="dark-box">
