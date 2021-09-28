@@ -2336,11 +2336,29 @@ try{
     {
         try{
             if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
-                $validator  =   Validator::make($request->all(), [
+                
+                
+                // $validator  =   Validator::make($request->all(), [
+                //     "full_name"  =>  "required",
+                //     "email"  =>  "required",
+                //      "user_name"  =>  "required",
+                //     "address" => "required",
+                //     "profession_id"  =>  "required",
+                //     "industry_id"  =>  "required",
+                //     "message"  =>  "required",
+                //     "available_from"  =>  "required",
+                //     "available_to"  =>  "required",
+                //     "time_available" =>  "required",
+                //     "latitude"  =>  "required",
+                //     "longitude"  =>  "required",
+
+
+                // ]);
+
+                $rules = [
                     "full_name"  =>  "required",
-                    "email"  =>  "required",
-                    //"phone"  =>  "required",
-                    // "profile_photo_path" => "required",
+                    "email"  =>  "required|email",
+                    "user_name"  =>  "required",
                     "address" => "required",
                     "profession_id"  =>  "required",
                     "industry_id"  =>  "required",
@@ -2348,14 +2366,23 @@ try{
                     "available_from"  =>  "required",
                     "available_to"  =>  "required",
                     "time_available" =>  "required",
-                    //"latitude"  =>  "required",
-                    // "longitude"  =>  "required",
-
-
-                ]);
-                if ($validator->fails()) {
-                    return response()->json(["status" => false, "message" => $validator->errors()]);
+                    "latitude"  =>  "required",
+                    "longitude"  =>  "required",
+                ];
+                $validator = Validator::make($request->all(),$rules);
+                if ($validator->fails()){
+                  
+                    return response()->json([
+                        'status'=>false,
+                        'message' => $validator->errors()->all()[0],
+                        'data'=> new \stdClass()
+                    ],422);
+                    
                 }
+
+                // if ($validator->fails()) {
+                //     return response()->json(["status" => false, "message" => $validator->errors()]);
+                // }
             }
 
         // $inputs = $request->all();
@@ -3393,13 +3420,13 @@ public function updateuser(Request $request,  User $user) {
             $distance->user_id=auth()->user()->id;
             $distance->save();
 
-            return response()->json(["status" => true,  "message" => "Success! data save completed", "data" => $distance]);
+            return response()->json(["status" => true,  "message" => "Success! Setting save completed", "data" => $distance]);
         } else {
             $inputs = $request->all();
             $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
             "share_current_loc" => $request->share_current_loc, "hide_profile" => $request->hide_profile,));
 
-            return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
+            return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
         }
       }
