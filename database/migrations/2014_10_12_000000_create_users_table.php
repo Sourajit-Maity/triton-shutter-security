@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->float('longitude', 10, 6)->nullable();
             $table->string('available_from')->nullable();
             $table->string('available_to')->nullable();
+            //$table->string('time_available')->nullable();
             $table->json('social_info')->nullable();
             $table->string('device_type')->nullable();
             $table->string('device_token')->nullable();

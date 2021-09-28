@@ -2347,6 +2347,7 @@ try{
                     "message"  =>  "required",
                     "available_from"  =>  "required",
                     "available_to"  =>  "required",
+                    "time_available" =>  "required",
                     //"latitude"  =>  "required",
                     // "longitude"  =>  "required",
 
@@ -2360,9 +2361,8 @@ try{
         // $inputs = $request->all();
 
         $name = $request->get('full_name');
-            $available_form = $request->get('available_from');
-        //    $available_to = $request->get('available_to');
-           $startTime = Carbon::parse($available_form);
+            //$available_form = $request->get('available_from');
+        //    $available_to = $request->get('available_to');          
            // dd($available_form);
             //$available_form_convert = (date("Y-m-d",$available_form)); 
             // $dt1 = new DateTime("@$available_form");
@@ -2389,7 +2389,7 @@ try{
         $inputs['offering'] = $request->get('offering');
         $inputs['available_from'] = $request->get('available_from');
         $inputs['available_to'] = $request->get('available_to');
-    
+        $inputs['time_available'] = $request->get('time_available');
         $inputs['longitude'] = $request->get('longitude');
         $inputs['latitude'] = $request->get('latitude');
 
