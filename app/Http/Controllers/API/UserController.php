@@ -3199,18 +3199,34 @@ public function updateuser(Request $request,  User $user) {
             "longitude"   =>      "required",         
         ]);
 
+
+
         if($validator->fails())
         return response()->json(["status" => false, "message" => $validator->errors()]);
 
+        
             $userid= Auth::user()->id;
 
             $industryid = Filter::where('user_id', $userid)->value('industry_id');
             $professionid = Filter::where('user_id', $userid)->value('profession_id');
-            $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
+            $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
-            $radius = Filter::where('user_id', $userid)->value('radius');
+            $radiusid = Filter::where('user_id', $userid)->value('radius');
             $currentlyonline = Filter::where('user_id', $userid)->value('online');
             //dd($professionid);
+
+            if ($lookingfor != NULL) {
+                $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
+            }
+            else{
+                $lookingforid = 1;
+            }
+            if ($radiusid != NULL) {
+                $radius = Filter::where('user_id', $userid)->value('radius');
+            }
+            else{
+                $radius = 5;
+            }
 
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
