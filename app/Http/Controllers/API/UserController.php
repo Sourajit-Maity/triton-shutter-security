@@ -1857,23 +1857,43 @@ public function getindustry()
      try{
 
        
-        $validator  =   Validator::make($request->all(), [
+        // $validator  =   Validator::make($request->all(), [
 
-            "full_name"  =>  'required|max:255',
-            "user_name"  =>  "required|unique:users",
-            "email"  =>  "required|email|unique:users",           
-            "password"  =>  "required",
-            "profession_id"  =>  "required",
-            "industry_id"  =>  "required",     
-            "looking_for"  =>  "required",
-            "offering"  =>  "required",      
+        //     "full_name"  =>  'required|max:255',
+        //     "user_name"  =>  "required|unique:users",
+        //     "email"  =>  "required|email|unique:users",           
+        //     "password"  =>  "required",
+        //     "profession_id"  =>  "required",
+        //     "industry_id"  =>  "required",     
+        //     "looking_for"  =>  "required",
+        //     "offering"  =>  "required",      
            
-        ]);
+        // ]);
         
 
 
-        if($validator->fails()) {
-            return response()->json(["status" => false, "message" => $validator->errors()->all()[0]]);
+        // if($validator->fails()) {
+        //     return response()->json(["status" => false, "message" => $validator->errors()->all()[0]]);
+        // }
+        $rules = [
+                "full_name"  =>  'required|max:255',
+                 "user_name"  =>  "required|unique:users",
+                 "email"  =>  "required|email|unique:users",           
+                 "password"  =>  "required",
+                "profession_id"  =>  "required",
+                 "industry_id"  =>  "required",     
+                 "looking_for"  =>  "required",
+                "offering"  =>  "required", 
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()){
+          
+            return response()->json([
+                'status'=>false,
+                'message' => $validator->errors()->all()[0],
+                'data'=> new \stdClass()
+            ]);
+            
         }
 
         $inputs = $request->all();
@@ -1959,16 +1979,31 @@ public function login(Request $request)
 try{
     $input = $request->all();
 
-    $validator = Validator::make($request->all(), [
-        "username" =>  "required",
-        "password" =>  "required",
-        // "device_type" => "required",
-         //"device_token" => "required",
-    ]);
+    // $validator = Validator::make($request->all(), [
+    //     "username" =>  "required",
+    //     "password" =>  "required",
+    //     // "device_type" => "required",
+    //      //"device_token" => "required",
+    // ]);
 
-    if ($validator->fails()) {
-        return response()->json(["message" => $validator->errors()]);
-    }
+    // if ($validator->fails()) {
+    //     return response()->json(["message" => $validator->errors()]);
+    // }
+
+                $rules = [
+                    "username" =>  "required",
+                    "password" =>  "required",
+            ];
+            $validator = Validator::make($request->all(),$rules);
+            if ($validator->fails()){
+            
+                return response()->json([
+                    'status'=>false,
+                    'message' => $validator->errors()->all()[0],
+                    'data'=> new \stdClass()
+                ]);
+                
+            }
 
     $useremail = User::where("email", $request->email)->first();
     $username = User::where("user_name", $request->user_name)->first();
@@ -3198,9 +3233,9 @@ public function updateuser(Request $request,  User $user) {
             if ($lookingforid !='0') {
                 $user->where('looking_for', $lookingforid);
             }
-            if ($currentlyonline !='0') {
-                $user->where('online', $currentlyonline);
-            }
+            // if ($currentlyonline !='0') {
+            //     $user->where('online', $currentlyonline);
+            // }
             
             $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
             ( 6371 * acos( cos( radians(?) ) *
@@ -3296,6 +3331,7 @@ public function updateuser(Request $request,  User $user) {
             ->offset(0)
             ->limit(20)            
         ->get();
+        //$userlatitide = $userdata->
 
         if(count($userdata) > 0){
             return response()->json(["status" => true, "data" => $userdata]);
@@ -3404,14 +3440,30 @@ public function updateuser(Request $request,  User $user) {
      {
         try{
 
-            $validator      =   Validator::make($request->all(), [
-                "distance"   =>      "required",
-                "share_current_loc"   =>      "required",  
-                "hide_profile"    =>      "required",      
-            ]);
+            // $validator      =   Validator::make($request->all(), [
+            //     "distance"   =>      "required",
+            //     "share_current_loc"   =>      "required",  
+            //     "hide_profile"    =>      "required",      
+            // ]);
     
-            if($validator->fails())
-            return response()->json(["status" => false, "message" => $validator->errors()]);
+            // if($validator->fails())
+            // return response()->json(["status" => false, "message" => $validator->errors()]);
+
+                $rules = [
+                    "distance"   =>      "required",
+                    "share_current_loc"   =>      "required",  
+                    "hide_profile"    =>      "required",     
+                ];
+                $validator = Validator::make($request->all(),$rules);
+                if ($validator->fails()){
+                
+                    return response()->json([
+                        'status'=>false,
+                        'message' => $validator->errors()->all()[0],
+                        'data'=> new \stdClass()
+                    ]);
+                    
+                }
     
         $user = UserDistance::where('user_id', Auth::user()->id)->first();
         if (empty($user)) {
