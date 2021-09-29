@@ -3252,6 +3252,8 @@ public function updateuser(Request $request,  User $user) {
                 ->limit(20)            
             ->get();
 
+            // $uselatitude = $userdata->latitude;
+            // dd($uselatitude);
             if(count($userdata) > 0){
                 return response()->json(["status" => true, "data" => $userdata]);
                 
