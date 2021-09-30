@@ -3379,7 +3379,7 @@ public function updateuser(Request $request,  User $user) {
         } else {
             $inputs = $request->all();
             $filter = Filter::where('user_id', Auth::user()->id)->update(array("industry_id" => $request->industry_id, "profession_id" => $request->profession_id,
-            "looking_for" => $request->looking_for, "offering" => $request->offering,"radius" => $request->radius));
+            "looking_for" => $request->looking_for,"online" => $request->online, "offering" => $request->offering,"radius" => $request->radius));
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            

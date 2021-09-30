@@ -60,4 +60,8 @@ Route::middleware('auth:api')->group(function() {
 
     //Route::get("get-user-list/{industry_id}/{profession_id}", [UserController::class, 'getuserlist']);
 
+    Route::post('/send-chat-request', [FCMController::class, 'sendChatRequest'])->name('send-chat-request');
+    Route::post('/accept-chat-request', [FCMController::class, 'acceptChatRequest'])->name('accept-chat-request');
+    Route::get('/get-chat-details', [FCMController::class, 'getChatDetails'])->name('get-chat-details');
+
 });

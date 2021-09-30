@@ -155,4 +155,13 @@ class User extends Authenticatable implements HasMedia
     public function userdistance(){
         return $this->hasOne(UserDistance::class);
     }
+
+    public function chatSender()
+    {
+        return $this->hasMany(ChatDetails::class);
+    }
+    public function chatReceiver()
+    {
+        return $this->hasMany(ChatDetails::class);
+    }
 }
