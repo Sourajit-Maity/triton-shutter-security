@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 28 2021</li>
+            <li>Last updated: September 30 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -208,6 +208,370 @@ fetch(url, {
 <p>
 <small class="badge badge-green">GET</small>
  <b><code>api/get-token</code></b>
+</p>
+</form>
+<h2>api/send-chat-request</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/send-chat-request"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "invited_id": "5"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Chat Request Send created",
+    "data": {
+        "receiver_id": "10",
+        "sender_id": 52,
+        "accept": 1,
+        "updated_at": "2021-09-30T14:00:36.000000Z",
+        "created_at": "2021-09-30T14:00:36.000000Z",
+        "id": 10
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-POSTapi-send-chat-request" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-send-chat-request"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-send-chat-request"></code></pre>
+</div>
+<div id="execution-error-POSTapi-send-chat-request" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-send-chat-request"></code></pre>
+</div>
+<form id="form-POSTapi-send-chat-request" data-method="POST" data-path="api/send-chat-request" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-send-chat-request', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-send-chat-request" onclick="tryItOut('POSTapi-send-chat-request');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-send-chat-request" onclick="cancelTryOut('POSTapi-send-chat-request');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-send-chat-request" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/send-chat-request</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-send-chat-request" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-send-chat-request" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>invited_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="invited_id" data-endpoint="POSTapi-send-chat-request" data-component="body"  hidden>
+<br>
+
+</p>
+
+</form>
+<h2>api/accept-chat-request</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/accept-chat-request"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Request accepted",
+    "data": [
+        {
+            "id": 10,
+            "sender_id": 52,
+            "receiver_id": 10,
+            "accept": 2,
+            "chat_token": "F7wlcUvJ6mZS57SKJkkwQfRYNjEx7sj1",
+            "active": 0,
+            "created_at": "2021-09-30T14:00:36.000000Z",
+            "updated_at": "2021-09-30T14:01:12.000000Z",
+            "deleted_at": null,
+            "sender_chat_request_id": {
+                "id": 52,
+                "first_name": "Ray",
+                "last_name": "Martin",
+                "user_name": "ray2",
+                "email": "ray2@test.com",
+                "phone": null,
+                "address": "seminyak",
+                "message": "ghfhg",
+                "looking_for": 1,
+                "offering": 1,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": 42.75,
+                "longitude": 88.21,
+                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+                "time_available": "10",
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": 1,
+                "profession_id": 1,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:16:20.000000Z",
+                "updated_at": "2021-09-30T14:00:08.000000Z",
+                "full_name": "Ray Martin",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=RM&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 10,
+                "first_name": "Ava",
+                "last_name": "Bernhard",
+                "user_name": null,
+                "email": "marge22@example.com",
+                "phone": "+1.737.625.5903",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-09-28T11:13:41.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:13:44.000000Z",
+                "updated_at": "2021-09-28T11:13:44.000000Z",
+                "full_name": "Ava Bernhard",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=AB&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-POSTapi-accept-chat-request" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-accept-chat-request"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-accept-chat-request"></code></pre>
+</div>
+<div id="execution-error-POSTapi-accept-chat-request" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-accept-chat-request"></code></pre>
+</div>
+<form id="form-POSTapi-accept-chat-request" data-method="POST" data-path="api/accept-chat-request" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-accept-chat-request', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-accept-chat-request" onclick="tryItOut('POSTapi-accept-chat-request');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-accept-chat-request" onclick="cancelTryOut('POSTapi-accept-chat-request');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-accept-chat-request" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/accept-chat-request</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-accept-chat-request" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-accept-chat-request" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>invited_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="invited_id" data-endpoint="POSTapi-accept-chat-request" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+<h2>Chat Details List</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-chat-details"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "",
+    "data": [
+        {
+            "id": 1,
+            "sender_id": 52,
+            "receiver_id": 2,
+            "accept": 3,
+            "chat_token": "qwe",
+            "active": 0,
+            "created_at": "2021-09-30T06:21:28.000000Z",
+            "updated_at": "2021-09-30T06:26:36.000000Z",
+            "deleted_at": null,
+            "sender_chat_request_id": {
+                "id": 52,
+                "first_name": "Ray",
+                "last_name": "Martin",
+                "user_name": "ray2",
+                "email": "ray2@test.com",
+                "phone": null,
+                "address": "seminyak",
+                "message": "ghfhg",
+                "looking_for": 1,
+                "offering": 1,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": 42.75,
+                "longitude": 88.21,
+                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+                "time_available": "10",
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": 1,
+                "profession_id": 1,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:16:20.000000Z",
+                "updated_at": "2021-09-30T06:17:39.000000Z",
+                "full_name": "Ray Martin",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=RM&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 2,
+                "first_name": "Elise",
+                "last_name": "Renner",
+                "user_name": null,
+                "email": "ulises.eichmann@example.org",
+                "phone": "352.830.3868",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-09-28T11:13:41.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:13:44.000000Z",
+                "updated_at": "2021-09-28T11:13:44.000000Z",
+                "full_name": "Elise Renner",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=ER&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-get-chat-details" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-chat-details"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-chat-details"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-chat-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-chat-details"></code></pre>
+</div>
+<form id="form-GETapi-get-chat-details" data-method="GET" data-path="api/get-chat-details" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-chat-details', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-chat-details" onclick="tryItOut('GETapi-get-chat-details');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-chat-details" onclick="cancelTryOut('GETapi-get-chat-details');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-chat-details" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-chat-details</code></b>
+</p>
+<p>
+<label id="auth-GETapi-get-chat-details" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-details" data-component="header"></label>
 </p>
 </form><h1>Invitation Management</h1>
 <p>APIs for managing  invitation functionality</p>
@@ -464,7 +828,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/aut"
+    "http://localhost/api/invites/ipsam"
 );
 
 let headers = {
@@ -531,7 +895,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/aperiam"
+    "http://localhost/api/invites/enim"
 );
 
 let headers = {
@@ -603,7 +967,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/quia"
+    "http://localhost/api/invites/voluptas"
 );
 
 let headers = {
@@ -1342,7 +1706,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/est/1/consectetur"
+    "http://localhost/api/get-user-list/1/1/1/1/et/1/porro"
 );
 
 let headers = {
@@ -1571,7 +1935,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'aut');
+body.append('available_from', 'aspernatur');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1777,7 +2141,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/fugit"
+    "http://localhost/api/update-user/asperiores"
 );
 
 let headers = {
@@ -3704,10 +4068,32 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "latitude": "22.43",
+    "longitude": "82.15"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Data Saved successfully.",
+    "data": {
+        "profession_id": "1",
+        "offering": "1",
+        "radius": "1",
+        "user_id": 54,
+        "updated_at": "2021-09-23T07:22:53.000000Z",
+        "created_at": "2021-09-23T07:22:53.000000Z",
+        "id": 9
+    }
+}</code></pre>
 <div id="execution-results-POSTapi-search" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
@@ -3727,6 +4113,20 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/search</code></b>
 </p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="latitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="longitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
+<br>
+
+</p>
+
 </form>
 <h2>api/last-filter-data</h2>
 <blockquote>
@@ -3867,32 +4267,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "latitude": "22.43",
-    "longitude": "82.15"
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "message": "Data Saved successfully.",
-    "data": {
-        "profession_id": "1",
-        "offering": "1",
-        "radius": "1",
-        "user_id": 54,
-        "updated_at": "2021-09-23T07:22:53.000000Z",
-        "created_at": "2021-09-23T07:22:53.000000Z",
-        "id": 9
-    }
-}</code></pre>
 <div id="execution-results-POSTapi-get-filter-data" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-get-filter-data"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-get-filter-data"></code></pre>
@@ -3912,20 +4290,6 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/get-filter-data</code></b>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="longitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-
 </form>
 <h2>api/save-user-setting</h2>
 <blockquote>

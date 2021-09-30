@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/est/1/consectetur"
+    "http://localhost/api/get-user-list/1/1/1/1/et/1/porro"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'aut');
+body.append('available_from', 'aspernatur');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/fugit"
+    "http://localhost/api/update-user/asperiores"
 );
 
 let headers = {
@@ -3195,14 +3195,36 @@ let headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "latitude": "22.43",
+    "longitude": "82.15"
+}
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response => response.json());
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Data Saved successfully.",
+    "data": {
+        "profession_id": "1",
+        "offering": "1",
+        "radius": "1",
+        "user_id": 54,
+        "updated_at": "2021-09-23T07:22:53.000000Z",
+        "created_at": "2021-09-23T07:22:53.000000Z",
+        "id": 9
+    }
+}
+```
 <div id="execution-results-POSTapi-search" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
@@ -3222,6 +3244,20 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/search</code></b>
 </p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="latitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="longitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
+<br>
+
+</p>
+
 </form>
 
 
@@ -3389,36 +3425,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "latitude": "22.43",
-    "longitude": "82.15"
-}
 
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response => response.json());
 ```
 
 
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "message": "Data Saved successfully.",
-    "data": {
-        "profession_id": "1",
-        "offering": "1",
-        "radius": "1",
-        "user_id": 54,
-        "updated_at": "2021-09-23T07:22:53.000000Z",
-        "created_at": "2021-09-23T07:22:53.000000Z",
-        "id": 9
-    }
-}
-```
 <div id="execution-results-POSTapi-get-filter-data" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-get-filter-data"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-get-filter-data"></code></pre>
@@ -3438,20 +3452,6 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/get-filter-data</code></b>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="longitude" data-endpoint="POSTapi-get-filter-data" data-component="body" required  hidden>
-<br>
-
-</p>
-
 </form>
 
 
