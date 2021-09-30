@@ -3189,102 +3189,106 @@ public function updateuser(Request $request,  User $user) {
     }
 }
      */  
-    public function getFilterData(Request $request, User $user)
-    { 
+    // public function getFilterData(Request $request, User $user)
+    // { 
 
-    try{
+    // try{
 
-        $validator      =   Validator::make($request->all(), [
-            "latitude"   =>      "required",
-            "longitude"   =>      "required",         
-        ]);
+    //     $validator      =   Validator::make($request->all(), [
+    //         "latitude"   =>      "required",
+    //         "longitude"   =>      "required",         
+    //     ]);
 
 
 
-        if($validator->fails())
-        return response()->json(["status" => false, "message" => $validator->errors()]);
+    //     if($validator->fails())
+    //     return response()->json(["status" => false, "message" => $validator->errors()]);
 
         
-            $userid= Auth::user()->id;
+    //         $userid= Auth::user()->id;
 
-            $industryid = Filter::where('user_id', $userid)->value('industry_id');
-            $professionid = Filter::where('user_id', $userid)->value('profession_id');
-            $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
-            $offeringid = Filter::where('user_id', $userid)->value('offering');
-            $radiusid = Filter::where('user_id', $userid)->value('radius');
-            $currentlyonline = Filter::where('user_id', $userid)->value('online');
-            //dd($professionid);
+    //         $industryid = Filter::where('user_id', $userid)->value('industry_id');
+    //         $professionid = Filter::where('user_id', $userid)->value('profession_id');
+    //         $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
+    //         $offeringid = Filter::where('user_id', $userid)->value('offering');
+    //         $radiusid = Filter::where('user_id', $userid)->value('radius');
+    //         $currentlyonline = Filter::where('user_id', $userid)->value('online');
+    //         //dd($professionid);
 
-            if ($lookingfor != NULL) {
-                $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
-            }
-            else{
-                $lookingforid = 1;
-            }
-            if ($radiusid != NULL) {
-                $radius = Filter::where('user_id', $userid)->value('radius');
-            }
-            else{
-                $radius = 5;
-            }
+    //         if ($lookingfor != NULL) {
+    //             $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
+    //         }
+    //         else{
+    //             $lookingforid = 1;
+    //         }
+    //         if ($radiusid != NULL) {
+    //             $radius = Filter::where('user_id', $userid)->value('radius');
+    //         }
+    //         else{
+    //             $radius = 5;
+    //         }
 
-            $latitude = $request->input('latitude');
-            $longitude = $request->input('longitude');
+    //         $latitude = $request->input('latitude');
+    //         $longitude = $request->input('longitude');
 
-            $user = $user->newQuery();    
+    //         $user = $user->newQuery();    
 
-            // if (isset($industryid)) 
-            if($industryid != NULL) {
-                $user->where('industry_id', $industryid);
-            }
+    //         // if (isset($industryid)) 
+    //         if($industryid != NULL) {
+    //             $user->where('industry_id', $industryid);
+    //         }
         
-            if ($professionid != NULL) {
-                $user->where('profession_id', $professionid);
-            }
+    //         if ($professionid != NULL) {
+    //             $user->where('profession_id', $professionid);
+    //         }
         
-            if ($offeringid !='0') {
-                $user->where('offering', $offeringid);
-            }
+    //         if ($offeringid !='0') {
+    //             $user->where('offering', $offeringid);
+    //         }
 
-            if ($lookingforid !='0') {
-                $user->where('looking_for', $lookingforid);
-            }
-            // if ($currentlyonline !='0') {
-            //     $user->where('online', $currentlyonline);
-            // }
+    //         if ($lookingforid !='0') {
+    //             $user->where('looking_for', $lookingforid);
+    //         }
+    //         // if ($currentlyonline !='0') {
+    //         //     $user->where('online', $currentlyonline);
+    //         // }
             
-            $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
-            ( 6371 * acos( cos( radians(?) ) *
-            cos( radians( latitude ) )
-            * cos( radians( longitude ) - radians(?)
-            ) + sin( radians(?) ) *
-            sin( radians( latitude ) ) )
-            ) AS distance", [$latitude, $longitude, $latitude])
-                ->having("distance", "<", $radius)
-                ->orderBy("distance",'asc')
-                ->where('id', '!=', auth()->id())
-                ->with(['industries','professions'])
-                ->offset(0)
-                ->limit(20)            
-            ->get();
+    //         $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+    //         ( 6371 * acos( cos( radians(?) ) *
+    //         cos( radians( latitude ) )
+    //         * cos( radians( longitude ) - radians(?)
+    //         ) + sin( radians(?) ) *
+    //         sin( radians( latitude ) ) )
+    //         ) AS distance", [$latitude, $longitude, $latitude])
+    //             ->having("distance", "<", $radius)
+    //             ->orderBy("distance",'asc')
+    //             ->where('id', '!=', auth()->id())
+    //             ->with(['industries','professions'])
+    //             ->offset(0)
+    //             ->limit(20)            
+    //         ->get();
 
-            // $uselatitude = $userdata->latitude;
-            // dd($uselatitude);
-            if(count($userdata) > 0){
-                return response()->json(["status" => true, "data" => $userdata]);
+          
+    //          $userlatitude = User::select('user_name','id','latitude')->get();
+    //          $userlongitude = User::select('user_name','id','longitude')->get();
+    //          Log::debug("longitude".print_r($userlongitude,true));
+    //          dd($userlongitude);
+
+    //         if(count($userdata) > 0){
+    //             return response()->json(["status" => true, "data" => $userdata,$userlatitude,$userlongitude]);
                 
-            }
-            else{
-                return response()->json(["status" => true, "data" => $userdata, "message" => "List not found"]);
-            }
-        }
+    //         }
+    //         else{
+    //             return response()->json(["status" => true, "data" => $userdata, "message" => "List not found"]);
+    //         }
+    //     }
         
-        catch(\Exception $e) {
-            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-        }
+    //     catch(\Exception $e) {
+    //         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    //     }
 
         
-    }
+    // }
 
 
 
@@ -3375,7 +3379,7 @@ public function updateuser(Request $request,  User $user) {
         } else {
             $inputs = $request->all();
             $filter = Filter::where('user_id', Auth::user()->id)->update(array("industry_id" => $request->industry_id, "profession_id" => $request->profession_id,
-            "looking_for" => $request->looking_for, "offering" => $request->offering,"radius" => $request->radius));
+            "looking_for" => $request->looking_for,"online" => $request->online, "offering" => $request->offering,"radius" => $request->radius));
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            
@@ -3571,4 +3575,109 @@ public function updateuser(Request $request,  User $user) {
                 return response()->json(["status" => false, "message" => "Whoops! no data found"]);
             }        
         }
+
+//////////////////
+
+
+        public function getFilterData(Request $request, User $user)
+    { 
+
+    try{
+
+        $validator      =   Validator::make($request->all(), [
+            "latitude"   =>      "required",
+            "longitude"   =>      "required",         
+        ]);
+
+
+
+        if($validator->fails())
+        return response()->json(["status" => false, "message" => $validator->errors()]);
+
+        
+            $userid= Auth::user()->id;
+
+            $industryid = Filter::where('user_id', $userid)->value('industry_id');
+            $professionid = Filter::where('user_id', $userid)->value('profession_id');
+            $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
+            $offeringid = Filter::where('user_id', $userid)->value('offering');
+            $radiusid = Filter::where('user_id', $userid)->value('radius');
+            $currentlyonline = Filter::where('user_id', $userid)->value('online');
+            //dd($professionid);
+
+            if ($lookingfor != NULL) {
+                $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
+            }
+            else{
+                $lookingforid = 1;
+            }
+            if ($radiusid != NULL) {
+                $radius = Filter::where('user_id', $userid)->value('radius');
+            }
+            else{
+                $radius = 5;
+            }
+
+            $latitude = $request->input('latitude');
+            $longitude = $request->input('longitude');
+
+            $user = $user->newQuery();    
+
+            // if (isset($industryid)) 
+            if($industryid != NULL) {
+                $user->where('industry_id', $industryid);
+            }
+        
+            if ($professionid != NULL) {
+                $user->where('profession_id', $professionid);
+            }
+        
+            if ($offeringid !='0') {
+                $user->where('offering', $offeringid);
+            }
+
+            if ($lookingforid !='0') {
+                $user->where('looking_for', $lookingforid);
+            }
+            // if ($currentlyonline !='0') {
+            //     $user->where('online', $currentlyonline);
+            // }
+            
+            $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+            ( 6371 * acos( cos( radians(?) ) *
+            cos( radians( latitude ) )
+            * cos( radians( longitude ) - radians(?)
+            ) + sin( radians(?) ) *
+            sin( radians( latitude ) ) )
+            ) AS distance", [$latitude, $longitude, $latitude])
+                ->having("distance", "<", $radius)
+                ->orderBy("distance",'asc')
+                ->where('id', '!=', auth()->id())
+                ->with(['industries','professions'])
+                ->offset(0)
+                ->limit(20)            
+            ->get();
+
+            //  Log::debug("userdata".print_r($userdata,true));
+            
+             //return $userdata;
+
+            //  $userlatitude = User::select('user_name','id','latitude')->where('id',$userdata->id)->get();
+            //  $userlongitude = User::select('user_name','id','longitude')->where('id',$userdataid)->get();
+            
+         if(count($userdata) > 0){
+                return response()->json(["status" => true, "data" => $userdata]);
+                
+            }
+            else{
+                return response()->json(["status" => true, "data" => $userdata, "message" => "List not found"]);
+            }
+        }
+        
+        catch(\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+        }
+
+        
+    }
 }
