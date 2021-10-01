@@ -330,7 +330,7 @@ class FCMController extends Controller
 
 /** 
 * @authenticated
-* @bodyParam receiver_id  required Example: 5
+* @urlParam receiver_id number required Example: 5
 
 * @response  {
     "status": true,

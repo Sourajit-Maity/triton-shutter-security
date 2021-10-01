@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/veritatis/1/vel"
+    "http://localhost/api/get-user-list/1/1/1/1/molestias/1/earum"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'dicta');
+body.append('available_from', 'porro');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/officiis"
+    "http://localhost/api/update-user/maiores"
 );
 
 let headers = {
