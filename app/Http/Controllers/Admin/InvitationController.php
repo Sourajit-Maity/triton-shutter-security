@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Invitation;
+use App\Models\ChatDetails;
 
 class InvitationController extends Controller
 {
@@ -58,7 +58,7 @@ class InvitationController extends Controller
      */
     public function edit($id)
     {
-        $invitation = Invitation::findOrFail($id);
+        $invitation = ChatDetails::findOrFail($id);
         return view('admin.invitation.create-edit',compact('invitation'));
     }
 

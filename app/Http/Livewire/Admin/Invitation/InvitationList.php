@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Invitation;
 
 use App\Http\Livewire\Traits\AlertMessage;
 use App\Models\User;
-use App\Models\Invitation;
+use App\Models\ChatDetails;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\WithSorting;
@@ -20,7 +20,7 @@ class InvitationList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $searchInvited,$searchInviter, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
+    public $searchInvited,$searchInviter,$searchAccept, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
     protected $listeners = ['deleteConfirm', 'changeStatus'];
 
     public function mount()
@@ -53,17 +53,18 @@ class InvitationList extends Component
         $this->searchInvited = "";
         $this->searchInviter = "";
         $this->searchStatus = -1;
+        $this->searchAccept = "";
     }
 
     public function render()
     {
-        $invitationQuery = Invitation::query()->with(['usersinvitation','usersinvited']);
+        $invitationQuery = ChatDetails::query()->with(['senderChatRequestId','receiverChatRequestId']);
         if ($this->searchInvited) {
             $invited_name = User::WhereRaw(
                 "concat(first_name,' ', last_name) like '%" . $this->searchInvited . "%' ")->get();
             
             foreach ($invited_name as $value) {
-                $invitationQuery->orWhere('invited_id', $value->id);
+                $invitationQuery->orWhere('receiver_id', $value->id);
              }
          }
     if ($this->searchInviter) {
@@ -72,11 +73,14 @@ class InvitationList extends Component
             "concat(first_name,' ', last_name) like '%" . $this->searchInviter . "%' ")->get();
     
             foreach ($inviter_name as $value) {
-                $invitationQuery->orWhere('inviter_id', $value->id);
+                $invitationQuery->orWhere('sender_id', $value->id);
              }
          }
         if ($this->searchStatus >= 0)
             $invitationQuery->orWhere('active', $this->searchStatus);
+        if($this->searchAccept){
+                $invitationQuery = $invitationQuery->Where('accept', 'like', '%' . $this->searchAccept . '%');
+            }
         return view('livewire.admin.invitation.invitation-list', [
             'invitations' => $invitationQuery
                 ->orderBy($this->sortBy, $this->sortDirection) 
@@ -85,7 +89,7 @@ class InvitationList extends Component
     }
     public function deleteConfirm($id)
     {
-        Invitation::destroy($id);
+        ChatDetails::destroy($id);
         $this->showModal('success', 'Success', 'Invitation is deleted successfully');
     }
     public function deleteAttempt($id)
@@ -98,7 +102,7 @@ class InvitationList extends Component
         $this->showConfirmation("warning", 'Are you sure?', "Do you want to change this status?", 'Yes, Change!', 'changeStatus', ['id' => $id]); //($type,$title,$text,$confirmText,$method)
     }
 
-    public function changeStatus(Invitation $invitation)
+    public function changeStatus(ChatDetails $invitation)
     {
         $invitation->fill(['active' => ($invitation->active == 1) ? 0 : 1])->save();
      
