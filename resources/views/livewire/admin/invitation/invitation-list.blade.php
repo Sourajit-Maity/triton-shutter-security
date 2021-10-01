@@ -16,15 +16,18 @@
     <x-slot name="thead">
         <tr role="row">
             <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
-                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Invited Name <i
-                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('invited_id')"></i>
+                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Receiver Name <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('receiver_id')"></i>
             </th>
           <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
-                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Inviter Name <i
-                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('inviter_id')"></i>
+                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Sender Name <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('sender_id')"></i>
             </th>
-            <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
-                aria-label="Status: activate to sort column ascending">Status</th>
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
+                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Status <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('accept')"></i>
+            </th>
+           
            
             <th class="align-center" rowspan="1" colspan="1" style="width: 20%;" aria-label="Actions">Actions</th>
         </tr>
@@ -39,13 +42,11 @@
                     class="form-control-sm form-filter" />
             </th>
             <th>
-                <select class="form-control form-control-sm form-filter kt-input" wire:model.defer="searchStatus"
-                    title="Select" data-col-index="2">
-                    <option value="-1">Select</option>
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </select>
+                <!-- <x-admin.input type="search" wire:model.defer="searchInviter" placeholder="" autocomplete="off"
+                    class="form-control-sm form-filter" /> -->
             </th>
+            
+           
  
             <th>
                 <div class="row">
@@ -78,11 +79,11 @@
                     <div class="kt-user-card-v2">
                         <div class="kt-user-card-v2__pic">
                             <div class="kt-badge kt-badge--xl kt-badge--{{ $this->getRandomColor() }}">
-                                <span>{{ substr($invitation->usersinvited->first_name, 0, 1) }}</span>
+                                <span>{{ substr($invitation->receiverChatRequestId->first_name, 0, 1) }}</span>
                             </div>
                         </div>
                         <div class="kt-user-card-v2__details">
-                            <span class="kt-user-card-v2__name">{{ $invitation->usersinvited->full_name }}</span>
+                            <span class="kt-user-card-v2__name">{{ $invitation->receiverChatRequestId->full_name }}</span>
                             <a href="#" class="kt-user-card-v2__email kt-link">Invited since
                                 {{ $invitation->created_at->diffForHumans(null, true) . ' ' }}</a>
                         </div>
@@ -92,21 +93,21 @@
                     <div class="kt-user-card-v2">
                         <div class="kt-user-card-v2__pic">
                             <div class="kt-badge kt-badge--xl kt-badge--{{ $this->getRandomColor() }}">
-                                <span>{{ substr($invitation->usersinvitation->first_name, 0, 1) }}</span>
+                                <span>{{ substr($invitation->senderChatRequestId->first_name, 0, 1) }}</span>
                             </div>
                         </div>
                         <div class="kt-user-card-v2__details">
-                            <span class="kt-user-card-v2__name">{{ $invitation->usersinvitation->full_name }}</span>
-                            <a href="#" class="kt-user-card-v2__email kt-link">Added by
+                            <span class="kt-user-card-v2__name">{{ $invitation->senderChatRequestId->full_name }}</span>
+                            <a href="#" class="kt-user-card-v2__email kt-link">Requested by
                                 {{ $invitation->created_at->diffForHumans(null, true) . ' ' }}</a>
                         </div>
                     </div>
                 </td>       
-
-                <td class="align-center"><span
-                        class="kt-badge  kt-badge--{{ $invitation->active == 1 ? 'success' : 'warning' }} kt-badge--inline kt-badge--pill cursor-pointer"
-                        wire:click="changeStatusConfirm({{ $invitation->id }})">{{ $invitation->active == 1 ? 'Active' : 'Inactive' }}</span>
-                </td>
+                @if($invitation->accept == 1)
+                <td class="sorting_1" tabindex="0">Requested</td>
+                @else
+                <td class="sorting_1" tabindex="0">Accepted</td>
+                @endif
                 <x-admin.td-action>
                     <a class="dropdown-item" href="{{ route('invitation.edit', ['invitation' => $invitation->id]) }}"><i
                             class="la la-edit"></i> Edit</a>

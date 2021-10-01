@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Invitation;
 
 use App\Models\User;
-use App\Models\Invitation;
+use App\Models\ChatDetails;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
@@ -30,7 +30,7 @@ class InvitationCreateEdit extends Component
             $this->fill($this->invitation);
             $this->isEdit = true;
         } else
-            $this->invitation = new Invitation;
+            $this->invitation = new ChatDetails;
 
             $this->users = User::role('CLIENT')->get();
 
@@ -50,7 +50,7 @@ class InvitationCreateEdit extends Component
     {
         return
             [
-                'invited_id' => ['required'],
+                'receiver_id' => ['required'],
               
 
             ];
@@ -60,20 +60,20 @@ class InvitationCreateEdit extends Component
         return
             [
                
-                'invited_id' => ['required'],
+                'receiver_id' => ['required'],
             ];
     }
 
     protected $messages = [
 
 
-        'invited_id.required'=>'Invited name is required.',
+        'receiver_id.required'=>'Invited name is required.',
     ];
 
     public function saveOrUpdate()
     {
         
-        $this->isEdit ? $this->invitation->inviter_id = auth()->user()->id : $this->invitation->inviter_id = auth()->user()->id;
+        $this->isEdit ? $this->invitation->sender_id = auth()->user()->id : $this->invitation->sender_id = auth()->user()->id;
 
         $this->invitation->fill($this->validate($this->isEdit ? $this->validationRuleForUpdate() : $this->validationRuleForSave()))->save();
         
