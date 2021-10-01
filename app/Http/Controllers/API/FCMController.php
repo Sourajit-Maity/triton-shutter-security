@@ -330,7 +330,7 @@ class FCMController extends Controller
 
 /** 
 * @authenticated
-* @bodyParam invited_id  required Example: 5
+* @bodyParam receiver_id  required Example: 5
 
 * @response  {
     "status": true,
@@ -362,7 +362,7 @@ class FCMController extends Controller
        }
 /** 
 * @authenticated
-* @urlParam invited_id number required Example: 5
+* @urlParam receiver_id number required Example: 5
 
 * @response  {
     "status": true,
@@ -488,5 +488,121 @@ class FCMController extends Controller
                 $user = ChatDetails::where('sender_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
                 return response()->json(["status" => true, "message" => "Success! Request accepted", "data" => $user]);
            }
+    }
+
+    /** 
+* User Chat Request List
+* @authenticated
+
+* @response  {
+    "status": true,
+    "message": "",
+    "data": [
+        {
+            "id": 12,
+            "sender_id": 54,
+            "receiver_id": 48,
+            "accept": 1,
+            "chat_token": "r43Fv9n1k0YC0DyBnb2BkZB5mhJ9j3lY",
+            "active": 0,
+            "created_at": "2021-10-01T07:27:54.000000Z",
+            "updated_at": "2021-10-01T07:29:51.000000Z",
+            "deleted_at": null,
+            "sender_chat_request_id": {
+                "id": 54,
+                "first_name": "Tom",
+                "last_name": "Martin",
+                "user_name": "tom",
+                "email": "tom@test.com",
+                "phone": null,
+                "address": "seminyak",
+                "message": "ghfhg",
+                "looking_for": 1,
+                "offering": 1,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": 42.76,
+                "longitude": 88.21,
+                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+                "time_available": "10",
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": 1,
+                "profession_id": 1,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-29T07:40:14.000000Z",
+                "updated_at": "2021-10-01T06:21:45.000000Z",
+                "full_name": "Tom Martin",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=TM&color=FFFFFF&background=a85232&height=400&width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 48,
+                "first_name": "Adonis",
+                "last_name": "Stanton",
+                "user_name": null,
+                "email": "shanel35@example.net",
+                "phone": "1-816-597-8063",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-09-28T11:13:44.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:13:46.000000Z",
+                "updated_at": "2021-09-28T11:13:46.000000Z",
+                "full_name": "Adonis Stanton",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=AS&color=FFFFFF&background=a85232&height=400&width=400"
+            }
+        }
+    ]
+}
+* @response  401 {
+*   "message": "Unauthenticated."
+*}
+*/
+public function getChatRequestDetails()
+{
+    try{
+        $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->where(function($query){
+            $query->where('accept',1);
+        })->with(['senderChatRequestId','receiverChatRequestId'])->orderBy('id','DESC')->get();
+        
+        if($chatdetails->count() == 0){
+            return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
+        }
+        return Response()->Json(["status"=>true,"message"=> '','data'=>$chatdetails]);
+
+    }catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+    }
     }
 }

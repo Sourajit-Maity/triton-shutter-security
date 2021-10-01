@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 30 2021</li>
+            <li>Last updated: October 1 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -118,98 +118,6 @@ fetch(url, {
 </p>
 </form><h1>Fcm Token Management</h1>
 <p>APIs for managing basic cms functionality</p>
-<h2>Token save</h2>
-<p>@bodyParam  device_token string required</p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/save-token"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "message": "Success! Token saved successfully",
-    "data": {
-        "device_token": "czczx"
-    }
-}</code></pre>
-<div id="execution-results-POSTapi-save-token" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-save-token"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-save-token"></code></pre>
-</div>
-<div id="execution-error-POSTapi-save-token" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-save-token"></code></pre>
-</div>
-<form id="form-POSTapi-save-token" data-method="POST" data-path="api/save-token" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-token', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-token" onclick="tryItOut('POSTapi-save-token');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-token" onclick="cancelTryOut('POSTapi-save-token');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-token" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/save-token</code></b>
-</p>
-</form>
-<h2>api/get-token</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-token"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "data": "czczx"
-}</code></pre>
-<div id="execution-results-GETapi-get-token" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-token"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-token"></code></pre>
-</div>
-<div id="execution-error-GETapi-get-token" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-token"></code></pre>
-</div>
-<form id="form-GETapi-get-token" data-method="GET" data-path="api/get-token" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-token', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-token" onclick="tryItOut('GETapi-get-token');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-token" onclick="cancelTryOut('GETapi-get-token');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-token" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/get-token</code></b>
-</p>
-</form>
 <h2>api/send-chat-request</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -225,7 +133,7 @@ let headers = {
 };
 
 let body = {
-    "invited_id": "5"
+    "receiver_id": "5"
 }
 
 fetch(url, {
@@ -278,8 +186,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>invited_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
-<input type="text" name="invited_id" data-endpoint="POSTapi-send-chat-request" data-component="body"  hidden>
+<b><code>receiver_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="receiver_id" data-endpoint="POSTapi-send-chat-request" data-component="body"  hidden>
 <br>
 
 </p>
@@ -427,8 +335,8 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>invited_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="invited_id" data-endpoint="POSTapi-accept-chat-request" data-component="url" required  hidden>
+<b><code>receiver_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="receiver_id" data-endpoint="POSTapi-accept-chat-request" data-component="url" required  hidden>
 <br>
 
 </p>
@@ -572,6 +480,147 @@ fetch(url, {
 </p>
 <p>
 <label id="auth-GETapi-get-chat-details" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-details" data-component="header"></label>
+</p>
+</form>
+<h2>User Chat Request List</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-chat-request-details"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "",
+    "data": [
+        {
+            "id": 12,
+            "sender_id": 54,
+            "receiver_id": 48,
+            "accept": 1,
+            "chat_token": "r43Fv9n1k0YC0DyBnb2BkZB5mhJ9j3lY",
+            "active": 0,
+            "created_at": "2021-10-01T07:27:54.000000Z",
+            "updated_at": "2021-10-01T07:29:51.000000Z",
+            "deleted_at": null,
+            "sender_chat_request_id": {
+                "id": 54,
+                "first_name": "Tom",
+                "last_name": "Martin",
+                "user_name": "tom",
+                "email": "tom@test.com",
+                "phone": null,
+                "address": "seminyak",
+                "message": "ghfhg",
+                "looking_for": 1,
+                "offering": 1,
+                "email_verified_at": null,
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": 42.76,
+                "longitude": 88.21,
+                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
+                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
+                "time_available": "10",
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": 1,
+                "profession_id": 1,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-29T07:40:14.000000Z",
+                "updated_at": "2021-10-01T06:21:45.000000Z",
+                "full_name": "Tom Martin",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=TM&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 48,
+                "first_name": "Adonis",
+                "last_name": "Stanton",
+                "user_name": null,
+                "email": "shanel35@example.net",
+                "phone": "1-816-597-8063",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-09-28T11:13:44.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-09-28T11:13:46.000000Z",
+                "updated_at": "2021-09-28T11:13:46.000000Z",
+                "full_name": "Adonis Stanton",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=AS&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-get-chat-request-details" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-chat-request-details"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-chat-request-details"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-chat-request-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-chat-request-details"></code></pre>
+</div>
+<form id="form-GETapi-get-chat-request-details" data-method="GET" data-path="api/get-chat-request-details" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-chat-request-details', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-chat-request-details" onclick="tryItOut('GETapi-get-chat-request-details');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-chat-request-details" onclick="cancelTryOut('GETapi-get-chat-request-details');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-chat-request-details" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-chat-request-details</code></b>
+</p>
+<p>
+<label id="auth-GETapi-get-chat-request-details" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-request-details" data-component="header"></label>
 </p>
 </form><h1>Invitation Management</h1>
 <p>APIs for managing  invitation functionality</p>
@@ -828,7 +877,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ipsam"
+    "http://localhost/api/invites/facilis"
 );
 
 let headers = {
@@ -895,7 +944,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/enim"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
@@ -967,7 +1016,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/voluptas"
+    "http://localhost/api/invites/consectetur"
 );
 
 let headers = {
@@ -1706,7 +1755,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/et/1/porro"
+    "http://localhost/api/get-user-list/1/1/1/1/veritatis/1/vel"
 );
 
 let headers = {
@@ -1935,7 +1984,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'aspernatur');
+body.append('available_from', 'dicta');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -2141,7 +2190,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/asperiores"
+    "http://localhost/api/update-user/officiis"
 );
 
 let headers = {
