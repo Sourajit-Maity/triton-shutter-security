@@ -108,12 +108,12 @@
                 @else
                 <td class="sorting_1" tabindex="0">Accepted</td>
                 @endif
-                <x-admin.td-action>
+                <!-- <x-admin.td-action>
                     <a class="dropdown-item" href="{{ route('invitation.edit', ['invitation' => $invitation->id]) }}"><i
                             class="la la-edit"></i> Edit</a>
                     <button href="#" class="dropdown-item" wire:click="deleteAttempt({{ $invitation->id }})"><i
                             class="fa fa-trash"></i> Delete</button>
-                </x-admin.td-action>
+                </x-admin.td-action> -->
             </tr>
         @empty 
             <tr>
