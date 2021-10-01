@@ -349,14 +349,16 @@ class FCMController extends Controller
 *}
 */
     public function sendChatRequest(Request $request)
-        {
+        {                       
+                                $token = Str::random(32);
                                 $inputs = $request->all();
                                 $user=new ChatDetails($inputs);                        
                                 $user->sender_id=auth()->user()->id;   
-                                $user->accept = 1;                      
+                                $user->chat_token = $token;      
+                                $user->accept = 1;                 
                                 $user->save(); 
 
-           return response()->json(["status" => true, "message" => "Success! Chat Request Send created", "data" => $user]);   
+           return response()->json(["status" => true, "message" => "Success! Chat Request Send", "data" => $user]);   
        }
 /** 
 * @authenticated
@@ -466,13 +468,15 @@ class FCMController extends Controller
         if($validator->fails()) 
             return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
             $receiver_id = $request->input('receiver_id');
+            $token = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->value('chat_token');
+            //dd($token);
             $chatdetails = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
             if (empty($chatdetails)) {
                                                        
                 return response()->json(["status" => false,  "message" => "Request Not Found"]);
              } 
             else {
-                $token = Str::random(32);
+               
                 $senderid = auth()->user()->id;
                 $inputs = $request->all();
                 $inputs['receiver_id'] = $receiver_id;
