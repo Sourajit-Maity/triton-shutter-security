@@ -51,8 +51,8 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/get-filter-data', [UserController::class,'getFilterData']);
 
     // Route::post('/save-tokens', [FCMController::class,'index']);
-    Route::post('/save-token', [FCMController::class, 'saveToken'])->name('save-token');
-    Route::get('/get-token', [FCMController::class, 'getToken'])->name('get-token');
+    // Route::post('/save-token', [FCMController::class, 'saveToken'])->name('save-token');
+    // Route::get('/get-token', [FCMController::class, 'getToken'])->name('get-token');
 
     Route::post('/save-user-setting', [UserController::class, 'saveUserSetting'])->name('save-user-setting');
     Route::get('/get-user-setting', [UserController::class, 'getUserSetting'])->name('get-user-setting');
@@ -63,5 +63,6 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/send-chat-request', [FCMController::class, 'sendChatRequest'])->name('send-chat-request');
     Route::post('/accept-chat-request', [FCMController::class, 'acceptChatRequest'])->name('accept-chat-request');
     Route::get('/get-chat-details', [FCMController::class, 'getChatDetails'])->name('get-chat-details');
+    Route::get('/get-chat-request-details', [FCMController::class, 'getChatRequestDetails'])->name('get-chat-request-details');
 
 });
