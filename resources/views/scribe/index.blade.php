@@ -132,14 +132,9 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "receiver_id": "5"
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
 <p>Example response (200):</p>
@@ -184,14 +179,13 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-send-chat-request" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-send-chat-request" data-component="header"></label>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>receiver_id</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
-<input type="text" name="receiver_id" data-endpoint="POSTapi-send-chat-request" data-component="body"  hidden>
+<b><code>receiver_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="receiver_id" data-endpoint="POSTapi-send-chat-request" data-component="url" required  hidden>
 <br>
 
 </p>
-
 </form>
 <h2>api/accept-chat-request</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -877,7 +871,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/facilis"
+    "http://localhost/api/invites/nemo"
 );
 
 let headers = {
@@ -944,7 +938,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/et"
+    "http://localhost/api/invites/excepturi"
 );
 
 let headers = {
@@ -1016,7 +1010,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/consectetur"
+    "http://localhost/api/invites/ducimus"
 );
 
 let headers = {
@@ -1755,7 +1749,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/veritatis/1/vel"
+    "http://localhost/api/get-user-list/1/1/1/1/molestias/1/earum"
 );
 
 let headers = {
@@ -1984,7 +1978,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'dicta');
+body.append('available_from', 'porro');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -2190,7 +2184,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/officiis"
+    "http://localhost/api/update-user/maiores"
 );
 
 let headers = {
