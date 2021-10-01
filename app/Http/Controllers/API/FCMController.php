@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+
 /**
 /**
  * @group  Fcm Token Management
@@ -23,6 +24,8 @@ use Illuminate\Support\Str;
  */
 class FCMController extends Controller
 {
+    
+
     public function index(Request $request){
         $input = $request->all();
         $fcm_token = $input['fcm_token'];
@@ -143,71 +146,69 @@ class FCMController extends Controller
         }        
     }
 
-    /** 
-       * Make Order
- * @authenticated
- * @bodyParam products string required Example: [
-        {
-        "product_id": 1,
-        "quantity":1
-        },
-        {
-        "product_id": 2,
-        "quantity":1
-        }
-    ]
- * @response  {
-    "status": true,
-    "message": "Your order has been successfully Placed."
-}
- * @response  401 {
- *   "message": "Unauthenticated."
-*}
- */
+/** 
+* @authenticated
+* @urlParam receiver_id number required Example: 5
 
-    //     public function sendChatRequest(Request $request)
-    //         {
-    //             //try{
-    //                 $rules = [
-    //                     "receiver_id"   =>      "required",  
-    //                     //"chat_token"    =>      "required",     
-    //                 ];
-    //                 $validator = Validator::make($request->all(),$rules);
-    //                 if ($validator->fails()){
+* @response  {
+    "status": true,
+    "message": "Success! Chat Request Send created",
+    "data": {
+        "receiver_id": "10",
+        "sender_id": 52,
+        "accept": 1,
+        "updated_at": "2021-09-30T14:00:36.000000Z",
+        "created_at": "2021-09-30T14:00:36.000000Z",
+        "id": 10
+    }
+}
+* @response  401 {
+*   "message": "Unauthenticated."
+*}
+*/
+        public function sendChatRequest(Request $request)
+            {
+                try{
+                    $rules = [
+                        "receiver_id"   =>      "required",  
+                        //"chat_token"    =>      "required",     
+                    ];
+                    $validator = Validator::make($request->all(),$rules);
+                    if ($validator->fails()){
                     
-    //                     return response()->json([
-    //                         'status'=>false,
-    //                         'message' => $validator->errors()->all()[0],
-    //                         'data'=> new \stdClass()
-    //                     ]);
+                        return response()->json([
+                            'status'=>false,
+                            'message' => $validator->errors()->all()[0],
+                            'data'=> new \stdClass()
+                        ]);
                         
-    //                 }
-    //                 $receiver_id = $request->input('receiver_id');
-    //                 $user = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
-    //      
-    //                 if (empty($user)) {
-    //                     $inputs = $request->all();
-                                               
-    //                     $user=new ChatDetails($inputs);                        
-    //                     $user->sender_id=auth()->user()->id;   
-    //                     $user->accept = 1;                      
-    //                     $user->save();                     
-    //                     return response()->json(["status" => true,  "message" => "Success! Request submitted", "data" => $user]);
-    //                 } else {
+                    }
+                    $receiver_id = $request->input('receiver_id');
+                    $user = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
+         
+                    if (empty($user)) {                        
+                        $token = Str::random(32);
+                        $inputs = $request->all();
+                        $user=new ChatDetails($inputs);                        
+                        $user->sender_id=auth()->user()->id;   
+                        $user->chat_token = $token;      
+                        $user->accept = 1;                 
+                        $user->save();                    
+                        return response()->json(["status" => true,  "message" => "Success! Chat Request Send", "data" => $user]);
+                    } else {
                         
-    //                     $token = Str::random(32);
-    //                     $inputs = $request->all();
-    //             //dd($token);
-    //                      ChatDetails::where("id", $user->id)->update(array("sender_id" => auth()->user()->id, "receiver_id" => $request->receiver_id,"chat_token" => $token,"accept" => 2));
+                        // $token = Str::random(32);
+                        // $inputs = $request->all();
+                        //  ChatDetails::where("id", $user->id)->update(array("sender_id" => auth()->user()->id, "receiver_id" => $request->receiver_id,"chat_token" => $token,"accept" => 2));
         
-    //                     return response()->json(["status" => true,   "message" => "Success! Request accepted","token" => $token,"data" => $user]);
+                        return response()->json(["status" => true,   "message" => "Success! Request already sent"]);
                         
-    //                 }
-    //         // }
-    //         // catch(\Exception $e) {
-    //         //     return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-    //         // }
-    //   }
+                    }
+            }
+            catch(\Exception $e) {
+                return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+            }
+      }
 
 
        
@@ -323,43 +324,13 @@ class FCMController extends Controller
             }
             return Response()->Json(["status"=>true,"message"=> '','data'=>$chatdetails]);
 
-        }catch(\Exception $e) {
+        }
+        catch(\Exception $e) {
             return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
         }
         }
 
-/** 
-* @authenticated
-* @urlParam receiver_id number required Example: 5
 
-* @response  {
-    "status": true,
-    "message": "Success! Chat Request Send created",
-    "data": {
-        "receiver_id": "10",
-        "sender_id": 52,
-        "accept": 1,
-        "updated_at": "2021-09-30T14:00:36.000000Z",
-        "created_at": "2021-09-30T14:00:36.000000Z",
-        "id": 10
-    }
-}
-* @response  401 {
-*   "message": "Unauthenticated."
-*}
-*/
-    public function sendChatRequest(Request $request)
-        {                       
-                                $token = Str::random(32);
-                                $inputs = $request->all();
-                                $user=new ChatDetails($inputs);                        
-                                $user->sender_id=auth()->user()->id;   
-                                $user->chat_token = $token;      
-                                $user->accept = 1;                 
-                                $user->save(); 
-
-           return response()->json(["status" => true, "message" => "Success! Chat Request Send", "data" => $user]);   
-       }
 /** 
 * @authenticated
 * @urlParam receiver_id number required Example: 5
@@ -461,33 +432,37 @@ class FCMController extends Controller
 */
     public function acceptChatRequest(Request $request)
        {
-                
-        $validator      =       Validator::make($request->all(), [
-            "receiver_id"           =>      "required",
-        ]);
-        if($validator->fails()) 
-            return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
-            $receiver_id = $request->input('receiver_id');
-            $token = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->value('chat_token');
-            //dd($token);
-            $chatdetails = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
-            if (empty($chatdetails)) {
-                                                       
-                return response()->json(["status" => false,  "message" => "Request Not Found"]);
-             } 
-            else {
-               
-                $senderid = auth()->user()->id;
-                $inputs = $request->all();
-                $inputs['receiver_id'] = $receiver_id;
-                $inputs['sender_id'] = $senderid;
-                $inputs['chat_token'] = $token;
-                $inputs['accept'] = 2;
-                // $user->update($inputs);
-                ChatDetails::where('sender_id', auth()->user()->id)->update($inputs);
-                $user = ChatDetails::where('sender_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
-                return response()->json(["status" => true, "message" => "Success! Request accepted", "data" => $user]);
-           }
+        try{        
+                $validator      =       Validator::make($request->all(), [
+                    "receiver_id"           =>      "required",
+                ]);
+                if($validator->fails()) 
+                    return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                    $receiver_id = $request->input('receiver_id');
+                    $token = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->value('chat_token');
+                    //dd($token);
+                    $chatdetails = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
+                    if (empty($chatdetails)) {
+                                                            
+                        return response()->json(["status" => false,  "message" => "Request Not Found"]);
+                    } 
+                    else {
+                    
+                        $senderid = auth()->user()->id;
+                        $inputs = $request->all();
+                        $inputs['receiver_id'] = $receiver_id;
+                        $inputs['sender_id'] = $senderid;
+                        $inputs['chat_token'] = $token;
+                        $inputs['accept'] = 2;
+                        // $user->update($inputs);
+                        ChatDetails::where('sender_id', auth()->user()->id)->update($inputs);
+                        $user = ChatDetails::where('sender_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
+                        return response()->json(["status" => true, "message" => "Success! Request accepted", "data" => $user]);
+                }
+             }
+        catch(\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+        }
     }
 
     /** 
