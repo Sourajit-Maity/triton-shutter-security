@@ -18,7 +18,6 @@ use Illuminate\Support\Str;
 use Kreait\Firebase\Factory;
 
 /**
-/**
  * @group  Fcm Token Management
  *
  * APIs for managing basic cms functionality
@@ -334,71 +333,34 @@ class FCMController extends Controller
 
 /** 
 * @authenticated
-* @urlParam receiver_id number required Example: 5
+* @urlParam sender_id number required Example: 5
 
 * @response  {
     "status": true,
     "message": "Success! Request accepted",
     "data": [
         {
-            "id": 10,
-            "sender_id": 52,
-            "receiver_id": 10,
+            "id": 1,
+            "sender_id": 51,
+            "receiver_id": 45,
             "accept": 2,
-            "chat_token": "F7wlcUvJ6mZS57SKJkkwQfRYNjEx7sj1",
+            "chat_token": "AS2GAw9dJpx4pt0uusmhM6oOv4HhOgH9",
             "active": 0,
-            "created_at": "2021-09-30T14:00:36.000000Z",
-            "updated_at": "2021-09-30T14:01:12.000000Z",
+            "created_at": "2021-10-04T13:28:54.000000Z",
+            "updated_at": "2021-10-04T13:45:55.000000Z",
             "deleted_at": null,
             "sender_chat_request_id": {
-                "id": 52,
-                "first_name": "Ray",
-                "last_name": "Martin",
-                "user_name": "ray2",
-                "email": "ray2@test.com",
-                "phone": null,
-                "address": "seminyak",
-                "message": "ghfhg",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": null,
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": 42.75,
-                "longitude": 88.21,
-                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
-                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
-                "time_available": "10",
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-09-28T11:16:20.000000Z",
-                "updated_at": "2021-09-30T14:00:08.000000Z",
-                "full_name": "Ray Martin",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=RM&color=FFFFFF&background=a85232&height=400&width=400"
-            },
-            "receiver_chat_request_id": {
-                "id": 10,
-                "first_name": "Ava",
-                "last_name": "Bernhard",
+                "id": 51,
+                "first_name": "Monique",
+                "last_name": "Welch",
                 "user_name": null,
-                "email": "marge22@example.com",
-                "phone": "+1.737.625.5903",
+                "email": "ferry.melody@example.net",
+                "phone": "231.688.6936",
                 "address": null,
                 "message": null,
                 "looking_for": 0,
                 "offering": 0,
-                "email_verified_at": "2021-09-28T11:13:41.000000Z",
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
                 "current_team_id": null,
                 "profile_photo_path": null,
                 "otp": null,
@@ -411,18 +373,55 @@ class FCMController extends Controller
                 "time_available": null,
                 "social_info": null,
                 "device_type": null,
-                "device_token": null,
+                "device_token": "22",
                 "industry_id": null,
                 "profession_id": null,
                 "fcm_token": null,
                 "active": 1,
                 "invitation_accept": 0,
                 "currently_online": 1,
-                "created_at": "2021-09-28T11:13:44.000000Z",
-                "updated_at": "2021-09-28T11:13:44.000000Z",
-                "full_name": "Ava Bernhard",
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-04T13:28:27.000000Z",
+                "full_name": "Monique Welch",
                 "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=AB&color=FFFFFF&background=a85232&height=400&width=400"
+                "profile_photo_url": "https://ui-avatars.com/api/?name=MW&color=FFFFFF&background=a85232&height=400&width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 45,
+                "first_name": "Bernard",
+                "last_name": "Terry",
+                "user_name": null,
+                "email": "rey27@example.net",
+                "phone": "+1-651-661-7664",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-04T13:29:27.000000Z",
+                "full_name": "Bernard Terry",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=BT&color=FFFFFF&background=a85232&height=400&width=400"
             }
         }
     ]
@@ -435,29 +434,29 @@ class FCMController extends Controller
        {
         try{        
                 $validator      =       Validator::make($request->all(), [
-                    "receiver_id"           =>      "required",
+                    "sender_id"           =>      "required",
                 ]);
                 if($validator->fails()) 
                     return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
-                    $receiver_id = $request->input('receiver_id');
-                    $token = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->value('chat_token');
+                    $sender_id = $request->input('sender_id');
+                    $token = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->value('chat_token');
                     //dd($token);
-                    $chatdetails = ChatDetails::where('sender_id', auth()->user()->id)->where('receiver_id', $receiver_id)->first();
+                    $chatdetails = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->first();
                     if (empty($chatdetails)) {
                                                             
                         return response()->json(["status" => false,  "message" => "Request Not Found"]);
                     } 
                     else {
                     
-                        $senderid = auth()->user()->id;
+                        $receiverid = auth()->user()->id;
                         $inputs = $request->all();
-                        $inputs['receiver_id'] = $receiver_id;
-                        $inputs['sender_id'] = $senderid;
+                        $inputs['receiver_id'] = $receiverid;
+                        $inputs['sender_id'] = $sender_id;
                         $inputs['chat_token'] = $token;
                         $inputs['accept'] = 2;
                         // $user->update($inputs);
-                        ChatDetails::where('sender_id', auth()->user()->id)->update($inputs);
-                        $user = ChatDetails::where('sender_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
+                        ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                        $user = ChatDetails::where('receiver_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
                         return response()->json(["status" => true, "message" => "Success! Request accepted", "data" => $user]);
                 }
              }
@@ -598,5 +597,53 @@ public function getChatRequestDetails()
         return Response()->Json(['data'=>$value]);
 
         // return Response()->Json(['data'=>$jsonFile]);
+    }
+
+    /** 
+* @authenticated
+* @urlParam sender_id number required Example: 5
+
+* @response {
+    "status": true,
+    "message": "Success! Request cancelled"
+}
+* @response  401 {
+*   "message": "Unauthenticated."
+*}
+*/
+public function canceltChatRequest(Request $request)
+{
+    try
+        {
+                $validator      =       Validator::make($request->all(), [
+                "sender_id"           =>      "required",
+            ]);
+            if($validator->fails()) 
+                return response()->json(["status" => false, "validation_errors" => $validator->errors()]);
+                $sender_id = $request->input('sender_id');
+                $token = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->value('chat_token');
+                //dd($token);
+                $chatdetails = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->first();
+                if (empty($chatdetails)) {
+                                                        
+                    return response()->json(["status" => false,  "message" => "Request Not Found"]);
+                } 
+                else {
+                
+                    $receiverid = auth()->user()->id;
+                    $inputs = $request->all();
+                    $inputs['receiver_id'] = $receiverid;
+                    $inputs['sender_id'] = $sender_id;
+                    $inputs['chat_token'] = NULL;
+                    $inputs['accept'] = 3;
+                    // $user->update($inputs);
+                    ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                    $user = ChatDetails::where('receiver_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
+                    return response()->json(["status" => true, "message" => "Success! Request cancelled", ]);
+            }
+        }
+        catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+         }
     }
 }
