@@ -62,6 +62,7 @@ Route::middleware('auth:api')->group(function() {
 
     Route::post('/send-chat-request', [FCMController::class, 'sendChatRequest'])->name('send-chat-request');
     Route::post('/accept-chat-request', [FCMController::class, 'acceptChatRequest'])->name('accept-chat-request');
+    Route::post('/cancel-chat-request', [FCMController::class, 'canceltChatRequest'])->name('cancel-chat-request');
     Route::get('/get-chat-details', [FCMController::class, 'getChatDetails'])->name('get-chat-details');
     Route::get('/get-chat-request-details', [FCMController::class, 'getChatRequestDetails'])->name('get-chat-request-details');
 
