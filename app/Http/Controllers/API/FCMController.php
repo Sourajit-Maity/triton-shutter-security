@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Kreait\Firebase\Factory;
 
 /**
  * @group  Fcm Token Management
@@ -316,7 +317,7 @@ class FCMController extends Controller
         try{
             $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
-            })->with(['senderChatRequestId','receiverChatRequestId'])->orderBy('id','DESC')->get();
+            })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
             
             if($chatdetails->count() == 0){
                 return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -332,7 +333,7 @@ class FCMController extends Controller
 
 /** 
 * @authenticated
-* @urlParam receiver_id number required Example: 5
+* @urlParam sender_id number required Example: 5
 
 * @response  {
     "status": true,
@@ -568,7 +569,7 @@ public function getChatRequestDetails()
     try{
         $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
-        })->with(['senderChatRequestId','receiverChatRequestId'])->orderBy('id','DESC')->get();
+        })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
         
         if($chatdetails->count() == 0){
             return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -580,100 +581,31 @@ public function getChatRequestDetails()
     }
     }
 
+    public function chatFirebase()
+    {
+        $jsonFile = public_path('nghbr-324911-7719d6256d5f.json');
+        $factory = (new Factory)
+                ->withServiceAccount($jsonFile)
+                ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
+
+        $database = $factory->createDatabase();
+
+        $reference = $database->getReference('');
+
+        $value = $reference->getValue();
+
+        return Response()->Json(['data'=>$value]);
+
+        // return Response()->Json(['data'=>$jsonFile]);
+    }
+
     /** 
 * @authenticated
-* @urlParam receiver_id number required Example: 5
+* @urlParam sender_id number required Example: 5
 
-* @response  {
+* @response {
     "status": true,
-    "message": "Success! Request accepted",
-    "data": [
-        {
-            "id": 10,
-            "sender_id": 52,
-            "receiver_id": 10,
-            "accept": 2,
-            "chat_token": "F7wlcUvJ6mZS57SKJkkwQfRYNjEx7sj1",
-            "active": 0,
-            "created_at": "2021-09-30T14:00:36.000000Z",
-            "updated_at": "2021-09-30T14:01:12.000000Z",
-            "deleted_at": null,
-            "sender_chat_request_id": {
-                "id": 52,
-                "first_name": "Ray",
-                "last_name": "Martin",
-                "user_name": "ray2",
-                "email": "ray2@test.com",
-                "phone": null,
-                "address": "seminyak",
-                "message": "ghfhg",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": null,
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": 42.75,
-                "longitude": 88.21,
-                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
-                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
-                "time_available": "10",
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-09-28T11:16:20.000000Z",
-                "updated_at": "2021-09-30T14:00:08.000000Z",
-                "full_name": "Ray Martin",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=RM&color=FFFFFF&background=a85232&height=400&width=400"
-            },
-            "receiver_chat_request_id": {
-                "id": 10,
-                "first_name": "Ava",
-                "last_name": "Bernhard",
-                "user_name": null,
-                "email": "marge22@example.com",
-                "phone": "+1.737.625.5903",
-                "address": null,
-                "message": null,
-                "looking_for": 0,
-                "offering": 0,
-                "email_verified_at": "2021-09-28T11:13:41.000000Z",
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": null,
-                "longitude": null,
-                "available_from": null,
-                "available_to": null,
-                "time_available": null,
-                "social_info": null,
-                "device_type": null,
-                "device_token": null,
-                "industry_id": null,
-                "profession_id": null,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-09-28T11:13:44.000000Z",
-                "updated_at": "2021-09-28T11:13:44.000000Z",
-                "full_name": "Ava Bernhard",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=AB&color=FFFFFF&background=a85232&height=400&width=400"
-            }
-        }
-    ]
+    "message": "Success! Request cancelled"
 }
 * @response  401 {
 *   "message": "Unauthenticated."

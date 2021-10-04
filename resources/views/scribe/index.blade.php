@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 1 2021</li>
+            <li>Last updated: October 4 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -118,6 +118,134 @@ fetch(url, {
 </p>
 </form><h1>Fcm Token Management</h1>
 <p>APIs for managing basic cms functionality</p>
+<h2>api/chat-firebase</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/chat-firebase"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "chatMessages": {
+            "Bm3d5fNAYPQooSBMxS0hJi4ER53qxPqs": {
+                "-MkvuD0NefF0lSWmPk9R": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:21:30 GMT+0530"
+                },
+                "-Mkvvxo7Ptyx5EG2WVbs": {
+                    "message": "Hii",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:29:07 GMT+0530"
+                },
+                "-MkvweL9pg58Q6lDvg5j": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:32:10 GMT+0530"
+                },
+                "-Mkvx_XNbUyh2ud51a_3": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:36:12 GMT+0530"
+                }
+            },
+            "E8rXR7w3jMWuUpj7MxBAI1BeDP9MFhDl": {
+                "-MkvyWAuOkNEvyrOh7Ah": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:40:17 GMT+0530"
+                }
+            },
+            "RdUtHzS6dg5kPX1xCyob7mDSjkq4moXy": {
+                "-MkvyvrYwGw42yP983fo": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:42:06 GMT+0530"
+                },
+                "-Mkw-OmKdg0wROdzS5si": {
+                    "message": "Hello",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:48:31 GMT+0530"
+                }
+            },
+            "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn": {
+                "-MlABRUO_XkiIw4e97NX": {
+                    "message": "Accept pls",
+                    "read": false,
+                    "receiver_id": 55,
+                    "sender_id": 53,
+                    "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
+                }
+            },
+            "rYYeATyUw0rGf0g6ecKNQmZGciL1H0Bp": {
+                "-MlADYRD6lXrsKi8Eg-p": {
+                    "message": "Accept my req",
+                    "read": false,
+                    "receiver_id": 54,
+                    "sender_id": 55,
+                    "time": "Mon Oct 04 2021 17:44:38 GMT+0530"
+                }
+            },
+            "wq7xA2llDnRTnCLW6TBrqQf1lRAyyof9": {
+                "-Ml8p3y1Im6GHWILokJu": {
+                    "message": "Hii",
+                    "read": false,
+                    "receiver_id": 81,
+                    "sender_id": 55,
+                    "time": "Mon Oct 04 2021 11:13:43 GMT+0530"
+                }
+            }
+        }
+    }
+}</code></pre>
+<div id="execution-results-GETapi-chat-firebase" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-chat-firebase"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-chat-firebase"></code></pre>
+</div>
+<div id="execution-error-GETapi-chat-firebase" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-chat-firebase"></code></pre>
+</div>
+<form id="form-GETapi-chat-firebase" data-method="GET" data-path="api/chat-firebase" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-chat-firebase', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-chat-firebase" onclick="tryItOut('GETapi-chat-firebase');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-chat-firebase" onclick="cancelTryOut('GETapi-chat-firebase');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-chat-firebase" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/chat-firebase</code></b>
+</p>
+</form>
 <h2>api/send-chat-request</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -213,64 +341,27 @@ fetch(url, {
     "message": "Success! Request accepted",
     "data": [
         {
-            "id": 10,
-            "sender_id": 52,
-            "receiver_id": 10,
+            "id": 1,
+            "sender_id": 51,
+            "receiver_id": 45,
             "accept": 2,
-            "chat_token": "F7wlcUvJ6mZS57SKJkkwQfRYNjEx7sj1",
+            "chat_token": "AS2GAw9dJpx4pt0uusmhM6oOv4HhOgH9",
             "active": 0,
-            "created_at": "2021-09-30T14:00:36.000000Z",
-            "updated_at": "2021-09-30T14:01:12.000000Z",
+            "created_at": "2021-10-04T13:28:54.000000Z",
+            "updated_at": "2021-10-04T13:45:55.000000Z",
             "deleted_at": null,
             "sender_chat_request_id": {
-                "id": 52,
-                "first_name": "Ray",
-                "last_name": "Martin",
-                "user_name": "ray2",
-                "email": "ray2@test.com",
-                "phone": null,
-                "address": "seminyak",
-                "message": "ghfhg",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": null,
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": 42.75,
-                "longitude": 88.21,
-                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
-                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
-                "time_available": "10",
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-09-28T11:16:20.000000Z",
-                "updated_at": "2021-09-30T14:00:08.000000Z",
-                "full_name": "Ray Martin",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=RM&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
-            },
-            "receiver_chat_request_id": {
-                "id": 10,
-                "first_name": "Ava",
-                "last_name": "Bernhard",
+                "id": 51,
+                "first_name": "Monique",
+                "last_name": "Welch",
                 "user_name": null,
-                "email": "marge22@example.com",
-                "phone": "+1.737.625.5903",
+                "email": "ferry.melody@example.net",
+                "phone": "231.688.6936",
                 "address": null,
                 "message": null,
                 "looking_for": 0,
                 "offering": 0,
-                "email_verified_at": "2021-09-28T11:13:41.000000Z",
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
                 "current_team_id": null,
                 "profile_photo_path": null,
                 "otp": null,
@@ -283,18 +374,55 @@ fetch(url, {
                 "time_available": null,
                 "social_info": null,
                 "device_type": null,
-                "device_token": null,
+                "device_token": "22",
                 "industry_id": null,
                 "profession_id": null,
                 "fcm_token": null,
                 "active": 1,
                 "invitation_accept": 0,
                 "currently_online": 1,
-                "created_at": "2021-09-28T11:13:44.000000Z",
-                "updated_at": "2021-09-28T11:13:44.000000Z",
-                "full_name": "Ava Bernhard",
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-04T13:28:27.000000Z",
+                "full_name": "Monique Welch",
                 "role_name": "CLIENT",
-                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=AB&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=MW&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
+            },
+            "receiver_chat_request_id": {
+                "id": 45,
+                "first_name": "Bernard",
+                "last_name": "Terry",
+                "user_name": null,
+                "email": "rey27@example.net",
+                "phone": "+1-651-661-7664",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": "22",
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-04T13:29:27.000000Z",
+                "full_name": "Bernard Terry",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=BT&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400"
             }
         }
     ]
@@ -329,8 +457,69 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>receiver_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="receiver_id" data-endpoint="POSTapi-accept-chat-request" data-component="url" required  hidden>
+<b><code>sender_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="sender_id" data-endpoint="POSTapi-accept-chat-request" data-component="url" required  hidden>
+<br>
+
+</p>
+</form>
+<h2>api/cancel-chat-request</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/cancel-chat-request"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "Success! Request cancelled"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-POSTapi-cancel-chat-request" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-cancel-chat-request"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cancel-chat-request"></code></pre>
+</div>
+<div id="execution-error-POSTapi-cancel-chat-request" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cancel-chat-request"></code></pre>
+</div>
+<form id="form-POSTapi-cancel-chat-request" data-method="POST" data-path="api/cancel-chat-request" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-cancel-chat-request', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-cancel-chat-request" onclick="tryItOut('POSTapi-cancel-chat-request');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-cancel-chat-request" onclick="cancelTryOut('POSTapi-cancel-chat-request');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-cancel-chat-request" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/cancel-chat-request</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-cancel-chat-request" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-cancel-chat-request" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>sender_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+<input type="number" name="sender_id" data-endpoint="POSTapi-cancel-chat-request" data-component="url" required  hidden>
 <br>
 
 </p>
@@ -871,7 +1060,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/nemo"
+    "http://localhost/api/invites/beatae"
 );
 
 let headers = {
@@ -938,7 +1127,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/excepturi"
+    "http://localhost/api/invites/maiores"
 );
 
 let headers = {
@@ -1010,7 +1199,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ducimus"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
@@ -1749,7 +1938,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/molestias/1/earum"
+    "http://localhost/api/get-user-list/1/1/1/1/officia/1/earum"
 );
 
 let headers = {
@@ -1978,7 +2167,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'porro');
+body.append('available_from', 'quis');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -2184,7 +2373,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/maiores"
+    "http://localhost/api/update-user/quo"
 );
 
 let headers = {
