@@ -33,7 +33,7 @@ Route::get("get-homepage", [CmsController::class, 'gethomepage']);
  Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}", [UserController::class, 'getuserlist']);
 //Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}", [UserController::class, 'getuserlist']);
 //Route::post('/search', [UserController::class,'filter']);
-Route::get('/chat-firebase', [FCMController::class, 'chatFirebase'])->name('chat-firebase');
+
 
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
@@ -66,5 +66,8 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/cancel-chat-request', [FCMController::class, 'canceltChatRequest'])->name('cancel-chat-request');
     Route::get('/get-chat-details', [FCMController::class, 'getChatDetails'])->name('get-chat-details');
     Route::get('/get-chat-request-details', [FCMController::class, 'getChatRequestDetails'])->name('get-chat-request-details');
+
+    // Firebase chat api
+    Route::get('/chat-data', [FCMController::class, 'chatData'])->name('chat-data');
 
 });

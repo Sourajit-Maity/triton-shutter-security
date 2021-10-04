@@ -581,7 +581,7 @@ public function getChatRequestDetails()
     }
     }
 
-    public function chatFirebase()
+    public function chatData()
     {
         $jsonFile = public_path('nghbr-324911-7719d6256d5f.json');
         $factory = (new Factory)
@@ -589,14 +589,18 @@ public function getChatRequestDetails()
                 ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
 
         $database = $factory->createDatabase();
-
         $reference = $database->getReference('');
+        // $value = $reference->getValue();
 
-        $value = $reference->getValue();
+        $snapshot = $reference->getSnapshot();
+        $value = $snapshot->getValue();
 
-        return Response()->Json(['data'=>$value]);
+        if($snapshot->exists()){
+            return Response()->Json(["status"=>true,"message"=> '','data'=>$value]);
+        }else{
+            return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$value]);
+        }
 
-        // return Response()->Json(['data'=>$jsonFile]);
     }
 
     /** 
