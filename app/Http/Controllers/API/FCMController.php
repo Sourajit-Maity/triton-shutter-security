@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Kreait\Firebase\Factory;
 
 /**
 /**
@@ -317,7 +318,7 @@ class FCMController extends Controller
         try{
             $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
-            })->with(['senderChatRequestId','receiverChatRequestId'])->orderBy('id','DESC')->get();
+            })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
             
             if($chatdetails->count() == 0){
                 return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -569,7 +570,7 @@ public function getChatRequestDetails()
     try{
         $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
-        })->with(['senderChatRequestId','receiverChatRequestId'])->orderBy('id','DESC')->get();
+        })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
         
         if($chatdetails->count() == 0){
             return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -579,5 +580,23 @@ public function getChatRequestDetails()
     }catch(\Exception $e) {
         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
     }
+    }
+
+    public function chatFirebase()
+    {
+        $jsonFile = public_path('nghbr-324911-7719d6256d5f.json');
+        $factory = (new Factory)
+                ->withServiceAccount($jsonFile)
+                ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
+
+        $database = $factory->createDatabase();
+
+        $reference = $database->getReference('');
+
+        $value = $reference->getValue();
+
+        return Response()->Json(['data'=>$value]);
+
+        // return Response()->Json(['data'=>$jsonFile]);
     }
 }
