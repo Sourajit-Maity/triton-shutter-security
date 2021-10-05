@@ -315,7 +315,8 @@ class FCMController extends Controller
     public function getChatDetails()
     {
         try{
-            $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->where(function($query){
+            $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)
+            ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
             
