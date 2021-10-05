@@ -200,8 +200,8 @@ class FCMController extends Controller
                         // $token = Str::random(32);
                         // $inputs = $request->all();
                         //  ChatDetails::where("id", $user->id)->update(array("sender_id" => auth()->user()->id, "receiver_id" => $request->receiver_id,"chat_token" => $token,"accept" => 2));
-        
-                        return response()->json(["status" => true,   "message" => "Success! Request already sent"]);
+                        $value = ChatDetails::where("id", $user->id)->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
+                        return response()->json(["status" => true,   "message" => "Success! Request already sent","data" => $value]);
                         
                     }
             }
