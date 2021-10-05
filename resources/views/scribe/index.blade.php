@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel Documentation</title>
+    <title>NGHBR Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
@@ -55,13 +55,13 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script>
-    var baseUrl = "http://localhost";
+    var baseUrl = "http://localhost:8000";
 </script>
 <script src="{{ asset("vendor/scribe/js/tryitout-2.7.10.js") }}"></script>
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost</code></pre><h1>Authenticating requests</h1>
+<pre><code class="language-yaml">http://localhost:8000</code></pre><h1>Authenticating requests</h1>
 <p>This API is not authenticated.</p><h1>CMS Management</h1>
 <p>APIs for managing basic cms functionality</p>
 <h2>CMS Homepage</h2>
@@ -69,7 +69,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-homepage"
+    "http://localhost:8000/api/get-homepage"
 );
 
 let headers = {
@@ -124,7 +124,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/send-chat-request"
+    "http://localhost:8000/api/send-chat-request"
 );
 
 let headers = {
@@ -193,7 +193,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/accept-chat-request"
+    "http://localhost:8000/api/accept-chat-request"
 );
 
 let headers = {
@@ -341,7 +341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cancel-chat-request"
+    "http://localhost:8000/api/cancel-chat-request"
 );
 
 let headers = {
@@ -402,7 +402,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-chat-details"
+    "http://localhost:8000/api/get-chat-details"
 );
 
 let headers = {
@@ -575,7 +575,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-chat-request-details"
+    "http://localhost:8000/api/get-chat-request-details"
 );
 
 let headers = {
@@ -710,12 +710,13 @@ fetch(url, {
 <label id="auth-GETapi-get-chat-request-details" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-request-details" data-component="header"></label>
 </p>
 </form>
-<h2>api/chat-data</h2>
+<h2>Last Chat With Token</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/chat-data"
+    "http://localhost:8000/api/get-chat-data"
 );
 
 let headers = {
@@ -728,29 +729,137 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": true,
+    "message": "",
+    "data": [
+        {
+            "token": "rYYeATyUw0rGf0g6ecKNQmZGciL1H0Bp",
+            "lastMessage": {
+                "-MlEduHCOabPRCWkKjHc": {
+                    "message": "Ok good",
+                    "read": false,
+                    "receiver_id": 55,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 14:22:39 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
+            "lastMessage": {
+                "-MlABRUO_XkiIw4e97NX": {
+                    "message": "Accept pls",
+                    "read": false,
+                    "receiver_id": 55,
+                    "sender_id": 53,
+                    "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "wq7xA2llDnRTnCLW6TBrqQf1lRAyyof9",
+            "lastMessage": {
+                "-Ml8p3y1Im6GHWILokJu": {
+                    "message": "Hii",
+                    "read": false,
+                    "receiver_id": 81,
+                    "sender_id": 55,
+                    "time": "Mon Oct 04 2021 11:13:43 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "RdUtHzS6dg5kPX1xCyob7mDSjkq4moXy",
+            "lastMessage": {
+                "-Mkw-OmKdg0wROdzS5si": {
+                    "message": "Hello",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:48:31 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "E8rXR7w3jMWuUpj7MxBAI1BeDP9MFhDl",
+            "lastMessage": {
+                "-MkvyWAuOkNEvyrOh7Ah": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:40:17 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "DhtHjC39cuDFSmgoYMgFRYAylCB7FtGA",
+            "lastMessage": {
+                "-MlEjnMbtFX_BY_ZB4zJ": {
+                    "message": "Hrl",
+                    "read": false,
+                    "receiver_id": 51,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 14:48:23 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "Bm3d5fNAYPQooSBMxS0hJi4ER53qxPqs",
+            "lastMessage": {
+                "-Mkvx_XNbUyh2ud51a_3": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:36:12 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "Ahg7R61uTzhKhLddhG2VDKkdvgQMoY68",
+            "lastMessage": {
+                "-MlE9zU29BgZ9_i27Dht": {
+                    "message": "Hii Jacky accept my request",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
+                }
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
 <p>Example response (401):</p>
 </blockquote>
 <pre><code class="language-json">{
     "message": "Unauthenticated."
 }</code></pre>
-<div id="execution-results-GETapi-chat-data" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-chat-data"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-chat-data"></code></pre>
+<div id="execution-results-GETapi-get-chat-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-chat-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-chat-data"></code></pre>
 </div>
-<div id="execution-error-GETapi-chat-data" hidden>
+<div id="execution-error-GETapi-get-chat-data" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-chat-data"></code></pre>
+    <pre><code id="execution-error-message-GETapi-get-chat-data"></code></pre>
 </div>
-<form id="form-GETapi-chat-data" data-method="GET" data-path="api/chat-data" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-chat-data', this);">
+<form id="form-GETapi-get-chat-data" data-method="GET" data-path="api/get-chat-data" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-chat-data', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-chat-data" onclick="tryItOut('GETapi-chat-data');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-chat-data" onclick="cancelTryOut('GETapi-chat-data');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-chat-data" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-chat-data" onclick="tryItOut('GETapi-get-chat-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-chat-data" onclick="cancelTryOut('GETapi-get-chat-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-chat-data" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/chat-data</code></b>
+ <b><code>api/get-chat-data</code></b>
+</p>
+<p>
+<label id="auth-GETapi-get-chat-data" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-data" data-component="header"></label>
 </p>
 </form><h1>Invitation Management</h1>
 <p>APIs for managing  invitation functionality</p>
@@ -760,7 +869,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites"
+    "http://localhost:8000/api/invites"
 );
 
 let headers = {
@@ -933,7 +1042,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites"
+    "http://localhost:8000/api/invites"
 );
 
 let headers = {
@@ -1007,7 +1116,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/ut"
+    "http://localhost:8000/api/invites/quia"
 );
 
 let headers = {
@@ -1074,7 +1183,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/tempore"
+    "http://localhost:8000/api/invites/veniam"
 );
 
 let headers = {
@@ -1146,7 +1255,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/enim"
+    "http://localhost:8000/api/invites/nisi"
 );
 
 let headers = {
@@ -1213,7 +1322,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://localhost:8000/api/register"
 );
 
 let headers = {
@@ -1358,7 +1467,7 @@ Example: 1
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://localhost:8000/api/login"
 );
 
 let headers = {
@@ -1463,7 +1572,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/social-login"
+    "http://localhost:8000/api/social-login"
 );
 
 let headers = {
@@ -1602,7 +1711,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/otp-verification"
+    "http://localhost:8000/api/otp-verification"
 );
 
 let headers = {
@@ -1683,7 +1792,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://localhost:8000/api/forgot-password"
 );
 
 let headers = {
@@ -1763,7 +1872,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/industry/all"
+    "http://localhost:8000/api/industry/all"
 );
 
 let headers = {
@@ -1826,7 +1935,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/profession/all"
+    "http://localhost:8000/api/profession/all"
 );
 
 let headers = {
@@ -1885,7 +1994,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/nemo/1/sunt"
+    "http://localhost:8000/api/get-user-list/1/1/1/1/nulla/1/iste"
 );
 
 let headers = {
@@ -2012,7 +2121,7 @@ Example: 1
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "http://localhost:8000/api/user"
 );
 
 let headers = {
@@ -2096,7 +2205,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/edit-my-profile"
+    "http://localhost:8000/api/edit-my-profile"
 );
 
 let headers = {
@@ -2114,7 +2223,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'consequatur');
+body.append('available_from', 'recusandae');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -2251,7 +2360,7 @@ Example: 1630651142
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/sink-location"
+    "http://localhost:8000/api/sink-location"
 );
 
 let headers = {
@@ -2320,7 +2429,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update-user/dolorem"
+    "http://localhost:8000/api/update-user/doloribus"
 );
 
 let headers = {
@@ -2413,7 +2522,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/change_password"
+    "http://localhost:8000/api/change_password"
 );
 
 let headers = {
@@ -2509,7 +2618,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/all"
+    "http://localhost:8000/api/user/all"
 );
 
 let headers = {
@@ -4239,7 +4348,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/search"
+    "http://localhost:8000/api/search"
 );
 
 let headers = {
@@ -4312,7 +4421,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/last-filter-data"
+    "http://localhost:8000/api/last-filter-data"
 );
 
 let headers = {
@@ -4401,7 +4510,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/store-filter-data"
+    "http://localhost:8000/api/store-filter-data"
 );
 
 let headers = {
@@ -4438,7 +4547,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-filter-data"
+    "http://localhost:8000/api/get-filter-data"
 );
 
 let headers = {
@@ -4475,7 +4584,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/save-user-setting"
+    "http://localhost:8000/api/save-user-setting"
 );
 
 let headers = {
@@ -4555,7 +4664,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/get-user-setting"
+    "http://localhost:8000/api/get-user-setting"
 );
 
 let headers = {
