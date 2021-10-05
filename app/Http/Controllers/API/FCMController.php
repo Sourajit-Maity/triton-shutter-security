@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 /**
  * @group  Fcm Token Management
@@ -581,28 +582,6 @@ public function getChatRequestDetails()
     }
     }
 
-    public function chatData()
-    {
-        $jsonFile = public_path('nghbr-324911-7719d6256d5f.json');
-        $factory = (new Factory)
-                ->withServiceAccount($jsonFile)
-                ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
-
-        $database = $factory->createDatabase();
-        $reference = $database->getReference('');
-        // $value = $reference->getValue();
-
-        $snapshot = $reference->getSnapshot();
-        $value = $snapshot->getValue();
-
-        if($snapshot->exists()){
-            return Response()->Json(["status"=>true,"message"=> '','data'=>$value]);
-        }else{
-            return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$value]);
-        }
-
-    }
-
     /** 
 * @authenticated
 * @urlParam sender_id number required Example: 5
@@ -650,4 +629,6 @@ public function canceltChatRequest(Request $request)
         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
          }
     }
+
+    
 }
