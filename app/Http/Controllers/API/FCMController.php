@@ -201,8 +201,8 @@ class FCMController extends Controller
                         // $token = Str::random(32);
                         // $inputs = $request->all();
                         //  ChatDetails::where("id", $user->id)->update(array("sender_id" => auth()->user()->id, "receiver_id" => $request->receiver_id,"chat_token" => $token,"accept" => 2));
-        
-                        return response()->json(["status" => true,   "message" => "Success! Request already sent"]);
+                        $value = ChatDetails::where("id", $user->id)->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
+                        return response()->json(["status" => true,   "message" => "Success! Request already sent","data" => $value]);
                         
                     }
             }
@@ -223,37 +223,37 @@ class FCMController extends Controller
     "message": "",
     "data": [
         {
-            "id": 1,
-            "sender_id": 52,
-            "receiver_id": 2,
-            "accept": 3,
-            "chat_token": "qwe",
+            "id": 2,
+            "sender_id": 51,
+            "receiver_id": 46,
+            "accept": 2,
+            "chat_token": "1zBIwQb5wjaQKTU2pJbiEAd9dEXxy8CQ",
             "active": 0,
-            "created_at": "2021-09-30T06:21:28.000000Z",
-            "updated_at": "2021-09-30T06:26:36.000000Z",
+            "created_at": "2021-10-05T07:42:23.000000Z",
+            "updated_at": "2021-10-05T07:49:05.000000Z",
             "deleted_at": null,
             "sender_chat_request_id": {
-                "id": 52,
-                "first_name": "Ray",
-                "last_name": "Martin",
-                "user_name": "ray2",
-                "email": "ray2@test.com",
-                "phone": null,
-                "address": "seminyak",
-                "message": "ghfhg",
+                "id": 51,
+                "first_name": "Monique",
+                "last_name": "Welch",
+                "user_name": "monrich",
+                "email": "ferry.melody@example.net",
+                "phone": "2316886936",
+                "address": "<p>fghf</p>\n",
+                "message": "<p>ffgh</p>\n",
                 "looking_for": 1,
                 "offering": 1,
-                "email_verified_at": null,
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
                 "current_team_id": null,
                 "profile_photo_path": null,
                 "otp": null,
                 "social_id": null,
                 "social_account_type": null,
-                "latitude": 42.75,
-                "longitude": 88.21,
-                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
-                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
-                "time_available": "10",
+                "latitude": null,
+                "longitude": null,
+                "available_from": "fgh",
+                "available_to": "fghf",
+                "time_available": null,
                 "social_info": null,
                 "device_type": null,
                 "device_token": "22",
@@ -263,24 +263,40 @@ class FCMController extends Controller
                 "active": 1,
                 "invitation_accept": 0,
                 "currently_online": 1,
-                "created_at": "2021-09-28T11:16:20.000000Z",
-                "updated_at": "2021-09-30T06:17:39.000000Z",
-                "full_name": "Ray Martin",
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-05T07:54:28.000000Z",
+                "full_name": "Monique Welch",
                 "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=RM&color=FFFFFF&background=a85232&height=400&width=400"
+                "profile_photo_url": "https://ui-avatars.com/api/?name=MW&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": {
+                    "id": 1,
+                    "industry_name": "hg",
+                    "industry_description": "fgh",
+                    "active": 1,
+                    "created_at": "2021-10-04T13:33:17.000000Z",
+                    "updated_at": "2021-10-04T13:33:17.000000Z",
+                    "deleted_at": null
+                },
+                "professions": {
+                    "id": 1,
+                    "profession_name": "gh",
+                    "active": 1,
+                    "created_at": "2021-10-04T13:33:24.000000Z",
+                    "updated_at": "2021-10-04T13:33:24.000000Z"
+                }
             },
             "receiver_chat_request_id": {
-                "id": 2,
-                "first_name": "Elise",
-                "last_name": "Renner",
-                "user_name": null,
-                "email": "ulises.eichmann@example.org",
-                "phone": "352.830.3868",
-                "address": null,
-                "message": null,
-                "looking_for": 0,
-                "offering": 0,
-                "email_verified_at": "2021-09-28T11:13:41.000000Z",
+                "id": 46,
+                "first_name": "Hunter",
+                "last_name": "Gleichner",
+                "user_name": "hunter",
+                "email": "ihegmann@example.net",
+                "phone": "2193608359",
+                "address": "<p>234</p>\n",
+                "message": "<p>234</p>\n",
+                "looking_for": 1,
+                "offering": 1,
+                "email_verified_at": "2021-10-04T13:26:25.000000Z",
                 "current_team_id": null,
                 "profile_photo_path": null,
                 "otp": null,
@@ -288,23 +304,39 @@ class FCMController extends Controller
                 "social_account_type": null,
                 "latitude": null,
                 "longitude": null,
-                "available_from": null,
-                "available_to": null,
+                "available_from": "1424",
+                "available_to": "2342",
                 "time_available": null,
                 "social_info": null,
                 "device_type": null,
-                "device_token": null,
-                "industry_id": null,
-                "profession_id": null,
+                "device_token": "22",
+                "industry_id": 1,
+                "profession_id": 1,
                 "fcm_token": null,
                 "active": 1,
                 "invitation_accept": 0,
                 "currently_online": 1,
-                "created_at": "2021-09-28T11:13:44.000000Z",
-                "updated_at": "2021-09-28T11:13:44.000000Z",
-                "full_name": "Elise Renner",
+                "created_at": "2021-10-04T13:26:27.000000Z",
+                "updated_at": "2021-10-05T07:53:15.000000Z",
+                "full_name": "Hunter Gleichner",
                 "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=ER&color=FFFFFF&background=a85232&height=400&width=400"
+                "profile_photo_url": "https://ui-avatars.com/api/?name=HG&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": {
+                    "id": 1,
+                    "industry_name": "hg",
+                    "industry_description": "fgh",
+                    "active": 1,
+                    "created_at": "2021-10-04T13:33:17.000000Z",
+                    "updated_at": "2021-10-04T13:33:17.000000Z",
+                    "deleted_at": null
+                },
+                "professions": {
+                    "id": 1,
+                    "profession_name": "gh",
+                    "active": 1,
+                    "created_at": "2021-10-04T13:33:24.000000Z",
+                    "updated_at": "2021-10-04T13:33:24.000000Z"
+                }
             }
         }
     ]
@@ -316,7 +348,8 @@ class FCMController extends Controller
     public function getChatDetails()
     {
         try{
-            $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->where(function($query){
+            $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)
+            ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
             
