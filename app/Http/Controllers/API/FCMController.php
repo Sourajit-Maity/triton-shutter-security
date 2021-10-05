@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 /**
  * @group  Fcm Token Management
@@ -614,28 +615,6 @@ public function getChatRequestDetails()
     }
     }
 
-    public function chatData()
-    {
-        $jsonFile = public_path('nghbr-324911-7719d6256d5f.json');
-        $factory = (new Factory)
-                ->withServiceAccount($jsonFile)
-                ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
-
-        $database = $factory->createDatabase();
-        $reference = $database->getReference('');
-        // $value = $reference->getValue();
-
-        $snapshot = $reference->getSnapshot();
-        $value = $snapshot->getValue();
-
-        if($snapshot->exists()){
-            return Response()->Json(["status"=>true,"message"=> '','data'=>$value]);
-        }else{
-            return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$value]);
-        }
-
-    }
-
     /** 
 * @authenticated
 * @urlParam sender_id number required Example: 5
@@ -683,4 +662,152 @@ public function canceltChatRequest(Request $request)
         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
          }
     }
+
+/** 
+* Last Chat With Token
+* @authenticated
+* @response  {
+    "status": true,
+    "message": "",
+    "data": [
+        {
+            "token": "rYYeATyUw0rGf0g6ecKNQmZGciL1H0Bp",
+            "lastMessage": {
+                "-MlEduHCOabPRCWkKjHc": {
+                    "message": "Ok good",
+                    "read": false,
+                    "receiver_id": 55,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 14:22:39 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
+            "lastMessage": {
+                "-MlABRUO_XkiIw4e97NX": {
+                    "message": "Accept pls",
+                    "read": false,
+                    "receiver_id": 55,
+                    "sender_id": 53,
+                    "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "wq7xA2llDnRTnCLW6TBrqQf1lRAyyof9",
+            "lastMessage": {
+                "-Ml8p3y1Im6GHWILokJu": {
+                    "message": "Hii",
+                    "read": false,
+                    "receiver_id": 81,
+                    "sender_id": 55,
+                    "time": "Mon Oct 04 2021 11:13:43 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "RdUtHzS6dg5kPX1xCyob7mDSjkq4moXy",
+            "lastMessage": {
+                "-Mkw-OmKdg0wROdzS5si": {
+                    "message": "Hello",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:48:31 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "E8rXR7w3jMWuUpj7MxBAI1BeDP9MFhDl",
+            "lastMessage": {
+                "-MkvyWAuOkNEvyrOh7Ah": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:40:17 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "DhtHjC39cuDFSmgoYMgFRYAylCB7FtGA",
+            "lastMessage": {
+                "-MlEjnMbtFX_BY_ZB4zJ": {
+                    "message": "Hrl",
+                    "read": false,
+                    "receiver_id": 51,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 14:48:23 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "Bm3d5fNAYPQooSBMxS0hJi4ER53qxPqs",
+            "lastMessage": {
+                "-Mkvx_XNbUyh2ud51a_3": {
+                    "message": "Hi",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 55,
+                    "time": "Fri Oct 01 2021 18:36:12 GMT+0530"
+                }
+            }
+        },
+        {
+            "token": "Ahg7R61uTzhKhLddhG2VDKkdvgQMoY68",
+            "lastMessage": {
+                "-MlE9zU29BgZ9_i27Dht": {
+                    "message": "Hii Jacky accept my request",
+                    "read": false,
+                    "receiver_id": 53,
+                    "sender_id": 54,
+                    "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
+                }
+            }
+        }
+    ]
+}
+* @response  401 {
+*   "message": "Unauthenticated."
+*}
+*/
+
+    public function chatData()
+    {
+        try {
+            $jsonFile = ServiceAccount::fromValue(public_path('nghbr-324911-7719d6256d5f.json'));
+            $factory = (new Factory)
+                    ->withServiceAccount($jsonFile)
+                    ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
+
+            $database = $factory->createDatabase();
+            $reference = $database->getReference('/chatMessages/');
+            $snapshot = $reference->getSnapshot();
+
+            $tokens = $database->getReference('/chatMessages/')->getChildKeys();
+
+            $chatData = [];
+            $resultData = [];
+
+            foreach ($tokens as $key => $result) {
+                $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
+
+                $chatData[$key] = [
+                    "token" => $result,
+                    "lastMessage" => $resultData,
+                ];
+            }
+
+            if($snapshot->exists()){
+                return Response()->Json(["status"=>true,"message"=> '','data'=>$chatData]);
+            }else{
+                return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatData]);
+            }
+        } catch (\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+        }
+    }
+
+    
 }

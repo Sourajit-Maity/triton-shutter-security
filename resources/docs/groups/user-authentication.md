@@ -11,7 +11,7 @@ APIs for managing basic auth functionality
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/register"
+    "http://localhost:8000/api/register"
 );
 
 let headers = {
@@ -166,7 +166,7 @@ Example: 1
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/login"
+    "http://localhost:8000/api/login"
 );
 
 let headers = {
@@ -281,7 +281,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/social-login"
+    "http://localhost:8000/api/social-login"
 );
 
 let headers = {
@@ -430,7 +430,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/otp-verification"
+    "http://localhost:8000/api/otp-verification"
 );
 
 let headers = {
@@ -521,7 +521,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://localhost:8000/api/forgot-password"
 );
 
 let headers = {
@@ -611,7 +611,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/industry/all"
+    "http://localhost:8000/api/industry/all"
 );
 
 let headers = {
@@ -685,7 +685,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/profession/all"
+    "http://localhost:8000/api/profession/all"
 );
 
 let headers = {
@@ -755,7 +755,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-list/1/1/1/1/nemo/1/sunt"
+    "http://localhost:8000/api/get-user-list/1/1/1/1/nulla/1/iste"
 );
 
 let headers = {
@@ -893,7 +893,7 @@ Example: 1
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/user"
+    "http://localhost:8000/api/user"
 );
 
 let headers = {
@@ -989,7 +989,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/edit-my-profile"
+    "http://localhost:8000/api/edit-my-profile"
 );
 
 let headers = {
@@ -1007,7 +1007,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'consequatur');
+body.append('available_from', 'recusandae');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1154,7 +1154,7 @@ Example: 1630651142
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/sink-location"
+    "http://localhost:8000/api/sink-location"
 );
 
 let headers = {
@@ -1234,7 +1234,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/update-user/dolorem"
+    "http://localhost:8000/api/update-user/doloribus"
 );
 
 let headers = {
@@ -1339,7 +1339,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/change_password"
+    "http://localhost:8000/api/change_password"
 );
 
 let headers = {
@@ -1446,7 +1446,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/user/all"
+    "http://localhost:8000/api/user/all"
 );
 
 let headers = {
@@ -3187,7 +3187,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/search"
+    "http://localhost:8000/api/search"
 );
 
 let headers = {
@@ -3270,7 +3270,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/last-filter-data"
+    "http://localhost:8000/api/last-filter-data"
 );
 
 let headers = {
@@ -3370,7 +3370,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/store-filter-data"
+    "http://localhost:8000/api/store-filter-data"
 );
 
 let headers = {
@@ -3417,7 +3417,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-filter-data"
+    "http://localhost:8000/api/get-filter-data"
 );
 
 let headers = {
@@ -3464,7 +3464,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/save-user-setting"
+    "http://localhost:8000/api/save-user-setting"
 );
 
 let headers = {
@@ -3554,7 +3554,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/get-user-setting"
+    "http://localhost:8000/api/get-user-setting"
 );
 
 let headers = {
