@@ -165,13 +165,11 @@ class FCMController extends Controller
             "updated_at": "2021-04-02T00:00:00.000000Z",
             "deleted_at": null,
             "lastMessage": {
-                "-MlE9zU29BgZ9_i27Dht": {
-                    "message": "Hii Jacky accept my request",
-                    "read": false,
-                    "receiver_id": 53,
-                    "sender_id": 54,
-                    "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
-                }
+                "message": "Hii Jacky accept my request",
+                "read": false,
+                "receiver_id": 53,
+                "sender_id": 54,
+                "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
             },
             "sender_chat_request_id": {
                 "id": 42,
@@ -268,8 +266,8 @@ class FCMController extends Controller
         },
         {
             "id": 1,
-            "sender_id": 2,
-            "receiver_id": 33,
+            "sender_id": 6,
+            "receiver_id": 2,
             "accept": 2,
             "chat_token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
             "active": 1,
@@ -277,15 +275,52 @@ class FCMController extends Controller
             "updated_at": "2021-10-04T18:05:27.000000Z",
             "deleted_at": null,
             "lastMessage": {
-                "-MlABRUO_XkiIw4e97NX": {
-                    "message": "Accept pls",
-                    "read": false,
-                    "receiver_id": 55,
-                    "sender_id": 53,
-                    "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
-                }
+                "message": "Accept pls",
+                "read": false,
+                "receiver_id": 55,
+                "sender_id": 53,
+                "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
             },
             "sender_chat_request_id": {
+                "id": 6,
+                "first_name": "Vida",
+                "last_name": "Grant",
+                "user_name": null,
+                "email": "xhamill@example.org",
+                "phone": "605.388.8187",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T09:40:54.000000Z",
+                "updated_at": "2021-10-04T09:40:54.000000Z",
+                "full_name": "Vida Grant",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=VG&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": null,
+                "professions": null
+            },
+            "receiver_chat_request_id": {
                 "id": 2,
                 "first_name": "Rebecca",
                 "last_name": "Jacobi",
@@ -337,45 +372,6 @@ class FCMController extends Controller
                     "created_at": "2021-10-04T18:08:47.000000Z",
                     "updated_at": "2021-10-04T18:08:47.000000Z"
                 }
-            },
-            "receiver_chat_request_id": {
-                "id": 33,
-                "first_name": "Ebba",
-                "last_name": "Brakus",
-                "user_name": null,
-                "email": "micaela.champlin@example.net",
-                "phone": "401-637-2848",
-                "address": null,
-                "message": null,
-                "looking_for": 0,
-                "offering": 0,
-                "email_verified_at": "2021-10-04T09:40:50.000000Z",
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": null,
-                "longitude": null,
-                "available_from": null,
-                "available_to": null,
-                "time_available": null,
-                "social_info": null,
-                "device_type": null,
-                "device_token": null,
-                "industry_id": null,
-                "profession_id": null,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-10-04T09:40:57.000000Z",
-                "updated_at": "2021-10-04T09:40:57.000000Z",
-                "full_name": "Ebba Brakus",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=EB&color=FFFFFF&background=a85232&height=400&width=400",
-                "industries": null,
-                "professions": null
             }
         }
     ]
@@ -554,70 +550,39 @@ class FCMController extends Controller
     /** 
 * User Chat Request List
 * @authenticated
-
 * @response  {
     "status": true,
     "message": "",
     "data": [
         {
-            "id": 12,
-            "sender_id": 54,
-            "receiver_id": 48,
+            "id": 2,
+            "sender_id": 42,
+            "receiver_id": 2,
             "accept": 1,
-            "chat_token": "r43Fv9n1k0YC0DyBnb2BkZB5mhJ9j3lY",
-            "active": 0,
-            "created_at": "2021-10-01T07:27:54.000000Z",
-            "updated_at": "2021-10-01T07:29:51.000000Z",
+            "chat_token": "Ahg7R61uTzhKhLddhG2VDKkdvgQMoY68",
+            "active": 1,
+            "created_at": "2021-10-04T18:05:27.000000Z",
+            "updated_at": "2021-04-02T00:00:00.000000Z",
             "deleted_at": null,
-            "sender_chat_request_id": {
-                "id": 54,
-                "first_name": "Tom",
-                "last_name": "Martin",
-                "user_name": "tom",
-                "email": "tom@test.com",
-                "phone": null,
-                "address": "seminyak",
-                "message": "ghfhg",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": null,
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": 42.76,
-                "longitude": 88.21,
-                "available_from": "Thu Sep 16 2021 15:12:23 GMT+0530 (India Standard Time)",
-                "available_to": "Fri Sep 16 2021 14:56:34 GMT+0530 (India Standard Time)",
-                "time_available": "10",
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-09-29T07:40:14.000000Z",
-                "updated_at": "2021-10-01T06:21:45.000000Z",
-                "full_name": "Tom Martin",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=TM&color=FFFFFF&background=a85232&height=400&width=400"
+            "lastMessage": {
+                "message": "Hii Jacky accept my request",
+                "read": false,
+                "receiver_id": 53,
+                "sender_id": 54,
+                "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
             },
-            "receiver_chat_request_id": {
-                "id": 48,
-                "first_name": "Adonis",
-                "last_name": "Stanton",
+            "sender_chat_request_id": {
+                "id": 42,
+                "first_name": "Diamond",
+                "last_name": "Lowe",
                 "user_name": null,
-                "email": "shanel35@example.net",
-                "phone": "1-816-597-8063",
+                "email": "maybell21@example.net",
+                "phone": "1-847-561-5377",
                 "address": null,
                 "message": null,
                 "looking_for": 0,
                 "offering": 0,
-                "email_verified_at": "2021-09-28T11:13:44.000000Z",
+                "email_verified_at": "2021-10-04T09:40:51.000000Z",
                 "current_team_id": null,
                 "profile_photo_path": null,
                 "otp": null,
@@ -637,11 +602,176 @@ class FCMController extends Controller
                 "active": 1,
                 "invitation_accept": 0,
                 "currently_online": 1,
-                "created_at": "2021-09-28T11:13:46.000000Z",
-                "updated_at": "2021-09-28T11:13:46.000000Z",
-                "full_name": "Adonis Stanton",
+                "created_at": "2021-10-04T09:40:57.000000Z",
+                "updated_at": "2021-10-04T09:40:57.000000Z",
+                "full_name": "Diamond Lowe",
                 "role_name": "CLIENT",
-                "profile_photo_url": "https://ui-avatars.com/api/?name=AS&color=FFFFFF&background=a85232&height=400&width=400"
+                "profile_photo_url": "https://ui-avatars.com/api/?name=DL&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": null,
+                "professions": null
+            },
+            "receiver_chat_request_id": {
+                "id": 2,
+                "first_name": "Rebecca",
+                "last_name": "Jacobi",
+                "user_name": "rebecca_jacobi",
+                "email": "ubogisich@example.com",
+                "phone": "+1-425-265-9847",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": 1,
+                "profession_id": 2,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T09:40:52.000000Z",
+                "updated_at": "2021-10-04T12:32:41.000000Z",
+                "full_name": "Rebecca Jacobi",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=RJ&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": {
+                    "id": 1,
+                    "industry_name": "industry 1",
+                    "industry_description": "svhskdbkdj",
+                    "active": 1,
+                    "created_at": "2021-10-04T18:07:58.000000Z",
+                    "updated_at": "2021-10-04T18:07:58.000000Z",
+                    "deleted_at": null
+                },
+                "professions": {
+                    "id": 2,
+                    "profession_name": "profession2",
+                    "active": 1,
+                    "created_at": "2021-10-04T18:08:47.000000Z",
+                    "updated_at": "2021-10-04T18:08:47.000000Z"
+                }
+            }
+        },
+        {
+            "id": 1,
+            "sender_id": 6,
+            "receiver_id": 2,
+            "accept": 1,
+            "chat_token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
+            "active": 1,
+            "created_at": "2021-10-04T18:05:27.000000Z",
+            "updated_at": "2021-10-04T18:05:27.000000Z",
+            "deleted_at": null,
+            "lastMessage": {
+                "message": "Accept pls",
+                "read": false,
+                "receiver_id": 55,
+                "sender_id": 53,
+                "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
+            },
+            "sender_chat_request_id": {
+                "id": 6,
+                "first_name": "Vida",
+                "last_name": "Grant",
+                "user_name": null,
+                "email": "xhamill@example.org",
+                "phone": "605.388.8187",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": null,
+                "profession_id": null,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T09:40:54.000000Z",
+                "updated_at": "2021-10-04T09:40:54.000000Z",
+                "full_name": "Vida Grant",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=VG&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": null,
+                "professions": null
+            },
+            "receiver_chat_request_id": {
+                "id": 2,
+                "first_name": "Rebecca",
+                "last_name": "Jacobi",
+                "user_name": "rebecca_jacobi",
+                "email": "ubogisich@example.com",
+                "phone": "+1-425-265-9847",
+                "address": null,
+                "message": null,
+                "looking_for": 0,
+                "offering": 0,
+                "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                "current_team_id": null,
+                "profile_photo_path": null,
+                "otp": null,
+                "social_id": null,
+                "social_account_type": null,
+                "latitude": null,
+                "longitude": null,
+                "available_from": null,
+                "available_to": null,
+                "time_available": null,
+                "social_info": null,
+                "device_type": null,
+                "device_token": null,
+                "industry_id": 1,
+                "profession_id": 2,
+                "fcm_token": null,
+                "active": 1,
+                "invitation_accept": 0,
+                "currently_online": 1,
+                "created_at": "2021-10-04T09:40:52.000000Z",
+                "updated_at": "2021-10-04T12:32:41.000000Z",
+                "full_name": "Rebecca Jacobi",
+                "role_name": "CLIENT",
+                "profile_photo_url": "https://ui-avatars.com/api/?name=RJ&color=FFFFFF&background=a85232&height=400&width=400",
+                "industries": {
+                    "id": 1,
+                    "industry_name": "industry 1",
+                    "industry_description": "svhskdbkdj",
+                    "active": 1,
+                    "created_at": "2021-10-04T18:07:58.000000Z",
+                    "updated_at": "2021-10-04T18:07:58.000000Z",
+                    "deleted_at": null
+                },
+                "professions": {
+                    "id": 2,
+                    "profession_name": "profession2",
+                    "active": 1,
+                    "created_at": "2021-10-04T18:08:47.000000Z",
+                    "updated_at": "2021-10-04T18:08:47.000000Z"
+                }
             }
         }
     ]
@@ -659,6 +789,19 @@ public function getChatRequestDetails()
         
         if($chatdetails->count() == 0){
             return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
+        }
+
+        $tokens = [];
+
+        foreach ($chatdetails as $key => $value) {
+            $tokens[$key] = $value->chat_token;
+        }
+
+        $lastMessages = $this->chatData($tokens);
+
+
+        foreach ($chatdetails as $key => $value) {
+            $chatdetails[$key]['lastMessage'] = $lastMessages[$key];
         }
         return Response()->Json(["status"=>true,"message"=> '','data'=>$chatdetails]);
 
@@ -736,10 +879,13 @@ public function canceltChatRequest(Request $request)
                 $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
 
                 // $chatData[$key] = [
-                //     // "token" => $result,
+                //     "token" => $result,
                 //     "lastMessage" => $resultData,
                 // ];
-                $chatData[$key] = $resultData;
+
+                $getChildKey = $database->getReference('/chatMessages/' . $result)->getChildKeys();
+                $childData = $database->getReference('/chatMessages/' . $result .'/'. $getChildKey[0])->getValue();
+                $chatData[$key] = $childData;
             }
 
             if($snapshot->exists()){
