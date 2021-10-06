@@ -68,6 +68,6 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/get-chat-request-details', [FCMController::class, 'getChatRequestDetails'])->name('get-chat-request-details');
 
     // Firebase chat api
-    Route::get('/get-chat-data', [FCMController::class, 'chatData'])->name('get-chat-data');
+    // Route::get('/get-chat-data', [FCMController::class, 'chatData'])->name('get-chat-data');
 
 });
