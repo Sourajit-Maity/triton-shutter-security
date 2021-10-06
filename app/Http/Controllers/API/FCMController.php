@@ -877,14 +877,15 @@ public function canceltChatRequest(Request $request)
 
             foreach ($tokens as $key => $result) {
                 $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
+                // $resultData = $database->getReference('/chatMessages/rYYeATyUw0rGf0g6ecKNQmZGciL1H0Bp')->orderByKey()->limitToLast(1)->getValue();
 
                 // $chatData[$key] = [
                 //     "token" => $result,
                 //     "lastMessage" => $resultData,
                 // ];
 
-                $getChildKey = $database->getReference('/chatMessages/' . $result)->getChildKeys();
-                $childData = $database->getReference('/chatMessages/' . $result .'/'. $getChildKey[0])->getValue();
+                $getChildKey = array_key_first($resultData);
+                $childData = $database->getReference('/chatMessages/' . $result .'/'. $getChildKey)->getValue();
                 $chatData[$key] = $childData;
             }
 
