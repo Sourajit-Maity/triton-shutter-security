@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 5 2021</li>
+            <li>Last updated: October 6 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -421,123 +421,238 @@ fetch(url, {
     "status": true,
     "message": "",
     "data": [
-        {
-            "id": 2,
-            "sender_id": 51,
-            "receiver_id": 46,
-            "accept": 2,
-            "chat_token": "1zBIwQb5wjaQKTU2pJbiEAd9dEXxy8CQ",
-            "active": 0,
-            "created_at": "2021-10-05T07:42:23.000000Z",
-            "updated_at": "2021-10-05T07:49:05.000000Z",
-            "deleted_at": null,
-            "sender_chat_request_id": {
-                "id": 51,
-                "first_name": "Monique",
-                "last_name": "Welch",
-                "user_name": "monrich",
-                "email": "ferry.melody@example.net",
-                "phone": "2316886936",
-                "address": "&lt;p&gt;fghf&lt;\/p&gt;\n",
-                "message": "&lt;p&gt;ffgh&lt;\/p&gt;\n",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": "2021-10-04T13:26:25.000000Z",
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": null,
-                "longitude": null,
-                "available_from": "fgh",
-                "available_to": "fghf",
-                "time_available": null,
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
+        [
+            {
+                "id": 2,
+                "sender_id": 42,
+                "receiver_id": 2,
+                "accept": 2,
+                "chat_token": "Ahg7R61uTzhKhLddhG2VDKkdvgQMoY68",
                 "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-10-04T13:26:27.000000Z",
-                "updated_at": "2021-10-05T07:54:28.000000Z",
-                "full_name": "Monique Welch",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=MW&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
-                "industries": {
-                    "id": 1,
-                    "industry_name": "hg",
-                    "industry_description": "fgh",
+                "created_at": "2021-10-04T18:05:27.000000Z",
+                "updated_at": "2021-04-02T00:00:00.000000Z",
+                "deleted_at": null,
+                "sender_chat_request_id": {
+                    "id": 42,
+                    "first_name": "Diamond",
+                    "last_name": "Lowe",
+                    "user_name": null,
+                    "email": "maybell21@example.net",
+                    "phone": "1-847-561-5377",
+                    "address": null,
+                    "message": null,
+                    "looking_for": 0,
+                    "offering": 0,
+                    "email_verified_at": "2021-10-04T09:40:51.000000Z",
+                    "current_team_id": null,
+                    "profile_photo_path": null,
+                    "otp": null,
+                    "social_id": null,
+                    "social_account_type": null,
+                    "latitude": null,
+                    "longitude": null,
+                    "available_from": null,
+                    "available_to": null,
+                    "time_available": null,
+                    "social_info": null,
+                    "device_type": null,
+                    "device_token": null,
+                    "industry_id": null,
+                    "profession_id": null,
+                    "fcm_token": null,
                     "active": 1,
-                    "created_at": "2021-10-04T13:33:17.000000Z",
-                    "updated_at": "2021-10-04T13:33:17.000000Z",
-                    "deleted_at": null
+                    "invitation_accept": 0,
+                    "currently_online": 1,
+                    "created_at": "2021-10-04T09:40:57.000000Z",
+                    "updated_at": "2021-10-04T09:40:57.000000Z",
+                    "full_name": "Diamond Lowe",
+                    "role_name": "CLIENT",
+                    "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=DL&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
+                    "industries": null,
+                    "professions": null
                 },
-                "professions": {
-                    "id": 1,
-                    "profession_name": "gh",
+                "receiver_chat_request_id": {
+                    "id": 2,
+                    "first_name": "Rebecca",
+                    "last_name": "Jacobi",
+                    "user_name": "rebecca_jacobi",
+                    "email": "ubogisich@example.com",
+                    "phone": "+1-425-265-9847",
+                    "address": null,
+                    "message": null,
+                    "looking_for": 0,
+                    "offering": 0,
+                    "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                    "current_team_id": null,
+                    "profile_photo_path": null,
+                    "otp": null,
+                    "social_id": null,
+                    "social_account_type": null,
+                    "latitude": null,
+                    "longitude": null,
+                    "available_from": null,
+                    "available_to": null,
+                    "time_available": null,
+                    "social_info": null,
+                    "device_type": null,
+                    "device_token": null,
+                    "industry_id": 1,
+                    "profession_id": 2,
+                    "fcm_token": null,
                     "active": 1,
-                    "created_at": "2021-10-04T13:33:24.000000Z",
-                    "updated_at": "2021-10-04T13:33:24.000000Z"
+                    "invitation_accept": 0,
+                    "currently_online": 1,
+                    "created_at": "2021-10-04T09:40:52.000000Z",
+                    "updated_at": "2021-10-04T12:32:41.000000Z",
+                    "full_name": "Rebecca Jacobi",
+                    "role_name": "CLIENT",
+                    "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=RJ&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
+                    "industries": {
+                        "id": 1,
+                        "industry_name": "industry 1",
+                        "industry_description": "svhskdbkdj",
+                        "active": 1,
+                        "created_at": "2021-10-04T18:07:58.000000Z",
+                        "updated_at": "2021-10-04T18:07:58.000000Z",
+                        "deleted_at": null
+                    },
+                    "professions": {
+                        "id": 2,
+                        "profession_name": "profession2",
+                        "active": 1,
+                        "created_at": "2021-10-04T18:08:47.000000Z",
+                        "updated_at": "2021-10-04T18:08:47.000000Z"
+                    }
                 }
             },
-            "receiver_chat_request_id": {
-                "id": 46,
-                "first_name": "Hunter",
-                "last_name": "Gleichner",
-                "user_name": "hunter",
-                "email": "ihegmann@example.net",
-                "phone": "2193608359",
-                "address": "&lt;p&gt;234&lt;\/p&gt;\n",
-                "message": "&lt;p&gt;234&lt;\/p&gt;\n",
-                "looking_for": 1,
-                "offering": 1,
-                "email_verified_at": "2021-10-04T13:26:25.000000Z",
-                "current_team_id": null,
-                "profile_photo_path": null,
-                "otp": null,
-                "social_id": null,
-                "social_account_type": null,
-                "latitude": null,
-                "longitude": null,
-                "available_from": "1424",
-                "available_to": "2342",
-                "time_available": null,
-                "social_info": null,
-                "device_type": null,
-                "device_token": "22",
-                "industry_id": 1,
-                "profession_id": 1,
-                "fcm_token": null,
-                "active": 1,
-                "invitation_accept": 0,
-                "currently_online": 1,
-                "created_at": "2021-10-04T13:26:27.000000Z",
-                "updated_at": "2021-10-05T07:53:15.000000Z",
-                "full_name": "Hunter Gleichner",
-                "role_name": "CLIENT",
-                "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=HG&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
-                "industries": {
-                    "id": 1,
-                    "industry_name": "hg",
-                    "industry_description": "fgh",
-                    "active": 1,
-                    "created_at": "2021-10-04T13:33:17.000000Z",
-                    "updated_at": "2021-10-04T13:33:17.000000Z",
-                    "deleted_at": null
-                },
-                "professions": {
-                    "id": 1,
-                    "profession_name": "gh",
-                    "active": 1,
-                    "created_at": "2021-10-04T13:33:24.000000Z",
-                    "updated_at": "2021-10-04T13:33:24.000000Z"
+            {
+                "lastMessage": {
+                    "-MlE9zU29BgZ9_i27Dht": {
+                        "message": "Hii Jacky accept my request",
+                        "read": false,
+                        "receiver_id": 53,
+                        "sender_id": 54,
+                        "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
+                    }
                 }
             }
-        }
+        ],
+        [
+            {
+                "id": 1,
+                "sender_id": 2,
+                "receiver_id": 33,
+                "accept": 2,
+                "chat_token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
+                "active": 1,
+                "created_at": "2021-10-04T18:05:27.000000Z",
+                "updated_at": "2021-10-04T18:05:27.000000Z",
+                "deleted_at": null,
+                "sender_chat_request_id": {
+                    "id": 2,
+                    "first_name": "Rebecca",
+                    "last_name": "Jacobi",
+                    "user_name": "rebecca_jacobi",
+                    "email": "ubogisich@example.com",
+                    "phone": "+1-425-265-9847",
+                    "address": null,
+                    "message": null,
+                    "looking_for": 0,
+                    "offering": 0,
+                    "email_verified_at": "2021-10-04T09:40:48.000000Z",
+                    "current_team_id": null,
+                    "profile_photo_path": null,
+                    "otp": null,
+                    "social_id": null,
+                    "social_account_type": null,
+                    "latitude": null,
+                    "longitude": null,
+                    "available_from": null,
+                    "available_to": null,
+                    "time_available": null,
+                    "social_info": null,
+                    "device_type": null,
+                    "device_token": null,
+                    "industry_id": 1,
+                    "profession_id": 2,
+                    "fcm_token": null,
+                    "active": 1,
+                    "invitation_accept": 0,
+                    "currently_online": 1,
+                    "created_at": "2021-10-04T09:40:52.000000Z",
+                    "updated_at": "2021-10-04T12:32:41.000000Z",
+                    "full_name": "Rebecca Jacobi",
+                    "role_name": "CLIENT",
+                    "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=RJ&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
+                    "industries": {
+                        "id": 1,
+                        "industry_name": "industry 1",
+                        "industry_description": "svhskdbkdj",
+                        "active": 1,
+                        "created_at": "2021-10-04T18:07:58.000000Z",
+                        "updated_at": "2021-10-04T18:07:58.000000Z",
+                        "deleted_at": null
+                    },
+                    "professions": {
+                        "id": 2,
+                        "profession_name": "profession2",
+                        "active": 1,
+                        "created_at": "2021-10-04T18:08:47.000000Z",
+                        "updated_at": "2021-10-04T18:08:47.000000Z"
+                    }
+                },
+                "receiver_chat_request_id": {
+                    "id": 33,
+                    "first_name": "Ebba",
+                    "last_name": "Brakus",
+                    "user_name": null,
+                    "email": "micaela.champlin@example.net",
+                    "phone": "401-637-2848",
+                    "address": null,
+                    "message": null,
+                    "looking_for": 0,
+                    "offering": 0,
+                    "email_verified_at": "2021-10-04T09:40:50.000000Z",
+                    "current_team_id": null,
+                    "profile_photo_path": null,
+                    "otp": null,
+                    "social_id": null,
+                    "social_account_type": null,
+                    "latitude": null,
+                    "longitude": null,
+                    "available_from": null,
+                    "available_to": null,
+                    "time_available": null,
+                    "social_info": null,
+                    "device_type": null,
+                    "device_token": null,
+                    "industry_id": null,
+                    "profession_id": null,
+                    "fcm_token": null,
+                    "active": 1,
+                    "invitation_accept": 0,
+                    "currently_online": 1,
+                    "created_at": "2021-10-04T09:40:57.000000Z",
+                    "updated_at": "2021-10-04T09:40:57.000000Z",
+                    "full_name": "Ebba Brakus",
+                    "role_name": "CLIENT",
+                    "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=EB&amp;color=FFFFFF&amp;background=a85232&amp;height=400&amp;width=400",
+                    "industries": null,
+                    "professions": null
+                }
+            },
+            {
+                "lastMessage": {
+                    "-MlABRUO_XkiIw4e97NX": {
+                        "message": "Accept pls",
+                        "read": false,
+                        "receiver_id": 55,
+                        "sender_id": 53,
+                        "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
+                    }
+                }
+            }
+        ]
     ]
 }</code></pre>
 <blockquote>
@@ -708,158 +823,6 @@ fetch(url, {
 </p>
 <p>
 <label id="auth-GETapi-get-chat-request-details" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-request-details" data-component="header"></label>
-</p>
-</form>
-<h2>Last Chat With Token</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/get-chat-data"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "message": "",
-    "data": [
-        {
-            "token": "rYYeATyUw0rGf0g6ecKNQmZGciL1H0Bp",
-            "lastMessage": {
-                "-MlEduHCOabPRCWkKjHc": {
-                    "message": "Ok good",
-                    "read": false,
-                    "receiver_id": 55,
-                    "sender_id": 54,
-                    "time": "Tue Oct 05 2021 14:22:39 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "XnS1OXNREigzD9OYl9ZJdE3ZvfvJEQNn",
-            "lastMessage": {
-                "-MlABRUO_XkiIw4e97NX": {
-                    "message": "Accept pls",
-                    "read": false,
-                    "receiver_id": 55,
-                    "sender_id": 53,
-                    "time": "Mon Oct 04 2021 17:35:26 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "wq7xA2llDnRTnCLW6TBrqQf1lRAyyof9",
-            "lastMessage": {
-                "-Ml8p3y1Im6GHWILokJu": {
-                    "message": "Hii",
-                    "read": false,
-                    "receiver_id": 81,
-                    "sender_id": 55,
-                    "time": "Mon Oct 04 2021 11:13:43 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "RdUtHzS6dg5kPX1xCyob7mDSjkq4moXy",
-            "lastMessage": {
-                "-Mkw-OmKdg0wROdzS5si": {
-                    "message": "Hello",
-                    "read": false,
-                    "receiver_id": 53,
-                    "sender_id": 55,
-                    "time": "Fri Oct 01 2021 18:48:31 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "E8rXR7w3jMWuUpj7MxBAI1BeDP9MFhDl",
-            "lastMessage": {
-                "-MkvyWAuOkNEvyrOh7Ah": {
-                    "message": "Hi",
-                    "read": false,
-                    "receiver_id": 53,
-                    "sender_id": 55,
-                    "time": "Fri Oct 01 2021 18:40:17 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "DhtHjC39cuDFSmgoYMgFRYAylCB7FtGA",
-            "lastMessage": {
-                "-MlEjnMbtFX_BY_ZB4zJ": {
-                    "message": "Hrl",
-                    "read": false,
-                    "receiver_id": 51,
-                    "sender_id": 54,
-                    "time": "Tue Oct 05 2021 14:48:23 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "Bm3d5fNAYPQooSBMxS0hJi4ER53qxPqs",
-            "lastMessage": {
-                "-Mkvx_XNbUyh2ud51a_3": {
-                    "message": "Hi",
-                    "read": false,
-                    "receiver_id": 53,
-                    "sender_id": 55,
-                    "time": "Fri Oct 01 2021 18:36:12 GMT+0530"
-                }
-            }
-        },
-        {
-            "token": "Ahg7R61uTzhKhLddhG2VDKkdvgQMoY68",
-            "lastMessage": {
-                "-MlE9zU29BgZ9_i27Dht": {
-                    "message": "Hii Jacky accept my request",
-                    "read": false,
-                    "receiver_id": 53,
-                    "sender_id": 54,
-                    "time": "Tue Oct 05 2021 12:07:34 GMT+0530"
-                }
-            }
-        }
-    ]
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated."
-}</code></pre>
-<div id="execution-results-GETapi-get-chat-data" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-chat-data"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-chat-data"></code></pre>
-</div>
-<div id="execution-error-GETapi-get-chat-data" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-chat-data"></code></pre>
-</div>
-<form id="form-GETapi-get-chat-data" data-method="GET" data-path="api/get-chat-data" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-chat-data', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-chat-data" onclick="tryItOut('GETapi-get-chat-data');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-chat-data" onclick="cancelTryOut('GETapi-get-chat-data');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-chat-data" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/get-chat-data</code></b>
-</p>
-<p>
-<label id="auth-GETapi-get-chat-data" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-chat-data" data-component="header"></label>
 </p>
 </form><h1>Invitation Management</h1>
 <p>APIs for managing  invitation functionality</p>
@@ -1116,7 +1079,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/quia"
+    "http://localhost:8000/api/invites/fugiat"
 );
 
 let headers = {
@@ -1183,7 +1146,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/veniam"
+    "http://localhost:8000/api/invites/quam"
 );
 
 let headers = {
@@ -1255,7 +1218,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/nisi"
+    "http://localhost:8000/api/invites/aspernatur"
 );
 
 let headers = {
@@ -1989,132 +1952,6 @@ fetch(url, {
  <b><code>api/profession/all</code></b>
 </p>
 </form>
-<h2>User Filter list</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/get-user-list/1/1/1/1/nulla/1/iste"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "data": [
-        {
-            "id": 52,
-            "user_name": "sourm",
-            "first_name": "Sourajit",
-            "last_name": "M",
-            "looking_for": 1,
-            "available_from": "2021-09-03 06:39:02",
-            "available_to": "2021-09-03 06:39:02",
-            "offering": 0,
-            "email": "sourajitm8@gmail.com1",
-            "industry_id": 1,
-            "profession_id": 1,
-            "address": "gfdgdgd",
-            "latitude": 45.12,
-            "longitude": 74.52,
-            "distance": 0,
-            "full_name": "Sourajit M",
-            "role_name": "CLIENT",
-            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Sourajit&amp;color=7F9CF5&amp;background=EBF4FF",
-            "industries": {
-                "id": 1,
-                "industry_name": "fghf",
-                "industry_description": "fghfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:29.000000Z",
-                "updated_at": "2021-09-03T07:07:29.000000Z",
-                "deleted_at": null
-            },
-            "professions": {
-                "id": 1,
-                "profession_name": "gfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:21.000000Z",
-                "updated_at": "2021-09-03T07:07:21.000000Z"
-            }
-        }
-    ]
-}</code></pre>
-<div id="execution-results-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
-</div>
-<div id="execution-error-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
-</div>
-<form id="form-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-method="GET" data-path="api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="tryItOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="cancelTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="industry_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="profession_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>looking_for</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="looking_for" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>offering</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="offering" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-Example: 1/0
- @urlParam latitude number required
-</p>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="longitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-Example: 1
- @urlParam radius number required
-</p>
-<p>
-<b><code>radius</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="radius" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-</form>
 <h2>User View</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -2223,7 +2060,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'recusandae');
+body.append('available_from', 'amet');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -2422,99 +2259,6 @@ fetch(url, {
 
 </p>
 
-</form>
-<h2>Update-User</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/update-user/doloribus"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "message": "Success! User updated",
-    "data": {
-        "id": 54,
-        "first_name": "Jack",
-        "last_name": "Dawson",
-        "email": "jack@test.com",
-        "phone": "5654665756",
-        "address": "Test Address",
-        "email_verified_at": null,
-        "current_team_id": null,
-        "profile_photo_path": null,
-        "otp": null,
-        "social_id": null,
-        "social_account_type": null,
-        "latitude": "22.86",
-        "longitude": "45.65",
-        "available_from": "12.00",
-        "available_to": "5.00",
-        "social_info": null,
-        "device_type": null,
-        "device_token": null,
-        "industry_id": "2",
-        "profession_id": "2",
-        "message": "message",
-        "looking_for": "1",
-        "offering": "0",
-        "active": 0,
-        "created_at": "2021-08-19T05:07:36.000000Z",
-        "updated_at": "2021-08-19T08:06:38.000000Z",
-        "full_name": "test test",
-        "role_name": "CLIENT",
-        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=test&amp;color=7F9CF5&amp;background=EBF4FF"
-    }
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Unauthenticated."
-}</code></pre>
-<div id="execution-results-PATCHapi-update-user--user-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PATCHapi-update-user--user-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-update-user--user-"></code></pre>
-</div>
-<div id="execution-error-PATCHapi-update-user--user-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-update-user--user-"></code></pre>
-</div>
-<form id="form-PATCHapi-update-user--user-" data-method="PATCH" data-path="api/update-user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PATCHapi-update-user--user-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PATCHapi-update-user--user-" onclick="tryItOut('PATCHapi-update-user--user-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PATCHapi-update-user--user-" onclick="cancelTryOut('PATCHapi-update-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PATCHapi-update-user--user-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-purple">PATCH</small>
- <b><code>api/update-user/{user}</code></b>
-</p>
-<p>
-<label id="auth-PATCHapi-update-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PATCHapi-update-user--user-" data-component="header"></label>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="user" data-endpoint="PATCHapi-update-user--user-" data-component="url" required  hidden>
-<br>
-
-</p>
 </form>
 <h2>Password Change</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -4356,32 +4100,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "latitude": "22.43",
-    "longitude": "82.15"
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "status": true,
-    "message": "Data Saved successfully.",
-    "data": {
-        "profession_id": "1",
-        "offering": "1",
-        "radius": "1",
-        "user_id": 54,
-        "updated_at": "2021-09-23T07:22:53.000000Z",
-        "created_at": "2021-09-23T07:22:53.000000Z",
-        "id": 9
-    }
-}</code></pre>
 <div id="execution-results-POSTapi-search" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
@@ -4401,20 +4123,6 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/search</code></b>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="longitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
-<br>
-
-</p>
-
 </form>
 <h2>api/last-filter-data</h2>
 <blockquote>

@@ -746,143 +746,6 @@ fetch(url, {
 </form>
 
 
-## User Filter list
-
-
-
-
-> Example request:
-
-```javascript
-const url = new URL(
-    "http://localhost:8000/api/get-user-list/1/1/1/1/nulla/1/iste"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "data": [
-        {
-            "id": 52,
-            "user_name": "sourm",
-            "first_name": "Sourajit",
-            "last_name": "M",
-            "looking_for": 1,
-            "available_from": "2021-09-03 06:39:02",
-            "available_to": "2021-09-03 06:39:02",
-            "offering": 0,
-            "email": "sourajitm8@gmail.com1",
-            "industry_id": 1,
-            "profession_id": 1,
-            "address": "gfdgdgd",
-            "latitude": 45.12,
-            "longitude": 74.52,
-            "distance": 0,
-            "full_name": "Sourajit M",
-            "role_name": "CLIENT",
-            "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Sourajit&color=7F9CF5&background=EBF4FF",
-            "industries": {
-                "id": 1,
-                "industry_name": "fghf",
-                "industry_description": "fghfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:29.000000Z",
-                "updated_at": "2021-09-03T07:07:29.000000Z",
-                "deleted_at": null
-            },
-            "professions": {
-                "id": 1,
-                "profession_name": "gfhf",
-                "active": 1,
-                "created_at": "2021-09-03T07:07:21.000000Z",
-                "updated_at": "2021-09-03T07:07:21.000000Z"
-            }
-        }
-    ]
-}
-```
-<div id="execution-results-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
-</div>
-<div id="execution-error-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-"></code></pre>
-</div>
-<form id="form-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-method="GET" data-path="api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="tryItOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" onclick="cancelTryOut('GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>industry_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="industry_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>profession_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="profession_id" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>looking_for</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="looking_for" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>offering</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="offering" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-Example: 1/0
- @urlParam latitude number required
-</p>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-<input type="number" name="longitude" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-Example: 1
- @urlParam radius number required
-</p>
-<p>
-<b><code>radius</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="radius" data-endpoint="GETapi-get-user-list--industry_id---profession_id---looking_for---offering---latitude---longitude---radius-" data-component="url" required  hidden>
-<br>
-
-</p>
-</form>
-
-
 ## User View
 
 <small class="badge badge-darkred">requires authentication</small>
@@ -1007,7 +870,7 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'recusandae');
+body.append('available_from', 'amet');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -1221,111 +1084,6 @@ fetch(url, {
 
 </p>
 
-</form>
-
-
-## Update-User
-
-<small class="badge badge-darkred">requires authentication</small>
-
-
-
-> Example request:
-
-```javascript
-const url = new URL(
-    "http://localhost:8000/api/update-user/doloribus"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "message": "Success! User updated",
-    "data": {
-        "id": 54,
-        "first_name": "Jack",
-        "last_name": "Dawson",
-        "email": "jack@test.com",
-        "phone": "5654665756",
-        "address": "Test Address",
-        "email_verified_at": null,
-        "current_team_id": null,
-        "profile_photo_path": null,
-        "otp": null,
-        "social_id": null,
-        "social_account_type": null,
-        "latitude": "22.86",
-        "longitude": "45.65",
-        "available_from": "12.00",
-        "available_to": "5.00",
-        "social_info": null,
-        "device_type": null,
-        "device_token": null,
-        "industry_id": "2",
-        "profession_id": "2",
-        "message": "message",
-        "looking_for": "1",
-        "offering": "0",
-        "active": 0,
-        "created_at": "2021-08-19T05:07:36.000000Z",
-        "updated_at": "2021-08-19T08:06:38.000000Z",
-        "full_name": "test test",
-        "role_name": "CLIENT",
-        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=test&color=7F9CF5&background=EBF4FF"
-    }
-}
-```
-> Example response (401):
-
-```json
-{
-    "message": "Unauthenticated."
-}
-```
-<div id="execution-results-PATCHapi-update-user--user-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PATCHapi-update-user--user-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-update-user--user-"></code></pre>
-</div>
-<div id="execution-error-PATCHapi-update-user--user-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-update-user--user-"></code></pre>
-</div>
-<form id="form-PATCHapi-update-user--user-" data-method="PATCH" data-path="api/update-user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PATCHapi-update-user--user-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PATCHapi-update-user--user-" onclick="tryItOut('PATCHapi-update-user--user-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PATCHapi-update-user--user-" onclick="cancelTryOut('PATCHapi-update-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PATCHapi-update-user--user-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-purple">PATCH</small>
- <b><code>api/update-user/{user}</code></b>
-</p>
-<p>
-<label id="auth-PATCHapi-update-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PATCHapi-update-user--user-" data-component="header"></label>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="user" data-endpoint="PATCHapi-update-user--user-" data-component="url" required  hidden>
-<br>
-
-</p>
 </form>
 
 
@@ -3195,36 +2953,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "latitude": "22.43",
-    "longitude": "82.15"
-}
 
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response => response.json());
 ```
 
 
-> Example response (200):
-
-```json
-{
-    "status": true,
-    "message": "Data Saved successfully.",
-    "data": {
-        "profession_id": "1",
-        "offering": "1",
-        "radius": "1",
-        "user_id": 54,
-        "updated_at": "2021-09-23T07:22:53.000000Z",
-        "created_at": "2021-09-23T07:22:53.000000Z",
-        "id": 9
-    }
-}
-```
 <div id="execution-results-POSTapi-search" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
@@ -3244,20 +2980,6 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/search</code></b>
 </p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>latitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="latitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
-<br>
-
-</p>
-<p>
-<b><code>longitude</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="longitude" data-endpoint="POSTapi-search" data-component="body" required  hidden>
-<br>
-
-</p>
-
 </form>
 
 
