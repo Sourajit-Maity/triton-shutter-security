@@ -2809,7 +2809,6 @@ try{
 
                 $rules = [
                     "distance"   =>      "required",
-                    "share_current_loc"   =>      "required",  
                     "hide_profile"    =>      "required",     
                 ];
                 $validator = Validator::make($request->all(),$rules);
@@ -2834,7 +2833,7 @@ try{
         } else {
             $inputs = $request->all();
             $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
-            "share_current_loc" => $request->share_current_loc, "hide_profile" => $request->hide_profile,));
+             "hide_profile" => $request->hide_profile,));
 
             return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
