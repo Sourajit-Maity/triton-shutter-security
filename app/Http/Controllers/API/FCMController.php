@@ -867,9 +867,7 @@ public function canceltChatRequest(Request $request)
                     ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
 
             $database = $factory->createDatabase();
-            $reference = $database->getReference('/chatMessages/');
-            $snapshot = $reference->getSnapshot();
-
+            // $snapshot = $database->getReference('/chatMessages/')->getSnapshot();
             // $tokens = $database->getReference('/chatMessages/')->getChildKeys();
 
             $chatData = [];
@@ -877,21 +875,21 @@ public function canceltChatRequest(Request $request)
 
             foreach ($tokens as $key => $result) {
                 $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
-
-                // $chatData[$key] = [
-                //     "token" => $result,
-                //     "lastMessage" => $resultData,
-                // ];
-
                 $getChildKey = array_key_first($resultData);
                 $chatData[$key] = $resultData[$getChildKey];
             }
 
-            if($snapshot->exists()){
+            if(count($chatData) > 0){
                 return $chatData;
             }else{
                 return $chatData;
             }
+
+            // if($snapshot->exists()){
+            //     return $chatData;
+            // }else{
+            //     return $chatData;
+            // }
         } catch (\Exception $e) {
             return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
         }
