@@ -2684,7 +2684,7 @@ try{
         
        
 
-        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
         ( 6371 * acos( cos( radians(?) ) *
           cos( radians( latitude ) )
           * cos( radians( longitude ) - radians(?)
