@@ -2714,17 +2714,28 @@ try{
     { 
        
         $user = Filter::where('user_id', Auth::user()->id)->first();
+        $loginUser = User::find(Auth::user()->id);
         if (empty($user)) {
 
             $filter=new Filter($request->all());
             $filter->user_id=auth()->user()->id;
             $filter->save();
 
+            if ($request->online != "") {
+                $loginUser->status = $request->online;
+                $loginUser->save();
+            }
+
             return response()->json(["status" => true,  "message" => "Success! data save completed", "data" => $filter]);
         } else {
             $inputs = $request->all();
             $filter = Filter::where('user_id', Auth::user()->id)->update(array("industry_id" => $request->industry_id, "profession_id" => $request->profession_id,
             "looking_for" => $request->looking_for,"online" => $request->online, "offering" => $request->offering,"radius" => $request->radius));
+
+            if ($request->online != "") {
+                $loginUser->status = $request->online;
+                $loginUser->save();
+            }
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            
