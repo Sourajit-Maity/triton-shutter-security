@@ -2684,7 +2684,7 @@ try{
         
        
 
-        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+        $userdata = $user->selectRaw("id, user_name,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
         ( 6371 * acos( cos( radians(?) ) *
           cos( radians( latitude ) )
           * cos( radians( longitude ) - radians(?)
@@ -2714,17 +2714,28 @@ try{
     { 
        
         $user = Filter::where('user_id', Auth::user()->id)->first();
+        $loginUser = User::find(Auth::user()->id);
         if (empty($user)) {
 
             $filter=new Filter($request->all());
             $filter->user_id=auth()->user()->id;
             $filter->save();
 
+            if ($request->online != "") {
+                $loginUser->status = $request->online;
+                $loginUser->save();
+            }
+
             return response()->json(["status" => true,  "message" => "Success! data save completed", "data" => $filter]);
         } else {
             $inputs = $request->all();
             $filter = Filter::where('user_id', Auth::user()->id)->update(array("industry_id" => $request->industry_id, "profession_id" => $request->profession_id,
             "looking_for" => $request->looking_for,"online" => $request->online, "offering" => $request->offering,"radius" => $request->radius));
+
+            if ($request->online != "") {
+                $loginUser->status = $request->online;
+                $loginUser->save();
+            }
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            
@@ -2808,7 +2819,7 @@ try{
         try{
 
                 $rules = [
-                    "distance"   =>      "required",
+                    "distance"   =>      "required",  
                     "hide_profile"    =>      "required",     
                 ];
                 $validator = Validator::make($request->all(),$rules);
@@ -2832,8 +2843,7 @@ try{
             return response()->json(["status" => true,  "message" => "Success! Setting save completed", "data" => $distance]);
         } else {
             $inputs = $request->all();
-            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance,
-             "hide_profile" => $request->hide_profile,));
+            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile,));
 
             return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
@@ -2978,7 +2988,7 @@ try{
             //     $user->where('online', $currentlyonline);
             // }
             
-            $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude,
+            $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
             ( 6371 * acos( cos( radians(?) ) *
             cos( radians( latitude ) )
             * cos( radians( longitude ) - radians(?)

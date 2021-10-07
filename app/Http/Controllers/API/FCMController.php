@@ -871,7 +871,6 @@ public function canceltChatRequest(Request $request)
             // $tokens = $database->getReference('/chatMessages/')->getChildKeys();
 
             $chatData = [];
-            $resultData = [];
 
             foreach ($tokens as $key => $result) {
                 $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
