@@ -884,8 +884,7 @@ public function canceltChatRequest(Request $request)
                 // ];
 
                 $getChildKey = array_key_first($resultData);
-                $childData = $database->getReference('/chatMessages/' . $result .'/'. $getChildKey)->getValue();
-                $chatData[$key] = $childData;
+                $chatData[$key] = $resultData[$getChildKey];
             }
 
             if($snapshot->exists()){
