@@ -884,12 +884,6 @@ public function canceltChatRequest(Request $request)
             }else{
                 return $chatData;
             }
-
-            // if($snapshot->exists()){
-            //     return $chatData;
-            // }else{
-            //     return $chatData;
-            // }
         } catch (\Exception $e) {
             return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
         }
