@@ -2834,16 +2834,27 @@ try{
                 }
     
         $user = UserDistance::where('user_id', Auth::user()->id)->first();
+        $userHideProfile = User::find(Auth::user()->id);
         if (empty($user)) {
 
             $distance=new UserDistance($request->all());
             $distance->user_id=auth()->user()->id;
             $distance->save();
 
+            if ($request->hide_profile != "") {
+                $userHideProfile->hide_profile = $request->hide_profile;
+                $userHideProfile->save();
+            }
+
             return response()->json(["status" => true,  "message" => "Success! Setting save completed", "data" => $distance]);
         } else {
             $inputs = $request->all();
             $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile,));
+
+            if ($request->hide_profile != "") {
+                $userHideProfile->hide_profile = $request->hide_profile;
+                $userHideProfile->save();
+            }
 
             return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
@@ -2979,10 +2990,14 @@ try{
         
             if ($offeringid !='0') {
                 $user->where('offering', $offeringid);
+            }else{
+                $user->where('offering', 0);
             }
 
             if ($lookingforid !='0') {
                 $user->where('looking_for', $lookingforid);
+            }else{
+                $user->where('looking_for', 0);
             }
             // if ($currentlyonline !='0') {
             //     $user->where('online', $currentlyonline);
@@ -2998,6 +3013,7 @@ try{
                 ->having("distance", "<", $radius)
                 ->orderBy("distance",'asc')
                 ->where('id', '!=', auth()->id())
+                ->where('hide_profile', 1)
                 ->with(['industries','professions'])
                 ->offset(0)
                 ->limit(20)            
