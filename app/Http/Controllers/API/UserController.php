@@ -2990,10 +2990,14 @@ try{
         
             if ($offeringid !='0') {
                 $user->where('offering', $offeringid);
+            }else{
+                $user->where('offering', 0);
             }
 
             if ($lookingforid !='0') {
                 $user->where('looking_for', $lookingforid);
+            }else{
+                $user->where('looking_for', 0);
             }
             // if ($currentlyonline !='0') {
             //     $user->where('online', $currentlyonline);
