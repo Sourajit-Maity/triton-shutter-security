@@ -2714,28 +2714,17 @@ try{
     { 
        
         $user = Filter::where('user_id', Auth::user()->id)->first();
-        $loginUser = User::find(Auth::user()->id);
         if (empty($user)) {
 
             $filter=new Filter($request->all());
             $filter->user_id=auth()->user()->id;
             $filter->save();
 
-            if ($request->online != "") {
-                $loginUser->status = $request->online;
-                $loginUser->save();
-            }
-
             return response()->json(["status" => true,  "message" => "Success! data save completed", "data" => $filter]);
         } else {
             $inputs = $request->all();
             $filter = Filter::where('user_id', Auth::user()->id)->update(array("industry_id" => $request->industry_id, "profession_id" => $request->profession_id,
             "looking_for" => $request->looking_for,"online" => $request->online, "offering" => $request->offering,"radius" => $request->radius));
-
-            if ($request->online != "") {
-                $loginUser->status = $request->online;
-                $loginUser->save();
-            }
 
             return response()->json(["status" => true,   "message" => "Success! update successfull",  "data" => $inputs]);
            
@@ -2838,23 +2827,31 @@ try{
         if (empty($user)) {
 
             $distance=new UserDistance($request->all());
+            if ($request->has('online')) {
+                $distance->online = $request->online;
+            }
             $distance->user_id=auth()->user()->id;
             $distance->save();
 
-            if ($request->hide_profile != "") {
-                $userHideProfile->hide_profile = $request->hide_profile;
-                $userHideProfile->save();
+            if ($request->has('online')) {
+                $userHideProfile->status = $request->online;
             }
+            $userHideProfile->hide_profile = $request->hide_profile;
+            $userHideProfile->save();
 
             return response()->json(["status" => true,  "message" => "Success! Setting save completed", "data" => $distance]);
         } else {
             $inputs = $request->all();
-            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile,));
+            $online = "0";
 
-            if ($request->hide_profile != "") {
-                $userHideProfile->hide_profile = $request->hide_profile;
-                $userHideProfile->save();
+            if ($request->has('online')) {
+                $userHideProfile->status = $request->online;
+                $online = $request->online;
             }
+            $userHideProfile->hide_profile = $request->hide_profile;
+            $userHideProfile->save();
+
+            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile, "online" => $online));
 
             return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
