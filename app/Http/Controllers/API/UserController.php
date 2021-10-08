@@ -2882,55 +2882,91 @@ try{
 
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
+            $filterData = Filter::where('user_id', $userid)->get();
+            // $industryid = Filter::where('user_id', $userid)->value('industry_id');
+            // $professionid = Filter::where('user_id', $userid)->value('profession_id');
+            // $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
+            // $offeringid = Filter::where('user_id', $userid)->value('offering');
+            // $radiusid = Filter::where('user_id', $userid)->value('radius');
+            // $currentlyonline = Filter::where('user_id', $userid)->value('online');
+            // $filterData = Filter::where('user_id', $userid)->get();
+            // //dd($user) ;
+            // if (count($filterData) > 0) {
+    
+            //     // if ($lookingfor != NULL) {
+            //     //     $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
+            //     // }
+            //     // else{
+            //     //     $lookingforid = 1;
+            //     // }
+            //     if ($radiusid != NULL) {
+            //         $radius = Filter::where('user_id', $userid)->value('radius');
+            //     }
+            //     else{
+            //         $radius = 5;
+            //     }  
 
+            //     $user = $user->newQuery(); 
+
+            //     if($industryid != NULL) {
+            //         $user->where('industry_id', $industryid);
+            //     }
+            
+            //     if ($professionid != NULL) {
+            //         $user->where('profession_id', $professionid);
+            //     }
+            
+            //     // if ($offeringid !='0') {
+            //     //     $user->where('offering', $offeringid);
+            //     // }else{
+            //     //     $user->where('offering', 0);
+            //     // }
+    
+            //     // if ($lookingforid !='0') {
+            //     //     $user->where('looking_for', $lookingforid);
+            //     // }else{
+            //     //     $user->where('looking_for', 0);
+            //     // }
+            //     // if ($currentlyonline !='0') {
+            //     //     $user->where('online', $currentlyonline);
+            //     // }
             $industryid = Filter::where('user_id', $userid)->value('industry_id');
             $professionid = Filter::where('user_id', $userid)->value('profession_id');
             $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
             $radiusid = Filter::where('user_id', $userid)->value('radius');
             $currentlyonline = Filter::where('user_id', $userid)->value('online');
-            $filterData = Filter::where('user_id', $userid)->get();
-            //dd($user) ;
-            if (count($filterData) > 0) {
-    
-                if ($lookingfor != NULL) {
-                    $lookingforid = Filter::where('user_id', $userid)->value('looking_for');
-                }
-                else{
-                    $lookingforid = 1;
-                }
-                if ($radiusid != NULL) {
-                    $radius = Filter::where('user_id', $userid)->value('radius');
-                }
-                else{
-                    $radius = 5;
-                }   
-                $user = $user->newQuery(); 
+            //dd($professionid);
 
-                if($industryid != NULL) {
-                    $user->where('industry_id', $industryid);
-                }
             
-                if ($professionid != NULL) {
-                    $user->where('profession_id', $professionid);
-                }
-            
-                if ($offeringid !='0') {
-                    $user->where('offering', $offeringid);
-                }else{
-                    $user->where('offering', 0);
-                }
-    
-                if ($lookingforid !='0') {
-                    $user->where('looking_for', $lookingforid);
-                }else{
-                    $user->where('looking_for', 0);
-                }
-                // if ($currentlyonline !='0') {
-                //     $user->where('online', $currentlyonline);
-                // }
+            if ($radiusid != NULL) {
+                $radius = Filter::where('user_id', $userid)->value('radius');
+            }
+            else{
+                $radius = 5;
+            }
+
+            // $latitude = $request->input('latitude');
+            // $longitude = $request->input('longitude');
+        if (count($filterData) > 0) {
+            $user = $user->newQuery();    
+
+            // if (isset($industryid)) 
+            if($industryid != NULL) {
+                $user->where('industry_id', $industryid);
+            }
+        
+            if ($professionid != NULL) {
+                $user->where('profession_id', $professionid);
+            }
+            if ($offeringid == '1') {
+                $user->where('offering', $offeringid);
+            }
+            if ($lookingfor == '1') {
+                $user->where('looking_for', $lookingfor);
+            }
                 
-                $userdata = User::selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
+                $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
                 * cos( radians( longitude ) - radians(?)
@@ -2940,16 +2976,14 @@ try{
                     ->having("distance", "<", $radius)
                     ->orderBy("distance",'asc')  
                     ->where('id', '!=', auth()->id())
-                   ->orWhere('offering',$offeringid)  
-                   ->orWhere('looking_for',$lookingfor)
-                   ->orWhere('industry_id',$industryid)
-                   ->orWhere('profession_id',$professionid)                                   
+                                                
                     ->where('hide_profile', 1)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-            }else{
+            }
+            else{
                 $radius = 5;
                 $userdata = User::selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
