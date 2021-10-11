@@ -2871,25 +2871,19 @@ try{
             "longitude"   =>      "required",         
         ]);
 
-
-
         if($validator->fails())
         return response()->json(["status" => false, "message" => $validator->errors()]);
-
         
             $userid= Auth::user()->id;
-            
-
             $latitude = $request->input('latitude');
             $longitude = $request->input('longitude');
             $filterData = Filter::where('user_id', $userid)->get();
-
             $industryid = Filter::where('user_id', $userid)->value('industry_id');
             $professionid = Filter::where('user_id', $userid)->value('profession_id');
             $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
             $radiusid = Filter::where('user_id', $userid)->value('radius');
-            $currentlyonline = Filter::where('user_id', $userid)->value('online');
+           // $currentlyonline = Filter::where('user_id', $userid)->value('online');
            
             if ($radiusid != NULL) {
                 $radius = Filter::where('user_id', $userid)->value('radius');
@@ -2901,7 +2895,6 @@ try{
         if (count($filterData) > 0) {
             $user = $user->newQuery();    
 
-            // if (isset($industryid)) 
             if($industryid != NULL) {
                 $user->where('industry_id', $industryid);
             }
@@ -2915,6 +2908,9 @@ try{
             if ($lookingfor == '1') {
                 $user->where('looking_for', $lookingfor);
             }
+            // if ($currentlyonline == '1') {
+            //     $user->where('status', $currentlyonline);
+            // }
                 
                 $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
@@ -2927,7 +2923,7 @@ try{
                     ->orderBy("distance",'asc')  
                     ->where('id', '!=', auth()->id())                                               
                     ->where('hide_profile', 1)
-                    ->where('status', 1)
+                    //->where('status', 1)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
