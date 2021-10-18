@@ -2929,17 +2929,17 @@ try{
                     ->limit(20)            
                 ->get();
 
-                foreach ($userdata as $key => $user) {
-                    $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km
-                    $userDistance = $user->distance; // 3km
+                // foreach ($userdata as $key => $user) {
+                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km
+                //     $userDistance = $user->distance; // 3km
 
-                    if (count($userSettingDistance) > 0) {
-                        if ($userSettingDistance > $userDistance) {
-                            // remove the user
-                            unset($userdata[$key]);
-                        }
-                    }
-                }
+                //     if (count($userSettingDistance) > 0) {
+                //         if ($userSettingDistance > $userDistance) {
+                //             // remove the user
+                //             unset($userdata[$key]);
+                //         }
+                //     }
+                // }
             }
             else{
                 $radius = 5;
@@ -2960,17 +2960,17 @@ try{
                     ->limit(20)            
                 ->get();
 
-                foreach ($userdata as $key => $user) {
-                    $userSettingDistance = UserDistance::where('user_id', $user->id)->first();
-                    $userDistance = $user->distance;
+                // foreach ($userdata as $key => $user) {
+                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first();
+                //     $userDistance = $user->distance;
 
-                    if (count($userSettingDistance) > 0) {
-                        if ($userSettingDistance > $userDistance) {
-                            // remove the user
-                            unset($userdata[$key]);
-                        }
-                    }
-                }
+                //     if (count($userSettingDistance) > 0) {
+                //         if ($userSettingDistance > $userDistance) {
+                //             // remove the user
+                //             unset($userdata[$key]);
+                //         }
+                //     }
+                // }
             }
 
          if(count($userdata) > 0){
