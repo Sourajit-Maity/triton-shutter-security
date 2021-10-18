@@ -2310,6 +2310,9 @@ try{
  * @bodyParam  available_to  required  Example: 1630651142
  *  @bodyParam  looking for  required  Example: 1
  * @bodyParam  offering  required  Example: 1
+ * @bodyParam  linked_in_link  required  Example: 
+ *  @bodyParam  instagram_link   required  Example: 
+ * @bodyParam  facebook_link  required  Example: 
  * @bodyParam  available_from    Example: 1630651142
  * @bodyParam  profile_photo_path  file 
  * @response {
@@ -2395,6 +2398,9 @@ try{
         $inputs['last_name'] = $last_name;
         $inputs['user_name'] = $request->get('user_name');
         $inputs['email'] = $request->get('email');
+        $inputs['facebook_link'] = $request->get('facebook_link');
+        $inputs['instagram_link'] = $request->get('instagram_link');
+        $inputs['linked_in_link'] = $request->get('linked_in_link');
         $inputs['address'] = $request->get('address');
         $inputs['phone'] = $request->get('phone');
         $inputs['profession_id'] = $request->get('profession_id');
@@ -2912,38 +2918,45 @@ try{
                 $user->where('status', $currentlyonline);
             }
                 
-                $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
+                $userdata = $user->selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
                 * cos( radians( longitude ) - radians(?)
                 ) + sin( radians(?) ) *
                 sin( radians( latitude ) ) )
-                ) AS distance", [$latitude, $longitude, $latitude])
+                ) AS distance",
+                 [$latitude, $longitude, $latitude])
                     ->having("distance", "<", $radius)
                     ->orderBy("distance",'asc')  
                     ->where('id', '!=', auth()->id())                                               
                     ->where('hide_profile', 1)
-                    //->where('status', 1)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
                 ->get();
 
                 // foreach ($userdata as $key => $user) {
+                    
                 //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km
+                    
                 //     $userDistance = $user->distance; // 3km
+                    
+                //     //return $userdata[$key];
 
-                //     if (count($userSettingDistance) > 0) {
+                //     if (count($userDistance) > 0) {
+                        
                 //         if ($userSettingDistance > $userDistance) {
+                            
                 //             // remove the user
                 //             unset($userdata[$key]);
+                //             return $userdata[$key];
                 //         }
                 //     }
                 // }
             }
             else{
                 $radius = 5;
-                $userdata = User::selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
+                $userdata = User::selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
                 * cos( radians( longitude ) - radians(?)
