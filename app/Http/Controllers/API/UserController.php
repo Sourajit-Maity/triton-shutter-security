@@ -2883,7 +2883,7 @@ try{
             $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
             $radiusid = Filter::where('user_id', $userid)->value('radius');
-           // $currentlyonline = Filter::where('user_id', $userid)->value('online');
+           $currentlyonline = Filter::where('user_id', $userid)->value('online');
            
             if ($radiusid != NULL) {
                 $radius = Filter::where('user_id', $userid)->value('radius');
@@ -2908,9 +2908,9 @@ try{
             if ($lookingfor == '1') {
                 $user->where('looking_for', $lookingfor);
             }
-            // if ($currentlyonline == '1') {
-            //     $user->where('status', $currentlyonline);
-            // }
+            if ($currentlyonline == '1') {
+                $user->where('status', $currentlyonline);
+            }
                 
                 $userdata = $user->selectRaw("id, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
@@ -2928,6 +2928,18 @@ try{
                     ->offset(0)
                     ->limit(20)            
                 ->get();
+
+                foreach ($userdata as $key => $user) {
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km
+                    $userDistance = $user->distance; // 3km
+
+                    if (count($userSettingDistance) > 0) {
+                        if ($userSettingDistance > $userDistance) {
+                            // remove the user
+                            unset($userdata[$key]);
+                        }
+                    }
+                }
             }
             else{
                 $radius = 5;
@@ -2947,6 +2959,18 @@ try{
                     ->offset(0)
                     ->limit(20)            
                 ->get();
+
+                foreach ($userdata as $key => $user) {
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->first();
+                    $userDistance = $user->distance;
+
+                    if (count($userSettingDistance) > 0) {
+                        if ($userSettingDistance > $userDistance) {
+                            // remove the user
+                            unset($userdata[$key]);
+                        }
+                    }
+                }
             }
 
          if(count($userdata) > 0){
