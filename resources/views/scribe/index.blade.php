@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>NGHBR Documentation</title>
+    <title>Laravel Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 6 2021</li>
+            <li>Last updated: October 18 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -55,13 +55,13 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
 <script>
-    var baseUrl = "http://localhost:8000";
+    var baseUrl = "http://localhost";
 </script>
 <script src="{{ asset("vendor/scribe/js/tryitout-2.7.10.js") }}"></script>
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost:8000</code></pre><h1>Authenticating requests</h1>
+<pre><code class="language-yaml">http://localhost</code></pre><h1>Authenticating requests</h1>
 <p>This API is not authenticated.</p><h1>CMS Management</h1>
 <p>APIs for managing basic cms functionality</p>
 <h2>CMS Homepage</h2>
@@ -69,7 +69,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/get-homepage"
+    "http://localhost/api/get-homepage"
 );
 
 let headers = {
@@ -124,7 +124,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/send-chat-request"
+    "http://localhost/api/send-chat-request"
 );
 
 let headers = {
@@ -193,7 +193,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/accept-chat-request"
+    "http://localhost/api/accept-chat-request"
 );
 
 let headers = {
@@ -341,7 +341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/cancel-chat-request"
+    "http://localhost/api/cancel-chat-request"
 );
 
 let headers = {
@@ -402,7 +402,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/get-chat-details"
+    "http://localhost/api/get-chat-details"
 );
 
 let headers = {
@@ -678,7 +678,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/get-chat-request-details"
+    "http://localhost/api/get-chat-request-details"
 );
 
 let headers = {
@@ -955,7 +955,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites"
+    "http://localhost/api/invites"
 );
 
 let headers = {
@@ -1128,7 +1128,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites"
+    "http://localhost/api/invites"
 );
 
 let headers = {
@@ -1202,7 +1202,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/ad"
+    "http://localhost/api/invites/deleniti"
 );
 
 let headers = {
@@ -1269,7 +1269,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/et"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
@@ -1341,7 +1341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/invites/quo"
+    "http://localhost/api/invites/et"
 );
 
 let headers = {
