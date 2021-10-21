@@ -2895,7 +2895,7 @@ try{
                 $radius = Filter::where('user_id', $userid)->value('radius');
             }
             else{
-                $radius = 5;
+                $radius = 15;
             }
 
         if (count($filterData) > 0) {
@@ -2935,27 +2935,22 @@ try{
                     ->limit(20)            
                 ->get();
 
-                // foreach ($userdata as $key => $user) {
+                foreach ($userdata as $key => $user) {
                     
-                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km
-                    
-                //     $userDistance = $user->distance; // 3km
-                    
-                //     //return $userdata[$key];
-
-                //     if (count($userDistance) > 0) {
-                        
-                //         if ($userSettingDistance > $userDistance) {
-                            
-                //             // remove the user
-                //             unset($userdata[$key]);
-                //             return $userdata[$key];
-                //         }
-                //     }
-                // }
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km                    
+                    $userDistance = $user->distance; // 3km                   
+                    return $userdata[$key];
+                    if (count($userDistance) > 0) {                        
+                        if ($userSettingDistance > $userDistance) {                            
+                            // remove the user
+                            unset($userdata[$key]);
+                            return $userdata[$key];
+                        }
+                    }
+                }
             }
             else{
-                $radius = 5;
+                $radius = 15;
                 $userdata = User::selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
