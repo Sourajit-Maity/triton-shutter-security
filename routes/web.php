@@ -25,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::redirect('/','admin');
 Route::redirect('admin','admin/login');
+Route::get('/terms', function () {
+    return view('terms', ['name' => 'terms']);
+});
+Route::get('/policy', function () {
+    return view('policy', ['name' => 'policy']);
+});
 
 Route::group(['prefix' => 'admin', 'middleware'=> 'auth:sanctum'], function(){
     Route::get('profile',[ProfileController::class,'getProfile'])->name('admin.profile');
