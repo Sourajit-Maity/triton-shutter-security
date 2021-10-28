@@ -2352,7 +2352,7 @@ try{
                 $rules = [
                     "full_name"  =>  "required",
                     "email"  =>  "required|email",
-                    "user_name"  =>  "required",
+                   // "user_name"  =>  "required",
                     "address" => "required",
                     "profession_id"  =>  "required",
                     "industry_id"  =>  "required",
