@@ -2344,11 +2344,8 @@ try{
      */
     public function editprofile(Request $request)
     {
-        try{
+        
             if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
-                
-                
-
                 $rules = [
                     "full_name"  =>  "required",
                     "email"  =>  "required|email",
@@ -2438,10 +2435,7 @@ try{
             } else {
                 return response()->json(["status" => false, "message" => "Profile update failed!"]);
             }
-    }
-    catch(\Exception $e) {
-        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-    }
+   
     }
 
 /**
@@ -2540,7 +2534,7 @@ try{
   
     public function socialsignup(Request $request)
     {
-        //try{
+        
             $validator  =   Validator::make($request->all(), [
                 "first_name"  =>  "required",
                 "last_name"  =>  "required",
@@ -2571,10 +2565,7 @@ try{
                 return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
                 // return response()->json(["status" => false, "message" => "Registration failed!"]);
             }
-    // }
-    // catch(\Exception $e) {
-    //     return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-    // }
+   
     }
   
 
