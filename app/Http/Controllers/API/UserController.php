@@ -2352,7 +2352,6 @@ try{
                 $rules = [
                     "full_name"  =>  "required",
                     "email"  =>  "required|email",
-                   // "user_name"  =>  "required",
                     "address" => "required",
                     "profession_id"  =>  "required",
                     "industry_id"  =>  "required",
@@ -2541,7 +2540,7 @@ try{
   
     public function socialsignup(Request $request)
     {
-        try{
+        //try{
             $validator  =   Validator::make($request->all(), [
                 "first_name"  =>  "required",
                 "last_name"  =>  "required",
@@ -2572,10 +2571,10 @@ try{
                 return response()->json(["status" => true,  "token" => $token, "message" => "Success! login successfull",  "data" => $user->assignRole('CLIENT')]);
                 // return response()->json(["status" => false, "message" => "Registration failed!"]);
             }
-    }
-    catch(\Exception $e) {
-        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-    }
+    // }
+    // catch(\Exception $e) {
+    //     return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+    // }
     }
   
 
