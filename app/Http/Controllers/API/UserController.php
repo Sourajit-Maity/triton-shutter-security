@@ -2344,7 +2344,8 @@ try{
      */
     public function editprofile(Request $request)
     {
-        
+        try
+        {
             if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
                 $rules = [
                     "full_name"  =>  "required",
@@ -2435,6 +2436,10 @@ try{
             } else {
                 return response()->json(["status" => false, "message" => "Profile update failed!"]);
             }
+        }
+        catch(\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> $e]);
+        }
    
     }
 
