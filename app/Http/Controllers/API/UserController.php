@@ -2344,7 +2344,8 @@ try{
      */
     public function editprofile(Request $request)
     {
-        
+        try
+        {
             if ($request->has('full_name') && $request->has('profession_id') && $request->has('email') && $request->has('industry_id')) {
                 $rules = [
                     "full_name"  =>  "required",
@@ -2435,6 +2436,10 @@ try{
             } else {
                 return response()->json(["status" => false, "message" => "Profile update failed!"]);
             }
+        }
+        catch(\Exception $e) {
+            return Response()->Json(["status"=>false,"message"=> $e]);
+        }
    
     }
 
@@ -2919,7 +2924,7 @@ try{
                     ->having("distance", "<", $radius)
                     ->orderBy("distance",'asc')  
                     ->where('id', '!=', auth()->id())                                               
-                    ->where('hide_profile', 1)
+                    ->where('hide_profile', 0)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
@@ -2952,7 +2957,7 @@ try{
                     ->orderBy("distance",'asc')
                     ->where('looking_for', 1)
                     ->where('id', '!=', auth()->id())
-                    ->where('hide_profile', 1)
+                    ->where('hide_profile', 0)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
