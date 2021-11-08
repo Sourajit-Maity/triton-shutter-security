@@ -2859,7 +2859,6 @@ try{
             }        
         }
 
-//////////////////
 
 
         public function getFilterData(Request $request, User $user)
@@ -2930,19 +2929,20 @@ try{
                     ->limit(20)            
                 ->get();
 
-                // foreach ($userdata as $key => $user) {
+       
+                foreach ($userdata as $key => $user) {
                     
-                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first(); // 2km                    
-                //     $userDistance = $user->distance; // 3km                   
-                //     return $userdata[$key];
-                //     if (count($userDistance) > 0) {                        
-                //         if ($userSettingDistance > $userDistance) {                            
-                //             // remove the user
-                //             unset($userdata[$key]);
-                //             return $userdata[$key];
-                //         }
-                //     }
-                // }
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km   10
+                    //return $userSettingDistance;
+                    $userDistance = $user->distance; // 3km       15         
+                    //return $userdata[$key];
+                    //return $userDistance;                        
+                        if ($userSettingDistance < $userDistance) {                            
+                            // remove the user                            
+                            unset($userdata[$key]);                     
+                            return $userdata[$key];
+                        }                   
+                }
             }
             else{
                 $radius = 15;
