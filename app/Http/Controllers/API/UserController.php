@@ -2928,21 +2928,21 @@ try{
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-            if(count($userdata) > 0){
-                foreach ($userdata as $key => $user) {
+            // if(count($userdata) > 0){
+            //     foreach ($userdata as $key => $user) {
                     
-                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-                    //return $userSettingDistance;
-                    $userDistance = $user->distance; // 3km          
-                    //return $userdata[$key];
-                    //return $userDistance;                        
-                        if ($userSettingDistance < $userDistance) {                            
-                            // remove the user                            
-                            unset($userdata[$key]);                     
-                            return $userdata[$key];
-                        }                   
-                }
-            }            
+            //         $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
+            //         //return $userSettingDistance;
+            //         $userDistance = $user->distance; // 3km          
+            //         //return $userdata[$key];
+            //         //return $userDistance;                        
+            //             if ($userSettingDistance < $userDistance) {                            
+            //                 // remove the user                            
+            //                 unset($userdata[$key]);                     
+            //                 return $userdata[$key];
+            //             }                   
+            //     }
+            // }            
                
             }
             else{
