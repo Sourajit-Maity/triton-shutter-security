@@ -14,7 +14,7 @@ class HideProfileToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('hide_profile')->after('status')->default(true);
+            $table->boolean('hide_profile')->after('status')->default(false);
         });
     }
 
