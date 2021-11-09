@@ -2928,8 +2928,7 @@ try{
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-
-                $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance');
+            if(count($userdata) > 0){
                 foreach ($userdata as $key => $user) {
                     
                     $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
@@ -2943,6 +2942,8 @@ try{
                             return $userdata[$key];
                         }                   
                 }
+            }            
+               
             }
             else{
                 $radius = 15;
