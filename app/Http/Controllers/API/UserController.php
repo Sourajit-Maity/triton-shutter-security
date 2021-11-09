@@ -2929,12 +2929,12 @@ try{
                     ->limit(20)            
                 ->get();
 
-       
+                $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance');
                 foreach ($userdata as $key => $user) {
                     
-                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km   10
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
                     //return $userSettingDistance;
-                    $userDistance = $user->distance; // 3km       15         
+                    $userDistance = $user->distance; // 3km          
                     //return $userdata[$key];
                     //return $userDistance;                        
                         if ($userSettingDistance < $userDistance) {                            
@@ -2964,15 +2964,14 @@ try{
                 ->get();
 
                 // foreach ($userdata as $key => $user) {
-                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->first();
-                //     $userDistance = $user->distance;
-
-                //     if (count($userSettingDistance) > 0) {
-                //         if ($userSettingDistance > $userDistance) {
-                //             // remove the user
-                //             unset($userdata[$key]);
-                //         }
-                //     }
+                    
+                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
+                //     $userDistance = $user->distance; // 3km          
+                      
+                //         if ($userSettingDistance < $userDistance) {                                                     
+                //             unset($userdata[$key]);                     
+                //             return $userdata[$key];
+                //         }                   
                 // }
             }
 
@@ -2986,7 +2985,8 @@ try{
         }
         
         catch(\Exception $e) {
-            return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
+            $msgAction = $e->getMessage();
+            return Response()->Json(["status"=>false,"message"=> $msgAction]);
         }
 
         
