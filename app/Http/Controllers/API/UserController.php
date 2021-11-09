@@ -2928,21 +2928,41 @@ try{
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-            // if(count($userdata) > 0){
-            //     foreach ($userdata as $key => $user) {
-                    
-            //         $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-            //         //return $userSettingDistance;
-            //         $userDistance = $user->distance; // 3km          
-            //         //return $userdata[$key];
-            //         //return $userDistance;                        
-            //             if ($userSettingDistance < $userDistance) {                            
-            //                 // remove the user                            
-            //                 unset($userdata[$key]);                     
-            //                 return $userdata[$key];
-            //             }                   
-            //     }
-            // }            
+                
+           
+                $filtered = $userdata->filter(function ($user, $key)
+                {                  
+                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
+                    if($userSettingDistance){ 
+                        return $user->distance <= $userSettingDistance  ;
+                     }
+                    else{
+                          return  1;
+                    }
+                   
+                });
+                
+               $userdata = $filtered->all();
+
+        //         foreach ($userdata as $key => $user) {
+
+        //             $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
+                   
+        //                 if($userSettingDistance){  
+        //                         $userDistance = $user->distance; // 3km  
+                                      
+        //                         //return $userdata[$key];
+        //                         //return $userDistance;                        
+        //                             if ($userSettingDistance < $userDistance) {                            
+        //                                 // remove the user                         
+        //                                 unset($userdata[$key]);  
+        //                                 $result=array_diff($a1,$a2);                   
+        //                                  return $userdata[$key];
+        //                 } 
+        //             }                  
+                
+              
+        //    }            
                
             }
             else{
@@ -2964,16 +2984,6 @@ try{
                     ->limit(20)            
                 ->get();
 
-                // foreach ($userdata as $key => $user) {
-                    
-                //     $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-                //     $userDistance = $user->distance; // 3km          
-                      
-                //         if ($userSettingDistance < $userDistance) {                                                     
-                //             unset($userdata[$key]);                     
-                //             return $userdata[$key];
-                //         }                   
-                // }
             }
 
          if(count($userdata) > 0){
