@@ -2864,7 +2864,7 @@ try{
         public function getFilterData(Request $request, User $user)
     { 
 
-    try{
+    //try{
 
         $validator      =   Validator::make($request->all(), [
             "latitude"   =>      "required",
@@ -2984,11 +2984,11 @@ try{
             }
         }
         
-        catch(\Exception $e) {
-            $msgAction = $e->getMessage();
-            return Response()->Json(["status"=>false,"message"=> $msgAction]);
-        }
+        // catch(\Exception $e) {
+        //     $msgAction = $e->getMessage();
+        //     return Response()->Json(["status"=>false,"message"=> $msgAction]);
+        // }
 
         
     }
-}
+
