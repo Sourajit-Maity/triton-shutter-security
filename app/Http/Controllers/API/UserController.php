@@ -2969,25 +2969,7 @@ try{
                 
                $userdata = $filtered->all();
 
-        //         foreach ($userdata as $key => $user) {
-
-        //             $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-                   
-        //                 if($userSettingDistance){  
-        //                         $userDistance = $user->distance; // 3km  
-                                      
-        //                         //return $userdata[$key];
-        //                         //return $userDistance;                        
-        //                             if ($userSettingDistance < $userDistance) {                            
-        //                                 // remove the user                         
-        //                                 unset($userdata[$key]);  
-        //                                 $result=array_diff($a1,$a2);                   
-        //                                  return $userdata[$key];
-        //                 } 
-        //             }                  
                 
-              
-        //    }            
                
             }
             else{
