@@ -2556,10 +2556,9 @@ try{
                 'status'=>false,
                 'message' => $validator->errors()->all()[0],
                 'data'=> new \stdClass()
-            ]);
+            ],203);
             
         }
-        
             // $validator  =   Validator::make($request->all(), [
             //     "first_name"  =>  "required",
             //     "last_name"  =>  "required",
@@ -2579,9 +2578,15 @@ try{
                 $inputs = $request->all();
 
                 $user   =   User::create($inputs);
-                $token  =   $user->createToken('token')->plainTextToken;
+                //$token  =   $user->createToken('token')->plainTextToken;
                 $user->assignRole('CLIENT');
-                return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
+                if(!is_null($user)) {
+                    $token  =   $user->createToken('token')->plainTextToken;
+                    return response()->json(["status" => true, "token" => $token, "message" => "Success! registration completed", "data" => $user]);
+                }
+                else {
+                    return response()->json(["status" => false, "message" => "Registration failed!"],203);
+                }
             } else {
                 $token      =       $user->createToken('token')->plainTextToken;
                 // dd($request);
