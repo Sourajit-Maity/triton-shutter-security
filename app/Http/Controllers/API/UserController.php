@@ -2539,8 +2539,8 @@ try{
   
     public function socialsignup(Request $request)
     {
-        
-            $validator  =   Validator::make($request->all(), [
+
+        $rules = [
                 "first_name"  =>  "required",
                 "last_name"  =>  "required",
                 "email"  =>  "required|email",
@@ -2548,11 +2548,31 @@ try{
                 "social_account_type"  =>  "required",
                 "device_token" => "required",
                 "device_type" => "required",
-
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if ($validator->fails()){
+          
+            return response()->json([
+                'status'=>false,
+                'message' => $validator->errors()->all()[0],
+                'data'=> new \stdClass()
             ]);
-            if ($validator->fails()) {
-                return response()->json(["status" => false, "message" => $validator->errors()]);
-            }
+            
+        }
+        
+            // $validator  =   Validator::make($request->all(), [
+            //     "first_name"  =>  "required",
+            //     "last_name"  =>  "required",
+            //     "email"  =>  "required|email",
+            //     "social_id"  =>  "required",
+            //     "social_account_type"  =>  "required",
+            //     "device_token" => "required",
+            //     "device_type" => "required",
+
+            // ]);
+            // if ($validator->fails()) {
+            //     return response()->json(["status" => false, "message" => $validator->errors()]);
+            // }
             $user = User::where('social_id', $request->social_id)->first();
             //dd($user);
             if (empty($user)) {
