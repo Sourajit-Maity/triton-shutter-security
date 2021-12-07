@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: October 18 2021</li>
+            <li>Last updated: December 7 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -1202,7 +1202,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/deleniti"
+    "http://localhost/api/invites/reiciendis"
 );
 
 let headers = {
@@ -1269,7 +1269,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/et"
+    "http://localhost/api/invites/reprehenderit"
 );
 
 let headers = {
@@ -1341,7 +1341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/et"
+    "http://localhost/api/invites/consequatur"
 );
 
 let headers = {

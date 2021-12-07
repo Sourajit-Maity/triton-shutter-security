@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\PasswordResetMail;
+use Mail;
 
 class UserController extends Controller
 {
@@ -83,4 +85,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function myDemoMail()
+    {
+        $myEmail = 'sourajitm8@gmail.com';
+   
+        $details = [
+            'title' => 'Mail Demo from ItSolutionStuff.com',
+            'url' => 'https://www.itsolutionstuff.com'
+        ];
+  
+        Mail::to($myEmail)->send(new PasswordResetMail($details));
+   
+        dd("Mail Send Successfully");
+    }
+
+
 }

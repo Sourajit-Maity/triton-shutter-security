@@ -13,6 +13,8 @@ use App\Models\Filter;
 use App\Models\Profession;
 use App\Models\UserDistance;
 use DateTime;
+use App\Mail\PasswordResetMail;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -2135,6 +2137,7 @@ try{
     {
         $user = User::find(auth()->user()->id);
         $password = $user->password;
+         return $password;
         if (Hash::check($request->old_password, $password)) {
 
             $validator = Validator::make($request->all(), [
@@ -2159,7 +2162,6 @@ try{
     /**
      * Forgot password
      * @bodyParam  email string required Example: lueilwitz.caterina@example.com
-     * @bodyParam  password string required Example: danwdjdajw
      * @response  {
     "status": true,
     "message": "Success! password change successfully",
@@ -2182,43 +2184,42 @@ try{
 }
      */
 
-    public function forgot_password(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            "email" =>  "required|email",
-            "password" =>  "required",
-        ]);
+    // public function forgot_password(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         "email" =>  "required|email",
+    //     ]);
 
-        if ($validator->fails()) {
-            return response()->json(["validation_errors" => $validator->errors()]);
-        }
+    //     if ($validator->fails()) {
+    //         return response()->json(["validation_errors" => $validator->errors()]);
+    //     }
 
-        $user = User::where("email", $request->email)->first();
+    //     $user = User::where("email", $request->email)->first();
 
-        if (is_null($user)) {
-            return response()->json(["status" => false, "message" => "Failed! email not found"]);
-        }
+    //     if (is_null($user)) {
+    //         return response()->json(["status" => false, "message" => "Failed! email not found"]);
+    //     }
 
-        // $new_pass = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstvwxyzABCDEFGGHIJKLMNOPQRSTUVWXYZ', 36)), 0, 8);
+    //     // $new_pass = substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstvwxyzABCDEFGGHIJKLMNOPQRSTUVWXYZ', 36)), 0, 8);
 
-        $details = [
-            'title' =>  "Change password  request for HeartTheLook",
-            'body'  =>  "Your password is reset.",
-        ];
+    //     $details = [
+    //         'title' =>  "Change password  request for NGHBR",
+    //         'body'  =>  "Your password is reset.",
+    //     ];
 
-        Mail::to($user->email)->send(new ForgotPasswordMail($details));
+    //     Mail::to($user->email)->send(new ForgotPasswordMail($details));
 
-        if (Mail::failures()) {
-            return response()->json(["status" => false, "message" => "Failed! unable to send password to your mail"]);
-        } else {
+    //     if (Mail::failures()) {
+    //         return response()->json(["status" => false, "message" => "Failed! unable to send password to your mail"]);
+    //     } else {
 
-            $update_pass = User::find($user->id);
-            $update_pass->password = ($request->password);
-            $update_pass->save();
+    //         $update_pass = User::find($user->id);
+    //         $update_pass->password = ($request->password);
+    //         $update_pass->save();
 
-            return response()->json(["status" => true, "message" => "Success! password change successfully", "data" => $user]);
-        }
-    }
+    //         return response()->json(["status" => true, "message" => "Success! password change successfully", "data" => $user]);
+    //     }
+    // }
 
 /**
     * Otp Verification
@@ -2260,7 +2261,7 @@ try{
             }
             $otp = rand(1000, 9999);
             $details = [
-                'title' =>  "OTP for HeartTheLook",
+                'title' =>  "OTP for Nghbr",
                 'body'  =>  "Your Email Verification otp is - " . $otp,
             ];
 
@@ -3007,6 +3008,111 @@ try{
         //     return Response()->Json(["status"=>false,"message"=> $msgAction]);
         // }
 
+
+
+        /** 
+ * @bodyParam email string required Example: user@user.com
+ * @response  {
+        "status": true,
+        "message": "A one time password is send to your registered email id",
+    }
+ */
+public function forgot_password(Request $request) {
+    
+    $validator  =   Validator::make($request->all(), [
+        "email"  =>  "required|email"
+    ]);
+
+    if($validator->fails()) {
+        return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+    }
+    $user = User::where('email', $request->email)->first();
+
+    if($user){
+            $digits = 4;
+            $otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
+
+            $user->fill([
+                'forgot_otp' => $otp
+            ]);
+            $user->save();
+            $email_to = $user->email;
+            $data = ['otp' => $otp];
+        
+            $details = [
+                'title' => 'One Time Password to reset your password '. $otp,
+                'url' => 'https://www.nghbr.com'
+            ];
+
+        Mail::to($email_to)->send(new PasswordResetMail($details));
+        return response()->json(["status" => true, "message" => "A one time password is send to your registered email id"]);
+    }else{
+        return response()->json(["status" => false, "message" => "User Does Not Exist"]);
+    }
+}
+/** 
+ * @bodyParam otp string required
+ * @bodyParam email string required
+ * @response  {
+        "status": true,
+        "message": "Otp matched",
+    }
+ */
+public function check_forgot_otp(Request $request) {
+    
+    $validator  =   Validator::make($request->all(), [
+        'email' => 'required',
+        'otp' => 'required',
+    ]);
+
+    if($validator->fails()) {
+        return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+    }
+
+    $user = User::where('email', $request->email)->first();
+    if($user->forgot_otp == $request->otp){
+        $user -> fill([
+            'password' => $request->password
+        ]);
+        $user -> save();
+        return response()->json(["status" => true, "message" => "Otp matched"]);
+    }
+    else{
+        return response()->json(["status" => false, "message" => "Otp does not match"]);   
+    }
+}
+/** 
+ * @bodyParam email string required
+ * @bodyParam password string required
+ * @response  {
+        "status": true,
+        "message": "Otp matched",
+    }
+ */
+ public function reset_password(Request $request) 
+    {
+        
+        $validator  =   Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required|min:6',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            $user -> fill([
+                'password' => $request->password
+            ]);
+            $user -> save();
+            return response()->json(["status" => true, "message" => "Password Update successfully"]);
+        }
+        else{
+            return response()->json(["status" => false, "message" => "Otp does not match"]);   
+        }
+    }
         
     }
 
