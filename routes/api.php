@@ -24,7 +24,10 @@ Route::post("login", [UserController::class, 'login']);
 Route::post("social-login", [UserController::class, 'socialsignup']);
 Route::post("email-verification", [UserController::class, 'emailverification']);
 Route::post("otp-verification", [UserController::class, 'otpverification']);
+
 Route::post("forgot-password", [UserController::class, 'forgot_password']);
+Route::post("verify_forgot_otp", [UserController::class, 'check_forgot_otp']); 
+Route::post("reset-password", [UserController::class, 'reset_password']); 
 
 Route::get("industry/all", [UserController::class, 'getindustry']);
 Route::get("profession/all", [UserController::class, 'getprofession']);
@@ -42,7 +45,7 @@ Route::middleware('auth:api')->group(function() {
     Route::post("sink-location", [UserController::class, "sinklocation"]);
     Route::patch('/update-user/{user}',[UserController::class,'updateuser']);
     Route::post("user-profile-update", [UserController::class, "profileUpdate"]);
-    Route::post("change_password", [UserController::class, "password_change"]);
+    Route::post("change-password", [UserController::class, "password_change"]);
     // Route::resource('tasks', TaskController::class);    //patch/put   =>  x-www-form-urlencode
     Route::resource('invites', InvitationController::class); 
     Route::get("user/all", [UserController::class, 'getAllUser']);

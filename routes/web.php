@@ -35,6 +35,8 @@ Route::get('/policy', function () {
 Route::group(['prefix' => 'admin', 'middleware'=> 'auth:sanctum'], function(){
     Route::get('profile',[ProfileController::class,'getProfile'])->name('admin.profile');
     Route::get('/dashboard',[AdminDashboard::class,'getDashboard'])->name('admin.dashboard');
+    Route::get('/my-demo-mail',[UserController::class,'myDemoMail'])->name('admin.my-demo-mail');
+
     Route::resources([
         'users' => UserController::class,
         'professions'=>ProfessionController::class,
@@ -56,3 +58,4 @@ Route::get('clear', function () {
     Artisan::call('clear-compiled');
     return 'Cleared.';
 });
+
