@@ -3113,6 +3113,83 @@ public function check_forgot_otp(Request $request) {
             return response()->json(["status" => false, "message" => "Otp does not match"]);   
         }
     }
+
+    /** 
+ * @bodyParam  email string required  Example: John@gmail.com
+ * @response  {
+        "status": true,
+        "message": "A one time password is send to your registered email id",
+    }
+ */
+public function resend_otp(Request $request){
+    $validator  =   Validator::make($request->all(), [
+        "email"  =>  "required",
+    ]);
+    if($validator->fails()) {
+        return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+    }
+
+    $user = User::where('email', $request->email)->first();
+    if($user){
+        $digits = 4;
+        $forgot_otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
+        $user -> fill([
+            'forgot_otp' => $forgot_otp
+        ]);
+        $user->save();
+        $email_to = $user->email;
+        $data = ['otp' => $forgot_otp];
+
+        $details = [
+            'title' => 'One Time Password to verify your email '.$forgot_otp,
+            'url' => 'https://www.nghbr.com'
+        ];
+
+        Mail::to($email_to)->send(new PasswordResetMail($details));
+            return response()->json(["status" => true, "message" => "A one time password is send to your registered email id"]);
+    }else{
+        return response()->json(["status" => false, "message" => "User not found"]);
+    }
+}
+/** 
+ * @bodyParam  email string required  Example: John@gmail.com
+ * @bodyParam  otp string required  Example: 1234
+ * @response  {
+        "status": true,
+        "message": "Success",
+        "data": {
+            "token": "4|wdvK3OkyuYz7D5904oX6A7nbCqoZWOR8dX0QFKf9",
+            "name": "debayanjoardar",
+            "email": "debayanjoardar@gmail.com"
+        }
+    }
+ */
+    public function verify_signup_otp(Request $request){
+        $validator  =   Validator::make($request->all(), [
+            "email"  =>  "required",
+            "otp" => "required"
+        ]);
+        if($validator->fails()) {
+            return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        $user -> fill([
+            'email_verified_at' => carbon::now()
+        ]);
+        $user->save();
+
+        if($request->otp == $user->signup_otp){
+            $token = $user->createToken('token')->plainTextToken;
+                $user_details = array(
+                    'name' => $user->name,
+                    'email' => $user->email,
+                );
+            return response()->json(["status" => true, "message" => "Registration successfull", "token" => $token, "data" => $user_details]);
+        }else{
+            return response()->json(["status" => false, "message" => "Otp does not match"]);
+        }
+    }
         
     }
 

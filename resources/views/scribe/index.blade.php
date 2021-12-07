@@ -1202,7 +1202,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/reiciendis"
+    "http://localhost/api/invites/aut"
 );
 
 let headers = {
@@ -1269,7 +1269,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/reprehenderit"
+    "http://localhost/api/invites/dolores"
 );
 
 let headers = {
@@ -1341,7 +1341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/consequatur"
+    "http://localhost/api/invites/quam"
 );
 
 let headers = {
