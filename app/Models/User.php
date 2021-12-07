@@ -66,7 +66,8 @@ class User extends Authenticatable implements HasMedia
         'social_account_type',
         'fcm_token',
         'time_available',
-        'status'
+        'status',
+        'forgot_otp'
     ];
 
     /**
