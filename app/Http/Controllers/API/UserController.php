@@ -1922,8 +1922,8 @@ public function getindustry()
         Mail::to($email_to)->send(new SignupMail($details));
 
         if(!is_null($user)) {
-            $token  =   $user->createToken('token')->plainTextToken;
-            return response()->json(["status" => true, "message" => "Success! Registration completed","token" => $token, "data" => $user]);
+            // $token  =   $user->createToken('token')->plainTextToken;
+            return response()->json(["status" => true, "message" => "Success! Registration completed", "data" => $user]);
         }
         else {
             return response()->json(["status" => false, "message" => "Registration failed!"]);
@@ -1973,7 +1973,7 @@ public function getindustry()
 public function login(Request $request)
 {
 
-try{
+// try{
     $input = $request->all();
 
   
@@ -2007,18 +2007,23 @@ try{
         //dd($user);
         $token      =       $user->createToken('token')->plainTextToken;
         // dd($request);
-        User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
-
-        return response()->json(["status" => true,  "token" => $token, "data" => $user]);
+        if(Auth::user()->email_verified_at != NULL){
+            User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+            return response()->json(["status" => true,  "token" => $token, "data" => $user]);
+        }
+        else{
+            return response()->json(["status" => false, "message" => "Email Not Verified Yet"]);
+        }
+       
     } else {
 
         return response()->json(["status" => false, "message" => "Whoops! invalid username or password"]);
     }
     }
-    catch(\Exception $e) {
-        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.'],500);
-    }
-}
+//     catch(\Exception $e) {
+//         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+//     }
+// }
 
 
 /** 
@@ -3235,7 +3240,7 @@ public function resend_signup_otp(Request $request){
         if($request->otp == $user->signup_otp){
             $token = $user->createToken('token')->plainTextToken;
                 $user_details = array(
-                    'name' => $user->name,
+                    // 'name' => $user->name,
                     'email' => $user->email,
                 );
             return response()->json(["status" => true, "message" => "Registration successfull", "token" => $token, "data" => $user_details]);
