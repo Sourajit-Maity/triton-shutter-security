@@ -2012,7 +2012,7 @@ public function login(Request $request)
             return response()->json(["status" => true,  "token" => $token, "data" => $user]);
         }
         else{
-            return response()->json(["status" => false, "message" => "Email Not Verified Yet"]);
+            return response()->json(["status" => false, "message" => "Email is not verified yet"]);
         }
        
     } else {
