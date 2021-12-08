@@ -25,7 +25,9 @@ Route::post("social-login", [UserController::class, 'socialsignup']);
 Route::post("email-verification", [UserController::class, 'emailverification']);
 Route::post("otp-verification", [UserController::class, 'otpverification']);
 
-Route::post("verifysignup_otp", [UserController::class, 'verify_signup_otp']);
+Route::post("verify-signup-otp", [UserController::class, 'verify_signup_otp']);
+Route::post("resend-signup-otp", [UserController::class, 'resend_signup_otp']);
+
 Route::post("resend-otp", [UserController::class, 'resend_otp']);
 Route::post("forgot-password", [UserController::class, 'forgot_password']);
 Route::post("verify_forgot_otp", [UserController::class, 'check_forgot_otp']); 

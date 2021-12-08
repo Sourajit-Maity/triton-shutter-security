@@ -67,7 +67,8 @@ class User extends Authenticatable implements HasMedia
         'fcm_token',
         'time_available',
         'status',
-        'forgot_otp'
+        'forgot_otp',
+        'signup_otp'
     ];
 
     /**

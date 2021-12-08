@@ -14,6 +14,7 @@ use App\Models\Profession;
 use App\Models\UserDistance;
 use DateTime;
 use App\Mail\PasswordResetMail;
+use App\Mail\SignupMail;
 use Mail;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -1884,6 +1885,8 @@ public function getindustry()
 
         // $user   =   User::create($inputs);
         // $user->assignRole('CLIENT');
+        $digits = 4;
+        $signup_otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
         $name = $request->get('full_name');
 
         $splitName = explode(' ', $name, 2); 
@@ -1904,8 +1907,19 @@ public function getindustry()
         $user->message= $request->get('message');
         $user->looking_for= $request->get('looking_for');
         $user->offering= $request->get('offering');
+        $user->signup_otp= $signup_otp;
         $user->assignRole('CLIENT');
         $user->save();
+
+        $email_to = $user->email;
+        $data = ['otp' => $signup_otp];
+
+        $details = [
+            'title' => 'One Time Password to verify your email '.$signup_otp,
+            'url' => 'https://www.nghbr.com'
+        ];
+
+        Mail::to($email_to)->send(new SignupMail($details));
 
         if(!is_null($user)) {
             $token  =   $user->createToken('token')->plainTextToken;
@@ -3151,6 +3165,45 @@ public function resend_otp(Request $request){
         return response()->json(["status" => false, "message" => "User not found"]);
     }
 }
+
+
+    /** 
+ * @bodyParam  email string required  Example: John@gmail.com
+ * @response  {
+        "status": true,
+        "message": "A one time password is send to your registered email id",
+    }
+ */
+public function resend_signup_otp(Request $request){
+    $validator  =   Validator::make($request->all(), [
+        "email"  =>  "required",
+    ]);
+    if($validator->fails()) {
+        return response()->json(["status" => false, "validation_errors" => $validator->errors()->all()[0]]);
+    }
+
+    $user = User::where('email', $request->email)->first();
+    if($user){
+        $digits = 4;
+        $signup_otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
+        $user -> fill([
+            'signup_otp' => $signup_otp
+        ]);
+        $user->save();
+        $email_to = $user->email;
+        $data = ['otp' => $signup_otp];
+
+        $details = [
+            'title' => 'One Time Password to verify your email '.$signup_otp,
+            'url' => 'https://www.nghbr.com'
+        ];
+
+        Mail::to($email_to)->send(new SignupMail($details));
+            return response()->json(["status" => true, "message" => "A one time password is send to your registered email id"]);
+    }else{
+        return response()->json(["status" => false, "message" => "User not found"]);
+    }
+}
 /** 
  * @bodyParam  email string required  Example: John@gmail.com
  * @bodyParam  otp string required  Example: 1234
@@ -3159,8 +3212,8 @@ public function resend_otp(Request $request){
         "message": "Success",
         "data": {
             "token": "4|wdvK3OkyuYz7D5904oX6A7nbCqoZWOR8dX0QFKf9",
-            "name": "debayanjoardar",
-            "email": "debayanjoardar@gmail.com"
+            "name": "sourajitmaity",
+            "email": "sourajit@gmail.com"
         }
     }
  */
