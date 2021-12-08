@@ -68,7 +68,8 @@ class User extends Authenticatable implements HasMedia
         'time_available',
         'status',
         'forgot_otp',
-        'signup_otp'
+        'signup_otp',
+        'email_verified_at'
     ];
 
     /**

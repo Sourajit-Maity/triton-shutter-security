@@ -27,7 +27,6 @@ Route::post("otp-verification", [UserController::class, 'otpverification']);
 
 Route::post("verify-signup-otp", [UserController::class, 'verify_signup_otp']);
 Route::post("resend-signup-otp", [UserController::class, 'resend_signup_otp']);
-
 Route::post("resend-otp", [UserController::class, 'resend_otp']);
 Route::post("forgot-password", [UserController::class, 'forgot_password']);
 Route::post("verify_forgot_otp", [UserController::class, 'check_forgot_otp']); 
@@ -37,7 +36,7 @@ Route::get("industry/all", [UserController::class, 'getindustry']);
 Route::get("profession/all", [UserController::class, 'getprofession']);
 Route::get("get-homepage", [CmsController::class, 'gethomepage']);
 
- Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}", [UserController::class, 'getuserlist']);
+Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}", [UserController::class, 'getuserlist']);
 //Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}", [UserController::class, 'getuserlist']);
 //Route::post('/search', [UserController::class,'filter']);
 
