@@ -3258,7 +3258,7 @@ public function resend_signup_otp(Request $request){
                     // 'name' => $user->name,
                     'email' => $user->email,
                 );
-            return response()->json(["status" => true, "message" => "Registration successfull", "token" => $token, "data" => $user_details]);
+            return response()->json(["status" => true, "message" => "Verification successfull", "token" => $token, "data" => $user_details]);
         }else{
             return response()->json(["status" => false, "message" => "Otp does not match"]);
         }
