@@ -2012,6 +2012,21 @@ public function login(Request $request)
             return response()->json(["status" => true,  "token" => $token, "data" => $user]);
         }
         else{
+
+            $email = Auth::user()->email;           
+            $digits = 4;
+            $signup_otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
+            User::where("email", $email)->update(array("signup_otp" => $signup_otp));
+            $email_to = $email;
+            $data = ['otp' => $signup_otp];
+    
+            $details = [
+                'title' => 'One Time Password to verify your email '.$signup_otp,
+                'url' => 'https://www.nghbr.com'
+            ];
+    
+            Mail::to($email_to)->send(new SignupMail($details));
+
             return response()->json(["status" => false, "message" => "Email is not verified yet"]);
         }
        
