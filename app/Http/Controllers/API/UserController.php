@@ -3247,12 +3247,17 @@ public function resend_signup_otp(Request $request){
         }
 
         $user = User::where('email', $request->email)->first();
-        $user -> fill([
-            'email_verified_at' => carbon::now()
-        ]);
-        $user->save();
+        // $user -> fill([
+        //     'email_verified_at' => carbon::now()
+        // ]);
+        // $user->save();
 
         if($request->otp == $user->signup_otp){
+            $user -> fill([
+                'email_verified_at' => carbon::now()
+            ]);
+            $user->save();
+    
             $token = $user->createToken('token')->plainTextToken;
                 $user_details = array(
                     // 'name' => $user->name,
