@@ -2723,7 +2723,67 @@ public function login(Request $request)
     
     }
 
+ /**
+ * User Block List
+ * @bodyParam  block_user_id integer required  Example: 85
 
+ * @response {
+    "status": true,
+    "message": "Success! User Blocked Successfully"
+}
+    
+     */
+
+    public function userBlock(Request $request)
+        {
+    
+            $rules = [
+                "block_user_id"   =>      "required",  
+            ];
+            $validator = Validator::make($request->all(),$rules);
+            if ($validator->fails()){
+            
+                return response()->json([
+                    'status'=>false,
+                    'message' => $validator->errors()->all()[0],
+                    'data'=> new \stdClass()
+                ]);
+                
+            }
+            $user = UserBlockList::where('block_user_id', $request->block_user_id)->first();
+            if (empty($user)) {
+    
+                $userBlock=new UserBlockList($request->all());
+                if ($request->has('block_user_id')) {
+                    $userBlock->block_user_id = $request->block_user_id;
+                    $userBlock->block = 0;
+                }
+                $userBlock->user_id=auth()->user()->id;
+                $userBlock->save();
+    
+    
+                return response()->json(["status" => true,  "message" => "Success! User Blocked Successfully"]);
+            } 
+            else 
+            {
+
+            $status = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->value('block');
+
+                    if ($status == 1)
+                    {
+                        $blockUser = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->update(array("block" => 0));
+                        return response()->json(["status" => true,   "message" => "Success! User Blocked again successfully"]);      
+
+                    }
+                    else
+                    {
+                        $blockUser = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->update(array("block" => 1));
+                        return response()->json(["status" => true,   "message" => "Success! User Unblocked successfully"]);      
+
+                    }
+
+            }
+        }
 
     /**
  * Location Sink
@@ -3044,6 +3104,7 @@ public function login(Request $request)
         // }
 
 
+   
 
         /** 
  * @bodyParam email string required Example: user@user.com
@@ -3270,67 +3331,7 @@ public function resend_signup_otp(Request $request){
         }
     }
 
-    // User Block
-    /**
-
-     * @bodyParam  block_user_id required  Example: 1
- 
- * @response{
-    "status": true,
-    "message": "Success! User Blocked Successfully"
-}
-*/
-
-public function userBlock(Request $request)
-{
-   
-           $rules = [
-               "block_user_id"   =>      "required",  
-           ];
-           $validator = Validator::make($request->all(),$rules);
-           if ($validator->fails()){
-           
-               return response()->json([
-                   'status'=>false,
-                   'message' => $validator->errors()->all()[0],
-                   'data'=> new \stdClass()
-               ]);
-               
-           }
-           $user = UserBlockList::where('block_user_id', $request->block_user_id)->first();
-           if (empty($user)) {
-   
-               $userBlock=new UserBlockList($request->all());
-               if ($request->has('block_user_id')) {
-                   $userBlock->block_user_id = $request->block_user_id;
-                   $userBlock->block = 0;
-               }
-               $userBlock->user_id=auth()->user()->id;
-               $userBlock->save();
-   
-   
-               return response()->json(["status" => true,  "message" => "Success! User Blocked Successfully"]);
-           } 
-           else 
-           {
-
-           $status = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->value('block');
-
-                if ($status == 1)
-                {
-                    $blockUser = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->update(array("block" => 0));
-                    return response()->json(["status" => true,   "message" => "Success! User Blocked again successfully"]);      
-
-                }
-                else
-                {
-                    $blockUser = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->update(array("block" => 1));
-                    return response()->json(["status" => true,   "message" => "Success! User Unblocked successfully"]);      
-
-                }
-
-         }
-    }
+    
  }
    
 
