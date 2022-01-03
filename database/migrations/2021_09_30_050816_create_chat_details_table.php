@@ -16,7 +16,7 @@ class CreateChatDetailsTable extends Migration
         Schema::create('chat_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sender_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('receiver_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');; 
+            $table->foreignId('receiver_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->tinyInteger('accept')->default(1)->comment('1:request, 2:accepted, 3:cancel');
             $table->longText('chat_token')->nullable();
             $table->boolean('active')->default(false);
