@@ -11,7 +11,7 @@ APIs for managing basic auth functionality
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/register"
+    "http://localhost/api/register"
 );
 
 let headers = {
@@ -166,7 +166,7 @@ Example: 1
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/login"
+    "http://localhost/api/login"
 );
 
 let headers = {
@@ -281,7 +281,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/social-login"
+    "http://localhost/api/social-login"
 );
 
 let headers = {
@@ -430,7 +430,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/otp-verification"
+    "http://localhost/api/otp-verification"
 );
 
 let headers = {
@@ -512,7 +512,7 @@ fetch(url, {
 </form>
 
 
-## Forgot password
+## api/verify-signup-otp
 
 
 
@@ -521,7 +521,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/forgot-password"
+    "http://localhost/api/verify-signup-otp"
 );
 
 let headers = {
@@ -530,8 +530,8 @@ let headers = {
 };
 
 let body = {
-    "email": "lueilwitz.caterina@example.com",
-    "password": "danwdjdajw"
+    "email": "John@gmail.com",
+    "otp": "1234"
 }
 
 fetch(url, {
@@ -547,23 +547,222 @@ fetch(url, {
 ```json
 {
     "status": true,
-    "message": "Success! password change successfully",
+    "message": "Success",
     "data": {
-        "id": 2,
-        "first_name": "Emory",
-        "last_name": "Wiza",
-        "email": "lueilwitz.caterina@example.com",
-        "phone": "(345) 744-1545",
-        "email_verified_at": "2021-03-05T06:49:30.000000Z",
-        "current_team_id": null,
-        "profile_photo_path": null,
-        "active": 0,
-        "created_at": "2021-03-05T06:49:37.000000Z",
-        "updated_at": "2021-03-08T07:50:35.000000Z",
-        "full_name": "Emory Wiza",
-        "role_name": "CLIENT",
-        "profile_photo_url": "https:\/\/ui-avatars.com\/api\/?name=Emory&color=7F9CF5&background=EBF4FF"
+        "token": "4|wdvK3OkyuYz7D5904oX6A7nbCqoZWOR8dX0QFKf9",
+        "name": "sourajitmaity",
+        "email": "sourajit@gmail.com"
     }
+}
+```
+<div id="execution-results-POSTapi-verify-signup-otp" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-verify-signup-otp"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verify-signup-otp"></code></pre>
+</div>
+<div id="execution-error-POSTapi-verify-signup-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verify-signup-otp"></code></pre>
+</div>
+<form id="form-POSTapi-verify-signup-otp" data-method="POST" data-path="api/verify-signup-otp" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-verify-signup-otp', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-verify-signup-otp" onclick="tryItOut('POSTapi-verify-signup-otp');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-verify-signup-otp" onclick="cancelTryOut('POSTapi-verify-signup-otp');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-verify-signup-otp" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/verify-signup-otp</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-verify-signup-otp" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>otp</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="otp" data-endpoint="POSTapi-verify-signup-otp" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## api/resend-signup-otp
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/resend-signup-otp"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "John@gmail.com"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+
+{
+"status": true,
+"message": "A one time password is send to your registered email id",
+}
+```
+<div id="execution-results-POSTapi-resend-signup-otp" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-resend-signup-otp"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-resend-signup-otp"></code></pre>
+</div>
+<div id="execution-error-POSTapi-resend-signup-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-resend-signup-otp"></code></pre>
+</div>
+<form id="form-POSTapi-resend-signup-otp" data-method="POST" data-path="api/resend-signup-otp" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-resend-signup-otp', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-resend-signup-otp" onclick="tryItOut('POSTapi-resend-signup-otp');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-resend-signup-otp" onclick="cancelTryOut('POSTapi-resend-signup-otp');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-resend-signup-otp" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/resend-signup-otp</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-resend-signup-otp" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## api/resend-otp
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/resend-otp"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "John@gmail.com"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+
+{
+"status": true,
+"message": "A one time password is send to your registered email id",
+}
+```
+<div id="execution-results-POSTapi-resend-otp" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-resend-otp"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-resend-otp"></code></pre>
+</div>
+<div id="execution-error-POSTapi-resend-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-resend-otp"></code></pre>
+</div>
+<form id="form-POSTapi-resend-otp" data-method="POST" data-path="api/resend-otp" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-resend-otp', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-resend-otp" onclick="tryItOut('POSTapi-resend-otp');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-resend-otp" onclick="cancelTryOut('POSTapi-resend-otp');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-resend-otp" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/resend-otp</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-resend-otp" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## api/forgot-password
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/forgot-password"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "user@user.com"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+
+{
+"status": true,
+"message": "A one time password is send to your registered email id",
 }
 ```
 <div id="execution-results-POSTapi-forgot-password" hidden>
@@ -592,9 +791,153 @@ fetch(url, {
 <br>
 
 </p>
+
+</form>
+
+
+## api/verify_forgot_otp
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/verify_forgot_otp"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "otp": "quod",
+    "email": "eum"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+
+{
+"status": true,
+"message": "Otp matched",
+}
+```
+<div id="execution-results-POSTapi-verify_forgot_otp" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-verify_forgot_otp"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verify_forgot_otp"></code></pre>
+</div>
+<div id="execution-error-POSTapi-verify_forgot_otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verify_forgot_otp"></code></pre>
+</div>
+<form id="form-POSTapi-verify_forgot_otp" data-method="POST" data-path="api/verify_forgot_otp" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-verify_forgot_otp', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-verify_forgot_otp" onclick="tryItOut('POSTapi-verify_forgot_otp');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-verify_forgot_otp" onclick="cancelTryOut('POSTapi-verify_forgot_otp');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-verify_forgot_otp" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/verify_forgot_otp</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>otp</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="otp" data-endpoint="POSTapi-verify_forgot_otp" data-component="body" required  hidden>
+<br>
+
+</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-verify_forgot_otp" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
+## api/reset-password
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/reset-password"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "sed",
+    "password": "molestiae"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+
+{
+"status": true,
+"message": "Otp matched",
+}
+```
+<div id="execution-results-POSTapi-reset-password" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-reset-password"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reset-password"></code></pre>
+</div>
+<div id="execution-error-POSTapi-reset-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reset-password"></code></pre>
+</div>
+<form id="form-POSTapi-reset-password" data-method="POST" data-path="api/reset-password" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-reset-password', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-reset-password" onclick="tryItOut('POSTapi-reset-password');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-reset-password" onclick="cancelTryOut('POSTapi-reset-password');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-reset-password" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/reset-password</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-reset-password" data-component="body" required  hidden>
+<br>
+
+</p>
 <p>
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="password" name="password" data-endpoint="POSTapi-forgot-password" data-component="body" required  hidden>
+<input type="password" name="password" data-endpoint="POSTapi-reset-password" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -611,7 +954,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/industry/all"
+    "http://localhost/api/industry/all"
 );
 
 let headers = {
@@ -685,7 +1028,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/profession/all"
+    "http://localhost/api/profession/all"
 );
 
 let headers = {
@@ -756,7 +1099,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/user"
+    "http://localhost/api/user"
 );
 
 let headers = {
@@ -843,6 +1186,73 @@ fetch(url, {
 </form>
 
 
+## User Block List
+
+
+
+
+> Example request:
+
+```javascript
+const url = new URL(
+    "http://localhost/api/user-block"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "block_user_id": 85
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200):
+
+```json
+{
+    "status": true,
+    "message": "Success! User Blocked Successfully"
+}
+```
+<div id="execution-results-POSTapi-user-block" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-user-block"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user-block"></code></pre>
+</div>
+<div id="execution-error-POSTapi-user-block" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user-block"></code></pre>
+</div>
+<form id="form-POSTapi-user-block" data-method="POST" data-path="api/user-block" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-block', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-user-block" onclick="tryItOut('POSTapi-user-block');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-user-block" onclick="cancelTryOut('POSTapi-user-block');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-user-block" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/user-block</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>block_user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="block_user_id" data-endpoint="POSTapi-user-block" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+
+
 ## Edit Profile
 
 
@@ -852,7 +1262,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/edit-my-profile"
+    "http://localhost/api/edit-my-profile"
 );
 
 let headers = {
@@ -870,7 +1280,9 @@ body.append('phone', '1122334455');
 body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
-body.append('available_from', 'porro');
+body.append('linked_in_link', '@bodyParam  instagram_link   required  Example:');
+body.append('facebook_link', 'eos');
+body.append('available_from', 'sint');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
@@ -993,6 +1405,18 @@ Example: 1630651142
 
 </p>
 <p>
+<b><code>linked_in_link</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="linked_in_link" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+
+</p>
+<p>
+<b><code>facebook_link</code></b>&nbsp;&nbsp;<small>required</small>     <i>optional</i> &nbsp;
+<input type="text" name="facebook_link" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
+<br>
+Example:
+</p>
+<p>
 <b><code>available_from</code></b>&nbsp;&nbsp;<small>Example:</small>     <i>optional</i> &nbsp;
 <input type="text" name="available_from" data-endpoint="POSTapi-edit-my-profile" data-component="body"  hidden>
 <br>
@@ -1017,7 +1441,7 @@ Example: 1630651142
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/sink-location"
+    "http://localhost/api/sink-location"
 );
 
 let headers = {
@@ -1097,7 +1521,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/change_password"
+    "http://localhost/api/change-password"
 );
 
 let headers = {
@@ -1150,44 +1574,44 @@ fetch(url, {
     "message": "Unauthenticated."
 }
 ```
-<div id="execution-results-POSTapi-change_password" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-change_password"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-change_password"></code></pre>
+<div id="execution-results-POSTapi-change-password" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-change-password"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-change-password"></code></pre>
 </div>
-<div id="execution-error-POSTapi-change_password" hidden>
+<div id="execution-error-POSTapi-change-password" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-change_password"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-change-password"></code></pre>
 </div>
-<form id="form-POSTapi-change_password" data-method="POST" data-path="api/change_password" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-change_password', this);">
+<form id="form-POSTapi-change-password" data-method="POST" data-path="api/change-password" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-change-password', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-change_password" onclick="tryItOut('POSTapi-change_password');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-change_password" onclick="cancelTryOut('POSTapi-change_password');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-change_password" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-change-password" onclick="tryItOut('POSTapi-change-password');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-change-password" onclick="cancelTryOut('POSTapi-change-password');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-change-password" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
- <b><code>api/change_password</code></b>
+ <b><code>api/change-password</code></b>
 </p>
 <p>
-<label id="auth-POSTapi-change_password" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-change_password" data-component="header"></label>
+<label id="auth-POSTapi-change-password" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-change-password" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
 <b><code>old_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="password" name="old_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<input type="password" name="old_password" data-endpoint="POSTapi-change-password" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
 <b><code>new_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="password" name="new_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<input type="password" name="new_password" data-endpoint="POSTapi-change-password" data-component="body" required  hidden>
 <br>
 
 </p>
 <p>
 <b><code>confirm_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="password" name="confirm_password" data-endpoint="POSTapi-change_password" data-component="body" required  hidden>
+<input type="password" name="confirm_password" data-endpoint="POSTapi-change-password" data-component="body" required  hidden>
 <br>
 
 </p>
@@ -1204,7 +1628,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/user/all"
+    "http://localhost/api/user/all"
 );
 
 let headers = {
@@ -2936,53 +3360,6 @@ fetch(url, {
 </form>
 
 
-## api/search
-
-
-
-
-> Example request:
-
-```javascript
-const url = new URL(
-    "http://localhost:8000/api/search"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response => response.json());
-```
-
-
-<div id="execution-results-POSTapi-search" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-search"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-search"></code></pre>
-</div>
-<div id="execution-error-POSTapi-search" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-search"></code></pre>
-</div>
-<form id="form-POSTapi-search" data-method="POST" data-path="api/search" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-search', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-search" onclick="tryItOut('POSTapi-search');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-search" onclick="cancelTryOut('POSTapi-search');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-search" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/search</code></b>
-</p>
-</form>
-
-
 ## api/last-filter-data
 
 
@@ -2992,7 +3369,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/last-filter-data"
+    "http://localhost/api/last-filter-data"
 );
 
 let headers = {
@@ -3092,7 +3469,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/store-filter-data"
+    "http://localhost/api/store-filter-data"
 );
 
 let headers = {
@@ -3139,7 +3516,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/get-filter-data"
+    "http://localhost/api/get-filter-data"
 );
 
 let headers = {
@@ -3186,7 +3563,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/save-user-setting"
+    "http://localhost/api/save-user-setting"
 );
 
 let headers = {
@@ -3276,7 +3653,7 @@ fetch(url, {
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/get-user-setting"
+    "http://localhost/api/get-user-setting"
 );
 
 let headers = {
