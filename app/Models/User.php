@@ -171,4 +171,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(ChatDetails::class);
     }
+    public function userBlock()
+    {
+        return $this->hasMany(UserBlockList::class);
+    }
+   
 }

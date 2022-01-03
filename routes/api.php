@@ -44,6 +44,7 @@ Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}
 // sanctum auth middleware routes
 Route::middleware('auth:api')->group(function() {
     Route::get("user", [UserController::class, "user"]);
+    Route::post("user-block", [UserController::class, "userBlock"]);
     Route::post("edit-my-profile", [UserController::class, "editprofile"]);
     Route::post("sink-location", [UserController::class, "sinklocation"]);
     Route::patch('/update-user/{user}',[UserController::class,'updateuser']);
