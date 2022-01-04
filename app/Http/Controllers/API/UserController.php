@@ -3049,23 +3049,55 @@ public function login(Request $request)
                     ->offset(0)
                     ->limit(20)            
                 ->get();
+
                 
+
+            /////
            
+            $blockUsers = $userdata->filter(function ($user,$key)
+            {    
+                //dd($user); 
+
+                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+
+                  
+                    return $user->id != $userblocklist;
+              
+            });
+            
+           $userdata = $blockUsers->all();
+           
+           
+           $userdata = collect([$userdata]);
+           //dd($userdata);
+        
+           ////
+                
                 $filtered = $userdata->filter(function ($user, $key)
-                {                  
-                    $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-                    if($userSettingDistance){ 
-                        return $user->distance <= $userSettingDistance;
+                {    
+                   // dd($user); 
+                   $id =0;
+                   $distance = 0;
+                    foreach ($user as $data){
+                        $id = $data["id"];
+                        $distance = $data["distance"];
+
+                    }  
+                    
+                    $userSettingDistance = UserDistance::where('user_id', $id)->value('distance'); // 2km 
+                    // dd($userSettingDistance);
+                    if($userSettingDistance)
+                     {                        
+                       return $distance <= $userSettingDistance;
                      }
-                    else{
-                          return  1;
+                    else
+                    {
+                        return  1;
                     }
                    
                 });
                 
                $userdata = $filtered->all();
-
-                
                
             }
             else{
