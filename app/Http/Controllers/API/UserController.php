@@ -3069,6 +3069,7 @@ public function login(Request $request)
            
            
            $userdata = collect([$userdata]);
+           //return $userdata[0];
            //dd($userdata);
         
            ////
@@ -3097,7 +3098,9 @@ public function login(Request $request)
                    
                 });
                 
-               $userdata = $filtered->all();
+               $userdata = $filtered->all()[0];
+               //dd($userdata);
+             
                
             }
             else{
