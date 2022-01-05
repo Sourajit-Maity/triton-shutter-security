@@ -350,19 +350,21 @@ class FCMController extends Controller
             ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
-
+            
             $blockUsers = $chatdetails->filter(function ($item,$key)
             {    
-                //dd($user); 
+               
 
                 $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
 
-                  
-                    return $item->id != $userblocklist;
+              
+
+                    return $item->receiver_id != $userblocklist;
               
             });
             
            $chatdetails = $blockUsers->all();
+           
            $chatdetails = collect([$chatdetails][0]);
             
             if($chatdetails->count() == 0){
@@ -763,14 +765,16 @@ public function getChatRequestDetails()
         $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
         })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
+
+
         $blockUsers = $chatdetails->filter(function ($item,$key)
         {    
-            //dd($user); 
+            
 
             $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
 
               
-                return $item->id != $userblocklist;
+                return $item->receiver_id != $userblocklist;
           
         });
         
