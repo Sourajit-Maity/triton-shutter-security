@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ChatDetails;
+use App\Models\UserBlockList;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
@@ -42,44 +43,6 @@ class FCMController extends Controller
             'message'=>'User token updated successfully.'
         ]);
       }
-
-
-
-
-    public function sendNotification(Request $request)
-    {
-        $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
-          
-        $SERVER_API_KEY = 'XXXXXX';
-  
-        $data = [
-            "registration_ids" => $firebaseToken,
-            "notification" => [
-                "title" => $request->title,
-                "body" => $request->body,  
-            ]
-        ];
-        $dataString = json_encode($data);
-    
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
-    
-        $ch = curl_init();
-      
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-               
-        $response = curl_exec($ch);
-  
-        dd($response);
-    }
-
 
 
 /** 
@@ -387,6 +350,20 @@ class FCMController extends Controller
             ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
+
+            $blockUsers = $chatdetails->filter(function ($item,$key)
+            {    
+                //dd($user); 
+
+                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+
+                  
+                    return $item->id != $userblocklist;
+              
+            });
+            
+           $chatdetails = $blockUsers->all();
+           $chatdetails = collect([$chatdetails][0]);
             
             if($chatdetails->count() == 0){
                 return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -786,7 +763,20 @@ public function getChatRequestDetails()
         $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
         })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
+        $blockUsers = $chatdetails->filter(function ($item,$key)
+        {    
+            //dd($user); 
+
+            $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+
+              
+                return $item->id != $userblocklist;
+          
+        });
         
+       $chatdetails = $blockUsers->all();
+       $chatdetails = collect([$chatdetails][0]);
+       
         if($chatdetails->count() == 0){
             return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
         }
