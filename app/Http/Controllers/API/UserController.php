@@ -3059,9 +3059,14 @@ public function login(Request $request)
                 //dd($user); 
 
                 $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-
-                  
-                    return $user->id != $userblocklist;
+                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
+               
+                if(isset($userblocklist)){
+                      return $user->id != $userblocklist;
+                }
+                if(isset($userblockId)){
+                  return $user->id !=  $userblockId;
+            }
               
             });
             
@@ -3121,6 +3126,24 @@ public function login(Request $request)
                     ->offset(0)
                     ->limit(20)            
                 ->get();
+
+                $blockUsers = $userdata->filter(function ($user,$key)
+            {    
+
+                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
+                 
+                  if(isset($userblocklist)){
+                        return $user->id != $userblocklist;
+                  }
+                  if(isset($userblockId)){
+                    return $user->id !=  $userblockId;
+              }
+               
+              
+            });
+            
+           $userdata = $blockUsers->all();
 
             }
 
