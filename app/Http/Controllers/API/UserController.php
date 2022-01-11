@@ -2011,7 +2011,7 @@ public function login(Request $request)
         $user  =  Auth::user();
         //dd($user);
         $token  =  $user->createToken('token')->plainTextToken;
-        // dd($request);
+       
         if(Auth::user()->email_verified_at != NULL){
             User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token,"latitude" => $request->latitude,"longitude" => $request->longitude));
            
