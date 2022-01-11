@@ -357,9 +357,20 @@ class FCMController extends Controller
 
                 $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
 
-              
+                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
 
+                if($userblocklist)
+                {                        
                     return $item->receiver_id != $userblocklist;
+                }
+                elseif($userblockId){
+                    return $item->sender_id !=  $userblockId;
+                  }
+               else
+               {
+                   return  1;
+               }
+
               
             });
             
@@ -766,33 +777,49 @@ public function getChatRequestDetails()
             $query->where('accept',1);
         })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
 
-
+// dd($chatdetails);
         $blockUsers = $chatdetails->filter(function ($item,$key)
         {    
             
 
             $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+            $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
 
-              
+            if($userblocklist)
+            {                        
                 return $item->receiver_id != $userblocklist;
+            }
+            elseif($userblockId){
+                return $item->sender_id !=  $userblockId;
+              }
+           else
+           {
+               return  1;
+           }
+               
           
         });
         
        $chatdetails = $blockUsers->all();
        $chatdetails = collect([$chatdetails][0]);
-       
+
+    //    dd($chatdetails);
+
         if($chatdetails->count() == 0){
+            
             return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
         }
 
         $tokens = [];
 
         foreach ($chatdetails as $key => $value) {
+            
             $tokens[$key] = $value->chat_token;
+            // dd($tokens[$key]);
         }
 
         $lastMessages = $this->chatData($tokens);
-
+        // dd($lastMessages);
 
         foreach ($chatdetails as $key => $value) {
             $chatdetails[$key]['lastMessage'] = $lastMessages[$key];

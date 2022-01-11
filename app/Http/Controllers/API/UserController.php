@@ -1869,6 +1869,7 @@ public function getindustry()
                  "industry_id"  =>  "required",     
                  "looking_for"  =>  "required",
                 "offering"  =>  "required", 
+               
         ];
         $validator = Validator::make($request->all(),$rules);
         if ($validator->fails()){
@@ -1908,6 +1909,9 @@ public function getindustry()
         $user->message= $request->get('message');
         $user->looking_for= $request->get('looking_for');
         $user->offering= $request->get('offering');
+        $user->latitude= $request->get('latitude');
+        $user->longitude= $request->get('longitude');
+        $user->status= 1;
         $user->signup_otp= $signup_otp;
         $user->assignRole('CLIENT');
         $user->save();
@@ -2004,12 +2008,13 @@ public function login(Request $request)
     // }
    
     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
-        $user       =       Auth::user();
+        $user  =  Auth::user();
         //dd($user);
-        $token      =       $user->createToken('token')->plainTextToken;
+        $token  =  $user->createToken('token')->plainTextToken;
         // dd($request);
         if(Auth::user()->email_verified_at != NULL){
-            User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token));
+            User::where("id", $user->id)->update(array("device_type" => $request->device_type, "device_token" => $request->device_token,"latitude" => $request->latitude,"longitude" => $request->longitude));
+           
             return response()->json(["status" => true,  "token" => $token, "data" => $user]);
         }
         else{
@@ -3049,7 +3054,7 @@ public function login(Request $request)
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-
+// dd($userdata);
                 
 
             /////
@@ -3064,9 +3069,13 @@ public function login(Request $request)
                 if(isset($userblocklist)){
                       return $user->id != $userblocklist;
                 }
-                if(isset($userblockId)){
+                elseif(isset($userblockId)){
                   return $user->id !=  $userblockId;
-            }
+                }
+                else
+                {
+                    return  1;
+                }
               
             });
             
@@ -3075,7 +3084,7 @@ public function login(Request $request)
            
            $userdata = collect([$userdata]);
            //return $userdata[0];
-           //dd($userdata);
+        //    dd($userdata);
         
            ////
                 
