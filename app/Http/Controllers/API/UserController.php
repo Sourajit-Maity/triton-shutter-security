@@ -1723,7 +1723,7 @@ class UserController extends Controller
  */
 public function getAllUser()
 {
-    $alluser = User::where('id', '!=', auth()->id())->latest()->get();
+    $alluser = User::where('id', '!=', auth()->id())->where('active', 1)->latest()->get();
     
     if(count($alluser) > 0){
         return response()->json(["status" => true, "data" => $alluser]);
@@ -3048,7 +3048,8 @@ public function login(Request $request)
                  [$latitude, $longitude, $latitude])
                     ->having("distance", "<", $radius)
                     ->orderBy("distance",'asc')  
-                    ->where('id', '!=', auth()->id())                                               
+                    ->where('id', '!=', auth()->id())
+                    ->where('active', 1)                                                                   
                     ->where('hide_profile', 0)
                     ->with(['industries','professions'])
                     ->offset(0)
@@ -3130,6 +3131,7 @@ public function login(Request $request)
                     ->orderBy("distance",'asc')
                     ->where('looking_for', 1)
                     ->where('id', '!=', auth()->id())
+                    ->where('active', 1) 
                     ->where('hide_profile', 0)
                     ->with(['industries','professions'])
                     ->offset(0)
