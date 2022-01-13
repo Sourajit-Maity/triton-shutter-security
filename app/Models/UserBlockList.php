@@ -12,6 +12,8 @@ class UserBlockList extends Model
         'user_id',
         'block_user_id',
         'block',
+        'report_message',
+        'report_message_time'
     ];
 
    
