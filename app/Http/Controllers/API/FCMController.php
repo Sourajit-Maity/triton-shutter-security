@@ -346,37 +346,41 @@ class FCMController extends Controller
     public function getChatDetails()
     {
         try{
+            $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
+            $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
             $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)
+            ->whereNotIn('receiver_id',$userblocklist)
+            ->whereNotIn('sender_id',$userblockId)
             ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
             
-            $blockUsers = $chatdetails->filter(function ($item,$key)
-            {    
+        //     $blockUsers = $chatdetails->filter(function ($item,$key)
+        //     {    
                
 
-                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+        //         $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
 
-                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
+        //         $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
 
-                if($userblocklist)
-                {                        
-                    return $item->receiver_id != $userblocklist;
-                }
-                elseif($userblockId){
-                    return $item->sender_id !=  $userblockId;
-                  }
-               else
-               {
-                   return  1;
-               }
+        //         if($userblocklist)
+        //         {                        
+        //             return $item->receiver_id != $userblocklist;
+        //         }
+        //         elseif($userblockId){
+        //             return $item->sender_id !=  $userblockId;
+        //           }
+        //        else
+        //        {
+        //            return  1;
+        //        }
 
               
-            });
+        //     });
             
-           $chatdetails = $blockUsers->all();
+        //    $chatdetails = $blockUsers->all();
            
-           $chatdetails = collect([$chatdetails][0]);
+        //    $chatdetails = collect([$chatdetails][0]);
             
             if($chatdetails->count() == 0){
                 return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
@@ -776,34 +780,6 @@ public function getChatRequestDetails()
         $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
         })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
-
-// dd($chatdetails);
-        $blockUsers = $chatdetails->filter(function ($item,$key)
-        {    
-            
-
-            $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-            $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
-
-            if($userblocklist)
-            {                        
-                return $item->receiver_id != $userblocklist;
-            }
-            elseif($userblockId){
-                return $item->sender_id !=  $userblockId;
-              }
-           else
-           {
-               return  1;
-           }
-               
-          
-        });
-        
-       $chatdetails = $blockUsers->all();
-       $chatdetails = collect([$chatdetails][0]);
-
-    //    dd($chatdetails);
 
         if($chatdetails->count() == 0){
             

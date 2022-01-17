@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'active'=>true
         ]);
         $superAdminUser->assignRole('SUPER-ADMIN');
-        User::factory(5)->create()->each(function ($user) {
+        User::factory(1)->create()->each(function ($user) {
             $user->assignRole('CLIENT');
         });
     }

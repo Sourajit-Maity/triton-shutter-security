@@ -2865,7 +2865,8 @@ public function login(Request $request)
 
                 $rules = [
                     "distance"   =>      "required",  
-                    "hide_profile"    =>      "required",     
+                    "hide_profile"    =>      "required", 
+                   
                 ];
                 $validator = Validator::make($request->all(),$rules);
                 if ($validator->fails()){
@@ -2893,21 +2894,27 @@ public function login(Request $request)
                 $userHideProfile->status = $request->online;
             }
             $userHideProfile->hide_profile = $request->hide_profile;
+            $userHideProfile->show_location = $request->share_current_loc;
             $userHideProfile->save();
 
             return response()->json(["status" => true,  "message" => "Success! Setting save completed", "data" => $distance]);
         } else {
             $inputs = $request->all();
             $online = "0";
+            $share_current_loc = "0";
 
             if ($request->has('online')) {
                 $userHideProfile->status = $request->online;
                 $online = $request->online;
             }
+            if ($request->has('share_current_loc')) {
+                $userHideProfile->show_location = $request->share_current_loc;
+                $share_current_loc = $request->share_current_loc;
+            }
             $userHideProfile->hide_profile = $request->hide_profile;
             $userHideProfile->save();
 
-            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile, "online" => $online));
+            $distance = UserDistance::where('user_id', Auth::user()->id)->update(array("distance" => $request->distance, "hide_profile" => $request->hide_profile,"share_current_loc" => $request->share_current_loc, "online" => $online));
 
             return response()->json(["status" => true,   "message" => "Success! Setting update successfull",  "data" => $inputs]);
            
@@ -3019,6 +3026,8 @@ public function login(Request $request)
             }
 
         if (count($filterData) > 0) {
+            $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
+            $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');
             $user = $user->newQuery();    
 
             if($industryid != NULL) {
@@ -3051,39 +3060,41 @@ public function login(Request $request)
                     ->where('id', '!=', auth()->id())
                     ->where('active', 1)                                                                   
                     ->where('hide_profile', 0)
+                    ->where('show_location', 1)
+                    ->whereNotIn('id',$userblocklist)
+                    ->whereNotIn('id',$userblockId)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-// dd($userdata);
+        // dd($userdata);
                 
-
-            /////
+              /////
            
-            $blockUsers = $userdata->filter(function ($user,$key)
-            {    
-                //dd($user); 
+        //     $blockUsers = $userdata->filter(function ($user,$key)
+        //     {    
+        //         //dd($user); 
 
-                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
+        //         $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
+        //         $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
                
-                if(isset($userblocklist)){
-                      return $user->id != $userblocklist;
-                }
-                elseif(isset($userblockId)){
-                  return $user->id !=  $userblockId;
-                }
-                else
-                {
-                    return  1;
-                }
+        //         if(isset($userblocklist)){
+        //               return $user->id != $userblocklist;
+        //         }
+        //         elseif(isset($userblockId)){
+        //           return $user->id !=  $userblockId;
+        //         }
+        //         else
+        //         {
+        //             return  1;
+        //         }
               
-            });
+        //     });
             
-           $userdata = $blockUsers->all();
+        //    $userdata = $blockUsers->all();
            
            
-           $userdata = collect([$userdata]);
+        //    $userdata = collect([$userdata]);
            //return $userdata[0];
         //    dd($userdata);
         
@@ -3092,19 +3103,21 @@ public function login(Request $request)
                 $filtered = $userdata->filter(function ($user, $key)
                 {    
                    // dd($user); 
-                   $id =0;
-                   $distance = 0;
-                    foreach ($user as $data){
-                        $id = $data["id"];
-                        $distance = $data["distance"];
+                //    $id =0;
+                //    $distance = 0;
+                //     foreach ($user as $data){
+                //         $id = $data["id"];
+                //         $distance = $data["distance"];
 
-                    }  
+                //     }  
                     
-                    $userSettingDistance = UserDistance::where('user_id', $id)->value('distance'); // 2km 
+                $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
+                // $userSettingDistance = UserDistance::where('user_id', $id)->value('distance'); // 2km 
                     // dd($userSettingDistance);
                     if($userSettingDistance)
                      {                        
-                       return $distance <= $userSettingDistance;
+                    //    return $distance <= $userSettingDistance;
+                       return $$user->distance <= $userSettingDistance;
                      }
                     else
                     {
@@ -3113,13 +3126,15 @@ public function login(Request $request)
                    
                 });
                 
-               $userdata = $filtered->all()[0];
+               $userdata = $filtered->all();
                //dd($userdata);
              
                
             }
             else{
                 $radius = 15;
+                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
+                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
                 $userdata = User::selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
@@ -3133,28 +3148,13 @@ public function login(Request $request)
                     ->where('id', '!=', auth()->id())
                     ->where('active', 1) 
                     ->where('hide_profile', 0)
+                    ->where('show_location', 1)
+                    ->whereNotIn('id',$userblocklist)
+                    ->whereNotIn('id',$userblockId)
                     ->with(['industries','professions'])
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-
-                $blockUsers = $userdata->filter(function ($user,$key)
-            {    
-
-                $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-                $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
-                 
-                  if(isset($userblocklist)){
-                        return $user->id != $userblocklist;
-                  }
-                  if(isset($userblockId)){
-                    return $user->id !=  $userblockId;
-              }
-               
-              
-            });
-            
-           $userdata = $blockUsers->all();
 
             }
 

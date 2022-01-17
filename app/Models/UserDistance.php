@@ -10,7 +10,7 @@ class UserDistance extends Model
     use HasFactory;
     protected $with=['user'];
     protected $fillable = [ 
-        'user_id', 'distance', 'share_current_loc','hide_profile'
+        'user_id', 'distance', 'share_current_loc','hide_profile',
     ];
     public function user(){
         return $this->belongsTo(User::class);
