@@ -13,6 +13,7 @@ use App\Models\Filter;
 use App\Models\Profession;
 use App\Models\UserDistance;
 use App\Models\UserBlockList;
+use App\Models\ChatDetails;
 use DateTime;
 use App\Mail\PasswordResetMail;
 use App\Mail\SignupMail;
@@ -2743,7 +2744,8 @@ public function login(Request $request)
         {
     
             $rules = [
-                "block_user_id"   =>      "required",  
+                "block_user_id"   =>      "required", 
+                "chat_id"   =>      "required",  
             ];
             $validator = Validator::make($request->all(),$rules);
             if ($validator->fails()){
@@ -2755,9 +2757,11 @@ public function login(Request $request)
                 ]);
                 
             }
-            $user = UserBlockList::where('block_user_id', $request->block_user_id)->first();
-            if (empty($user)) {
-    
+        
+            $user = UserBlockList::where('user_id', Auth::user()->id)->where('block_user_id', $request->block_user_id)->first();
+            if (empty($user)) {      
+                $chat =DB::table('chat_details')->where('id',$request->chat_id)->delete();
+                
                 $userBlock=new UserBlockList($request->all());
                 if ($request->has('block_user_id')) {
                     $userBlock->block_user_id = $request->block_user_id;
@@ -2765,6 +2769,8 @@ public function login(Request $request)
                 }
                 $userBlock->user_id=auth()->user()->id;
                 $userBlock->save();
+
+                
     
     
                 return response()->json(["status" => true,  "message" => "Success! User Blocked Successfully"]);
@@ -3026,8 +3032,10 @@ public function login(Request $request)
             }
 
         if (count($filterData) > 0) {
+           
             $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
             $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');
+            
             $user = $user->newQuery();    
 
             if($industryid != NULL) {
@@ -3046,7 +3054,7 @@ public function login(Request $request)
             if ($currentlyonline == '1') {
                 $user->where('status', $currentlyonline);
             }
-                
+            
                 $userdata = $user->selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
                 ( 6371 * acos( cos( radians(?) ) *
                 cos( radians( latitude ) )
@@ -3133,6 +3141,7 @@ public function login(Request $request)
             }
             else{
                 $radius = 15;
+                
                 $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
                 $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
                 $userdata = User::selectRaw("id,linked_in_link,instagram_link,facebook_link, user_name,message,first_name,last_name,looking_for,available_from,available_to,offering,email,industry_id,profession_id, address, latitude, longitude, status,
