@@ -346,11 +346,11 @@ class FCMController extends Controller
     public function getChatDetails()
     {
         try{
-            $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
-            $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
+            // $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
+            // $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
             $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)
-            ->whereNotIn('receiver_id',$userblocklist)
-            ->whereNotIn('sender_id',$userblockId)
+            // ->whereNotIn('receiver_id',$userblocklist)
+            // ->whereNotIn('sender_id',$userblockId)
             ->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
@@ -777,7 +777,12 @@ class FCMController extends Controller
 public function getChatRequestDetails()
 {
     try{
-        $chatdetails = ChatDetails::where('receiver_id',Auth::user()->id)->where(function($query){
+        // $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
+        // $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');  
+        $chatdetails = ChatDetails::
+        // whereNotIn('receiver_id',$userblocklist)
+        // ->whereNotIn('sender_id',$userblockId)->
+        where('receiver_id',Auth::user()->id)->where(function($query){
             $query->where('accept',1);
         })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
 
