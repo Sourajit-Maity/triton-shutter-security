@@ -15,14 +15,47 @@ class IndustrySeeder extends Seeder
     {
         $datas = [
             [
-                "industry_name" => " Frames",
-                "industry_description" => "frames",
+                "industry_name" => "IT",
+                "industry_description" => "it",
                 "active"=> 1,
              
             ],
             [
-                "industry_name" => "Test",
-                "industry_description" => "test",
+                "industry_name" => "Fashion",
+                "industry_description" => "fashion",
+                "active"=> 1,
+            ],  
+            [
+                "industry_name" => "Music & Arts",
+                "industry_description" => "music $ arts",
+                "active"=> 1,
+             
+            ],
+            [
+                "industry_name" => "Film",
+                "industry_description" => "film",
+                "active"=> 1,
+            ],  
+            [
+                "industry_name" => "LifeStyle",
+                "industry_description" => "lifestyle",
+                "active"=> 1,
+             
+            ],
+            [
+                "industry_name" => "Travel",
+                "industry_description" => "travel",
+                "active"=> 1,
+            ],  
+            [
+                "industry_name" => "Sport",
+                "industry_description" => "sport",
+                "active"=> 1,
+             
+            ],
+            [
+                "industry_name" => "Sales",
+                "industry_description" => "sales",
                 "active"=> 1,
             ],          
         ];
