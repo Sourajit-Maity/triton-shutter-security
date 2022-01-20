@@ -2745,7 +2745,7 @@ public function login(Request $request)
     
             $rules = [
                 "block_user_id"   =>      "required", 
-                "chat_id"   =>      "required",  
+               
             ];
             $validator = Validator::make($request->all(),$rules);
             if ($validator->fails()){
