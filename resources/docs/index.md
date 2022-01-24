@@ -1,5 +1,5 @@
 ---
-title: Laravel Documentation
+title: NGHBR Documentation
 
 language_tabs:
 - javascript

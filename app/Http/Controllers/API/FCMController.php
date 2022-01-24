@@ -22,28 +22,11 @@ use Kreait\Firebase\ServiceAccount;
 /**
  * @group  Fcm Token Management
  *
- * APIs for managing basic cms functionality
+ * APIs for managing basic chat functionality
  */
 class FCMController extends Controller
 {
-    
-
-    public function index(Request $request){
-        $input = $request->all();
-        $fcm_token = $input['fcm_token'];
-        $user_id = $input['user_id'];
-     
-     
-         $user = User::findOrFail($user_id);
-     
-        $user->fcm_token = $fcm_token;
-        $user->save();
-        return response()->json([
-            'success'=>true,
-            'message'=>'User token updated successfully.'
-        ]);
-      }
-
+   
 
 /** 
 * @authenticated
@@ -349,53 +332,30 @@ class FCMController extends Controller
             $chatdetails = ChatDetails::where('sender_id',Auth::user()->id)->orWhere('receiver_id',Auth::user()->id)->where(function($query){
                 $query->orWhere('accept',2);
             })->with(['senderChatRequestId.industries','senderChatRequestId.professions','receiverChatRequestId.industries','receiverChatRequestId.professions'])->orderBy('id','DESC')->get();
-            
-        //     $blockUsers = $chatdetails->filter(function ($item,$key)
-        //     {    
-               
-
-        //         $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-
-        //         $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
-
-        //         if($userblocklist)
-        //         {                        
-        //             return $item->receiver_id != $userblocklist;
-        //         }
-        //         elseif($userblockId){
-        //             return $item->sender_id !=  $userblockId;
-        //           }
-        //        else
-        //        {
-        //            return  1;
-        //        }
-
-              
-        //     });
-            
-        //    $chatdetails = $blockUsers->all();
-           
-        //    $chatdetails = collect([$chatdetails][0]);
+            //return $chatdetails;
             
             if($chatdetails->count() == 0){
                 return Response()->Json(["status"=>true,"message"=> 'No data found','data'=>$chatdetails]);
             }
-
+            
             $tokens = [];
-
+            
             foreach ($chatdetails as $key => $value) {
+               
                 $tokens[$key] = $value->chat_token;
+                
+                
             }
-
+            
             $lastMessages = $this->chatData($tokens);
-
+            return $lastMessages;
 
             foreach ($chatdetails as $key => $value) {
                 $chatdetails[$key]['lastMessage'] = $lastMessages[$key];
             }
             return Response()->Json(["status"=>true,"message"=> '','data'=>$chatdetails]);
 
-        }
+       }
         catch(\Exception $e) {
             return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
         }
@@ -519,14 +479,15 @@ class FCMController extends Controller
                     } 
                     else {
                     
-                        $receiverid = auth()->user()->id;
-                        $inputs = $request->all();
-                        $inputs['receiver_id'] = $receiverid;
-                        $inputs['sender_id'] = $sender_id;
-                        $inputs['chat_token'] = $token;
-                        $inputs['accept'] = 2;
+                        // $receiverid = auth()->user()->id;
+                        // $inputs = $request->all();
+                        // $inputs['receiver_id'] = $receiverid;
+                        // $inputs['sender_id'] = $sender_id;
+                        // $inputs['chat_token'] = $token;
+                        // $inputs['accept'] = 2;
                         // $user->update($inputs);
-                        ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                        //ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                        $details = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->update(array("accept" => 2));
                         $user = ChatDetails::where('receiver_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
                         return response()->json(["status" => true, "message" => "Success! Request accepted", "data" => $user]);
                 }
@@ -833,14 +794,15 @@ public function canceltChatRequest(Request $request)
                 } 
                 else {
                 
-                    $receiverid = auth()->user()->id;
-                    $inputs = $request->all();
-                    $inputs['receiver_id'] = $receiverid;
-                    $inputs['sender_id'] = $sender_id;
-                    $inputs['chat_token'] = NULL;
-                    $inputs['accept'] = 3;
+                    // $receiverid = auth()->user()->id;
+                    // $inputs = $request->all();
+                    // $inputs['receiver_id'] = $receiverid;
+                    // $inputs['sender_id'] = $sender_id;
+                    // $inputs['chat_token'] = NULL;
+                    // $inputs['accept'] = 3;
                     // $user->update($inputs);
-                    ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                    // ChatDetails::where('receiver_id', auth()->user()->id)->update($inputs);
+                    $details = ChatDetails::where('receiver_id', auth()->user()->id)->where('sender_id', $sender_id)->update(array("accept" => 3));
                     $user = ChatDetails::where('receiver_id', auth()->user()->id)->with(['senderChatRequestId','receiverChatRequestId'])->get();
                     return response()->json(["status" => true, "message" => "Success! Request cancelled", ]);
             }

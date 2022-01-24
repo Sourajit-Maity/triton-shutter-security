@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: January 3 2022</li>
+            <li>Last updated: January 21 2022</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -117,7 +117,7 @@ fetch(url, {
  <b><code>api/get-homepage</code></b>
 </p>
 </form><h1>Fcm Token Management</h1>
-<p>APIs for managing basic cms functionality</p>
+<p>APIs for managing basic chat functionality</p>
 <h2>api/send-chat-request</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -1202,7 +1202,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/qui"
+    "http://localhost/api/invites/consequatur"
 );
 
 let headers = {
@@ -1269,7 +1269,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/officia"
+    "http://localhost/api/invites/id"
 );
 
 let headers = {
@@ -1341,7 +1341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/quas"
+    "http://localhost/api/invites/voluptas"
 );
 
 let headers = {
@@ -2130,8 +2130,8 @@ let headers = {
 };
 
 let body = {
-    "otp": "quod",
-    "email": "eum"
+    "otp": "quibusdam",
+    "email": "vero"
 }
 
 fetch(url, {
@@ -2195,8 +2195,8 @@ let headers = {
 };
 
 let body = {
-    "email": "sed",
-    "password": "molestiae"
+    "email": "optio",
+    "password": "debitis"
 }
 
 fetch(url, {
@@ -2534,8 +2534,8 @@ body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
 body.append('linked_in_link', '@bodyParam  instagram_link   required  Example:');
-body.append('facebook_link', 'eos');
-body.append('available_from', 'sint');
+body.append('facebook_link', 'iure');
+body.append('available_from', 'magnam');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {

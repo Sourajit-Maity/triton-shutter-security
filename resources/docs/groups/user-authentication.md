@@ -813,8 +813,8 @@ let headers = {
 };
 
 let body = {
-    "otp": "quod",
-    "email": "eum"
+    "otp": "quibusdam",
+    "email": "vero"
 }
 
 fetch(url, {
@@ -888,8 +888,8 @@ let headers = {
 };
 
 let body = {
-    "email": "sed",
-    "password": "molestiae"
+    "email": "optio",
+    "password": "debitis"
 }
 
 fetch(url, {
@@ -1281,8 +1281,8 @@ body.append('address', 'address');
 body.append('available_to', '1');
 body.append('offering', '1');
 body.append('linked_in_link', '@bodyParam  instagram_link   required  Example:');
-body.append('facebook_link', 'eos');
-body.append('available_from', 'sint');
+body.append('facebook_link', 'iure');
+body.append('available_from', 'magnam');
 body.append('profile_photo_path', document.querySelector('input[name="profile_photo_path"]').files[0]);
 
 fetch(url, {
