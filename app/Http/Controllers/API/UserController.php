@@ -2601,19 +2601,7 @@ public function login(Request $request)
             ],203);
             
         }
-            // $validator  =   Validator::make($request->all(), [
-            //     "first_name"  =>  "required",
-            //     "last_name"  =>  "required",
-            //     "email"  =>  "required|email",
-            //     "social_id"  =>  "required",
-            //     "social_account_type"  =>  "required",
-            //     "device_token" => "required",
-            //     "device_type" => "required",
-
-            // ]);
-            // if ($validator->fails()) {
-            //     return response()->json(["status" => false, "message" => $validator->errors()]);
-            // }
+            
             $user = User::where('social_id', $request->social_id)->first();
             //dd($user);
             if (empty($user)) {
@@ -2999,7 +2987,6 @@ public function login(Request $request)
         }
 
 
-
         public function getFilterData(Request $request, User $user)
     { 
 
@@ -3015,27 +3002,27 @@ public function login(Request $request)
         
             $userid= Auth::user()->id;
             $latitude = $request->input('latitude');
-            $longitude = $request->input('longitude');
-            $filterData = Filter::where('user_id', $userid)->get();
-            $industryid = Filter::where('user_id', $userid)->value('industry_id');
-            $professionid = Filter::where('user_id', $userid)->value('profession_id');
+            $longitude = $request->input('longitude');            
+            $filterData = Filter::where('user_id', $userid)->count();          
+            $industryid = Filter::where('user_id', $userid)->value('industry_id');           
+            $professionid = Filter::where('user_id', $userid)->value('profession_id');          
             $lookingfor = Filter::where('user_id', $userid)->value('looking_for');
             $offeringid = Filter::where('user_id', $userid)->value('offering');
             $radiusid = Filter::where('user_id', $userid)->value('radius');
            $currentlyonline = Filter::where('user_id', $userid)->value('online');
-           
+         
             if ($radiusid != NULL) {
                 $radius = Filter::where('user_id', $userid)->value('radius');
+               
             }
             else{
                 $radius = 15;
             }
 
-        if (count($filterData) > 0) {
+        if ($filterData > 0) {
            
             $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->pluck('block_user_id');
             $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->pluck('user_id');
-            
             $user = $user->newQuery();    
 
             if($industryid != NULL) {
@@ -3075,57 +3062,18 @@ public function login(Request $request)
                     ->offset(0)
                     ->limit(20)            
                 ->get();
-        // dd($userdata);
-                
-              /////
-           
-        //     $blockUsers = $userdata->filter(function ($user,$key)
-        //     {    
-        //         //dd($user); 
-
-        //         $userblocklist = UserBlockList::where('user_id', Auth::user()->id)->where('block', 0)->value('block_user_id'); 
-        //         $userblockId = UserBlockList::where('block_user_id', Auth::user()->id)->where('block', 0)->value('user_id'); 
-               
-        //         if(isset($userblocklist)){
-        //               return $user->id != $userblocklist;
-        //         }
-        //         elseif(isset($userblockId)){
-        //           return $user->id !=  $userblockId;
-        //         }
-        //         else
-        //         {
-        //             return  1;
-        //         }
-              
-        //     });
-            
-        //    $userdata = $blockUsers->all();
-           
-           
-        //    $userdata = collect([$userdata]);
-           //return $userdata[0];
-        //    dd($userdata);
         
-           ////
-                
+                //dd($userdata);                               
                 $filtered = $userdata->filter(function ($user, $key)
                 {    
-                   // dd($user); 
-                //    $id =0;
-                //    $distance = 0;
-                //     foreach ($user as $data){
-                //         $id = $data["id"];
-                //         $distance = $data["distance"];
-
-                //     }  
-                    
+                           
                 $userSettingDistance = UserDistance::where('user_id', $user->id)->value('distance'); // 2km 
-                // $userSettingDistance = UserDistance::where('user_id', $id)->value('distance'); // 2km 
-                    // dd($userSettingDistance);
+                
                     if($userSettingDistance)
                      {                        
-                    //    return $distance <= $userSettingDistance;
-                       return $$user->distance <= $userSettingDistance;
+                       
+                       return $user->distance <= $userSettingDistance;
+                      
                      }
                     else
                     {
