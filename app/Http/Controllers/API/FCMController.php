@@ -348,7 +348,7 @@ class FCMController extends Controller
             }
             
             $lastMessages = $this->chatData($tokens);
-            return $lastMessages;
+            //return $lastMessages;
 
             foreach ($chatdetails as $key => $value) {
                 $chatdetails[$key]['lastMessage'] = $lastMessages[$key];
@@ -821,16 +821,20 @@ public function canceltChatRequest(Request $request)
                     ->withDatabaseUri('https://nghbr-324911-default-rtdb.firebaseio.com/');
 
             $database = $factory->createDatabase();
-            // $snapshot = $database->getReference('/chatMessages/')->getSnapshot();
-            // $tokens = $database->getReference('/chatMessages/')->getChildKeys();
-
+             //$snapshot = $database->getReference('/chatMessages/')->getSnapshot();
+             
+             $tokens = $database->getReference('/chatMessages/')->getChildKeys();
+            
             $chatData = [];
 
             foreach ($tokens as $key => $result) {
                 $resultData = $database->getReference('/chatMessages/' . $result)->orderByKey()->limitToLast(1)->getValue();
+                
                 $getChildKey = array_key_first($resultData);
+               
                 $chatData[$key] = $resultData[$getChildKey];
             }
+           
 
             if(count($chatData) > 0){
                 return $chatData;
@@ -839,7 +843,7 @@ public function canceltChatRequest(Request $request)
             }
         } catch (\Exception $e) {
             return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
-        }
+         }
     }
 
     
