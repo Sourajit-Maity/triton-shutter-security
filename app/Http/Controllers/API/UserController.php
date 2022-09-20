@@ -59,7 +59,6 @@ class UserController extends Controller
             "device_type": null,
             "device_token": null,
             "industry_id": null,
-            "profession_id": null,
             "active": 0,
             "created_at": "2021-09-21T11:16:12.000000Z",
             "updated_at": "2021-09-21T11:16:12.000000Z",
@@ -92,7 +91,6 @@ class UserController extends Controller
             "device_type": null,
             "device_token": null,
             "industry_id": null,
-            "profession_id": null,
             "active": 0,
             "created_at": "2021-09-21T11:16:12.000000Z",
             "updated_at": "2021-09-21T11:16:12.000000Z",
@@ -1734,7 +1732,7 @@ public function getAllUser()
     }
 }
 /** 
- * Get-Profession
+ * Get-Product
  * @response  {
     "status": true,
     "data": [
@@ -1764,7 +1762,7 @@ public function getprofession()
         return response()->json(["status" => true, "data" => $profession]);
     }
     else{
-        return response()->json(["status" => false, "message" => "Profession not found"]);
+        return response()->json(["status" => false, "message" => "Product not found"]);
     }
 }
 /** 
@@ -1828,7 +1826,6 @@ public function getindustry()
         "user_name": "jay12",
         "email": "jay12@yopmail.com",
         "phone": null,
-        "profession_id": "1",
         "industry_id": "1",
         "address": null,
         "message": null,
@@ -1866,10 +1863,8 @@ public function getindustry()
                  "user_name"  =>  "required|unique:users",
                  "email"  =>  "required|email|unique:users",           
                  "password"  =>  "required",
-                "profession_id"  =>  "required",
                  "industry_id"  =>  "required",     
-                 "looking_for"  =>  "required",
-                "offering"  =>  "required", 
+
                
         ];
         $validator = Validator::make($request->all(),$rules);
@@ -1884,7 +1879,7 @@ public function getindustry()
         }
 
         $inputs = $request->all();
-
+        return ($inputs);
 
         // $user   =   User::create($inputs);
         // $user->assignRole('CLIENT');
@@ -1904,12 +1899,9 @@ public function getindustry()
         $user->email= $request->get('email');
         $user->phone= $request->get('phone');
         $user->password= $request->get('password');
-        $user->profession_id= $request->get('profession_id');
         $user->industry_id= $request->get('industry_id');
         $user->address= $request->get('address');
         $user->message= $request->get('message');
-        $user->looking_for= $request->get('looking_for');
-        $user->offering= $request->get('offering');
         $user->latitude= $request->get('latitude');
         $user->longitude= $request->get('longitude');
         $user->status= 1;
@@ -1925,7 +1917,7 @@ public function getindustry()
             'url' => 'https://www.nghbr.com'
         ];
 
-        Mail::to($email_to)->send(new SignupMail($details));
+        //Mail::to($email_to)->send(new SignupMail($details));
 
         if(!is_null($user)) {
             // $token  =   $user->createToken('token')->plainTextToken;
@@ -1966,7 +1958,6 @@ public function getindustry()
         "device_type": "1",
         "device_token": "1",
         "industry_id": null,
-        "profession_id": null,
         "active": 1,
         "created_at": "2021-08-30T05:05:39.000000Z",
         "updated_at": "2021-08-30T06:58:57.000000Z",
@@ -1982,7 +1973,6 @@ public function login(Request $request)
 // try{
     $input = $request->all();
 
-  
 
                 $rules = [
                     "username" =>  "required",
@@ -2010,7 +2000,7 @@ public function login(Request $request)
    
     if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
         $user  =  Auth::user();
-        //dd($user);
+        
         $token  =  $user->createToken('token')->plainTextToken;
        
         if(Auth::user()->email_verified_at != NULL){
@@ -2073,7 +2063,6 @@ public function login(Request $request)
         "device_type": null,
         "device_token": null,
         "industry_id": 1,
-        "profession_id": 1,
          "latitude": null,
         "longitude": null,
         "available_from": "00:00:23",
@@ -2367,7 +2356,6 @@ public function login(Request $request)
         "email": "sourajitm8@gmail.com1",
         "address": "test address",
         "phone": null,
-        "profession_id": "1",
         "industry_id": "1",
         "message": "message",
         "looking_for": "1",
@@ -2393,7 +2381,6 @@ public function login(Request $request)
                     "full_name"  =>  "required",
                     "email"  =>  "required|email",
                     "address" => "required",
-                    "profession_id"  =>  "required",
                     "industry_id"  =>  "required",
                     "message"  =>  "required",
                     "available_from"  =>  "required",
@@ -2442,7 +2429,6 @@ public function login(Request $request)
         $inputs['linked_in_link'] = $request->get('linked_in_link');
         $inputs['address'] = $request->get('address');
         $inputs['phone'] = $request->get('phone');
-        $inputs['profession_id'] = $request->get('profession_id');
         $inputs['industry_id'] = $request->get('industry_id');
         $inputs['message'] = $request->get('message');
         $inputs['looking_for'] = $request->get('looking_for');
@@ -2641,7 +2627,6 @@ public function login(Request $request)
         "looking_for": 1,
         "offering": 0,
         "industry_id": null,
-        "profession_id": null,
         "user_id": 56,
         "radius": null,
         "created_at": "2021-09-21T14:27:41.000000Z",
@@ -2671,7 +2656,6 @@ public function login(Request $request)
             "device_type": null,
             "device_token": null,
             "industry_id": 1,
-            "profession_id": 1,
             "active": 0,
             "created_at": "2021-09-21T14:25:29.000000Z",
             "updated_at": "2021-09-21T14:26:38.000000Z",
@@ -2959,7 +2943,6 @@ public function login(Request $request)
             "device_type": null,
             "device_token": "22",
             "industry_id": 1,
-            "profession_id": 1,
             "fcm_token": null,
             "active": 1,
             "invitation_accept": 0,

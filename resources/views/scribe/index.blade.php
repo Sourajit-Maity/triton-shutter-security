@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel Documentation</title>
+    <title>NGHBR Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: January 21 2022</li>
+            <li>Last updated: May 4 2022</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -1202,7 +1202,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/consequatur"
+    "http://localhost/api/invites/perspiciatis"
 );
 
 let headers = {
@@ -1269,7 +1269,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/id"
+    "http://localhost/api/invites/exercitationem"
 );
 
 let headers = {
@@ -1341,7 +1341,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/invites/voluptas"
+    "http://localhost/api/invites/voluptatem"
 );
 
 let headers = {
@@ -1400,6 +1400,221 @@ fetch(url, {
 <input type="number" name="invitation" data-endpoint="DELETEapi-invites--invite-" data-component="url" required  hidden>
 <br>
 
+</p>
+</form><h1>Product Details Management</h1>
+<p>APIs for managing  Product Details functionality</p>
+<h2>Location Sink</h2>
+<p>@bodyParam  active integer required  Example: 0/1</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/product-status-change"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+{
+"status": true,
+"message": "Success!  update completed",
+"data": {
+"active": "1",
+"id": "4"
+}
+}</code></pre>
+<div id="execution-results-POSTapi-product-status-change" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-product-status-change"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-product-status-change"></code></pre>
+</div>
+<div id="execution-error-POSTapi-product-status-change" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-product-status-change"></code></pre>
+</div>
+<form id="form-POSTapi-product-status-change" data-method="POST" data-path="api/product-status-change" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-product-status-change', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-product-status-change" onclick="tryItOut('POSTapi-product-status-change');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-product-status-change" onclick="cancelTryOut('POSTapi-product-status-change');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-product-status-change" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/product-status-change</code></b>
+</p>
+</form>
+<h2>api/save-product-user-data</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/save-product-user-data"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "profession_id": "1",
+    "product_token": "123456"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+{
+"status": true,
+"message": "Success! Product created",
+"data": {
+"profession_id": "1",
+"product_token": "12345678",
+"sender_id": 5,
+"updated_at": "2022-09-20T16:37:31.000000Z",
+"created_at": "2022-09-20T16:37:31.000000Z",
+"id": 4
+}
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-POSTapi-save-product-user-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-save-product-user-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-save-product-user-data"></code></pre>
+</div>
+<div id="execution-error-POSTapi-save-product-user-data" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-save-product-user-data"></code></pre>
+</div>
+<form id="form-POSTapi-save-product-user-data" data-method="POST" data-path="api/save-product-user-data" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-save-product-user-data', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-save-product-user-data" onclick="tryItOut('POSTapi-save-product-user-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-save-product-user-data" onclick="cancelTryOut('POSTapi-save-product-user-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-save-product-user-data" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/save-product-user-data</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-save-product-user-data" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-save-product-user-data" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>profession_id</code></b>&nbsp;&nbsp;<small>product</small>     <i>optional</i> &nbsp;
+<input type="text" name="profession_id" data-endpoint="POSTapi-save-product-user-data" data-component="body"  hidden>
+<br>
+id required
+</p>
+<p>
+<b><code>product_token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="product_token" data-endpoint="POSTapi-save-product-user-data" data-component="body" required  hidden>
+<br>
+
+</p>
+
+</form>
+<h2>api/get-product-user-data</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/get-product-user-data"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+{
+"status": true,
+"data": [
+{
+"id": 4,
+"sender_id": 5,
+"verify_user_id": null,
+"profession_id": 1,
+"accept": 1,
+"product_token": "12345678",
+"active": 1,
+"created_at": "2022-09-20T16:37:31.000000Z",
+"updated_at": "2022-09-20T16:37:31.000000Z",
+"deleted_at": null,
+"product_request_id": {
+"id": 1,
+"profession_name": "Business Owner",
+"profession_description": null,
+"profession_photo_path": null,
+"active": 1,
+"created_at": "2022-09-20T14:31:34.000000Z",
+"updated_at": "2022-09-20T14:31:34.000000Z"
+}
+}
+]
+}
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<div id="execution-results-GETapi-get-product-user-data" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-get-product-user-data"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-get-product-user-data"></code></pre>
+</div>
+<div id="execution-error-GETapi-get-product-user-data" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-get-product-user-data"></code></pre>
+</div>
+<form id="form-GETapi-get-product-user-data" data-method="GET" data-path="api/get-product-user-data" data-authed="1" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-get-product-user-data', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-get-product-user-data" onclick="tryItOut('GETapi-get-product-user-data');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-get-product-user-data" onclick="cancelTryOut('GETapi-get-product-user-data');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-get-product-user-data" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/get-product-user-data</code></b>
+</p>
+<p>
+<label id="auth-GETapi-get-product-user-data" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-get-product-user-data" data-component="header"></label>
 </p>
 </form><h1>User Authentication</h1>
 <p>APIs for managing basic auth functionality</p>

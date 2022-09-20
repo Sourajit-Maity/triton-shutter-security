@@ -16,6 +16,8 @@ class CreateProfessionsTable extends Migration
         Schema::create('professions', function (Blueprint $table) {
             $table->id();
             $table->text('profession_name');
+            $table->string('profession_description')->nullable();
+            $table->text('profession_photo_path')->nullable();
             $table->boolean('active')->default(true); 
             $table->timestamps();
         });

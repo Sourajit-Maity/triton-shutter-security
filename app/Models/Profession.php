@@ -10,6 +10,8 @@ class Profession extends Model
     use HasFactory;
     protected $fillable = [
         'profession_name',
+        'profession_description',
+        'profession_photo_path',
         'active'
     ];
 

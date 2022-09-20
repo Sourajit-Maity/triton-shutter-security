@@ -5,6 +5,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CmsController;
 use App\Http\Controllers\API\InvitationController;
 use App\Http\Controllers\API\FCMController;
+use App\Http\Controllers\API\ProductDetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -76,5 +77,11 @@ Route::middleware('auth:api')->group(function() {
 
     // Firebase chat api
     // Route::get('/get-chat-data', [FCMController::class, 'chatData'])->name('get-chat-data');
+
+    //product details
+    Route::post('/product-status-change', [ProductDetailsController::class, 'statusProductChange'])->name('status-product-change');
+    Route::post('/save-product-user-data', [ProductDetailsController::class, 'saveProductUserData'])->name('save-product-user-data');
+    Route::get('/get-product-user-data', [ProductDetailsController::class, 'getProductUserData'])->name('get-product-user-data');
+    
 
 });
