@@ -52,18 +52,26 @@
 								</li> --}}
 
 								<li class="kt-menu__section ">
+									<h4 class="kt-menu__section-text">Product Management</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>
+								</li>
+								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Products</span></a></li>
+
+								<li class="kt-menu__item  {{ Request::is('admin/products*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('products.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">Product Details</span></a></li>
+
+								<li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">Resource Management</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li>
 								<li class="kt-menu__item  {{ Request::is('admin/industry*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('industry.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-industry"></i><span class="kt-menu__link-text">Industry</span></a></li>
 								
 
-								<li class="kt-menu__section ">
+								<!-- <li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">Invitation Management</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li> 
 								
-								 <li class="kt-menu__item  {{ Request::is('admin/invitation*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('invitation.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-calendar-check"></i><span class="kt-menu__link-text">Chat Invitation</span></a></li>
+								 <li class="kt-menu__item  {{ Request::is('admin/invitation*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('invitation.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-calendar-check"></i><span class="kt-menu__link-text">Chat Invitation</span></a></li> -->
 								 <li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">Report Management</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
@@ -78,14 +86,7 @@
 								<li class="kt-menu__item  {{ Request::is('admin/state*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('state.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">State</span></a></li>
 								<li class="kt-menu__item  {{ Request::is('admin/city*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('city.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">City</span></a></li>
 
-								<li class="kt-menu__section ">
-									<h4 class="kt-menu__section-text">Product Management</h4>
-									<i class="kt-menu__section-icon flaticon-more-v2"></i>
-								</li>
-								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Products</span></a></li>
-
-								<li class="kt-menu__item  {{ Request::is('admin/products*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('products.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">Product Details</span></a></li>
-
+								
 								<!-- <li class="kt-menu__item  {{ Request::is('admin/pages*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('pages.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-file-alt"></i><span class="kt-menu__link-text">Pages</span></a></li> -->
 							</ul>
 						</div>
