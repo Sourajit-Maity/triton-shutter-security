@@ -9,12 +9,12 @@ use App\Models\Profession;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use App\Http\Livewire\Traits\AlertMessage;
-
+use Carbon\Carbon;
 class ProductCreateEdit extends Component
 {
     use WithFileUploads;
     use AlertMessage;
-    public $blankArr,$sender_id,$receiver_id,$profession_id,$product_token,$active,$accept,$product;
+    public $blankArr,$location,$location_area,$sim_number,$validity,$product_name,$sender_id,$receiver_id,$profession_id,$product_token,$active,$accept,$product;
     public $address;
     public $isEdit = false;
     public $statusList = [];
@@ -62,10 +62,14 @@ class ProductCreateEdit extends Component
         return
             [
                 'sender_id' => ['required'],
-                'profession_id' => ['required'],
-                'product_token' => ['required'],
+                'product_token' => ['required',Rule::unique('products'), 'min:8',],
                 'accept' => ['required'],
                 'active' => ['required'],
+                'location' => ['required'],
+                'location_area' => ['required'],
+                'sim_number' => ['required'],
+                'product_name' => ['required'],
+                'validity' => ['required'],
               
 
             ];
@@ -76,10 +80,14 @@ class ProductCreateEdit extends Component
             [
                
                 'sender_id' => ['required'],
-                'profession_id' => ['required'],
-                'product_token' => ['required'],
+                'product_token' => ['required',Rule::unique('products')->ignore($this->product->id),],
                 'accept' => ['required'],
                 'active' => ['required'],
+                'location' => ['required'],
+                'location_area' => ['required'],
+                'sim_number' => ['required'],
+                'product_name' => ['required'],
+                'validity' => ['required'],
             ];
     }
 
@@ -87,16 +95,21 @@ class ProductCreateEdit extends Component
 
 
         'sender_id.required'=>'User name is required.',
-        'profession_id.required'=>'Product name is required.',
+        'product_name.required'=>'Product name is required.',
         'product_token.required'=>'Product Token is required.',
         'accept.required'=>'Device Status name is required.',
         'active.required'=>'Status is required.',
+        'validity.required'=>'validity is required.',
+        'sim_number.required'=>'Sim Number is required.',
+        'location.required'=>'Location is required.',
+        'location_area.required'=>'Location Area is required.',
     ];
 
     public function saveOrUpdate()
     {
         
         $this->isEdit ? $this->product->verify_user_id = auth()->user()->id : $this->product->verify_user_id = auth()->user()->id;
+        $this->isEdit ? $this->product->buy_on = carbon::now() : $this->product->buy_on = carbon::now();
 
         $this->product->fill($this->validate($this->isEdit ? $this->validationRuleForUpdate() : $this->validationRuleForSave()))->save();
         

@@ -39,6 +39,7 @@
 					<!-- begin:: Aside Menu -->
 					<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
 						<div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+						@if(auth()->user()->id == 1)
 							<ul class="kt-menu__nav ">
 								<li class="kt-menu__item  {{ Request::is('admin/dashboard*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('admin.dashboard')}}" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-home"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
 								<li class="kt-menu__section ">
@@ -55,7 +56,7 @@
 									<h4 class="kt-menu__section-text">Product Management</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li>
-								<li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Products</span></a></li>
+								<!-- <li class="kt-menu__item  {{ Request::is('admin/professions*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('professions.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-user-tie"></i><span class="kt-menu__link-text">Products</span></a></li> -->
 
 								<li class="kt-menu__item  {{ Request::is('admin/products*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('products.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">Product Details</span></a></li>
 
@@ -89,6 +90,17 @@
 								
 								<!-- <li class="kt-menu__item  {{ Request::is('admin/pages*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('pages.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fas fa-file-alt"></i><span class="kt-menu__link-text">Pages</span></a></li> -->
 							</ul>
+						@else
+						<ul class="kt-menu__nav ">
+								
+								<li class="kt-menu__section ">
+									<h4 class="kt-menu__section-text">Product Details</h4>
+									<i class="kt-menu__section-icon flaticon-more-v2"></i>
+								</li>
+								<li class="kt-menu__item  {{ Request::is('admin/products*') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true"><a href="{{route('products.index')}}" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-globe"></i><span class="kt-menu__link-text">Product Details</span></a></li>
+								
+							</ul>
+						@endif
 						</div>
 					</div>
                     <!-- end:: Aside Menu -->

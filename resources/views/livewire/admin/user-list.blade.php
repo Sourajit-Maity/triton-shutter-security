@@ -31,10 +31,7 @@
             <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
                 aria-label="Company Agent: activate to sort column ascending">Industry <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('industry_id')"></i></th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 10%;"
-                aria-label="Company Agent: activate to sort column ascending">Profession<i
-                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('profession_id')"></i></th>
-
+            
             <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
                 aria-label="Status: activate to sort column ascending">Status</th>
             <th class="align-center" rowspan="1" colspan="1" style="width: 15%;" aria-label="Actions">Actions</th>
@@ -61,10 +58,7 @@
                 <x-admin.input type="search" wire:model.defer="searchIndustry" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" />
             </th>
-            <th>
-                <x-admin.input type="search" wire:model.defer="searchProfession" placeholder="" autocomplete="off"
-                    class="form-control-sm form-filter" />
-            </th>
+           
             <th>
                 <select class="form-control form-control-sm form-filter kt-input" wire:model.defer="searchStatus"
                     title="Select" data-col-index="2">
@@ -124,10 +118,7 @@
                 <td>{{ $user->industries->industry_name }}</td>
                 @else <td></td>
                 @endif
-                @if (isset($user->professions->profession_name))               
-                <td>{{ $user->professions->profession_name }}</td>
-                @else <td></td>
-                @endif
+                
                 <td class="align-center"><span
                         class="kt-badge  kt-badge--{{ $user->active == 1 ? 'success' : 'warning' }} kt-badge--inline kt-badge--pill cursor-pointer"
                         wire:click="changeStatusConfirm({{ $user->id }})">{{ $user->active == 1 ? 'Active' : 'Inactive' }}</span>

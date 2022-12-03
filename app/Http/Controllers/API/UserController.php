@@ -1712,7 +1712,7 @@ class UserController extends Controller
             "created_at": "2021-09-21T11:16:06.000000Z",
             "updated_at": "2021-09-21T11:16:06.000000Z",
             "full_name": "Admin Admin",
-            "role_name": "SUPER-ADMIN",
+            "role_name": "",
             "profile_photo_url": "https://ui-avatars.com/api/?name=Admin&color=FFFFFF&background=a85232"
         }
     ]
@@ -1962,7 +1962,7 @@ public function getindustry()
         "created_at": "2021-08-30T05:05:39.000000Z",
         "updated_at": "2021-08-30T06:58:57.000000Z",
         "full_name": "Admin Admin",
-        "role_name": "SUPER-ADMIN",
+        "role_name": "",
         "profile_photo_url": "https://ui-avatars.com/api/?name=Admin&color=7F9CF5&background=EBF4FF"
     }
 }
@@ -1970,7 +1970,7 @@ public function getindustry()
 public function login(Request $request)
 {
 
-// try{
+ try{
     $input = $request->all();
 
 
@@ -2032,10 +2032,10 @@ public function login(Request $request)
         return response()->json(["status" => false, "message" => "Whoops! invalid username or password"]);
     }
     }
-//     catch(\Exception $e) {
-//         return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
-//     }
-// }
+    catch(\Exception $e) {
+        return Response()->Json(["status"=>false,"message"=> 'Something went wrong. Please try again.']);
+    }
+}
 
 
 /** 

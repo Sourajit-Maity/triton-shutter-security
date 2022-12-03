@@ -8,10 +8,12 @@
 				</x-admin.breadcrumbs>
 
 			    <x-slot name="toolbar" >
+				@if(auth()->user()->id == 1)
 					<a href="{{route('products.create')}}" class="btn btn-brand btn-elevate btn-icon-sm">
 						<i class="la la-plus"></i>
 						Add New Product Details
 					</a>
+				@endif
 				</x-slot>
 			</x-admin.sub-header>
     </x-slot>

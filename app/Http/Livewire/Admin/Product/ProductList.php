@@ -21,7 +21,7 @@ class ProductList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $searchInvited,$searchProductDetails,$searchAccept, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
+    public $searchInvited,$searchProductDetails,$searchProductToken,$searchAccept, $searchStatus = -1, $searchDelete = -1, $perPage = 5;
     protected $listeners = ['deleteConfirm', 'changeStatus'];
 
     public function mount()
@@ -55,6 +55,7 @@ class ProductList extends Component
         $this->searchProductDetails = "";
         $this->searchStatus = -1;
         $this->searchAccept = "";
+        $this->searchProductToken = "";
     }
 
     public function render()
@@ -77,6 +78,10 @@ class ProductList extends Component
                 $dataQuery->orWhere('profession_id', $value->id);
              }
          }
+         if ($this->searchProductToken)
+         $dataQuery->orWhere('product_name', 'like', '%' . $this->searchProductToken . '%');
+         if ($this->searchProductDetails)
+         $dataQuery->orWhere('product_token', 'like', '%' . $this->searchProductDetails . '%');
         if ($this->searchStatus >= 0)
             $dataQuery->orWhere('active', $this->searchStatus);
         if($this->searchAccept){

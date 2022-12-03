@@ -11,20 +11,37 @@
             <x-admin.input-error for="sender_id" />
         </x-admin.form-group>
         <x-admin.form-group>
-            <x-admin.lable value="Product Name" required/>
-                <x-admin.dropdown  wire:model.defer="profession_id" placeHolderText="Please select one" autocomplete="off" class="state {{ $errors->has('profession_id') ? 'is-invalid' :'' }}">
-                        <x-admin.dropdown-item  :value="$blankArr['value']" :text="$blankArr['text']"/> 
-                        @foreach ($professions as $data)
-                            <x-admin.dropdown-item  :value="$data['id']" :text="$data['profession_name']"/>                      
-                        @endforeach
-                </x-admin.dropdown>
-            <x-admin.input-error for="profession_id" />
+                        <x-admin.lable value="Product Name" required />
+                        <x-admin.input type="text" wire:model.defer="product_name" placeholder="Product Name" autocomplete="off" class="{{ $errors->has('product_name') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="product_name" />
         </x-admin.form-group>
         <x-admin.form-group>
                         <x-admin.lable value="Product Token" required />
                         <x-admin.input type="text" wire:model.defer="product_token" placeholder="Product Token" autocomplete="off" class="{{ $errors->has('product_token') ? 'is-invalid' :'' }}"/>
                         <x-admin.input-error for="product_token" />
-                    </x-admin.form-group>
+        </x-admin.form-group>
+        <x-admin.form-group>
+                        <x-admin.lable value="Location Name" required />
+                        <x-admin.input type="text" wire:model.defer="location" placeholder="Location Name" autocomplete="off" class="{{ $errors->has('location') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="location" />
+        </x-admin.form-group>
+        <x-admin.form-group>
+                        <x-admin.lable value="Location Area" required />
+                        <x-admin.input type="text" wire:model.defer="location_area" placeholder="Location Area" autocomplete="off" class="{{ $errors->has('location_area') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="location_area" />
+        </x-admin.form-group>
+
+        <x-admin.form-group>
+                        <x-admin.lable value="Sim Number" required />
+                        <x-admin.input type="text" wire:model.defer="sim_number" placeholder="Sim Number" autocomplete="off" class="{{ $errors->has('sim_number') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="sim_number" />
+        </x-admin.form-group>
+        <x-admin.form-group>
+                        <x-admin.lable value="Validity" required />
+                        <x-admin.input type="text" wire:model.defer="validity" placeholder="Validity" autocomplete="off" class="{{ $errors->has('validity') ? 'is-invalid' :'' }}"/>
+                        <x-admin.input-error for="validity" />
+        </x-admin.form-group>
+        
         <x-admin.form-group>
             <x-admin.lable value="Device Status" required/>
                 <x-admin.dropdown  wire:model.defer="accept" placeHolderText="Please select one" autocomplete="off" class="{{ $errors->has('accept') ? 'is-invalid' :'' }}">

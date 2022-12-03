@@ -15,19 +15,24 @@
 
     <x-slot name="thead">
         <tr role="row">
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 18%;"
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">User Name <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('sender_id')"></i>
             </th>
-          <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
+          <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">Product Name <i
-                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('profession_id')"></i>
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('product_name')"></i>
             </th>
-            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 22%;"
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+                aria-sort="ascending" aria-label="Agent: activate to sort column descending">Product Token <i
+                    class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('product_token')"></i>
+            </th>
+            <th tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 15%;"
                 aria-sort="ascending" aria-label="Agent: activate to sort column descending">Status <i
                     class="fa fa-fw fa-sort pull-right" style="cursor: pointer;" wire:click="sortBy('accept')"></i>
             </th>
-           
+            <th class="align-center" tabindex="0" aria-controls="kt_table_1" rowspan="1" colspan="1" style="width: 12%;"
+                aria-label="Status: activate to sort column ascending">Status</th>
            
             <th class="align-center" rowspan="1" colspan="1" style="width: 20%;" aria-label="Actions">Actions</th>
         </tr>
@@ -42,11 +47,22 @@
                     class="form-control-sm form-filter" />
             </th>
             <th>
+                <x-admin.input type="search" wire:model.defer="searchProductToken" placeholder="" autocomplete="off"
+                    class="form-control-sm form-filter" />
+            </th>
+            <th>
                 <!-- <x-admin.input type="search" wire:model.defer="" placeholder="" autocomplete="off"
                     class="form-control-sm form-filter" /> -->
             </th>
             
-           
+            <th>
+                <select class="form-control form-control-sm form-filter kt-input" wire:model.defer="searchStatus"
+                    title="Select" data-col-index="2">
+                    <option value="-1">Select</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </th>
  
             <th>
                 <div class="row">
@@ -90,24 +106,27 @@
                     </div>
                 </td>
                 <td class="sorting_1" tabindex="0">
-                    <div class="kt-user-card-v2">
-                        <div class="kt-user-card-v2__pic">
-                            <div class="kt-badge kt-badge--xl kt-badge--{{ $this->getRandomColor() }}">
-                                <span>{{ $productdetail->productRequestId->profession_name }}</span>
-                            </div>
-                        </div>
-                    </div>
+                     <span>{{ $productdetail->product_name }}</span>                        
+                </td>   
+                <td class="sorting_1" tabindex="0">
+                     <span>{{ $productdetail->product_token }}</span>                        
                 </td>       
                 @if($productdetail->accept == 1)
                 <td class="sorting_1" tabindex="0">Requested</td>
                 @else
                 <td class="sorting_1" tabindex="0">Accepted</td>
                 @endif
+                <td class="align-center"><span
+                        class="kt-badge  kt-badge--{{ $productdetail->active == 1 ? 'success' : 'warning' }} kt-badge--inline kt-badge--pill cursor-pointer"
+                        wire:click="changeStatusConfirm({{ $productdetail->id }})">{{ $productdetail->active == 1 ? 'Active' : 'Inactive' }}</span>
+                </td>
                 <x-admin.td-action>
+                @if(auth()->user()->id == 1)
                     <a class="dropdown-item" href="{{ route('products.edit', ['product' => $productdetail->id]) }}"><i
                             class="la la-edit"></i> Edit</a>
                     <button href="#" class="dropdown-item" wire:click="deleteAttempt({{ $productdetail->id }})"><i
                             class="fa fa-trash"></i> Delete</button>
+                @endif
                 </x-admin.td-action>
             </tr>
         @empty 

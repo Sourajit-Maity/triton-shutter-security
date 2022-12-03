@@ -67,14 +67,15 @@ class UserCreateEdit extends Component
             [
                 'password' => ['required', 'max:255', 'min:6', 'confirmed'],
                 'password_confirmation' => ['required', 'max:255', 'min:6'],
-                'user_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
-                'active' => ['required'],
-                'address' => ['nullable'],               
-                'industry_id' => ['required'],
-                'phone' => ['required', Rule::unique('users'), 'min:8', 'max:13', 'regex:/^([0-9\s+\(\)]*)$/'],
                 'first_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
                 'last_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'user_name' => ['required', 'max:255', 'regex:/^[a-zA-Z]+$/u'],
+                'active' => ['required'],
                 'email' => ['required', 'email', 'max:255', Rule::unique('users'), 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'],
+                'phone' => ['required', Rule::unique('users'), 'min:8', 'max:13', 'regex:/^([0-9\s+\(\)]*)$/'],
+                'address' => ['nullable'],               
+                'industry_id' => ['required'],
+                'message' => ['required'],
             ];
     }
     public function validationRuleForUpdate(): array
@@ -89,6 +90,7 @@ class UserCreateEdit extends Component
                 'phone' => ['required', Rule::unique('users')->ignore($this->user->id), 'regex:/^([0-9\s+\(\)]*)$/', 'min:8', 'max:13'],
                 'address' => ['nullable'],               
                 'industry_id' => ['required'],
+                'message' => ['required'],
 
             ];
     }

@@ -18,7 +18,13 @@ class Product extends Model
         'profession_id',
         'accept',
         'product_token',
-        'active'
+        'location',
+        'location_area',
+        'sim_number',
+        'product_name',
+        'validity',
+        'buy_on',
+        'active',
     ];
 
     public function getStatusAttribute($value)
