@@ -48,11 +48,13 @@ class ProductDetailsController extends Controller
  *   "message": "Unauthenticated."
 *}
  */
-public function getProductUserData()
+public function getProductUserData(Request $request)
 {
-    $invitation = Product::where("sender_id", auth()->user()->id)->where(['active'=>1])->with(['productRequestId'])->get();
+    $token =  $request->token;
+
+    $invitation = Product::where('product_token', $token)->first();
     
-    if(count($invitation) > 0){
+    if($invitation){
         return response()->json(["status" => true, "data" => $invitation]);
     }
     else{

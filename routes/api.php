@@ -37,6 +37,9 @@ Route::get("industry/all", [UserController::class, 'getindustry']);
 Route::get("profession/all", [UserController::class, 'getprofession']);
 Route::get("get-homepage", [CmsController::class, 'gethomepage']);
 
+Route::post('/get-product-user-data', [ProductDetailsController::class, 'getProductUserData'])->name('get-product-user-data');
+
+
 Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}/{latitude}/{longitude}/{radius}", [UserController::class, 'getuserlist']);
 //Route::get("get-user-list/{industry_id}/{profession_id}/{looking_for}/{offering}", [UserController::class, 'getuserlist']);
 //Route::post('/search', [UserController::class,'filter']);
@@ -81,7 +84,6 @@ Route::middleware('auth:api')->group(function() {
     //product details
     Route::post('/product-status-change', [ProductDetailsController::class, 'statusProductChange'])->name('status-product-change');
     Route::post('/save-product-user-data', [ProductDetailsController::class, 'saveProductUserData'])->name('save-product-user-data');
-    Route::get('/get-product-user-data', [ProductDetailsController::class, 'getProductUserData'])->name('get-product-user-data');
     
 
 });
